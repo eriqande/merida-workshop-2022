@@ -1,0 +1,16 @@
+bookdown::gitbook:
+  css: css/style.css
+  config:
+    toc:
+      collapse: section
+      before: |
+        <li><a href="./">Mérida Workshop</a></li>
+      after: |
+        <li><a href="https://bookdown.org" target="blank">Published with bookdown</a></li>
+    download: [pdf, epub]
+    edit: https://github.com/eriqande/merida-workshop-2022/edit/master/%s
+    history: https://github.com/eriqande/merida-workshop-2022/commits/master/%s
+    sharing:
+      github: true
+      facebook: false
+

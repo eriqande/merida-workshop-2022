@@ -1,0 +1,46 @@
+--- 
+title: "Reproducible Research for Conservation --- Mérida, Mexico"
+author: "Eric C. Anderson, Christen Bossu, Richard Evan Feldman, Kristen C. Ruegg, Marius Somveille"
+date: "`r Sys.Date()`"
+documentclass: krantz
+bibliography: [references.bib]
+biblio-style: apalike
+link-citations: yes
+colorlinks: yes
+lot: yes
+lof: yes
+site: bookdown::bookdown_site
+description: "A book example for a Chapman & Hall book."
+github-repo: yihui/bookdown-crc
+graphics: yes
+#cover-image: images/cover.jpg
+header-includes: 
+  - \usepackage{booktabs}
+fig-retina: 2
+---
+
+
+```{r setup, include=FALSE}
+options(
+  htmltools.dir.version = FALSE, formatR.indent = 2, width = 55, digits = 4
+)
+
+# install the packages needed by this book; you fill out c(), e.g. c('ggplot2', 'dplyr')
+lapply(c('xfun'), function(pkg) {
+  if (system.file(package = pkg) == '') install.packages(pkg)
+})
+
+library(tidyverse)
+```
+
+# Preface {-}
+
+This is the site/book associated with a course scheduled for January 2022.
+
+More on this later...
+
+
+```{r include=FALSE}
+# put my knitr options here
+options(knitr.graphics.auto_pdf = TRUE)
+```

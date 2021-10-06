@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 3 Organizing Research Projects for Reproducibility | Reproducible Research for Conservation — Mérida, Mexico</title>
+  <meta name="description" content="A book example for a Chapman &amp; Hall book." />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 3 Organizing Research Projects for Reproducibility | Reproducible Research for Conservation — Mérida, Mexico" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="A book example for a Chapman &amp; Hall book." />
+  <meta name="github-repo" content="yihui/bookdown-crc" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 3 Organizing Research Projects for Reproducibility | Reproducible Research for Conservation — Mérida, Mexico" />
+  
+  <meta name="twitter:description" content="A book example for a Chapman &amp; Hall book." />
+  
+
+<meta name="author" content="Eric C. Anderson, Christen Bossu, Richard Evan Feldman, Kristen C. Ruegg, Marius Somveille" />
+
+
+<meta name="date" content="2021-10-06" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="rbasics.html"/>
+<link rel="next" href="envdata.html"/>
+<script src="libs/header-attrs/header-attrs.js"></script>
+<script src="libs/jquery/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections/anchor-sections.js"></script>
+
+
+
+
+<link rel="stylesheet" href="css/style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Mérida Workshop</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
+<li class="chapter" data-level="1" data-path="congen-intro.html"><a href="congen-intro.html"><i class="fa fa-check"></i><b>1</b> Introduction to Conservation Genomics Approaches</a></li>
+<li class="chapter" data-level="2" data-path="rbasics.html"><a href="rbasics.html"><i class="fa fa-check"></i><b>2</b> R Programming Basics</a></li>
+<li class="chapter" data-level="3" data-path="reporg.html"><a href="reporg.html"><i class="fa fa-check"></i><b>3</b> Organizing Research Projects for Reproducibility</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="reporg.html"><a href="reporg.html#rstudio-and-rstudio-projects"><i class="fa fa-check"></i><b>3.1</b> RStudio and RStudio Projects</a></li>
+<li class="chapter" data-level="3.2" data-path="reporg.html"><a href="reporg.html#version-control-with-git"><i class="fa fa-check"></i><b>3.2</b> Version control with git</a></li>
+<li class="chapter" data-level="3.3" data-path="reporg.html"><a href="reporg.html#github"><i class="fa fa-check"></i><b>3.3</b> GitHub</a></li>
+<li class="chapter" data-level="3.4" data-path="reporg.html"><a href="reporg.html#big-or-private-data-sets"><i class="fa fa-check"></i><b>3.4</b> Big or Private data sets</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="envdata.html"><a href="envdata.html"><i class="fa fa-check"></i><b>4</b> Finding and Obtaining Environmental Data for Conservation</a></li>
+<li class="chapter" data-level="5" data-path="spatdata.html"><a href="spatdata.html"><i class="fa fa-check"></i><b>5</b> Handling and Visualizing Spatial Data in R</a></li>
+<li class="chapter" data-level="6" data-path="geassoc.html"><a href="geassoc.html"><i class="fa fa-check"></i><b>6</b> Genetic and Environmental Associations</a></li>
+<li class="chapter" data-level="7" data-path="conclude.html"><a href="conclude.html"><i class="fa fa-check"></i><b>7</b> Concluding Remarks / Parting Words</a></li>
+<li class="divider"></li>
+<li><a href="https://bookdown.org" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Reproducible Research for Conservation — Mérida, Mexico</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="reporg" class="section level1" number="3">
+<h1><span class="header-section-number">Chapter 3</span> Organizing Research Projects for Reproducibility</h1>
+<p>Intro verbiage.</p>
+<div id="rstudio-and-rstudio-projects" class="section level2" number="3.1">
+<h2><span class="header-section-number">3.1</span> RStudio and RStudio Projects</h2>
+<p>Directory structure, <code>data</code>, <code>R</code>, etc. numbering scripts. <code>README.Rmd</code></p>
+</div>
+<div id="version-control-with-git" class="section level2" number="3.2">
+<h2><span class="header-section-number">3.2</span> Version control with git</h2>
+<p>What you do and don’t want to keep under version control. <code>.gitignore</code>, etc.</p>
+</div>
+<div id="github" class="section level2" number="3.3">
+<h2><span class="header-section-number">3.3</span> GitHub</h2>
+<p>Boing!</p>
+</div>
+<div id="big-or-private-data-sets" class="section level2" number="3.4">
+<h2><span class="header-section-number">3.4</span> Big or Private data sets</h2>
+<p>Check out the <code>googledrive</code> package.</p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="rbasics.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="envdata.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook/js/app.min.js"></script>
+<script src="libs/gitbook/js/clipboard.min.js"></script>
+<script src="libs/gitbook/js/plugin-search.js"></script>
+<script src="libs/gitbook/js/plugin-sharing.js"></script>
+<script src="libs/gitbook/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook/js/jquery.highlight.js"></script>
+<script src="libs/gitbook/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": true,
+"facebook": false,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/eriqande/merida-workshop-2022/edit/master/3.0-reproducible-organization.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": "https://github.com/eriqande/merida-workshop-2022/commits/master/3.0-reproducible-organization.Rmd",
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["merida-workshop-2022.pdf", "merida-workshop-2022.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "section"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

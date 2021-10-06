@@ -1,0 +1,3 @@
+#  Handling and Visualizing Spatial Data in R {#spatdata}
+
+Stuff here.

@@ -1,0 +1,11 @@
+congen-intro
+rbasics
+reporg
+rstudio-and-rstudio-projects
+version-control-with-git
+github
+big-or-private-data-sets
+envdata
+spatdata
+geassoc
+conclude
