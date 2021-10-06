@@ -8,4 +8,4 @@ language:
     tab: "TABLE "
   ui:
     edit: "Edit"
-    chapter_name: "Chapter "
+    chapter_name: "Session "
