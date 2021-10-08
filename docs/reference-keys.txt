@@ -5,6 +5,7 @@ rstudio-and-rstudio-projects
 version-control-with-git
 github
 big-or-private-data-sets
+merge-conflicts
 envdata
 spatdata
 geassoc

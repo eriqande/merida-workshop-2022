@@ -18,3 +18,7 @@ Boing!
 
 Check out the `googledrive` package.
 
+## Merge Conflicts?
+
+Working together on this bookdown means we will get merge conflicts.  
+
