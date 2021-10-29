@@ -44,3 +44,4 @@ More on this later...
 # put my knitr options here
 options(knitr.graphics.auto_pdf = TRUE)
 ```
+
