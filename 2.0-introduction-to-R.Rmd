@@ -2,18 +2,6 @@
 
 Something here.
 
-
-<<<<<<< HEAD
-This will be CH and Matt!
-
-Here, we are going to introduce you to the basics of R and ggplot2.
-
-try again2
-=======
-Changes here...
-
 This will be Christen and Matt!
 
-
-Changes here.
->>>>>>> 0d943527922638ac32fa4931c68446bad5f4f658
+Here, we are going to introduce you to the basics of R and ggplot2.
