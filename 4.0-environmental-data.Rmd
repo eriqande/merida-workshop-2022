@@ -1,5 +1,9 @@
 #  Finding and Obtaining Environmental Data for Conservation {#envdata}
 
-Stuff here.
+Types of environmental data:
 
-rep(1, 10)
+- direcly observed (satellite data)
+- Interpolated or modeled etc.
+
+Discussion of CRSs.
+

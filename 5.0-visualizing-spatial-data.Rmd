@@ -1,3 +1,26 @@
 #  Handling and Visualizing Spatial Data in R {#spatdata}
 
 Stuff here.
+
+Marius and I brainstormed on this.  We will do an example
+that involved the Yucatan Jay.  ECA has downloaded
+occurrences from GBIF (3 Mb compressed) and has put them
+into `data`.
+
+We can use that and some of the raster data and some
+vector data to do a little exploration of how to use the
+`sf` package in combination with ggplot2.
+
+Also, some filtering in the tidyverse.
+
+Ideas:
+
+- Do some filtering of the data set (tidyverse reprise)
+- Talk about lubridate for dealing with dates and times
+- facet wrap over months to look at occurrences, etc.
+- Some very light geometrical operations, for example get all the
+observations within X km of some features (like highways).
+- Explore the use of different raster backgrounds.
+
+
+
