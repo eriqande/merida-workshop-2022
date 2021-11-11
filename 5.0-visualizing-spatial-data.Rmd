@@ -3,7 +3,8 @@
 Stuff here.
 
 Marius and I brainstormed on this.  We will do an example
-that involved the Yucatan Jay.  ECA has downloaded
+that involves the Yucatan Jay (or, better yet, ask Richard
+if a more interesting/iconic species is available).  ECA has downloaded
 occurrences from GBIF (3 Mb compressed) and has put them
 into `data`.
 
