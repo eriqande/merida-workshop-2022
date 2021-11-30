@@ -7,3 +7,159 @@ Types of environmental data:
 
 Discussion of CRSs.
 
+## Environmental Layers. A general overview
+
+This section provides a brief narrative of Marius Someveille's
+PowerPoint presentation.  We are trying to succinctly capture the
+main points in this web/bookdown version so that it might easily
+be translated with Google Translate.
+
+Environmental layers in this context are _raster_ data they carry
+information about particular "cells" or "pixels" of the earth's surface.
+All of these terms will be defined in detail later. For now, here are a few
+pictures of what environmental layers might look like when they are plotted
+and displayed:
+  
+```{r, echo=FALSE, out.width='100%'}
+knitr::include_graphics("images/env_layers/three-layers-intro.png")
+```
+  
+  
+### Environmental layers in conservation genetics
+
+#### Landscape connectivity analysis (gene flow)
+
+Connectivity is essential for long term persistence of populations and metapopulations as it affects gene flow. Functional connectivity is the degree to which individuals move through a landscape, which is affected by landscape features and environmental heterogeneity. Landscape genetics tests which landscape and environmental factors best explain genetic connectivity among populations and highlights which landscape features need to be maintained or enhanced to facilitate connectivity (gene flow) for different species. 
+
+For example, @robertson2018regional studied frogs in multiple locations in
+North America, shown here:
+  
+```{r, echo=FALSE, out.width='90%', fig.align='center'}
+knitr::include_graphics("images/env_layers/robertson-land-cover.png")
+``` 
+  
+The positions of samples are shown here on a map that was created from
+land cover data.  However, many other layers area available, giving information
+of, for example, topography, temperature, and moisture levels in the different
+locations.  Landscape genetics approaches were used to identify which of these 
+features were most associated with connectivity between populations in
+each of the different regions (i.e, different colors on the map).  They summarized
+those results as follows:
+  
+```{r, echo=FALSE, out.width='90%', fig.align='center'}
+knitr::include_graphics("images/env_layers/robertson-table.png")
+``` 
+  
+  
+#### Environmental Niche Analysis
+
+@ruegg2021linking shows another example of the use of environmental layers
+in conservation genetics.  In this case, genetic differences resolved separate
+breeding populations of the willow flycatcher in North America, and also made it
+possible to identify where birds from each breeding population spend their
+winters, as shown in the following figure (in which the different breeding
+populations are denoted by different colors):
+  
+```{r, echo=FALSE, out.width='90%', fig.align='center'}
+knitr::include_graphics("images/env_layers/wifl-map.png")
+``` 
+
+With the breeding and wintering areas for each subpopulation identified,
+other environmental layers (not shown) were used to identify the environmental
+and climatic conditions that defined the birds breeding and wintering
+_niches_ for the subpopulations. Population trends were found to be associated
+with overlap between breeding and wintering niches, with the subpopulation showing 
+the least niche overlap being the only subpopulation not showing a decreasing trend.
+  
+```{r, echo=FALSE, out.width='90%', fig.align='center'}
+knitr::include_graphics("images/env_layers/wifl-niches.png")
+``` 
+
+
+#### Genome-environment association to study vulnerability
+
+Associations between genetic variation and environmental variation
+(that we will hear about from Christen Bossu!) can be used to identify
+places where there is expected to be a mismatch between expected genetic patterns
+and environmental conditions after changes due to climate change.  One of the first
+papers documenting this was @bay2018genomic.  
+
+In their study, a variety of environmental predictors (BIO18, BIO15, etc.), whose
+values across space are represented by environmental layer data, were found to
+be associated with genetic variation, as shown in the following montage of
+figures from the paper:
+  
+```{r, echo=FALSE, out.width='90%', fig.align='center'}
+knitr::include_graphics("images/env_layers/bay-science.png")
+``` 
+  
+
+
+### Environmental layers as raster data
+
+### Coordinate system and projections
+
+### Parameters of raster data
+
+
+### Examples of climate layers
+
+```{r tbl9, echo = FALSE}
+tbl9 <- tibble::tribble(
+~`Source`, ~`Method`, ~`Variables`, ~`Extent`, ~`Spatial resolution`, ~`Temporal resolution`,
+"WorldClim","Interpolation of observations from weather stations","Temperature Precipitation Solar radiation BIOCLIM","Global","30 sec (~1km2) 2.5 min 5 min 10 min (~340 km2)","Monthly 1970 – 2000",
+"Chelsa","Quasi-mechanistical downscale of global circulation model","Temperature Precipitation BIOCLIM","Global","30 arc sec (~1km2)","Monthly 1979 – 2018",
+"Prism","Statistical model using weather station data  and atmospheric process","Temperature Precipitation","USA","30 arc sec (~1km2)","Monthly 1981–2010"
+)
+
+kableExtra::kable_styling(knitr::kable(tbl9), font_size = 14)
+```
+
+---
+
+### Examples of atmospheric layers
+
+
+```{r tbl10, echo = FALSE}
+tbl10 <- tibble::tribble(
+~`Source`, ~`Method`, ~`Variables`, ~`Extent`, ~`Spatial resolution`, ~`Temporal resolution`,
+"NOAA Global Forecast System","Global atmospheric model","Wind direction Wind speed","Global","0.5 deg","6 times / day 2011 – present",
+"WorldClim","Interpolation of observations from weather stations","Wind speed Water vapor pressure","Global","30 sec (~1km2) 2.5 min 5 min 10 min (~340 km2)","Monthly 1970 – 2000"
+)
+
+kableExtra::kable_styling(knitr::kable(tbl10), font_size = 14)
+```
+
+---
+
+
+### Examples of vegetation layers
+
+```{r tbl11, echo = FALSE}
+tbl11 <- tibble::tribble(
+~`Source`, ~`Method`, ~`Variables`, ~`Extent`, ~`Spatial resolution`, ~`Temporal resolution`,
+"VIP30 (NASA)","Remote sensing using spectrometer on board satellites","NDVI EVI","Global","0.05 deg ~5.6km","Monthly 1981 – 2014",
+"Copernicus (ESA)","Remote sensing using spectrometer on board satellites","NDVI EVI","Global","300m","10-day Present",
+"GEDI (NASA)","Remote sensing using lidar (laser ranging) onboard the ISS","Vertical profile of vegetation: canopy height, canopy vertical structure, ground elevation ","51.6 deg N and S latitudes ","25m","Annual Present"
+)
+
+kableExtra::kable_styling(knitr::kable(tbl11), font_size = 14)
+```
+
+---
+
+
+### Examples of landscape layers
+
+```{r tbl12, echo = FALSE}
+tbl12 <- tibble::tribble(
+~`Source`, ~`Method`, ~`Variables`, ~`Extent`, ~`Spatial resolution`, ~`Temporal resolution`,
+"SRTM (NASA)","Remote sensing using radar onboard satellites","Elevation","Global","1 arc-second (~30m)","NA",
+"MODIS (NASA)","Remote sensing using spectrometer onboard satellites","Snow cover","Global","30 arc-sec (~1km2)"," ",
+"Copernicus (ESA)","remote sensing + random forest for classification","Land cover","Global","100m","NA",
+"NASA Gridded Population of the World","Input data are census tables","Human population density","Global","30 arc-sec (~1km2) ","NA 2000–2020"
+)
+
+kableExtra::kable_styling(knitr::kable(tbl12), font_size = 14)
+```
+

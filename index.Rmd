@@ -5,6 +5,7 @@ date: "`r Sys.Date()`"
 documentclass: krantz
 bibliography: [references.bib]
 biblio-style: apalike
+csl: molecular-ecology.csl
 link-citations: yes
 colorlinks: yes
 lot: yes

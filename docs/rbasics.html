@@ -24,7 +24,7 @@
 <meta name="author" content="Eric C. Anderson, Christen Bossu, Richard Evan Feldman, Kristen C. Ruegg, Marius Somveille" />
 
 
-<meta name="date" content="2021-10-29" />
+<meta name="date" content="2021-11-30" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,7 +33,8 @@
   
 <link rel="prev" href="congen-intro.html"/>
 <link rel="next" href="reporg.html"/>
-<script src="libs/jquery/jquery-3.5.1.min.js"></script>
+<script src="libs/header-attrs/header-attrs.js"></script>
+<script src="libs/jquery/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook/css/plugin-table.css" rel="stylesheet" />
@@ -52,9 +53,97 @@
 
 <link href="libs/anchor-sections/anchor-sections.css" rel="stylesheet" />
 <script src="libs/anchor-sections/anchor-sections.js"></script>
+<script src="libs/kePrint/kePrint.js"></script>
+<link href="libs/lightable/lightable.css" rel="stylesheet" />
 
 
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
 
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
 
 <link rel="stylesheet" href="css/style.css" type="text/css" />
 </head>
@@ -75,17 +164,31 @@
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
 <li class="chapter" data-level="1" data-path="congen-intro.html"><a href="congen-intro.html"><i class="fa fa-check"></i><b>1</b> Introduction to Conservation Genomics Approaches</a></li>
 <li class="chapter" data-level="2" data-path="rbasics.html"><a href="rbasics.html"><i class="fa fa-check"></i><b>2</b> R Programming Basics</a></li>
-<li class="chapter" data-level="3" data-path="reporg.html"><a href="reporg.html"><i class="fa fa-check"></i><b>3</b> Organizing Research Projects for Reproducibility</a><ul>
+<li class="chapter" data-level="3" data-path="reporg.html"><a href="reporg.html"><i class="fa fa-check"></i><b>3</b> Organizing Research Projects for Reproducibility</a>
+<ul>
 <li class="chapter" data-level="3.1" data-path="reporg.html"><a href="reporg.html#rstudio-and-rstudio-projects"><i class="fa fa-check"></i><b>3.1</b> RStudio and RStudio Projects</a></li>
 <li class="chapter" data-level="3.2" data-path="reporg.html"><a href="reporg.html#version-control-with-git"><i class="fa fa-check"></i><b>3.2</b> Version control with git</a></li>
 <li class="chapter" data-level="3.3" data-path="reporg.html"><a href="reporg.html#github"><i class="fa fa-check"></i><b>3.3</b> GitHub</a></li>
 <li class="chapter" data-level="3.4" data-path="reporg.html"><a href="reporg.html#big-or-private-data-sets"><i class="fa fa-check"></i><b>3.4</b> Big or Private data sets</a></li>
 <li class="chapter" data-level="3.5" data-path="reporg.html"><a href="reporg.html#merge-conflicts"><i class="fa fa-check"></i><b>3.5</b> Merge Conflicts?</a></li>
+<li class="chapter" data-level="3.6" data-path="reporg.html"><a href="reporg.html#explain-caching"><i class="fa fa-check"></i><b>3.6</b> Explain caching</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="envdata.html"><a href="envdata.html"><i class="fa fa-check"></i><b>4</b> Finding and Obtaining Environmental Data for Conservation</a></li>
+<li class="chapter" data-level="4" data-path="envdata.html"><a href="envdata.html"><i class="fa fa-check"></i><b>4</b> Finding and Obtaining Environmental Data for Conservation</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="envdata.html"><a href="envdata.html#environmental-layers.-a-general-overview"><i class="fa fa-check"></i><b>4.1</b> Environmental Layers. A general overview</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="envdata.html"><a href="envdata.html#environmental-layers-in-conservation-genetics"><i class="fa fa-check"></i><b>4.1.1</b> Environmental layers in conservation genetics</a></li>
+<li class="chapter" data-level="4.1.2" data-path="envdata.html"><a href="envdata.html#environmental-layers-as-raster-data"><i class="fa fa-check"></i><b>4.1.2</b> Environmental layers as raster data</a></li>
+<li class="chapter" data-level="4.1.3" data-path="envdata.html"><a href="envdata.html#coordinate-system-and-projections"><i class="fa fa-check"></i><b>4.1.3</b> Coordinate system and projections</a></li>
+<li class="chapter" data-level="4.1.4" data-path="envdata.html"><a href="envdata.html#parameters-of-raster-data"><i class="fa fa-check"></i><b>4.1.4</b> Parameters of raster data</a></li>
+<li class="chapter" data-level="4.1.5" data-path="envdata.html"><a href="envdata.html#examples-of-climate-layers"><i class="fa fa-check"></i><b>4.1.5</b> Examples of climate layers</a></li>
+<li class="chapter" data-level="4.1.6" data-path="envdata.html"><a href="envdata.html#examples-of-atmospheric-layers"><i class="fa fa-check"></i><b>4.1.6</b> Examples of atmospheric layers</a></li>
+<li class="chapter" data-level="4.1.7" data-path="envdata.html"><a href="envdata.html#examples-of-vegetation-layers"><i class="fa fa-check"></i><b>4.1.7</b> Examples of vegetation layers</a></li>
+<li class="chapter" data-level="4.1.8" data-path="envdata.html"><a href="envdata.html#examples-of-landscape-layers"><i class="fa fa-check"></i><b>4.1.8</b> Examples of landscape layers</a></li>
+</ul></li>
+</ul></li>
 <li class="chapter" data-level="5" data-path="spatdata.html"><a href="spatdata.html"><i class="fa fa-check"></i><b>5</b> Handling and Visualizing Spatial Data in R</a></li>
-<li class="chapter" data-level="6" data-path="geassoc.html"><a href="geassoc.html"><i class="fa fa-check"></i><b>6</b> Genetic and Environmental Associations</a></li>
-<li class="chapter" data-level="7" data-path="conclude.html"><a href="conclude.html"><i class="fa fa-check"></i><b>7</b> Concluding Remarks / Parting Words</a></li>
+<li class="chapter" data-level="6" data-path="conclude.html"><a href="conclude.html"><i class="fa fa-check"></i><b>6</b> Concluding Remarks / Parting Words</a></li>
 <li class="divider"></li>
 <li><a href="https://bookdown.org" target="blank">Published with bookdown</a></li>
 
@@ -106,10 +209,10 @@
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="rbasics" class="section level1">
+<div id="rbasics" class="section level1" number="2">
 <h1><span class="header-section-number">Session 2</span> R Programming Basics</h1>
 <p>Something here.</p>
-<p>This will be CH and Matt!</p>
+<p>This will be Christen and Matt!</p>
 <p>Here, we are going to introduce you to the basics of R and ggplot2.</p>
 
 </div>
