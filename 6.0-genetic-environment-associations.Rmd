@@ -1,8 +1,29 @@
 #  Genetic and Environmental Associations {#geassoc}
 
+## Background 
+Now that we know how to get environmental layers and plot them in space, for many of the species we are working on, we are not entirely sure which environmental variables are important drivers of populaiton genetic structure or underlying phenotypic traits of interest. 
+
+Let's back up. Now, we have access to multiple layers of environmental layers that span a species range: 
+```{r, echo=FALSE, out.width='100%'}
+knitr::include_graphics("images/env_layers/three-layers-intro.png")
+```
+  
+  
+And we might have a raster of population genetic structure such as the Willow Flycatcher genoscape, a spatially explicit map of population structure. 
+```{r, echo=FALSE, out.width='100%'}
+knitr::include_graphics("images/6.0/Ruegg et al2021.Fig1.jpg")
+```
+  
+  
+What we want to investigate is how environmental variables are correlated with genetic variation. Note, this is not to look at candidate genes, but rather what combination of environmental variables shapes overall population genetic structure of a species.
+
 ## Motivation
 
-The R package gradientForest utilizes a flexible non-parametric functions to quantify multi-species compositional turnover along environmental gradients. In the era of next-generation sequencing, where genome-wide data is common, we can extend this to determine which variants are associated with specific environmental variables. So rather than thinking of the large-scale species turnover in space, we can map fine-scale allele-frequency changes along environemntal gradients. 
+The R package gradientForest quantifies multi-species compositional turnover along environmental gradients. In the era of next-generation sequencing, where genome-wide data is common, we can extend this to determine which variants are associated with specific environmental variables. So rather than thinking of the large-scale species turnover in space, we can map fine-scale allele-frequency changes along environemntal gradients. 
+
+```{r, echo=FALSE, out.width='100%'}
+knitr::include_graphics("images/6.0/Fitzpatrick.Fig5.jpg")
+```
 
 Below is code for quantifying and visualizing intraspecific gene-environment variation across space. As part of The Bird Genoscape Project, we compare present-day gene-environment associations to predicted future changes to identify regions of genomic vulnerability. For now, this tutorial focuses on analyzing and plotting the allelic variation as estimated from gradient forest for a single species, the Willow Flycatcher, but is easily adpated to include other species and methods for esimating variation.
 
