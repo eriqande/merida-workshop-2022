@@ -1,7 +1,180 @@
-# R Programming Basics {#rbasics}
+# Introduction to the tidyverse
 
-Something here.
+Load required packages
 
-This will be Christen and Matt!
+```{r}
+library(tidyverse)
+library(viridis) #preferred color palette for graphing
+```
 
-Here, we are going to introduce you to the basics of R and ggplot2.
+Import bird data.
+
+The data provides information on the species richness of birds and butterflies and NDVI at 30 sites.
+Our goal is to run a linear model that estimates the magnitude, direction, and uncertainty in the species richness-NDVI relationship for each taxa and then visualize the relationship.
+
+````{r}
+data.all<-read_csv("data/data.richard.new.csv")
+data.all
+````
+
+The old way is to run a model on each taxa separately:
+
+```{r}
+model.birds<-lm(Richness~NDVI, data=data.all[data.all$Taxa=="Birds",]) #subset the Birds data
+model.butterflies<-lm(Richness~NDVI, data=data.all[data.all$Taxa=="Butterflies",]) #subset the Butterflies
+```
+
+Extracting results from the summary file is not easy.
+
+```{r}
+key.results.birds<-as.data.frame(summary(model.birds)[[4]]) #You have to remember that subscript [[4]] corresponds to the main results
+```
+
+The broom package presents model results in a tidy way.
+
+```{r}
+library(broom)
+```
+
+broom::tidy() returns parameter estimates.
+
+```{r}
+birds.tidy<-model.birds%>%tidy()
+birds.tidy
+```
+
+broom::glance() includes R2, AIC, and more.
+
+```{r}
+birds.glance<-model.birds%>%glance()
+birds.glance
+```
+
+broom::augment() returns fitted values
+
+```{r}
+birds.augment<-model.birds%>%augment()
+birds.augment
+```
+
+To run models or implement any function on the different groups within a data frame, one must master tidyr::nest() and purrr::map().
+
+nest() creates a list of data frames with each corresponding to a different group.
+
+Example: create a data frame for each taxa.
+
+```{r}
+data.taxa<-data.all%>%group_by(Taxa)%>%nest()
+data.taxa
+```
+
+The grouping variable is left out of the nested data frame. All other data is now in a separate data frame, nested with the whole data frame.
+
+You can inspect what lies behind the "data" column by using unnest() to display the original data.
+
+```{r}
+data.original.birds<-data.taxa%>%ungroup()%>%slice(n=1)%>%unnest(data) #slice(n=1) means extract the first row of the data.taxa data frame.
+
+data.original.birds
+```
+
+map() applies a function to each nested data frame.
+
+Example: find the mean number of species of each taxa
+
+```{r}
+mean.taxa<-data.all%>%group_by(Taxa)%>%nest()%>%mutate(mean.Richness=map(data, function(x)mean(x%>%pull(Richness)))) #map indicates the data frame column with the nested data (i.e., data) and applies a function to that data.
+#data becomes the "x" in the function. 
+#pull() extracts the variable of interest and returns a vector.
+
+mean.taxa
+```
+
+The results are mutated as another list column in the original data frame. They can be unnested.
+
+```{r}
+mean.taxa<-data.all%>%group_by(Taxa)%>%nest()%>%mutate(mean.Richness=map(data, function(x)mean(x%>%pull(Richness))))%>%unnest(mean.Richness)
+mean.taxa
+```
+
+More complicated functions are easier to specify outside of the pipe.
+
+Example: find the sites with the highest and lowest bird and butterfly species richness
+
+```{r}
+get.sites<-function(x){ #Each element of the list column data will correspond to data frame "x" in the function.
+  x%>%filter(Richness%in%c(max(Richness), min(Richness)))%>%mutate(Type=ifelse(Richness==max(Richness), "High", "Low"))%>%arrange(desc(Richness))
+}
+
+sites.taxa<-data.all%>%group_by(Taxa)%>%nest()%>%mutate(Types=map(data, get.sites))%>%unnest(Types)%>%select(-data) #The function get.sites is applied to each element in the list column data.
+
+sites.taxa
+```
+
+Another example, this time nesting the data based on sites and finding whether a site has more bird or butterfly species.
+
+```{r}
+get.taxa<-function(x){
+  Top.taxa<-x%>%filter(Richness==max(Richness))%>%pull(Taxa)
+  if(length(Top.taxa)>1){paste(Top.taxa[1], Top.taxa[2], sep=" + ")}else{Top.taxa} #Need to indicate sites where birds and butterflies have the same species richness
+}
+
+sites.richness<-data.all%>%group_by(Site)%>%nest()%>%mutate(Animal=map(data, get.taxa))%>%unnest(Animal)%>%select(-data)
+
+sites.richness
+```
+
+Are there any sites where birds and butterflies have equal species richness?
+
+```{r}
+site.animals<-sites.richness%>%filter(Animal=="Birds + Butterflies")
+site.animals
+```
+
+Are there more sites with higher bird or butterfly species richness?
+
+```{r}
+richness.summary<-sites.richness%>%group_by(Animal)%>%summarize(No.Sites=n())
+richness.summary
+```
+
+Run a linear model to estimate the relationship between NDVI and richness for each taxa. "lm" can be specified as a function in map(). The model is mutated as a list column. We can mutate all model results by mapping tidy, glance, and augument onto each model.
+
+```{r}
+richness.models<-data.all%>%group_by(Taxa)%>%nest()%>%mutate(Models=map(data, ~lm(Richness~NDVI, data=.)))%>%mutate(Tidied=map(Models, tidy), Glanced=map(Models, glance), Augmented=map(Models, augment))
+
+richness.models
+```
+
+Is NDVI more strongly associated with bird or butterfly species richness? Let's compare the parameter estimates and their precision, which can be returned as a 95% confidence interval by specifying conf.int=TRUE and conf.level=0.95 (the default).
+
+```{r}
+richness.models<-data.all%>%group_by(Taxa)%>%nest()%>%mutate(Models=map(data, ~lm(Richness~NDVI, data=.)))%>%mutate(Tidied=map(Models, tidy, conf.int=TRUE), Glanced=map(Models, glance), Augmented=map(Models, augment))%>%unnest(Tidied)
+
+parameter.estimates<-richness.models%>%select(Taxa, term, estimate, conf.low, conf.high)%>%filter(term=="NDVI")
+parameter.estimates
+```
+
+Graph the results: compare the relationship with NDVI for both species. Rather than use the fitted values, predict richness for all NDVI values from 0 to 1 at intervals of 0.01. The precision of the prediction can be estimated as confidence intervals (interval="confidence") or prediction intervals (interval="prediction")
+
+```{r}
+richness.models<-data.all%>%group_by(Taxa)%>%nest()%>%mutate(Models=map(data, ~lm(Richness~NDVI, data=.)))%>%mutate(Tidied=map(Models, tidy, conf.int=TRUE), Glanced=map(Models, glance), Predictions=map(Models, augment, newdata=tibble(NDVI=seq(0,1,0.01)), se_fit=TRUE, interval="confidence")) #Rather than use the original NDVI values for prediction, specify a new data frame (newdata) with the NDVI values of interest
+
+richness.predictions<-richness.models%>%unnest(Predictions)%>%select(Taxa, NDVI, .fitted, .lower, .upper)%>%rename(Richness=.fitted, low.95=.lower, high.95=.upper)
+
+p<-ggplot(richness.predictions,aes(x=NDVI, y=Richness, col=Taxa)) +  geom_line(size=2)
+p<-p+geom_ribbon(aes(ymin=low.95, ymax=high.95, fill=Taxa), 
+                                         show.legend=FALSE, color=NA, alpha=0.3) #Visualize confidence interval
+p<-p+geom_point(data=data.all, aes(x=NDVI, y=Richness, col=Taxa), size=3) #Add original data
+p<-p+scale_y_continuous(name="Species richness\n")
+p<-p+scale_x_continuous(name="\nNDVI")
+p<-p+scale_color_viridis_d()
+p<-p+scale_fill_viridis_d()
+p<-p+theme_classic()+ theme(axis.line.x=element_line(colour="black"), axis.line.y=element_line(colour="black"), 
+                                            text = element_text(size=12))
+
+p
+ggsave("Richness_vs_NDVI.pdf", device="pdf", width=6, height=3, units="in", dpi=600)
+
+```
+
