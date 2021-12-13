@@ -16,6 +16,13 @@ knitr::include_graphics("images/6.0/Ruegg et al2021.Fig1.jpg")
   
   
 What we want to investigate is how environmental variables are correlated with genetic variation. Note, this is not to look at candidate genes, but rather what combination of environmental variables shapes overall population genetic structure of a species.
+  
+  
+A recent example illustrated that not only is geography ("isolation by distance") strongly correlated genetic structure, but environment plays a role in differentiation too. Specifically, precipitation is a strong predictor of Yellow Warbler genetic structure. 
+
+```{r, echo=FALSE, out.width='100%'}
+knitr::include_graphics("images/6.0/Bay et al.Fig1.jpg")
+```
 
 ## Motivation
 
@@ -65,7 +72,7 @@ library(tidyverse)
 And we will need to load a realistic, polygon shapefile (an outline of the Willow Flycatcher's breeding range in North America for this exercise) and set its projection. __Note, you will need to adjust the path to the shapefile below. This is the path to my shape file on my computer.__ 
 
 ```
-wifl_shape=st_read("~/Dropbox/BGP/genoscape_maps/shapefiles/old_NatureServe_shapefiles/WIFL/WIFLrev.shp")
+wifl_shape=st_read("data/6.0/WIFLrev.shp")
 
 ggplot(wifl_shape) +
   geom_sf(fill=NA) +
@@ -74,7 +81,7 @@ ggplot(wifl_shape) +
 
 That will produce this map:
 ```{r}
-wifl_shape=st_read("~/Dropbox/BGP/genoscape_maps/shapefiles/old_NatureServe_shapefiles/WIFL/WIFLrev.shp")
+wifl_shape=st_read("data/6.0/WIFLrev.shp")
 ```
 
 ```{r, fig.cap = "A basic outline of Willow Flycatcher breeding range we will use for this exercise"}
@@ -97,7 +104,7 @@ dim(Ewifl)
 head(Ewifl)
 ```
 ```{r}
-Ewifl<-read_csv('~/Dropbox/BGP/Tutorial_GradientForest/GFTutorial_AdvConGen2021/wiflforest.env.csv')
+Ewifl<-read_csv('data/6.0/wiflforest.env.csv')
 dim(Ewifl)
 ```
 
@@ -106,12 +113,12 @@ __How many sites do we have environmental data for? How many environmental varia
 Second, we have genomic data formatted as allele frequencies for each population in the same order. The published Willow Flycatcher data includes 37855 variants, and is too large to run a gradient forest analyses within the time frame of a tutorial, so we are supplying a subsetted dataset limited to 10,000 SNPs. 
 
 ```
-Gwifl<-read_csv('wiflforest.allfreq.sample.csv')
+Gwifl<-read_csv('data/6.0/wiflforest.allfreq.sample.csv')
 dim(Gwifl)
 head(Gwifl)
 ```
 ```{r}
-Gwifl<-read_csv('~/Dropbox/BGP/Tutorial_GradientForest/GFTutorial_AdvConGen2021/wiflforest.allfreq.sample.csv')
+Gwifl<-read_csv('data/6.0/wiflforest.allfreq.sample.csv')
 dim(Gwifl)
 head(Gwifl)
 ```
@@ -181,7 +188,7 @@ plot(wiflforest,plot.type="Cumulative.Importance")
 
 __Which SNP has the greatest importance?__ For plotting purposes, only the first two top environmental variables are plotted. So the plots on the left are variants and turnover functions associated with Bio4, and the plots on the right are associated Bio3.
 
-You can confirm this by looking at the range of your top environemntal variables and comparing it to the x-axis in the plot above using this code below:
+You can confirm this by looking at the range of your top environemntal variables and comparing it to the x-axis in the plots above using this code below:
 ```{r}
 Ewifl %>% dplyr::select(BIO4,BIO3)
 ```
@@ -199,7 +206,7 @@ birdgrid
 ```
 ```{r}
 #WIFL current random points, filter out 'bad' points
-birdgrid=read.table("~/Dropbox/BGP/Tutorial_GradientForest/GFTutorial_AdvConGen2021/wiflcurrentRH.csv",header=T,sep=",") %>% filter(BIO4!="-9999") #load your  random points with assocaited env predictors 
+birdgrid=read.table("data/6.0/wiflcurrentRH.csv",header=T,sep=",") %>% filter(BIO4!="-9999") #load your  random points with assocaited env predictors 
 ##Let's look at bird grid, untransformed environmental variable
 birdgrid
 dim(birdgrid)
@@ -309,8 +316,24 @@ jit <- 0.0015
 text(PCs$rotation[vec, 1]/scal + jit * sign(PCs$rotation[vec,1]), PCs$rotation[vec, 2]/scal + jit * sign(PCs$rotation[vec,2]), labels = vec)
 ```
 
-__Screen grab this image. What environmental variables are associated with the colors green, pink and blue? Knowing this will help with the interpretation of plotting this in space.__
+__Save this image using the code chunk below. What environmental variables are associated with the colors green, pink and blue? Knowing this will help with the interpretation of plotting this in space.__
 
+```{r}
+pdf("stored_results/6.0/WIFL.PCA_uncorrelated.pdf")
+nvs <- dim(PCs$rotation)[1]
+vec <- c("BIO11","BIO5","BIO4" ,"BIO17")
+lv <- length(vec)
+vind <- rownames(PCs$rotation) %in% vec
+scal <-100
+xrng <- range(PCs$x[, 1], PCs$rotation[, 1]/scal) *1.2
+yrng <- range(PCs$x[, 2], PCs$rotation[, 2]/scal) *1.2
+plot((PCs$x[, 1:2]), xlim = xrng, ylim = yrng, pch = ".", cex = 4, col = rgb(r, g, b, max = 255), asp = 1)
+points(PCs$rotation[!vind, 1:2]/scal, pch = "+")
+arrows(rep(0, lv), rep(0, lv), PCs$rotation[vec,1]/scal, PCs$rotation[vec, 2]/scal, length = 0.0625)
+jit <- 0.0015
+text(PCs$rotation[vec, 1]/scal + jit * sign(PCs$rotation[vec,1]), PCs$rotation[vec, 2]/scal + jit * sign(PCs$rotation[vec,2]), labels = vec)
+dev.off()
+```
 With this, we can draw our first gradient forest map:
 
 ```
@@ -340,7 +363,7 @@ __How would you interpret the different colors on thie WIFL map? Is the endanger
 
 Let's plot this another way, on a map. To do this, we need some additional shapefiles
 ```
-coastlines <- st_read("~/Dropbox/BGP/genoscape_maps/shapefiles/ne_shapefiles/ne_10m_coastline.shp")
+coastlines <- st_read("data/6.0/ne_shapefiles/ne_10m_coastline.shp")
 domain <- c(
   xmin = -140, 
   xmax = -55,
@@ -353,16 +376,16 @@ ggplot(coast_cropped) +
   geom_sf() +
   coord_sf()
 
-countries_cropped <-  st_read("~/Dropbox/BGP/genoscape_maps/shapefiles/ne_shapefiles/ne_10m_admin_0_boundary_lines_land.shp") %>%
+countries_cropped <-  st_read("data/6.0/ne_shapefiles/ne_10m_admin_0_boundary_lines_land.shp") %>%
   st_crop(domain)
-states_cropped <- st_read("~/Dropbox/BGP/genoscape_maps/shapefiles/ne_shapefiles/ne_10m_admin_1_states_provinces_lines.shp") %>%
+states_cropped <- st_read("data/6.0/ne_shapefiles/ne_10m_admin_1_states_provinces_lines.shp") %>%
   st_crop(domain)
 ```
 
 The domain here allows you to crop the shapefiles to just your species range.
 ```{r}
 library(sf)
-coastlines <- st_read("~/Dropbox/BGP/genoscape_maps/shapefiles/ne_shapefiles/ne_10m_coastline.shp")
+coastlines <- st_read("data/6.0/ne_shapefiles/ne_10m_coastline.shp")
 domain <- c(
   xmin = -140, 
   xmax = -55,
@@ -384,9 +407,9 @@ ggplot(coast_cropped) +
 Once you have the shapefiles and cropped domain, you can create a map, project the map, and then crop it to what region you want. Using the above code, the domain can/should be larger than what you will be plotting. You can further crop later!
 ```{r, fig.cap = "Our gradient forest model of SNP variation in the Willow Flycatcher breeding range on a map"}
 library(ggspatial)
-countries_cropped <-  st_read("~/Dropbox/BGP/genoscape_maps/shapefiles/ne_shapefiles/ne_10m_admin_0_boundary_lines_land.shp") %>%
+countries_cropped <-  st_read("data/6.0/ne_shapefiles/ne_10m_admin_0_boundary_lines_land.shp") %>%
   st_crop(domain)
-states_cropped <- st_read("~/Dropbox/BGP/genoscape_maps/shapefiles/ne_shapefiles/ne_10m_admin_1_states_provinces_lines.shp") %>%
+states_cropped <- st_read("data/6.0/ne_shapefiles/ne_10m_admin_1_states_provinces_lines.shp") %>%
   st_crop(domain)
 
 mapg <- ggplot() +
@@ -415,6 +438,10 @@ rectangled
 
 ```
 
+Rename this file. I put the plot I plotted in here, but let's make sure this works for you!!
+```{r}
+ggsave("stored_results/6.0/WIFL.GF_map.pdf")
+```
 ## Defining "Genomic Vulnerability/Genomic offset" Given Future Climate Predictions 
 
 The plots above are the genotype-environment relationship given present-day climate rasters. However, we know rapid fluctuations in temperature and precipitation associated with climate change can alter the suitability of particular regions making it necessary for individuals to either adapt, disperse or die if the changes are extreme enough. Those species that possess standing genetic variation for climate-related traits (i.e. have adaptive capacity) are most likely to have the ability to adapt to rapidly changing environments. Those species that unable to adapt are deemed most vulneraable.
@@ -426,16 +453,16 @@ Here, we read in the future climate predictions for each random point. Since dif
 The lowest recent emissions pathway (RCP), 2.6, assumes immediate and rapid reductions in emissions and would result in about 2.5°F of warming in this century. The highest emissions pathway, RCP 8.5, roughly similar to a continuation of the current path of global emissions increases, is projected to lead to more than 8°F warming by 2100, with a high-end possibility of more than 11°F. Each of these is a composite of multiple prediction models and have rather different predictions.
 
 ```
-future1<-read.table("wiflfuture2-6-2050.csv",header=T,sep=",") %>% filter(BIO4!="-9999")
+future1<-read.table("data/6.0/wiflfuture2-6-2050.csv",header=T,sep=",") %>% filter(BIO4!="-9999")
 head(future1)
-future2<-read.table("wiflfuture8-5-2050.csv",header=T,sep=",") %>% filter(BIO4!="-9999")
+future2<-read.table("data/6.0/wiflfuture8-5-2050.csv",header=T,sep=",") %>% filter(BIO4!="-9999")
 head(future2)
 ```
 
 ```{r}
-future1<-read.table("~/Dropbox/BGP/Tutorial_GradientForest/GFTutorial_AdvConGen2021/wiflfuture2-6-2050.csv",header=T,sep=",") %>% filter(BIO4!="-9999")
+future1<-read.table("data/6.0/wiflfuture2-6-2050.csv",header=T,sep=",") %>% filter(BIO4!="-9999")
 head(future1)
-future2<-read.table("~/Dropbox/BGP/Tutorial_GradientForest/GFTutorial_AdvConGen2021/wiflfuture8-5-2050.csv",header=T,sep=",") %>% filter(BIO4!="-9999")
+future2<-read.table("data/6.0/wiflfuture8-5-2050.csv",header=T,sep=",") %>% filter(BIO4!="-9999")
 head(future2)
 ```
 
@@ -498,7 +525,6 @@ mapg
 ```{r,fig.cap = "Heat map of genomic vulnerability under the 2050 2.6 emission future prediction"}
 colramp2=brewer.pal(n = 9, name = "RdYlBu")[c(1:9)]
 Futcolors<-colorRampPalette(colramp2)
-
 
 euc_sp<-st_as_sf(euc,coords=c("Long", "Lat"))
 st_crs(euc_sp) <- st_crs(coast_cropped) 
