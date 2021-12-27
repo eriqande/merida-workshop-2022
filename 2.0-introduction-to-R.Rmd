@@ -94,7 +94,10 @@ These characteristics are shared amongst all the `read_*()` functions
 
 A delightful overview of the readr package can be found on the
 "readr Cheatsheet" from RStudio available 
-[here](https://raw.githubusercontent.com/rstudio/cheatsheets/main/data-import.pdf)
+[here](https://raw.githubusercontent.com/rstudio/cheatsheets/main/data-import.pdf) or
+by clicking the thumbnail below.
+
+[![](https://github.com/rstudio/cheatsheets/raw/main/pngs/thumbnails/data-import-cheatsheet-thumbs.png)](https://raw.githubusercontent.com/rstudio/cheatsheets/main/data-import.pdf)
 
 Reading the data set with `read_csv()` is simple:
 ```{r, message=FALSE}
@@ -223,6 +226,7 @@ will work for many, many different data sets.
 The 'tidyr' package has a number of functions for tidying data.  Check out
 the [RStudio tidyr cheatsheet](https://raw.githubusercontent.com/rstudio/cheatsheets/main/tidyr.pdf) for a great overview of 'tidyr' features.
 
+[![](https://raw.githubusercontent.com/rstudio/cheatsheets/master/pngs/thumbnails/tidyr-thumbs.png)](https://raw.githubusercontent.com/rstudio/cheatsheets/main/tidyr.pdf)
 
 ## What the heck is that `%>%` thingie?!
 
@@ -276,6 +280,11 @@ are described as "verbs": and their names are meant to describe the actions they
 There are a lot of other functions within 'dplyr'. We can't cover them all here,
 but, once again, the 
 [RStudio dplyr cheatsheet](https://raw.githubusercontent.com/rstudio/cheatsheets/main/data-transformation.pdf) is the perfect place for an overview.
+
+[![](https://raw.githubusercontent.com/rstudio/cheatsheets/master/pngs/thumbnails/data-transformation-cheatsheet-thumbs.png)](https://raw.githubusercontent.com/rstudio/cheatsheets/main/data-transformation.pdf)
+
+
+
 Here, we will cover just the main verbs, namely:
 
 - `select()`, `filter()`, `arrange()` change the extent of columns, or rows, or
@@ -290,7 +299,8 @@ existing columns (and have the same length as the existing columns).
 defined by the values of grouping variables.  I dare say this is the most
 important concept in all the tidyverse.
 
-- A whole family of _joins_ (`left_join()`, `full_join()`, `inner_join()`, etc.)
+- `left_join()` the simplest of a whole family of _joins_ (`left_join()`, `full_join()`,
+`inner_join()`, etc.), that
 combine rows of two tibbles together according to shared values in certain columns.  
 
 
@@ -370,6 +380,254 @@ but with rivers in reverse alphabetical order, we could do:
 genos_long %>%
   arrange(desc(river), indiv, marker, gene_copy)
 ```
+
+### `mutate()` to create new columns
+
+With the `mutate()` function, it is easy to create a new
+column that is a function of other columns.  The syntax is like:
+```{r, eval=FALSE}
+# create a new column named new_column that is a function
+# or existing columns col1, col2
+genos_long %>%
+  mutate(new_column_name = some_function(col1, col2))
+``` 
+
+In this capacity, 'dplyr' is very particular:
+
+* If the function returns the same number of rows as the tibble,
+it works.
+* If the function returns a single value, that single value is
+replicated in each row of the new column.
+* Otherwise, `mutate()` throws an error.
+
+Simple examples.  Try these on your own:
+```{r, eval=FALSE}
+# make a column, "long_marker_names" that give
+# a long name in the form "Marker X" for each marker
+genos_long %>%
+  mutate(long_marker_names = str_replace(marker, "mk", "Marker "))
+
+# make a new column called gc_ab that gives the gene copies
+# as "a" and "b", rather than "1" and "2"
+genos_long %>%
+  mutate(
+    gc_ab = case_when(
+      gene_copy == 1 ~ "a",
+      gene_copy == 2 ~ "b",
+      TRUE ~ NA_character_
+    )
+  )
+
+# make a new column called season that tells us that
+# all of these data were collected in the "Autumn"
+genos_long %>%
+  mutate(season = "Autumn")
+```
+### Compute a single value from many rows: `summarise()`
+
+While `mutate()` always returns a new column that is the same length
+as all the other columns in the tibble, `summarise()` does something
+quite different: it allows you to make a column that will have only
+a single row in it.  We will see more examples later on, but for now,
+consider one of the simplest ways to summarise a tibble: count
+how many rows are in it.  That is done with the 'dplyr' function
+`n()`:
+```{r}
+genos_long %>%
+  summarise(num_rows = n())
+```
+See how that `summarise()` function takes an entire tibble, and returns
+a single value (the number of rows of the original tibble).
+
+This behavior might not seem all that useful, but as we will see,
+when combined with _grouping_ it is extraordinarily useful.
+
+### `group_by()` to operate tidily on subsets of a tibble
+
+One of the most important aspects of working with tibbles is
+that of  _grouping_ them by variables.  In fact, without _grouping_
+the "tidy" or "long" format would be nearly impossible to deal with; however
+with grouping, a huge number of problems can be solved upon tidy data
+within the tidyverse.
+
+Much of the time, we want to apply functions to separate parts of the
+data set, each part in turn.  An example might help: suppose that
+we want to compute the allele frequencies from `genos_long`. In other words,
+we want to count how many times _within each river_, _each allele_, _at each locus_ is observed.  
+
+Each time we say something like _at each locus_, or 
+_within each river_, we are implicitly talking about _grouping_ our
+data. Thus, if we "group our data by river," we are conceptually,
+breaking our data set into four distinct tibbles:
+
+- one with all the rows in which `river == "BALGA"`
+- one with all the rows in which `river == "BCHNC"`
+- one with all the rows in which `river == "BEMME"`
+- one with all the rows in which `river == "BMTMA"`
+
+Then (and this is the _really_ important part!) if we
+pass such a "grouped" tibble to `mutate()` or `summarise()`,
+then those functions will operate on each of those four separate
+groups, independently, but it will still return the result
+as a single tibble.
+
+To group a tibble, we use the `group_by()` function.  Here we
+group `genos_long` by `river`:
+```{r}
+genos_long %>%
+  group_by(river)
+```
+From the output that gets printed out, it looks like almost nothing
+has changed about the tibble, _except_ there is this extra line:
+```
+# Groups:   river [4]
+```
+This tells us that after running `genos_long` through `group_by(river)`,
+the result is a tibble that is grouped by the `river` column, and there
+are 4 groups.
+
+But, now, if we count the number of rows in each of those groups
+we start to see how powerful this approach can be:
+```{r}
+genos_long %>%
+  group_by(river) %>%
+  summarise(num_rows = n())
+```
+
+OK! That is telling us about the sizes of those 4 groups, and we can
+conceptually think of each group as being a "sub-tibble" with the
+number of rows as listed above.
+
+Note that you can group tibbles by more than one column.  When grouped on
+multiple columns, the groups are formed from all the observed combinations
+of values in the different columns.  For example:
+```{r}
+genos_long %>%
+  group_by(river, marker, allele)
+```
+apparently groups the data into 93 different groups.
+
+Now, we are ready to try computing allele frequencies (i.e. counting alleles) at different
+markers.  Remember, we want to count how many times _within each river_ and _at each locus_ that
+_each allele_ is observed.  (Note we also don't want to count missing data for this so we can 
+filter it out in the beginning).  Hence:
+```{r}
+genos_long %>%
+  filter(!is.na(allele)) %>%
+  group_by(river, marker, allele) %>%
+  summarise(num_alleles = n())
+```
+
+Wow! That is fast and easy.  
+
+It is relatively straightforward to think about how `summarise()` works on grouped tibbles, but
+it is just as important to know that `mutate()` also operates on the separate groups of a
+grouped tibble.  
+
+Note, that the result above has the notation:
+```
+# Groups:   river, marker [20]
+```
+So, the result is still a grouped tibble, but in this case it is grouped by
+`river, marker`.  We had originally grouped it by `river, marker, allele`, BUT
+by default, the `summarise()` function will return a tibble in which the last
+grouping variable (in this case `allele`) is no longer in effect.
+
+In our case, this is convenient, because such a grouping is good for
+computing _relative frequencies_ of the alleles.  We can just add that on
+to the chain with the pipe.  (And while we are at it, sort things
+by allele frequency.)
+```{r}
+genos_long %>%
+  filter(!is.na(allele)) %>%
+  group_by(river, marker, allele) %>%
+  summarise(num_alleles = n()) %>%
+  mutate(freq = num_alleles / sum(num_alleles)) %>%
+  ungroup() %>% 
+  arrange(river, marker, desc(freq))
+
+```
+
+A few things are worth noting:
+
+- `sum(num_allele)` sums the number of alleles in each river at each marker (because
+that is how the tibble is grouped).  Hence, `num_allele / sum(num_allele)` gives the
+relative frequency of each allele (in the river at the marker).
+- `ungroup()` removes any grouping criteria from a tibble.  It is handy if you
+don't want to have any groups in your tibble any longer.
+- The arrange function lets us sort the rows in a useful fashion.
+
+#### Exercises for you
+
+The reason that the tidy format is wonderful is because you can get a number
+of different results by following the same principles, but grouping things
+differently.
+
+Try using the tools of 'dplyr' to compute the following.
+A skeleton has been provided.  Put the missing code into the `...` in each.
+
+1. A tibble with the relative frequency of missing data within each river
+```{r, eval=FALSE}
+genos_long %>%
+  group_by(...) %>%
+  summarise(fract_miss = sum(is.na(allele) / n())
+```
+
+2. A tibble with the relative frequency of missing data at each marker
+```{r, eval=FALSE}
+genos_long %>%
+  group_by(...) %>%
+  summarise(fract_miss = ...)
+```
+
+### Joins
+
+Joins are what you use to add columns from one tibble to
+another tibble by matching the values in one or more shared columns.
+
+We will just show the simplest join, the `left_join()`.
+
+Suppose that we have data about each fish, that tells us:
+
+- whether they were caught in the autumn or the spring
+- whether they were a juvenile or an adult
+- the length in centimeters.
+
+We have an example of such a data set that we can read in:
+```{r, message=FALSE}
+fish_meta <- read_csv("data/tidy-intro/fish-metadata.csv")
+fish_meta
+```
+
+OK! This has season, stage, and length for 1,252 fish.  That is a lot more
+than the 34 fish we have genotype data for.  So, how can we pick out the relevant
+rows from `fish_meta` to join them on to the columns of `genos_long`? We use
+`left_join()`.  
+
+Note that in both `genos_long` and in `fish_meta`, the individual ID is
+in the column `indiv`.  This means that we can _join_ the two tibbles
+_by_ the `indiv` column in each tibble.  Thus:
+```{r}
+genos_long2 <- genos_long %>%
+  left_join(fish_meta, by = "indiv")
+genos_long2
+```
+
+Now, you could do all sorts of things like explore allele frequency differences
+in different seasons or from different life stages.
+
+### Wrap Up
+
+We have just scratched the surface of what is possible with the tidyverse.
+
+One thing we haven't mentioned much is that the columns of a tibble can, themselves,
+be list-vectors.  This can be very powerful when doing statistical modeling, as the
+outputs of different models can be stored in lists that are themselves columns of
+tibbles.  Manipulating such lists is done with the `purrr` package, which is part of
+the tidyverse. 
+
+Richard will give us an example of that for the rest of the session.
+
 
 ## Modeling within the Tidyverse
 Load required packages
