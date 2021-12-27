@@ -81,7 +81,7 @@ ggplot(wifl_shape) +
 
 That will produce this map:
 ```{r}
-wifl_shape=st_read("data/6.0/WIFLrev.shp")
+wifl_shape <- st_read("data/6.0/WIFLrev.shp")
 ```
 
 ```{r, fig.cap = "A basic outline of Willow Flycatcher breeding range we will use for this exercise"}
@@ -104,7 +104,7 @@ dim(Ewifl)
 head(Ewifl)
 ```
 ```{r}
-Ewifl<-read_csv('data/6.0/wiflforest.env.csv')
+Ewifl <- read_csv('data/6.0/wiflforest.env.csv')
 dim(Ewifl)
 ```
 
@@ -117,8 +117,8 @@ Gwifl<-read_csv('data/6.0/wiflforest.allfreq.sample.csv')
 dim(Gwifl)
 head(Gwifl)
 ```
-```{r}
-Gwifl<-read_csv('data/6.0/wiflforest.allfreq.sample.csv')
+```{r, message=FALSE}
+Gwifl <- read_csv('data/6.0/wiflforest.allfreq.sample.csv')
 dim(Gwifl)
 head(Gwifl)
 ```
@@ -143,7 +143,7 @@ wiflforest=gradientForest(cbind(Ewifl,Gwifl), predictor.vars=preds, response.var
 ```
 
 
-```{r}
+```{r, warning=FALSE, message=FALSE}
 preds <- colnames(Ewifl)
 specs <- colnames(Gwifl)
 
@@ -154,7 +154,17 @@ nSpecs <- dim(Gwifl)[2]
 lev <- floor(log2(nSites*0.368/2))
 lev
 
-wiflforest=gradientForest(cbind(Ewifl,Gwifl), predictor.vars=preds, response.vars=specs, ntree=10, transform = NULL, compact=T,nbin=101, maxLevel=lev,trace=T)
+wiflforest <- gradientForest(
+  cbind(Ewifl,Gwifl), 
+  predictor.vars=preds,
+  response.vars=specs,
+  ntree=10,
+  transform = NULL,
+  compact=T,
+  nbin=101,
+  maxLevel=lev,
+  trace=T
+)
 
 ##ntree=default is 10, more is better and reduces variance
 ##gradient forest bins variants, large scale patterns will be seen
@@ -190,7 +200,8 @@ __Which SNP has the greatest importance?__ For plotting purposes, only the first
 
 You can confirm this by looking at the range of your top environemntal variables and comparing it to the x-axis in the plots above using this code below:
 ```{r}
-Ewifl %>% dplyr::select(BIO4,BIO3)
+Ewifl %>% 
+  dplyr::select(BIO4,BIO3)
 ```
 
 Note, while gradient forest can look at variants associated with environmental variables like this, we tend to choose the top uncorrelated environmental variables and run latent factor mixed models to identify candidate genes associated with each environmental variable. Why? In gradient forest, we "bin" the variation, so we are looking for large patterns, not individual variants.
@@ -206,10 +217,12 @@ birdgrid
 ```
 ```{r}
 #WIFL current random points, filter out 'bad' points
-birdgrid=read.table("data/6.0/wiflcurrentRH.csv",header=T,sep=",") %>% filter(BIO4!="-9999") #load your  random points with assocaited env predictors 
+birdgrid <- read_csv("data/6.0/wiflcurrentRH.csv") %>% 
+  filter(BIO4!="-9999") #load your  random points with assocaited env predictors 
+
 ##Let's look at bird grid, untransformed environmental variable
-birdgrid
 dim(birdgrid)
+birdgrid
 ```
 
 We don't have to use all the predictors in the next steps, in this case, we'll use the top 4 uncorrelated variables. These variables were selected by moving down the list of ranked importance for the full model and discarding variables highly correlated (|Pearson’s r| > 0.7) with a variable of higher importance. You can see the correlations among environmental variables across your sample sites. While it is clearly hard to read here, if you export this and open in excel, you can color code and keep track of the correlations among the ranked variables.
@@ -238,7 +251,19 @@ currentgrid
 predictors_uncor<-c("BIO11","BIO5","BIO4" ,"BIO17")
 
 #
-currentgrid=cbind(birdgrid[,c("X","Y")], predict(wiflforest,birdgrid[,predictors_uncor])) #predict across your random sites using your forest
+#currentgrid <- cbind(birdgrid[,c("X","Y")], predict(wiflforest,birdgrid[,predictors_uncor])) #predict across your random sites using your forest
+
+# Here it is in a tidyverse compliant way, which also keeps us from
+# printing 100K rows in the bookdown!  When the birdgrid is a tibble
+# it has be to coerced into a regular old data frame for the predict
+# function to work.
+currentgrid <- bind_cols(
+    birdgrid %>% select(X,Y),
+    predict(
+      wiflforest,
+      birdgrid %>% select(all_of(predictors_uncor)) %>% as.data.frame()
+    )
+  )
 
 ##Let's look at currentgrid, transformed environmental variables- see how they were transformed
 currentgrid
@@ -283,7 +308,11 @@ text(PCs$rotation[vec, 1]/scal + jit * sign(PCs$rotation[vec,1]), PCs$rotation[v
 
 ```{r}
 #Getting the PCs and Converting Them to RGB Color Values
-PCs=prcomp(currentgrid[,3:6]) #run your PCs on your top four variables
+#run your PCs on your top four variables
+PCs <- currentgrid %>%
+  select(-X, -Y) %>%
+  prcomp() 
+
 # set up a colour palette for the mapping
 a1 <- PCs$x[,1]
 a2 <- PCs$x[,2]
@@ -298,6 +327,29 @@ wiflcols=rgb(r,g,b,max=255)
 wiflcols2=col2rgb(wiflcols)
 wiflcols3=t(wiflcols2)
 gradients=cbind(currentgrid[c("X","Y")],wiflcols3)
+```
+
+Let's make those colors in a unified, coherent tibble.  Basically,
+we have that red is PC1 + PC2 (scaled so that the smallest
+is 0 and the max is 255), green is -PC2 (scaled) and blue
+is PC3 + PC2 - PC1 (scaled).  So, let's keep all of that together:
+```{r}
+wifl_points <- bind_cols(
+  currentgrid %>% select(X, Y),
+  as_tibble(PCs$x)
+) %>%
+  mutate(    # get the raw rbg variables
+    r = PC1 + PC2,
+    g = -PC2,
+    b = PC3 + PC2 - PC1
+  ) %>%  
+  mutate( # then scale them
+    across(
+      .cols = c(r,g,b),
+      .fns = function(x) (x-min(x)) / (max(x)-min(x)) * 255
+    ),
+    rgb_hex = rgb(r, g, b, max = 255)
+  ) 
 ```
 
 ```{r, fig.cap = "A principle component plot of the top 4 uncorrelated variables"}
@@ -315,6 +367,15 @@ arrows(rep(0, lv), rep(0, lv), PCs$rotation[vec,1]/scal, PCs$rotation[vec, 2]/sc
 jit <- 0.0015
 text(PCs$rotation[vec, 1]/scal + jit * sign(PCs$rotation[vec,1]), PCs$rotation[vec, 2]/scal + jit * sign(PCs$rotation[vec,2]), labels = vec)
 ```
+
+
+Here, Eric does a ggplot version of that, not bothering with the arrows and stuff.
+```{r}
+ggplot(wifl_points, aes(x = PC1, y = PC2, colour = rgb_hex)) +
+  geom_point(shape = 15) +
+  scale_colour_identity()
+```
+
 
 __Save this image using the code chunk below. What environmental variables are associated with the colors green, pink and blue? Knowing this will help with the interpretation of plotting this in space.__
 
@@ -358,6 +419,29 @@ proj4string(wiflmap) <- CRS("+proj=longlat +datum=WGS84")
 par(mar=c(0,0,0,0))
 plot(wiflmap,col=rgb(r,g,b,max=255),pch=15)
 ```
+
+Down here, Eric does a similar thing, but from an sf/tidyverse perspective.  Plotting points with
+geom_sf kind of sucks so, we retain X and Y for that.
+```{r}
+wifl_sf <- wifl_points %>%
+  st_as_sf(
+    coords = c("X", "Y"),
+    crs = "+proj=longlat +datum=WGS84",
+    remove = FALSE
+  )
+
+# then plot it
+ggplot() +
+  geom_point(
+    data = wifl_sf, 
+    mapping = aes(x = X, y = Y, colour = rgb_hex),
+    shape = 15) +
+  scale_colour_identity() +
+  theme_void()
+  
+
+```
+
 
 __How would you interpret the different colors on thie WIFL map? Is the endangered southwest Willow Flycatcher locally adapted? __
 
@@ -460,9 +544,13 @@ head(future2)
 ```
 
 ```{r}
-future1<-read.table("data/6.0/wiflfuture2-6-2050.csv",header=T,sep=",") %>% filter(BIO4!="-9999")
+future1<-read_csv("data/6.0/wiflfuture2-6-2050.csv") %>%
+  filter(BIO4!="-9999") %>%
+  as.data.frame()
 head(future1)
-future2<-read.table("data/6.0/wiflfuture8-5-2050.csv",header=T,sep=",") %>% filter(BIO4!="-9999")
+future2<-read_csv("data/6.0/wiflfuture8-5-2050.csv") %>%
+  filter(BIO4!="-9999") %>%
+  as.data.frame()
 head(future2)
 ```
 
@@ -473,7 +561,7 @@ futuregrid=cbind(future1[,c("X","Y")],predict(wiflforest,future1[,predictors_unc
 ```
 
 ```{r}
-futuregrid=cbind(future1[,c("X","Y")],predict(wiflforest,future1[,predictors_uncor]))
+futuregrid <- cbind(future1[,c("X","Y")],predict(wiflforest,future1[,predictors_uncor]))
 ```
 
 Finally, we calculate genomic vulnerability. Mathematically, for a given point this is the __Euclidean distance__ between the current biological space (currentgrid) and the future biological space (futuregrid):
