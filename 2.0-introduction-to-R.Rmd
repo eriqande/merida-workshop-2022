@@ -174,7 +174,7 @@ p<-p+theme_classic()+ theme(axis.line.x=element_line(colour="black"), axis.line.
                                             text = element_text(size=12))
 
 p
-ggsave("Richness_vs_NDVI.pdf", device="pdf", width=6, height=3, units="in", dpi=600)
+#ggsave("Richness_vs_NDVI.pdf", device="pdf", width=6, height=3, units="in", dpi=600)
 
 ```
 
