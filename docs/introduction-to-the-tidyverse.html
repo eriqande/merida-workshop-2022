@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Session 2 Introduction to the tidyverse | Reproducible Research for Conservation — Mérida, Mexico</title>
+  <meta name="description" content="A book example for a Chapman &amp; Hall book." />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Session 2 Introduction to the tidyverse | Reproducible Research for Conservation — Mérida, Mexico" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="A book example for a Chapman &amp; Hall book." />
+  <meta name="github-repo" content="yihui/bookdown-crc" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Session 2 Introduction to the tidyverse | Reproducible Research for Conservation — Mérida, Mexico" />
+  
+  <meta name="twitter:description" content="A book example for a Chapman &amp; Hall book." />
+  
+
+<meta name="author" content="Eric C. Anderson, Christen Bossu, Richard Evan Feldman, Kristen C. Ruegg, Marius Somveille" />
+
+
+<meta name="date" content="2021-12-08" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="congen-intro.html"/>
+<link rel="next" href="reporg.html"/>
+<script src="libs/header-attrs/header-attrs.js"></script>
+<script src="libs/jquery/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections/anchor-sections.js"></script>
+<script src="libs/kePrint/kePrint.js"></script>
+<link href="libs/lightable/lightable.css" rel="stylesheet" />
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="css/style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Mérida Workshop</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
+<li class="chapter" data-level="1" data-path="congen-intro.html"><a href="congen-intro.html"><i class="fa fa-check"></i><b>1</b> Introduction to Conservation Genomics Approaches</a></li>
+<li class="chapter" data-level="2" data-path="introduction-to-the-tidyverse.html"><a href="introduction-to-the-tidyverse.html"><i class="fa fa-check"></i><b>2</b> Introduction to the tidyverse</a></li>
+<li class="chapter" data-level="3" data-path="reporg.html"><a href="reporg.html"><i class="fa fa-check"></i><b>3</b> Organizing Research Projects for Reproducibility</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="reporg.html"><a href="reporg.html#rstudio-and-rstudio-projects"><i class="fa fa-check"></i><b>3.1</b> RStudio and RStudio Projects</a></li>
+<li class="chapter" data-level="3.2" data-path="reporg.html"><a href="reporg.html#version-control-with-git"><i class="fa fa-check"></i><b>3.2</b> Version control with git</a></li>
+<li class="chapter" data-level="3.3" data-path="reporg.html"><a href="reporg.html#github"><i class="fa fa-check"></i><b>3.3</b> GitHub</a></li>
+<li class="chapter" data-level="3.4" data-path="reporg.html"><a href="reporg.html#big-or-private-data-sets"><i class="fa fa-check"></i><b>3.4</b> Big or Private data sets</a></li>
+<li class="chapter" data-level="3.5" data-path="reporg.html"><a href="reporg.html#merge-conflicts"><i class="fa fa-check"></i><b>3.5</b> Merge Conflicts?</a></li>
+<li class="chapter" data-level="3.6" data-path="reporg.html"><a href="reporg.html#explain-caching"><i class="fa fa-check"></i><b>3.6</b> Explain caching</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="envdata.html"><a href="envdata.html"><i class="fa fa-check"></i><b>4</b> Finding and Obtaining Environmental Data for Conservation</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="envdata.html"><a href="envdata.html#environmental-layers.-a-general-overview"><i class="fa fa-check"></i><b>4.1</b> Environmental Layers. A general overview</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="envdata.html"><a href="envdata.html#environmental-layers-in-conservation-genetics"><i class="fa fa-check"></i><b>4.1.1</b> Environmental layers in conservation genetics</a></li>
+<li class="chapter" data-level="4.1.2" data-path="envdata.html"><a href="envdata.html#environmental-layers-as-raster-data"><i class="fa fa-check"></i><b>4.1.2</b> Environmental layers as raster data</a></li>
+<li class="chapter" data-level="4.1.3" data-path="envdata.html"><a href="envdata.html#coordinate-system-and-projections"><i class="fa fa-check"></i><b>4.1.3</b> Coordinate system and projections</a></li>
+<li class="chapter" data-level="4.1.4" data-path="envdata.html"><a href="envdata.html#parameters-of-raster-data"><i class="fa fa-check"></i><b>4.1.4</b> Parameters of raster data</a></li>
+<li class="chapter" data-level="4.1.5" data-path="envdata.html"><a href="envdata.html#examples-of-climate-layers"><i class="fa fa-check"></i><b>4.1.5</b> Examples of climate layers</a></li>
+<li class="chapter" data-level="4.1.6" data-path="envdata.html"><a href="envdata.html#examples-of-atmospheric-layers"><i class="fa fa-check"></i><b>4.1.6</b> Examples of atmospheric layers</a></li>
+<li class="chapter" data-level="4.1.7" data-path="envdata.html"><a href="envdata.html#examples-of-vegetation-layers"><i class="fa fa-check"></i><b>4.1.7</b> Examples of vegetation layers</a></li>
+<li class="chapter" data-level="4.1.8" data-path="envdata.html"><a href="envdata.html#examples-of-landscape-layers"><i class="fa fa-check"></i><b>4.1.8</b> Examples of landscape layers</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="spatdata.html"><a href="spatdata.html"><i class="fa fa-check"></i><b>5</b> Handling and Visualizing Spatial Data in R</a></li>
+<li class="chapter" data-level="6" data-path="conclude.html"><a href="conclude.html"><i class="fa fa-check"></i><b>6</b> Concluding Remarks / Parting Words</a></li>
+<li class="divider"></li>
+<li><a href="https://bookdown.org" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Reproducible Research for Conservation — Mérida, Mexico</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="introduction-to-the-tidyverse" class="section level1" number="2">
+<h1><span class="header-section-number">Session 2</span> Introduction to the tidyverse</h1>
+<p>Load required packages</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="introduction-to-the-tidyverse.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-2"><a href="introduction-to-the-tidyverse.html#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(viridis) <span class="co">#preferred color palette for graphing</span></span></code></pre></div>
+<pre><code>## Loading required package: viridisLite</code></pre>
+<p>Import bird data.</p>
+<p>The data provides information on the species richness of birds and butterflies and NDVI at 30 sites.
+Our goal is to run a linear model that estimates the magnitude, direction, and uncertainty in the species richness-NDVI relationship for each taxa and then visualize the relationship.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="introduction-to-the-tidyverse.html#cb3-1" aria-hidden="true" tabindex="-1"></a>data.all<span class="ot">&lt;-</span><span class="fu">read_csv</span>(<span class="st">&quot;data/data.richard.new.csv&quot;</span>)</span></code></pre></div>
+<pre><code>## New names:
+## * `` -&gt; ...1</code></pre>
+<pre><code>## Rows: 60 Columns: 5</code></pre>
+<pre><code>## -- Column specification -------------------------------
+## Delimiter: &quot;,&quot;
+## chr (2): Site, Taxa
+## dbl (3): ...1, NDVI, Richness</code></pre>
+<pre><code>## 
+## i Use `spec()` to retrieve the full column specification for this data.
+## i Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="introduction-to-the-tidyverse.html#cb8-1" aria-hidden="true" tabindex="-1"></a>data.all</span></code></pre></div>
+<pre><code>## # A tibble: 60 x 5
+##     ...1 Site     NDVI Taxa  Richness
+##    &lt;dbl&gt; &lt;chr&gt;   &lt;dbl&gt; &lt;chr&gt;    &lt;dbl&gt;
+##  1     1 Site.1   0.66 Birds       14
+##  2     2 Site.2   0.4  Birds       10
+##  3     3 Site.3   0.36 Birds        9
+##  4     4 Site.4   0.82 Birds       16
+##  5     5 Site.5   0.55 Birds       12
+##  6     6 Site.6   0.29 Birds        7
+##  7     7 Site.7   0.51 Birds       11
+##  8     8 Site.8   0.74 Birds       16
+##  9     9 Site.9   1    Birds       25
+## 10    10 Site.10  0.76 Birds       16
+## # ... with 50 more rows</code></pre>
+<p>The old way is to run a model on each taxa separately:</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="introduction-to-the-tidyverse.html#cb10-1" aria-hidden="true" tabindex="-1"></a>model.birds<span class="ot">&lt;-</span><span class="fu">lm</span>(Richness<span class="sc">~</span>NDVI, <span class="at">data=</span>data.all[data.all<span class="sc">$</span>Taxa<span class="sc">==</span><span class="st">&quot;Birds&quot;</span>,]) <span class="co">#subset the Birds data</span></span>
+<span id="cb10-2"><a href="introduction-to-the-tidyverse.html#cb10-2" aria-hidden="true" tabindex="-1"></a>model.butterflies<span class="ot">&lt;-</span><span class="fu">lm</span>(Richness<span class="sc">~</span>NDVI, <span class="at">data=</span>data.all[data.all<span class="sc">$</span>Taxa<span class="sc">==</span><span class="st">&quot;Butterflies&quot;</span>,]) <span class="co">#subset the Butterflies</span></span></code></pre></div>
+<p>Extracting results from the summary file is not easy.</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="introduction-to-the-tidyverse.html#cb11-1" aria-hidden="true" tabindex="-1"></a>key.results.birds<span class="ot">&lt;-</span><span class="fu">as.data.frame</span>(<span class="fu">summary</span>(model.birds)[[<span class="dv">4</span>]]) <span class="co">#You have to remember that subscript [[4]] corresponds to the main results</span></span></code></pre></div>
+<p>The broom package presents model results in a tidy way.</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="introduction-to-the-tidyverse.html#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(broom)</span></code></pre></div>
+<p>broom::tidy() returns parameter estimates.</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="introduction-to-the-tidyverse.html#cb13-1" aria-hidden="true" tabindex="-1"></a>birds.tidy<span class="ot">&lt;-</span>model.birds<span class="sc">%&gt;%</span><span class="fu">tidy</span>()</span>
+<span id="cb13-2"><a href="introduction-to-the-tidyverse.html#cb13-2" aria-hidden="true" tabindex="-1"></a>birds.tidy</span></code></pre></div>
+<pre><code>## # A tibble: 2 x 5
+##   term        estimate std.error statistic  p.value
+##   &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
+## 1 (Intercept)    0.952      1.22     0.780 4.42e- 1
+## 2 NDVI          19.9        1.77    11.2   6.75e-12</code></pre>
+<p>broom::glance() includes R2, AIC, and more.</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="introduction-to-the-tidyverse.html#cb15-1" aria-hidden="true" tabindex="-1"></a>birds.glance<span class="ot">&lt;-</span>model.birds<span class="sc">%&gt;%</span><span class="fu">glance</span>()</span>
+<span id="cb15-2"><a href="introduction-to-the-tidyverse.html#cb15-2" aria-hidden="true" tabindex="-1"></a>birds.glance</span></code></pre></div>
+<pre><code>## # A tibble: 1 x 12
+##   r.squared adj.r.squared sigma statistic  p.value
+##       &lt;dbl&gt;         &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
+## 1     0.819         0.812  1.70      127. 6.75e-12
+## # ... with 7 more variables: df &lt;dbl&gt;, logLik &lt;dbl&gt;,
+## #   AIC &lt;dbl&gt;, BIC &lt;dbl&gt;, deviance &lt;dbl&gt;,
+## #   df.residual &lt;int&gt;, nobs &lt;int&gt;</code></pre>
+<p>broom::augment() returns fitted values</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="introduction-to-the-tidyverse.html#cb17-1" aria-hidden="true" tabindex="-1"></a>birds.augment<span class="ot">&lt;-</span>model.birds<span class="sc">%&gt;%</span><span class="fu">augment</span>()</span>
+<span id="cb17-2"><a href="introduction-to-the-tidyverse.html#cb17-2" aria-hidden="true" tabindex="-1"></a>birds.augment</span></code></pre></div>
+<pre><code>## # A tibble: 30 x 8
+##    Richness  NDVI .fitted  .resid   .hat .sigma .cooksd
+##       &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;
+##  1       14  0.66   14.1  -0.0743 0.0334   1.73 3.41e-5
+##  2       10  0.4     8.91  1.09   0.111    1.72 2.90e-2
+##  3        9  0.36    8.11  0.890  0.136    1.72 2.49e-2
+##  4       16  0.82   17.3  -1.26   0.0583   1.71 1.79e-2
+##  5       12  0.55   11.9   0.113  0.0484   1.73 1.17e-4
+##  6        7  0.29    6.72  0.282  0.188    1.73 3.90e-3
+##  7       11  0.51   11.1  -0.0920 0.0603   1.73 9.98e-5
+##  8       16  0.74   15.7   0.335  0.0389   1.73 8.18e-4
+##  9       25  1      20.8   4.17   0.152    1.50 6.35e-1
+## 10       16  0.76   16.1  -0.0625 0.0425   1.73 3.12e-5
+## # ... with 20 more rows, and 1 more variable:
+## #   .std.resid &lt;dbl&gt;</code></pre>
+<p>To run models or implement any function on the different groups within a data frame, one must master tidyr::nest() and purrr::map().</p>
+<p>nest() creates a list of data frames with each corresponding to a different group.</p>
+<p>Example: create a data frame for each taxa.</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="introduction-to-the-tidyverse.html#cb19-1" aria-hidden="true" tabindex="-1"></a>data.taxa<span class="ot">&lt;-</span>data.all<span class="sc">%&gt;%</span><span class="fu">group_by</span>(Taxa)<span class="sc">%&gt;%</span><span class="fu">nest</span>()</span>
+<span id="cb19-2"><a href="introduction-to-the-tidyverse.html#cb19-2" aria-hidden="true" tabindex="-1"></a>data.taxa</span></code></pre></div>
+<pre><code>## # A tibble: 2 x 2
+## # Groups:   Taxa [2]
+##   Taxa        data             
+##   &lt;chr&gt;       &lt;list&gt;           
+## 1 Birds       &lt;tibble [30 x 4]&gt;
+## 2 Butterflies &lt;tibble [30 x 4]&gt;</code></pre>
+<p>The grouping variable is left out of the nested data frame. All other data is now in a separate data frame, nested with the whole data frame.</p>
+<p>You can inspect what lies behind the “data” column by using unnest() to display the original data.</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="introduction-to-the-tidyverse.html#cb21-1" aria-hidden="true" tabindex="-1"></a>data.original.birds<span class="ot">&lt;-</span>data.taxa<span class="sc">%&gt;%</span><span class="fu">ungroup</span>()<span class="sc">%&gt;%</span><span class="fu">slice</span>(<span class="at">n=</span><span class="dv">1</span>)<span class="sc">%&gt;%</span><span class="fu">unnest</span>(data) <span class="co">#slice(n=1) means extract the first row of the data.taxa data frame.</span></span>
+<span id="cb21-2"><a href="introduction-to-the-tidyverse.html#cb21-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-3"><a href="introduction-to-the-tidyverse.html#cb21-3" aria-hidden="true" tabindex="-1"></a>data.original.birds</span></code></pre></div>
+<pre><code>## # A tibble: 30 x 5
+##    Taxa   ...1 Site     NDVI Richness
+##    &lt;chr&gt; &lt;dbl&gt; &lt;chr&gt;   &lt;dbl&gt;    &lt;dbl&gt;
+##  1 Birds     1 Site.1   0.66       14
+##  2 Birds     2 Site.2   0.4        10
+##  3 Birds     3 Site.3   0.36        9
+##  4 Birds     4 Site.4   0.82       16
+##  5 Birds     5 Site.5   0.55       12
+##  6 Birds     6 Site.6   0.29        7
+##  7 Birds     7 Site.7   0.51       11
+##  8 Birds     8 Site.8   0.74       16
+##  9 Birds     9 Site.9   1          25
+## 10 Birds    10 Site.10  0.76       16
+## # ... with 20 more rows</code></pre>
+<p>map() applies a function to each nested data frame.</p>
+<p>Example: find the mean number of species of each taxa</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="introduction-to-the-tidyverse.html#cb23-1" aria-hidden="true" tabindex="-1"></a>mean.taxa<span class="ot">&lt;-</span>data.all<span class="sc">%&gt;%</span><span class="fu">group_by</span>(Taxa)<span class="sc">%&gt;%</span><span class="fu">nest</span>()<span class="sc">%&gt;%</span><span class="fu">mutate</span>(<span class="at">mean.Richness=</span><span class="fu">map</span>(data, <span class="cf">function</span>(x)<span class="fu">mean</span>(x<span class="sc">%&gt;%</span><span class="fu">pull</span>(Richness)))) <span class="co">#map indicates the data frame column with the nested data (i.e., data) and applies a function to that data.</span></span>
+<span id="cb23-2"><a href="introduction-to-the-tidyverse.html#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="co">#data becomes the &quot;x&quot; in the function. </span></span>
+<span id="cb23-3"><a href="introduction-to-the-tidyverse.html#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="co">#pull() extracts the variable of interest and returns a vector.</span></span>
+<span id="cb23-4"><a href="introduction-to-the-tidyverse.html#cb23-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-5"><a href="introduction-to-the-tidyverse.html#cb23-5" aria-hidden="true" tabindex="-1"></a>mean.taxa</span></code></pre></div>
+<pre><code>## # A tibble: 2 x 3
+## # Groups:   Taxa [2]
+##   Taxa        data              mean.Richness
+##   &lt;chr&gt;       &lt;list&gt;            &lt;list&gt;       
+## 1 Birds       &lt;tibble [30 x 4]&gt; &lt;dbl [1]&gt;    
+## 2 Butterflies &lt;tibble [30 x 4]&gt; &lt;dbl [1]&gt;</code></pre>
+<p>The results are mutated as another list column in the original data frame. They can be unnested.</p>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="introduction-to-the-tidyverse.html#cb25-1" aria-hidden="true" tabindex="-1"></a>mean.taxa<span class="ot">&lt;-</span>data.all<span class="sc">%&gt;%</span><span class="fu">group_by</span>(Taxa)<span class="sc">%&gt;%</span><span class="fu">nest</span>()<span class="sc">%&gt;%</span><span class="fu">mutate</span>(<span class="at">mean.Richness=</span><span class="fu">map</span>(data, <span class="cf">function</span>(x)<span class="fu">mean</span>(x<span class="sc">%&gt;%</span><span class="fu">pull</span>(Richness))))<span class="sc">%&gt;%</span><span class="fu">unnest</span>(mean.Richness)</span>
+<span id="cb25-2"><a href="introduction-to-the-tidyverse.html#cb25-2" aria-hidden="true" tabindex="-1"></a>mean.taxa</span></code></pre></div>
+<pre><code>## # A tibble: 2 x 3
+## # Groups:   Taxa [2]
+##   Taxa        data              mean.Richness
+##   &lt;chr&gt;       &lt;list&gt;                    &lt;dbl&gt;
+## 1 Birds       &lt;tibble [30 x 4]&gt;          14.2
+## 2 Butterflies &lt;tibble [30 x 4]&gt;          10.7</code></pre>
+<p>More complicated functions are easier to specify outside of the pipe.</p>
+<p>Example: find the sites with the highest and lowest bird and butterfly species richness</p>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="introduction-to-the-tidyverse.html#cb27-1" aria-hidden="true" tabindex="-1"></a>get.sites<span class="ot">&lt;-</span><span class="cf">function</span>(x){ <span class="co">#Each element of the list column data will correspond to data frame &quot;x&quot; in the function.</span></span>
+<span id="cb27-2"><a href="introduction-to-the-tidyverse.html#cb27-2" aria-hidden="true" tabindex="-1"></a>  x<span class="sc">%&gt;%</span><span class="fu">filter</span>(Richness<span class="sc">%in%</span><span class="fu">c</span>(<span class="fu">max</span>(Richness), <span class="fu">min</span>(Richness)))<span class="sc">%&gt;%</span><span class="fu">mutate</span>(<span class="at">Type=</span><span class="fu">ifelse</span>(Richness<span class="sc">==</span><span class="fu">max</span>(Richness), <span class="st">&quot;High&quot;</span>, <span class="st">&quot;Low&quot;</span>))<span class="sc">%&gt;%</span><span class="fu">arrange</span>(<span class="fu">desc</span>(Richness))</span>
+<span id="cb27-3"><a href="introduction-to-the-tidyverse.html#cb27-3" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb27-4"><a href="introduction-to-the-tidyverse.html#cb27-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-5"><a href="introduction-to-the-tidyverse.html#cb27-5" aria-hidden="true" tabindex="-1"></a>sites.taxa<span class="ot">&lt;-</span>data.all<span class="sc">%&gt;%</span><span class="fu">group_by</span>(Taxa)<span class="sc">%&gt;%</span><span class="fu">nest</span>()<span class="sc">%&gt;%</span><span class="fu">mutate</span>(<span class="at">Types=</span><span class="fu">map</span>(data, get.sites))<span class="sc">%&gt;%</span><span class="fu">unnest</span>(Types)<span class="sc">%&gt;%</span><span class="fu">select</span>(<span class="sc">-</span>data) <span class="co">#The function get.sites is applied to each element in the list column data.</span></span>
+<span id="cb27-6"><a href="introduction-to-the-tidyverse.html#cb27-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-7"><a href="introduction-to-the-tidyverse.html#cb27-7" aria-hidden="true" tabindex="-1"></a>sites.taxa</span></code></pre></div>
+<pre><code>## # A tibble: 4 x 6
+## # Groups:   Taxa [2]
+##   Taxa         ...1 Site     NDVI Richness Type 
+##   &lt;chr&gt;       &lt;dbl&gt; &lt;chr&gt;   &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;
+## 1 Birds           9 Site.9   1          25 High 
+## 2 Birds           6 Site.6   0.29        7 Low  
+## 3 Butterflies    48 Site.18  0.81       20 High 
+## 4 Butterflies    32 Site.2   0.4         6 Low</code></pre>
+<p>Another example, this time nesting the data based on sites and finding whether a site has more bird or butterfly species.</p>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="introduction-to-the-tidyverse.html#cb29-1" aria-hidden="true" tabindex="-1"></a>get.taxa<span class="ot">&lt;-</span><span class="cf">function</span>(x){</span>
+<span id="cb29-2"><a href="introduction-to-the-tidyverse.html#cb29-2" aria-hidden="true" tabindex="-1"></a>  Top.taxa<span class="ot">&lt;-</span>x<span class="sc">%&gt;%</span><span class="fu">filter</span>(Richness<span class="sc">==</span><span class="fu">max</span>(Richness))<span class="sc">%&gt;%</span><span class="fu">pull</span>(Taxa)</span>
+<span id="cb29-3"><a href="introduction-to-the-tidyverse.html#cb29-3" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(<span class="fu">length</span>(Top.taxa)<span class="sc">&gt;</span><span class="dv">1</span>){<span class="fu">paste</span>(Top.taxa[<span class="dv">1</span>], Top.taxa[<span class="dv">2</span>], <span class="at">sep=</span><span class="st">&quot; + &quot;</span>)}<span class="cf">else</span>{Top.taxa} <span class="co">#Need to indicate sites where birds and butterflies have the same species richness</span></span>
+<span id="cb29-4"><a href="introduction-to-the-tidyverse.html#cb29-4" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb29-5"><a href="introduction-to-the-tidyverse.html#cb29-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-6"><a href="introduction-to-the-tidyverse.html#cb29-6" aria-hidden="true" tabindex="-1"></a>sites.richness<span class="ot">&lt;-</span>data.all<span class="sc">%&gt;%</span><span class="fu">group_by</span>(Site)<span class="sc">%&gt;%</span><span class="fu">nest</span>()<span class="sc">%&gt;%</span><span class="fu">mutate</span>(<span class="at">Animal=</span><span class="fu">map</span>(data, get.taxa))<span class="sc">%&gt;%</span><span class="fu">unnest</span>(Animal)<span class="sc">%&gt;%</span><span class="fu">select</span>(<span class="sc">-</span>data)</span>
+<span id="cb29-7"><a href="introduction-to-the-tidyverse.html#cb29-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-8"><a href="introduction-to-the-tidyverse.html#cb29-8" aria-hidden="true" tabindex="-1"></a>sites.richness</span></code></pre></div>
+<pre><code>## # A tibble: 30 x 2
+## # Groups:   Site [30]
+##    Site    Animal     
+##    &lt;chr&gt;   &lt;chr&gt;      
+##  1 Site.1  Birds      
+##  2 Site.2  Birds      
+##  3 Site.3  Birds      
+##  4 Site.4  Birds      
+##  5 Site.5  Birds      
+##  6 Site.6  Butterflies
+##  7 Site.7  Birds      
+##  8 Site.8  Birds      
+##  9 Site.9  Birds      
+## 10 Site.10 Birds      
+## # ... with 20 more rows</code></pre>
+<p>Are there any sites where birds and butterflies have equal species richness?</p>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="introduction-to-the-tidyverse.html#cb31-1" aria-hidden="true" tabindex="-1"></a>site.animals<span class="ot">&lt;-</span>sites.richness<span class="sc">%&gt;%</span><span class="fu">filter</span>(Animal<span class="sc">==</span><span class="st">&quot;Birds + Butterflies&quot;</span>)</span>
+<span id="cb31-2"><a href="introduction-to-the-tidyverse.html#cb31-2" aria-hidden="true" tabindex="-1"></a>site.animals</span></code></pre></div>
+<pre><code>## # A tibble: 1 x 2
+## # Groups:   Site [1]
+##   Site    Animal             
+##   &lt;chr&gt;   &lt;chr&gt;              
+## 1 Site.25 Birds + Butterflies</code></pre>
+<p>Are there more sites with higher bird or butterfly species richness?</p>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="introduction-to-the-tidyverse.html#cb33-1" aria-hidden="true" tabindex="-1"></a>richness.summary<span class="ot">&lt;-</span>sites.richness<span class="sc">%&gt;%</span><span class="fu">group_by</span>(Animal)<span class="sc">%&gt;%</span><span class="fu">summarize</span>(<span class="at">No.Sites=</span><span class="fu">n</span>())</span>
+<span id="cb33-2"><a href="introduction-to-the-tidyverse.html#cb33-2" aria-hidden="true" tabindex="-1"></a>richness.summary</span></code></pre></div>
+<pre><code>## # A tibble: 3 x 2
+##   Animal              No.Sites
+##   &lt;chr&gt;                  &lt;int&gt;
+## 1 Birds                     26
+## 2 Birds + Butterflies        1
+## 3 Butterflies                3</code></pre>
+<p>Run a linear model to estimate the relationship between NDVI and richness for each taxa. “lm” can be specified as a function in map(). The model is mutated as a list column. We can mutate all model results by mapping tidy, glance, and augument onto each model.</p>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="introduction-to-the-tidyverse.html#cb35-1" aria-hidden="true" tabindex="-1"></a>richness.models<span class="ot">&lt;-</span>data.all<span class="sc">%&gt;%</span><span class="fu">group_by</span>(Taxa)<span class="sc">%&gt;%</span><span class="fu">nest</span>()<span class="sc">%&gt;%</span><span class="fu">mutate</span>(<span class="at">Models=</span><span class="fu">map</span>(data, <span class="sc">~</span><span class="fu">lm</span>(Richness<span class="sc">~</span>NDVI, <span class="at">data=</span>.)))<span class="sc">%&gt;%</span><span class="fu">mutate</span>(<span class="at">Tidied=</span><span class="fu">map</span>(Models, tidy), <span class="at">Glanced=</span><span class="fu">map</span>(Models, glance), <span class="at">Augmented=</span><span class="fu">map</span>(Models, augment))</span>
+<span id="cb35-2"><a href="introduction-to-the-tidyverse.html#cb35-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-3"><a href="introduction-to-the-tidyverse.html#cb35-3" aria-hidden="true" tabindex="-1"></a>richness.models</span></code></pre></div>
+<pre><code>## # A tibble: 2 x 6
+## # Groups:   Taxa [2]
+##   Taxa        data    Models Tidied  Glanced  Augmented
+##   &lt;chr&gt;       &lt;list&gt;  &lt;list&gt; &lt;list&gt;  &lt;list&gt;   &lt;list&gt;   
+## 1 Birds       &lt;tibbl~ &lt;lm&gt;   &lt;tibbl~ &lt;tibble~ &lt;tibble ~
+## 2 Butterflies &lt;tibbl~ &lt;lm&gt;   &lt;tibbl~ &lt;tibble~ &lt;tibble ~</code></pre>
+<p>Is NDVI more strongly associated with bird or butterfly species richness? Let’s compare the parameter estimates and their precision, which can be returned as a 95% confidence interval by specifying conf.int=TRUE and conf.level=0.95 (the default).</p>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="introduction-to-the-tidyverse.html#cb37-1" aria-hidden="true" tabindex="-1"></a>richness.models<span class="ot">&lt;-</span>data.all<span class="sc">%&gt;%</span><span class="fu">group_by</span>(Taxa)<span class="sc">%&gt;%</span><span class="fu">nest</span>()<span class="sc">%&gt;%</span><span class="fu">mutate</span>(<span class="at">Models=</span><span class="fu">map</span>(data, <span class="sc">~</span><span class="fu">lm</span>(Richness<span class="sc">~</span>NDVI, <span class="at">data=</span>.)))<span class="sc">%&gt;%</span><span class="fu">mutate</span>(<span class="at">Tidied=</span><span class="fu">map</span>(Models, tidy, <span class="at">conf.int=</span><span class="cn">TRUE</span>), <span class="at">Glanced=</span><span class="fu">map</span>(Models, glance), <span class="at">Augmented=</span><span class="fu">map</span>(Models, augment))<span class="sc">%&gt;%</span><span class="fu">unnest</span>(Tidied)</span>
+<span id="cb37-2"><a href="introduction-to-the-tidyverse.html#cb37-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-3"><a href="introduction-to-the-tidyverse.html#cb37-3" aria-hidden="true" tabindex="-1"></a>parameter.estimates<span class="ot">&lt;-</span>richness.models<span class="sc">%&gt;%</span><span class="fu">select</span>(Taxa, term, estimate, conf.low, conf.high)<span class="sc">%&gt;%</span><span class="fu">filter</span>(term<span class="sc">==</span><span class="st">&quot;NDVI&quot;</span>)</span>
+<span id="cb37-4"><a href="introduction-to-the-tidyverse.html#cb37-4" aria-hidden="true" tabindex="-1"></a>parameter.estimates</span></code></pre></div>
+<pre><code>## # A tibble: 2 x 5
+## # Groups:   Taxa [2]
+##   Taxa        term  estimate conf.low conf.high
+##   &lt;chr&gt;       &lt;chr&gt;    &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;
+## 1 Birds       NDVI      19.9    16.3       23.5
+## 2 Butterflies NDVI      12.7     8.91      16.4</code></pre>
+<p>Graph the results: compare the relationship with NDVI for both species. Rather than use the fitted values, predict richness for all NDVI values from 0 to 1 at intervals of 0.01. The precision of the prediction can be estimated as confidence intervals (interval=“confidence”) or prediction intervals (interval=“prediction”)</p>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="introduction-to-the-tidyverse.html#cb39-1" aria-hidden="true" tabindex="-1"></a>richness.models<span class="ot">&lt;-</span>data.all<span class="sc">%&gt;%</span><span class="fu">group_by</span>(Taxa)<span class="sc">%&gt;%</span><span class="fu">nest</span>()<span class="sc">%&gt;%</span><span class="fu">mutate</span>(<span class="at">Models=</span><span class="fu">map</span>(data, <span class="sc">~</span><span class="fu">lm</span>(Richness<span class="sc">~</span>NDVI, <span class="at">data=</span>.)))<span class="sc">%&gt;%</span><span class="fu">mutate</span>(<span class="at">Tidied=</span><span class="fu">map</span>(Models, tidy, <span class="at">conf.int=</span><span class="cn">TRUE</span>), <span class="at">Glanced=</span><span class="fu">map</span>(Models, glance), <span class="at">Predictions=</span><span class="fu">map</span>(Models, augment, <span class="at">newdata=</span><span class="fu">tibble</span>(<span class="at">NDVI=</span><span class="fu">seq</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="fl">0.01</span>)), <span class="at">se_fit=</span><span class="cn">TRUE</span>, <span class="at">interval=</span><span class="st">&quot;confidence&quot;</span>)) <span class="co">#Rather than use the original NDVI values for prediction, specify a new data frame (newdata) with the NDVI values of interest</span></span>
+<span id="cb39-2"><a href="introduction-to-the-tidyverse.html#cb39-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-3"><a href="introduction-to-the-tidyverse.html#cb39-3" aria-hidden="true" tabindex="-1"></a>richness.predictions<span class="ot">&lt;-</span>richness.models<span class="sc">%&gt;%</span><span class="fu">unnest</span>(Predictions)<span class="sc">%&gt;%</span><span class="fu">select</span>(Taxa, NDVI, .fitted, .lower, .upper)<span class="sc">%&gt;%</span><span class="fu">rename</span>(<span class="at">Richness=</span>.fitted, <span class="at">low.95=</span>.lower, <span class="at">high.95=</span>.upper)</span>
+<span id="cb39-4"><a href="introduction-to-the-tidyverse.html#cb39-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-5"><a href="introduction-to-the-tidyverse.html#cb39-5" aria-hidden="true" tabindex="-1"></a>p<span class="ot">&lt;-</span><span class="fu">ggplot</span>(richness.predictions,<span class="fu">aes</span>(<span class="at">x=</span>NDVI, <span class="at">y=</span>Richness, <span class="at">col=</span>Taxa)) <span class="sc">+</span>  <span class="fu">geom_line</span>(<span class="at">size=</span><span class="dv">2</span>)</span>
+<span id="cb39-6"><a href="introduction-to-the-tidyverse.html#cb39-6" aria-hidden="true" tabindex="-1"></a>p<span class="ot">&lt;-</span>p<span class="sc">+</span><span class="fu">geom_ribbon</span>(<span class="fu">aes</span>(<span class="at">ymin=</span>low<span class="fl">.95</span>, <span class="at">ymax=</span>high<span class="fl">.95</span>, <span class="at">fill=</span>Taxa), </span>
+<span id="cb39-7"><a href="introduction-to-the-tidyverse.html#cb39-7" aria-hidden="true" tabindex="-1"></a>                                         <span class="at">show.legend=</span><span class="cn">FALSE</span>, <span class="at">color=</span><span class="cn">NA</span>, <span class="at">alpha=</span><span class="fl">0.3</span>) <span class="co">#Visualize confidence interval</span></span>
+<span id="cb39-8"><a href="introduction-to-the-tidyverse.html#cb39-8" aria-hidden="true" tabindex="-1"></a>p<span class="ot">&lt;-</span>p<span class="sc">+</span><span class="fu">geom_point</span>(<span class="at">data=</span>data.all, <span class="fu">aes</span>(<span class="at">x=</span>NDVI, <span class="at">y=</span>Richness, <span class="at">col=</span>Taxa), <span class="at">size=</span><span class="dv">3</span>) <span class="co">#Add original data</span></span>
+<span id="cb39-9"><a href="introduction-to-the-tidyverse.html#cb39-9" aria-hidden="true" tabindex="-1"></a>p<span class="ot">&lt;-</span>p<span class="sc">+</span><span class="fu">scale_y_continuous</span>(<span class="at">name=</span><span class="st">&quot;Species richness</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
+<span id="cb39-10"><a href="introduction-to-the-tidyverse.html#cb39-10" aria-hidden="true" tabindex="-1"></a>p<span class="ot">&lt;-</span>p<span class="sc">+</span><span class="fu">scale_x_continuous</span>(<span class="at">name=</span><span class="st">&quot;</span><span class="sc">\n</span><span class="st">NDVI&quot;</span>)</span>
+<span id="cb39-11"><a href="introduction-to-the-tidyverse.html#cb39-11" aria-hidden="true" tabindex="-1"></a>p<span class="ot">&lt;-</span>p<span class="sc">+</span><span class="fu">scale_color_viridis_d</span>()</span>
+<span id="cb39-12"><a href="introduction-to-the-tidyverse.html#cb39-12" aria-hidden="true" tabindex="-1"></a>p<span class="ot">&lt;-</span>p<span class="sc">+</span><span class="fu">scale_fill_viridis_d</span>()</span>
+<span id="cb39-13"><a href="introduction-to-the-tidyverse.html#cb39-13" aria-hidden="true" tabindex="-1"></a>p<span class="ot">&lt;-</span>p<span class="sc">+</span><span class="fu">theme_classic</span>()<span class="sc">+</span> <span class="fu">theme</span>(<span class="at">axis.line.x=</span><span class="fu">element_line</span>(<span class="at">colour=</span><span class="st">&quot;black&quot;</span>), <span class="at">axis.line.y=</span><span class="fu">element_line</span>(<span class="at">colour=</span><span class="st">&quot;black&quot;</span>), </span>
+<span id="cb39-14"><a href="introduction-to-the-tidyverse.html#cb39-14" aria-hidden="true" tabindex="-1"></a>                                            <span class="at">text =</span> <span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">12</span>))</span>
+<span id="cb39-15"><a href="introduction-to-the-tidyverse.html#cb39-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-16"><a href="introduction-to-the-tidyverse.html#cb39-16" aria-hidden="true" tabindex="-1"></a>p</span></code></pre></div>
+<p><img src="merida-workshop-2022_files/figure-html/unnamed-chunk-20-1.png" width="672" /></p>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="introduction-to-the-tidyverse.html#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="st">&quot;Richness_vs_NDVI.pdf&quot;</span>, <span class="at">device=</span><span class="st">&quot;pdf&quot;</span>, <span class="at">width=</span><span class="dv">6</span>, <span class="at">height=</span><span class="dv">3</span>, <span class="at">units=</span><span class="st">&quot;in&quot;</span>, <span class="at">dpi=</span><span class="dv">600</span>)</span></code></pre></div>
+
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="congen-intro.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="reporg.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook/js/app.min.js"></script>
+<script src="libs/gitbook/js/clipboard.min.js"></script>
+<script src="libs/gitbook/js/plugin-search.js"></script>
+<script src="libs/gitbook/js/plugin-sharing.js"></script>
+<script src="libs/gitbook/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook/js/jquery.highlight.js"></script>
+<script src="libs/gitbook/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": true,
+"facebook": false,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/eriqande/merida-workshop-2022/edit/master/2.0-introduction-to-R.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": "https://github.com/eriqande/merida-workshop-2022/commits/master/2.0-introduction-to-R.Rmd",
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["merida-workshop-2022.pdf", "merida-workshop-2022.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "section"
+}
+});
+});
+</script>
+
+</body>
+
+</html>
