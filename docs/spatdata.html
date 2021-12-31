@@ -24,7 +24,7 @@
 <meta name="author" content="Eric C. Anderson, Christen Bossu, Richard Evan Feldman, Kristen C. Ruegg, Marius Somveille" />
 
 
-<meta name="date" content="2021-11-30" />
+<meta name="date" content="2021-12-31" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -32,7 +32,7 @@
   
   
 <link rel="prev" href="envdata.html"/>
-<link rel="next" href="conclude.html"/>
+<link rel="next" href="geassoc.html"/>
 <script src="libs/header-attrs/header-attrs.js"></script>
 <script src="libs/jquery/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
@@ -163,15 +163,56 @@ div.csl-indent {
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
 <li class="chapter" data-level="1" data-path="congen-intro.html"><a href="congen-intro.html"><i class="fa fa-check"></i><b>1</b> Introduction to Conservation Genomics Approaches</a></li>
-<li class="chapter" data-level="2" data-path="rbasics.html"><a href="rbasics.html"><i class="fa fa-check"></i><b>2</b> R Programming Basics</a></li>
+<li class="chapter" data-level="2" data-path="introduction-to-the-tidyverse.html"><a href="introduction-to-the-tidyverse.html"><i class="fa fa-check"></i><b>2</b> Introduction to the tidyverse</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="introduction-to-the-tidyverse.html"><a href="introduction-to-the-tidyverse.html#what-on-earth-is-the-tidyerse"><i class="fa fa-check"></i><b>2.1</b> What on earth is the tidyerse?</a></li>
+<li class="chapter" data-level="2.2" data-path="introduction-to-the-tidyverse.html"><a href="introduction-to-the-tidyverse.html#an-example-data-set"><i class="fa fa-check"></i><b>2.2</b> An example data set</a></li>
+<li class="chapter" data-level="2.3" data-path="introduction-to-the-tidyverse.html"><a href="introduction-to-the-tidyverse.html#reading-data-in-the-tidyverse"><i class="fa fa-check"></i><b>2.3</b> Reading data in the tidyverse</a></li>
+<li class="chapter" data-level="2.4" data-path="introduction-to-the-tidyverse.html"><a href="introduction-to-the-tidyverse.html#a-word-on-tibbles"><i class="fa fa-check"></i><b>2.4</b> A word on tibbles</a></li>
+<li class="chapter" data-level="2.5" data-path="introduction-to-the-tidyverse.html"><a href="introduction-to-the-tidyverse.html#back-to-tidying-up-our-genotype-data"><i class="fa fa-check"></i><b>2.5</b> Back to “tidying” up our genotype data</a></li>
+<li class="chapter" data-level="2.6" data-path="introduction-to-the-tidyverse.html"><a href="introduction-to-the-tidyverse.html#what-the-heck-is-that-thingie"><i class="fa fa-check"></i><b>2.6</b> What the heck is that <code>%&gt;%</code> thingie?!</a></li>
+<li class="chapter" data-level="2.7" data-path="introduction-to-the-tidyverse.html"><a href="introduction-to-the-tidyverse.html#the-dplyr-package-the-heart-of-the-tidyverse"><i class="fa fa-check"></i><b>2.7</b> The ‘dplyr’ package: the heart of the tidyverse</a>
+<ul>
+<li class="chapter" data-level="2.7.1" data-path="introduction-to-the-tidyverse.html"><a href="introduction-to-the-tidyverse.html#non-standard-evaluation-nse-you-dont-wrap-column-names-in-quotation-marks"><i class="fa fa-check"></i><b>2.7.1</b> Non-standard Evaluation (NSE): You don’t wrap column names in quotation marks</a></li>
+<li class="chapter" data-level="2.7.2" data-path="introduction-to-the-tidyverse.html"><a href="introduction-to-the-tidyverse.html#select-to-select-columns-of-a-tibble"><i class="fa fa-check"></i><b>2.7.2</b> <code>select()</code> to select columns of a tibble</a></li>
+<li class="chapter" data-level="2.7.3" data-path="introduction-to-the-tidyverse.html"><a href="introduction-to-the-tidyverse.html#filter-to-retain-certain-rows"><i class="fa fa-check"></i><b>2.7.3</b> <code>filter()</code> to retain certain rows</a></li>
+<li class="chapter" data-level="2.7.4" data-path="introduction-to-the-tidyverse.html"><a href="introduction-to-the-tidyverse.html#arrange-to-reorder-the-rows-of-the-tibble"><i class="fa fa-check"></i><b>2.7.4</b> <code>arrange()</code> to reorder the rows of the tibble</a></li>
+<li class="chapter" data-level="2.7.5" data-path="introduction-to-the-tidyverse.html"><a href="introduction-to-the-tidyverse.html#mutate-to-create-new-columns"><i class="fa fa-check"></i><b>2.7.5</b> <code>mutate()</code> to create new columns</a></li>
+<li class="chapter" data-level="2.7.6" data-path="introduction-to-the-tidyverse.html"><a href="introduction-to-the-tidyverse.html#compute-a-single-value-from-many-rows-summarise"><i class="fa fa-check"></i><b>2.7.6</b> Compute a single value from many rows: <code>summarise()</code></a></li>
+<li class="chapter" data-level="2.7.7" data-path="introduction-to-the-tidyverse.html"><a href="introduction-to-the-tidyverse.html#group_by-to-operate-tidily-on-subsets-of-a-tibble"><i class="fa fa-check"></i><b>2.7.7</b> <code>group_by()</code> to operate tidily on subsets of a tibble</a></li>
+<li class="chapter" data-level="2.7.8" data-path="introduction-to-the-tidyverse.html"><a href="introduction-to-the-tidyverse.html#joins"><i class="fa fa-check"></i><b>2.7.8</b> Joins</a></li>
+<li class="chapter" data-level="2.7.9" data-path="introduction-to-the-tidyverse.html"><a href="introduction-to-the-tidyverse.html#wrap-up"><i class="fa fa-check"></i><b>2.7.9</b> Wrap Up</a></li>
+</ul></li>
+<li class="chapter" data-level="2.8" data-path="introduction-to-the-tidyverse.html"><a href="introduction-to-the-tidyverse.html#modeling-within-the-tidyverse"><i class="fa fa-check"></i><b>2.8</b> Modeling within the Tidyverse</a></li>
+</ul></li>
 <li class="chapter" data-level="3" data-path="reporg.html"><a href="reporg.html"><i class="fa fa-check"></i><b>3</b> Organizing Research Projects for Reproducibility</a>
 <ul>
-<li class="chapter" data-level="3.1" data-path="reporg.html"><a href="reporg.html#rstudio-and-rstudio-projects"><i class="fa fa-check"></i><b>3.1</b> RStudio and RStudio Projects</a></li>
-<li class="chapter" data-level="3.2" data-path="reporg.html"><a href="reporg.html#version-control-with-git"><i class="fa fa-check"></i><b>3.2</b> Version control with git</a></li>
-<li class="chapter" data-level="3.3" data-path="reporg.html"><a href="reporg.html#github"><i class="fa fa-check"></i><b>3.3</b> GitHub</a></li>
-<li class="chapter" data-level="3.4" data-path="reporg.html"><a href="reporg.html#big-or-private-data-sets"><i class="fa fa-check"></i><b>3.4</b> Big or Private data sets</a></li>
-<li class="chapter" data-level="3.5" data-path="reporg.html"><a href="reporg.html#merge-conflicts"><i class="fa fa-check"></i><b>3.5</b> Merge Conflicts?</a></li>
-<li class="chapter" data-level="3.6" data-path="reporg.html"><a href="reporg.html#explain-caching"><i class="fa fa-check"></i><b>3.6</b> Explain caching</a></li>
+<li class="chapter" data-level="3.1" data-path="reporg.html"><a href="reporg.html#goals-for-this-session"><i class="fa fa-check"></i><b>3.1</b> Goals for this session</a></li>
+<li class="chapter" data-level="3.2" data-path="reporg.html"><a href="reporg.html#why-do-this"><i class="fa fa-check"></i><b>3.2</b> Why do this?</a></li>
+<li class="chapter" data-level="3.3" data-path="reporg.html"><a href="reporg.html#what-can-this-look-like"><i class="fa fa-check"></i><b>3.3</b> What can this look like?</a></li>
+<li class="chapter" data-level="3.4" data-path="reporg.html"><a href="reporg.html#reproducibility-edict-1-dont-save-your-r-workspace-and-then-reload-it"><i class="fa fa-check"></i><b>3.4</b> Reproducibility Edict #1: Don’t Save Your R Workspace and then Reload It</a></li>
+<li class="chapter" data-level="3.5" data-path="reporg.html"><a href="reporg.html#paths-an-important-concept-for-reproducibility"><i class="fa fa-check"></i><b>3.5</b> Paths, an important concept for reproducibility</a></li>
+<li class="chapter" data-level="3.6" data-path="reporg.html"><a href="reporg.html#the-working-directory"><i class="fa fa-check"></i><b>3.6</b> The Working Directory</a>
+<ul>
+<li class="chapter" data-level="3.6.1" data-path="reporg.html"><a href="reporg.html#a-hugely-important-point"><i class="fa fa-check"></i><b>3.6.1</b> A Hugely Important Point!</a></li>
+<li class="chapter" data-level="3.6.2" data-path="reporg.html"><a href="reporg.html#skeletal-anatomy-of-an-rstudio-project"><i class="fa fa-check"></i><b>3.6.2</b> Skeletal anatomy of an RStudio Project</a></li>
+</ul></li>
+<li class="chapter" data-level="3.7" data-path="reporg.html"><a href="reporg.html#reproducibility-edict-2-dont-change-directories-in-your-code"><i class="fa fa-check"></i><b>3.7</b> Reproducibility Edict #2: Don’t Change Directories in Your Code</a></li>
+<li class="chapter" data-level="3.8" data-path="reporg.html"><a href="reporg.html#relative-paths"><i class="fa fa-check"></i><b>3.8</b> Relative Paths</a></li>
+<li class="chapter" data-level="3.9" data-path="reporg.html"><a href="reporg.html#reproducibility-edict-3-always-use-relative-paths-from-the-project-directory-to-files-inside-the-project-directory"><i class="fa fa-check"></i><b>3.9</b> Reproducibility Edict #3: Always Use Relative Paths from the Project Directory to Files <em>inside</em> the Project Directory</a></li>
+<li class="chapter" data-level="3.10" data-path="reporg.html"><a href="reporg.html#reproducibility-edict-4-put-data-files-into-a-data-directory"><i class="fa fa-check"></i><b>3.10</b> Reproducibility Edict #4: Put data files into a <code>data</code> directory</a></li>
+<li class="chapter" data-level="3.11" data-path="reporg.html"><a href="reporg.html#reproducibility-edict-5-write-analysis-scripts-as-.r-or-.rmd-files"><i class="fa fa-check"></i><b>3.11</b> Reproducibility Edict #5: Write Analysis Scripts as <code>.R</code> or <code>.Rmd</code> files</a></li>
+<li class="chapter" data-level="3.12" data-path="reporg.html"><a href="reporg.html#download-an-example-project-to-play-with"><i class="fa fa-check"></i><b>3.12</b> Download an example project to play with</a>
+<ul>
+<li class="chapter" data-level="3.12.1" data-path="reporg.html"><a href="reporg.html#lets-have-a-moment"><i class="fa fa-check"></i><b>3.12.1</b> Let’s have a moment</a></li>
+</ul></li>
+<li class="chapter" data-level="3.13" data-path="reporg.html"><a href="reporg.html#reproducibility-edict-6-write-your-code-with-style"><i class="fa fa-check"></i><b>3.13</b> Reproducibility Edict #6: Write your code with style!</a></li>
+<li class="chapter" data-level="3.14" data-path="reporg.html"><a href="reporg.html#what-about-shared-data-sets"><i class="fa fa-check"></i><b>3.14</b> What About Shared Data Sets?</a></li>
+<li class="chapter" data-level="3.15" data-path="reporg.html"><a href="reporg.html#reproducibility-edict-7-use-git-for-version-control"><i class="fa fa-check"></i><b>3.15</b> Reproducibility Edict #7: Use git for Version Control</a></li>
+<li class="chapter" data-level="3.16" data-path="reporg.html"><a href="reporg.html#in-the-meantime-a-short-demo-of-gitgithub-on-rstudio"><i class="fa fa-check"></i><b>3.16</b> In the meantime, a short demo of git/GitHub on RStudio</a></li>
+<li class="chapter" data-level="3.17" data-path="reporg.html"><a href="reporg.html#what-to-keep-under-version-control-and-what-not-to"><i class="fa fa-check"></i><b>3.17</b> What to keep under version control and what not to</a></li>
+<li class="chapter" data-level="3.18" data-path="reporg.html"><a href="reporg.html#create-a-readme-to-describe-the-parts-of-your-analysis-project"><i class="fa fa-check"></i><b>3.18</b> Create a README to describe the parts of your analysis project</a></li>
+<li class="chapter" data-level="3.19" data-path="reporg.html"><a href="reporg.html#github-and-very-large-data-sets"><i class="fa fa-check"></i><b>3.19</b> GitHub and Very large data sets</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="envdata.html"><a href="envdata.html"><i class="fa fa-check"></i><b>4</b> Finding and Obtaining Environmental Data for Conservation</a>
 <ul>
@@ -187,8 +228,23 @@ div.csl-indent {
 <li class="chapter" data-level="4.1.8" data-path="envdata.html"><a href="envdata.html#examples-of-landscape-layers"><i class="fa fa-check"></i><b>4.1.8</b> Examples of landscape layers</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="spatdata.html"><a href="spatdata.html"><i class="fa fa-check"></i><b>5</b> Handling and Visualizing Spatial Data in R</a></li>
-<li class="chapter" data-level="6" data-path="conclude.html"><a href="conclude.html"><i class="fa fa-check"></i><b>6</b> Concluding Remarks / Parting Words</a></li>
+<li class="chapter" data-level="5" data-path="spatdata.html"><a href="spatdata.html"><i class="fa fa-check"></i><b>5</b> Handling and Visualizing Spatial Data in R</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="spatdata.html"><a href="spatdata.html#getting-environmental-raster-data-into-r"><i class="fa fa-check"></i><b>5.1</b> Getting Environmental (Raster) data into R</a></li>
+<li class="chapter" data-level="5.2" data-path="spatdata.html"><a href="spatdata.html#playing-around-with-the-yucatan-jay"><i class="fa fa-check"></i><b>5.2</b> Playing around with the Yucatan Jay</a></li>
+<li class="chapter" data-level="5.3" data-path="spatdata.html"><a href="spatdata.html#how-about-population-densities"><i class="fa fa-check"></i><b>5.3</b> How about population densities?</a></li>
+<li class="chapter" data-level="5.4" data-path="spatdata.html"><a href="spatdata.html#now-how-about-finding-roads"><i class="fa fa-check"></i><b>5.4</b> Now, How about finding roads?</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="geassoc.html"><a href="geassoc.html"><i class="fa fa-check"></i><b>6</b> Genetic and Environmental Associations</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="geassoc.html"><a href="geassoc.html#background"><i class="fa fa-check"></i><b>6.1</b> Background</a></li>
+<li class="chapter" data-level="6.2" data-path="geassoc.html"><a href="geassoc.html#motivation"><i class="fa fa-check"></i><b>6.2</b> Motivation</a></li>
+<li class="chapter" data-level="6.3" data-path="geassoc.html"><a href="geassoc.html#housekeeping"><i class="fa fa-check"></i><b>6.3</b> Housekeeping</a></li>
+<li class="chapter" data-level="6.4" data-path="geassoc.html"><a href="geassoc.html#running-gradient-forest"><i class="fa fa-check"></i><b>6.4</b> Running Gradient Forest</a></li>
+<li class="chapter" data-level="6.5" data-path="geassoc.html"><a href="geassoc.html#basic-gradient-forest-preparation"><i class="fa fa-check"></i><b>6.5</b> Basic Gradient Forest Preparation</a></li>
+<li class="chapter" data-level="6.6" data-path="geassoc.html"><a href="geassoc.html#defining-genomic-vulnerabilitygenomic-offset-given-future-climate-predictions"><i class="fa fa-check"></i><b>6.6</b> Defining “Genomic Vulnerability/Genomic offset” Given Future Climate Predictions</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="conclude.html"><a href="conclude.html"><i class="fa fa-check"></i><b>7</b> Concluding Remarks / Parting Words</a></li>
 <li class="divider"></li>
 <li><a href="https://bookdown.org" target="blank">Published with bookdown</a></li>
 
@@ -211,6 +267,158 @@ div.csl-indent {
             <section class="normal" id="section-">
 <div id="spatdata" class="section level1" number="5">
 <h1><span class="header-section-number">Session 5</span> Handling and Visualizing Spatial Data in R</h1>
+<div id="getting-environmental-raster-data-into-r" class="section level2" number="5.1">
+<h2><span class="header-section-number">5.1</span> Getting Environmental (Raster) data into R</h2>
+<p>Some of the data sources listed in the tables from the previous
+session can be accessed with the geodata package.</p>
+<div class="sourceCode" id="cb117"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb117-1"><a href="spatdata.html#cb117-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(geodata)</span></code></pre></div>
+<pre><code>## Loading required package: terra</code></pre>
+<pre><code>## terra version 1.4.11</code></pre>
+<pre><code>## 
+## Attaching package: &#39;terra&#39;</code></pre>
+<pre><code>## The following object is masked from &#39;package:dplyr&#39;:
+## 
+##     src</code></pre>
+<pre><code>## The following object is masked from &#39;package:tidyr&#39;:
+## 
+##     extract</code></pre>
+<div class="sourceCode" id="cb123"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb123-1"><a href="spatdata.html#cb123-1" aria-hidden="true" tabindex="-1"></a><span class="co"># get worldclim data for mexico at 0.5 minutes</span></span>
+<span id="cb123-2"><a href="spatdata.html#cb123-2" aria-hidden="true" tabindex="-1"></a><span class="co"># this fails for me on Mac Mojave because of a certification issue.  Lame.</span></span>
+<span id="cb123-3"><a href="spatdata.html#cb123-3" aria-hidden="true" tabindex="-1"></a><span class="co"># But I can download it directly</span></span>
+<span id="cb123-4"><a href="spatdata.html#cb123-4" aria-hidden="true" tabindex="-1"></a><span class="co">#mex_tmin &lt;- worldclim_country(&quot;Mexico&quot;, &quot;tmin&quot;, res = 0.5, path = &quot;/tmp&quot;)</span></span>
+<span id="cb123-5"><a href="spatdata.html#cb123-5" aria-hidden="true" tabindex="-1"></a><span class="co">#worldclim_country(&quot;Mexico&quot;, &quot;tmax&quot;, res = 0.5, path = &quot;/tmp&quot;)</span></span>
+<span id="cb123-6"><a href="spatdata.html#cb123-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb123-7"><a href="spatdata.html#cb123-7" aria-hidden="true" tabindex="-1"></a><span class="co"># After downloading</span></span>
+<span id="cb123-8"><a href="spatdata.html#cb123-8" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(terra)</span>
+<span id="cb123-9"><a href="spatdata.html#cb123-9" aria-hidden="true" tabindex="-1"></a><span class="co">#mex_tmin &lt;- rast(&quot;~/Downloads/MEX_wc2.1_30s_tmin.tif&quot;)</span></span>
+<span id="cb123-10"><a href="spatdata.html#cb123-10" aria-hidden="true" tabindex="-1"></a>mex_tmax <span class="ot">&lt;-</span> <span class="fu">rast</span>(<span class="st">&quot;~/Downloads/MEX_wc2.1_30s_tmax.tif&quot;</span>)</span>
+<span id="cb123-11"><a href="spatdata.html#cb123-11" aria-hidden="true" tabindex="-1"></a><span class="co">#mex_prec &lt;- rast(&quot;~/Downloads/MEX_wc2.1_30s_prec.tif&quot;)</span></span>
+<span id="cb123-12"><a href="spatdata.html#cb123-12" aria-hidden="true" tabindex="-1"></a><span class="co">#mex_bio &lt;-  rast(&quot;~/Downloads/MEX_wc2.1_30s_bio.tif&quot;)</span></span>
+<span id="cb123-13"><a href="spatdata.html#cb123-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb123-14"><a href="spatdata.html#cb123-14" aria-hidden="true" tabindex="-1"></a><span class="co">#plot(mex_tmin)</span></span></code></pre></div>
+<div class="sourceCode" id="cb124"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb124-1"><a href="spatdata.html#cb124-1" aria-hidden="true" tabindex="-1"></a><span class="co"># looks reasonable, let&#39;s crop it:</span></span>
+<span id="cb124-2"><a href="spatdata.html#cb124-2" aria-hidden="true" tabindex="-1"></a>yp_extent <span class="ot">&lt;-</span> <span class="fu">ext</span>(<span class="fu">c</span>(<span class="sc">-</span><span class="dv">91</span>, <span class="sc">-</span><span class="fl">86.5</span>, <span class="fl">19.5</span>, <span class="fl">21.75</span> ))</span>
+<span id="cb124-3"><a href="spatdata.html#cb124-3" aria-hidden="true" tabindex="-1"></a><span class="co">#yp_tmin &lt;- crop(mex_tmin, yp_extent)</span></span>
+<span id="cb124-4"><a href="spatdata.html#cb124-4" aria-hidden="true" tabindex="-1"></a>yp_tmax <span class="ot">&lt;-</span> <span class="fu">crop</span>(mex_tmax, yp_extent)</span>
+<span id="cb124-5"><a href="spatdata.html#cb124-5" aria-hidden="true" tabindex="-1"></a><span class="co">#yp_prec &lt;- crop(mex_prec, yp_extent)</span></span>
+<span id="cb124-6"><a href="spatdata.html#cb124-6" aria-hidden="true" tabindex="-1"></a><span class="co">#yp_bio &lt;- crop(mex_bio, yp_extent)</span></span>
+<span id="cb124-7"><a href="spatdata.html#cb124-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb124-8"><a href="spatdata.html#cb124-8" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(yp_tmax)</span></code></pre></div>
+<p><img src="merida-workshop-2022_files/figure-html/unnamed-chunk-65-1.png" width="672" /></p>
+<p>That is all happy. Let’s put this into a data folder somewhere</p>
+<div class="sourceCode" id="cb125"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb125-1"><a href="spatdata.html#cb125-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dir.create</span>(<span class="st">&quot;data/spatial/worldclim&quot;</span>, <span class="at">recursive =</span> <span class="cn">TRUE</span>, <span class="at">showWarnings =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb125-2"><a href="spatdata.html#cb125-2" aria-hidden="true" tabindex="-1"></a><span class="fu">writeRaster</span>(yp_tmax, <span class="st">&quot;data/spatial/worldclim/tmax.tif&quot;</span>, <span class="at">overwrite =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+</div>
+<div id="playing-around-with-the-yucatan-jay" class="section level2" number="5.2">
+<h2><span class="header-section-number">5.2</span> Playing around with the Yucatan Jay</h2>
+<div class="sourceCode" id="cb126"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb126-1"><a href="spatdata.html#cb126-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lubridate)</span></code></pre></div>
+<pre><code>## 
+## Attaching package: &#39;lubridate&#39;</code></pre>
+<pre><code>## The following objects are masked from &#39;package:terra&#39;:
+## 
+##     intersect, union</code></pre>
+<pre><code>## The following objects are masked from &#39;package:base&#39;:
+## 
+##     date, intersect, setdiff, union</code></pre>
+<div class="sourceCode" id="cb130"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb130-1"><a href="spatdata.html#cb130-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb130-2"><a href="spatdata.html#cb130-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb130-3"><a href="spatdata.html#cb130-3" aria-hidden="true" tabindex="-1"></a>yjay_full <span class="ot">&lt;-</span> <span class="fu">read_tsv</span>(<span class="st">&quot;data/spatial/Cyanocorax-yucatanicus.tsv.gz&quot;</span>)</span></code></pre></div>
+<pre><code>## Warning: One or more parsing issues, see `problems()`
+## for details</code></pre>
+<pre><code>## Rows: 25135 Columns: 50</code></pre>
+<pre><code>## ── Column specification ───────────────────────────────
+## Delimiter: &quot;\t&quot;
+## chr  (31): datasetKey, occurrenceID, kingdom, phylu...
+## dbl  (14): gbifID, individualCount, decimalLatitude...
+## lgl   (2): coordinatePrecision, typeStatus
+## dttm  (3): eventDate, dateIdentified, lastInterpreted</code></pre>
+<pre><code>## 
+## ℹ Use `spec()` to retrieve the full column specification for this data.
+## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+<div class="sourceCode" id="cb135"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb135-1"><a href="spatdata.html#cb135-1" aria-hidden="true" tabindex="-1"></a><span class="co"># that is a big data set, with a lot of columns, and observations from</span></span>
+<span id="cb135-2"><a href="spatdata.html#cb135-2" aria-hidden="true" tabindex="-1"></a><span class="co"># a lot of different sources.  Let&#39;s whittle it down to something</span></span>
+<span id="cb135-3"><a href="spatdata.html#cb135-3" aria-hidden="true" tabindex="-1"></a><span class="co"># that is easier to see.</span></span>
+<span id="cb135-4"><a href="spatdata.html#cb135-4" aria-hidden="true" tabindex="-1"></a>yjay_thin <span class="ot">&lt;-</span> yjay_full <span class="sc">%&gt;%</span></span>
+<span id="cb135-5"><a href="spatdata.html#cb135-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(</span>
+<span id="cb135-6"><a href="spatdata.html#cb135-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">str_detect</span>(collectionCode, <span class="st">&quot;EBIRD&quot;</span>), <span class="co"># keep just the EBIRD-associated records</span></span>
+<span id="cb135-7"><a href="spatdata.html#cb135-7" aria-hidden="true" tabindex="-1"></a>    year <span class="sc">==</span> <span class="dv">2017</span>                         <span class="co"># from the year 2017</span></span>
+<span id="cb135-8"><a href="spatdata.html#cb135-8" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb135-9"><a href="spatdata.html#cb135-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(  <span class="co"># whittle it down to just a few columns of data</span></span>
+<span id="cb135-10"><a href="spatdata.html#cb135-10" aria-hidden="true" tabindex="-1"></a>    gbifID,</span>
+<span id="cb135-11"><a href="spatdata.html#cb135-11" aria-hidden="true" tabindex="-1"></a>    decimalLongitude,</span>
+<span id="cb135-12"><a href="spatdata.html#cb135-12" aria-hidden="true" tabindex="-1"></a>    decimalLatitude,</span>
+<span id="cb135-13"><a href="spatdata.html#cb135-13" aria-hidden="true" tabindex="-1"></a>    day,</span>
+<span id="cb135-14"><a href="spatdata.html#cb135-14" aria-hidden="true" tabindex="-1"></a>    month,</span>
+<span id="cb135-15"><a href="spatdata.html#cb135-15" aria-hidden="true" tabindex="-1"></a>    year,</span>
+<span id="cb135-16"><a href="spatdata.html#cb135-16" aria-hidden="true" tabindex="-1"></a>    individualCount,</span>
+<span id="cb135-17"><a href="spatdata.html#cb135-17" aria-hidden="true" tabindex="-1"></a>    stateProvince,</span>
+<span id="cb135-18"><a href="spatdata.html#cb135-18" aria-hidden="true" tabindex="-1"></a>    locality</span>
+<span id="cb135-19"><a href="spatdata.html#cb135-19" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb135-20"><a href="spatdata.html#cb135-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb135-21"><a href="spatdata.html#cb135-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb135-22"><a href="spatdata.html#cb135-22" aria-hidden="true" tabindex="-1"></a><span class="co"># let&#39;s make a quick map:</span></span>
+<span id="cb135-23"><a href="spatdata.html#cb135-23" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rnaturalearth)</span>
+<span id="cb135-24"><a href="spatdata.html#cb135-24" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rnaturalearthdata)</span>
+<span id="cb135-25"><a href="spatdata.html#cb135-25" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sf)</span></code></pre></div>
+<pre><code>## Linking to GEOS 3.8.1, GDAL 3.2.1, PROJ 7.2.1</code></pre>
+<div class="sourceCode" id="cb137"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb137-1"><a href="spatdata.html#cb137-1" aria-hidden="true" tabindex="-1"></a>mex_states <span class="ot">&lt;-</span> <span class="fu">ne_states</span>(</span>
+<span id="cb137-2"><a href="spatdata.html#cb137-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">country =</span> <span class="st">&quot;mexico&quot;</span>,</span>
+<span id="cb137-3"><a href="spatdata.html#cb137-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">returnclass =</span> <span class="st">&quot;sf&quot;</span></span>
+<span id="cb137-4"><a href="spatdata.html#cb137-4" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb137-5"><a href="spatdata.html#cb137-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb137-6"><a href="spatdata.html#cb137-6" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb137-7"><a href="spatdata.html#cb137-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> mex_states) <span class="sc">+</span></span>
+<span id="cb137-8"><a href="spatdata.html#cb137-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">data =</span> yjay_thin, <span class="fu">aes</span>(<span class="at">x =</span> decimalLongitude, <span class="at">y =</span> decimalLatitude), <span class="at">colour =</span> <span class="st">&quot;red&quot;</span>) <span class="sc">+</span></span>
+<span id="cb137-9"><a href="spatdata.html#cb137-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb137-10"><a href="spatdata.html#cb137-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_sf</span>(<span class="at">xlim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">95</span>, <span class="sc">-</span><span class="dv">85</span>), <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">12</span>, <span class="dv">22</span>))</span></code></pre></div>
+<p><img src="merida-workshop-2022_files/figure-html/unnamed-chunk-67-1.png" width="672" /></p>
+<p>Cool. Let’s focus on that in the core area:</p>
+<div class="sourceCode" id="cb138"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb138-1"><a href="spatdata.html#cb138-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb138-2"><a href="spatdata.html#cb138-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> mex_states) <span class="sc">+</span></span>
+<span id="cb138-3"><a href="spatdata.html#cb138-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">data =</span> yjay_thin, <span class="fu">aes</span>(<span class="at">x =</span> decimalLongitude, <span class="at">y =</span> decimalLatitude), <span class="at">colour =</span> <span class="st">&quot;red&quot;</span>) <span class="sc">+</span></span>
+<span id="cb138-4"><a href="spatdata.html#cb138-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb138-5"><a href="spatdata.html#cb138-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_sf</span>(<span class="at">xlim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">94</span>, <span class="sc">-</span><span class="dv">86</span>), <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">16</span>, <span class="dv">22</span>))</span></code></pre></div>
+<p><img src="merida-workshop-2022_files/figure-html/unnamed-chunk-68-1.png" width="672" /></p>
+<p>Cool. Now, it might be fun to look at collection dates.</p>
+<div class="sourceCode" id="cb139"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb139-1"><a href="spatdata.html#cb139-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb139-2"><a href="spatdata.html#cb139-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> mex_states) <span class="sc">+</span></span>
+<span id="cb139-3"><a href="spatdata.html#cb139-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">data =</span> yjay_thin, <span class="fu">aes</span>(<span class="at">x =</span> decimalLongitude, <span class="at">y =</span> decimalLatitude), <span class="at">colour =</span> <span class="st">&quot;red&quot;</span>) <span class="sc">+</span></span>
+<span id="cb139-4"><a href="spatdata.html#cb139-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb139-5"><a href="spatdata.html#cb139-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_sf</span>(<span class="at">xlim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">94</span>, <span class="sc">-</span><span class="dv">86</span>), <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">16</span>, <span class="dv">22</span>)) <span class="sc">+</span></span>
+<span id="cb139-6"><a href="spatdata.html#cb139-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>month)</span></code></pre></div>
+<p><img src="merida-workshop-2022_files/figure-html/unnamed-chunk-69-1.png" width="672" /></p>
+</div>
+<div id="how-about-population-densities" class="section level2" number="5.3">
+<h2><span class="header-section-number">5.3</span> How about population densities?</h2>
+<div class="sourceCode" id="cb140"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb140-1"><a href="spatdata.html#cb140-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(geodata)</span>
+<span id="cb140-2"><a href="spatdata.html#cb140-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb140-3"><a href="spatdata.html#cb140-3" aria-hidden="true" tabindex="-1"></a><span class="co">#pop &lt;- population(2020, 0.5, path = &quot;/tmp&quot;)</span></span>
+<span id="cb140-4"><a href="spatdata.html#cb140-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb140-5"><a href="spatdata.html#cb140-5" aria-hidden="true" tabindex="-1"></a><span class="co"># the above fails because of the certificate issues on my laptop, but</span></span>
+<span id="cb140-6"><a href="spatdata.html#cb140-6" aria-hidden="true" tabindex="-1"></a><span class="co"># the error message gives me the URL:</span></span>
+<span id="cb140-7"><a href="spatdata.html#cb140-7" aria-hidden="true" tabindex="-1"></a>pop_url <span class="ot">&lt;-</span> <span class="st">&quot;https://biogeo.ucdavis.edu/data/geodata/pop/gpw_v4_population_density_rev11_2020_30s.tif&quot;</span></span>
+<span id="cb140-8"><a href="spatdata.html#cb140-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb140-9"><a href="spatdata.html#cb140-9" aria-hidden="true" tabindex="-1"></a><span class="co"># so we can just download that from a browser and then read it</span></span>
+<span id="cb140-10"><a href="spatdata.html#cb140-10" aria-hidden="true" tabindex="-1"></a>pop <span class="ot">&lt;-</span> <span class="fu">rast</span>(<span class="st">&quot;~/Downloads/gpw_v4_population_density_rev11_2020_30s.tif&quot;</span>)</span>
+<span id="cb140-11"><a href="spatdata.html#cb140-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb140-12"><a href="spatdata.html#cb140-12" aria-hidden="true" tabindex="-1"></a>yp_pop <span class="ot">&lt;-</span> <span class="fu">crop</span>(pop, yp_extent)</span>
+<span id="cb140-13"><a href="spatdata.html#cb140-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb140-14"><a href="spatdata.html#cb140-14" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(yp_pop)</span></code></pre></div>
+<p><img src="merida-workshop-2022_files/figure-html/unnamed-chunk-70-1.png" width="672" /></p>
+<p>OK, that is pretty cool.</p>
+</div>
+<div id="now-how-about-finding-roads" class="section level2" number="5.4">
+<h2><span class="header-section-number">5.4</span> Now, How about finding roads?</h2>
+<p>The NYU Faculty Archive has a great repository of street shapefiles
+by province in Mexico. Here is the link for the page for Yucatan:
+<a href="https://archive.nyu.edu/handle/2451/37126">https://archive.nyu.edu/handle/2451/37126</a></p>
+<p>And this downloads the zipped shapefile:
+<a href="https://archive.nyu.edu/bitstream/2451/37126/1/nyu_2451_37126.zip">https://archive.nyu.edu/bitstream/2451/37126/1/nyu_2451_37126.zip</a></p>
+<p>After download that and unzipping it we get:</p>
+<div class="sourceCode" id="cb141"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb141-1"><a href="spatdata.html#cb141-1" aria-hidden="true" tabindex="-1"></a><span class="co">#yuc_roads &lt;- st_read(&quot;~/Downloads/nyu_2451_37126/yuc_eje_vial.shp&quot;)</span></span></code></pre></div>
+<p>Cool. What do we have in there?</p>
+<div class="sourceCode" id="cb142"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb142-1"><a href="spatdata.html#cb142-1" aria-hidden="true" tabindex="-1"></a><span class="co">#yuc_roads %&gt;% </span></span>
+<span id="cb142-2"><a href="spatdata.html#cb142-2" aria-hidden="true" tabindex="-1"></a><span class="co">#  count(TIPOVIAL)</span></span></code></pre></div>
 <p>Stuff here.</p>
 <p>Marius and I brainstormed on this. We will do an example
 that involves the Yucatan Jay (or, better yet, ask Richard
@@ -232,13 +440,14 @@ observations within X km of some features (like highways).</li>
 </ul>
 
 </div>
+</div>
             </section>
 
           </div>
         </div>
       </div>
 <a href="envdata.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="conclude.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="geassoc.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook/js/app.min.js"></script>
