@@ -1,5 +1,5 @@
 congen-intro
-rbasics
+introduction-to-the-tidyverse
 reporg
 rstudio-and-rstudio-projects
 version-control-with-git

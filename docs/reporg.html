@@ -24,14 +24,14 @@
 <meta name="author" content="Eric C. Anderson, Christen Bossu, Richard Evan Feldman, Kristen C. Ruegg, Marius Somveille" />
 
 
-<meta name="date" content="2021-11-30" />
+<meta name="date" content="2021-12-08" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="rbasics.html"/>
+<link rel="prev" href="introduction-to-the-tidyverse.html"/>
 <link rel="next" href="envdata.html"/>
 <script src="libs/header-attrs/header-attrs.js"></script>
 <script src="libs/jquery/jquery-3.6.0.min.js"></script>
@@ -163,7 +163,7 @@ div.csl-indent {
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
 <li class="chapter" data-level="1" data-path="congen-intro.html"><a href="congen-intro.html"><i class="fa fa-check"></i><b>1</b> Introduction to Conservation Genomics Approaches</a></li>
-<li class="chapter" data-level="2" data-path="rbasics.html"><a href="rbasics.html"><i class="fa fa-check"></i><b>2</b> R Programming Basics</a></li>
+<li class="chapter" data-level="2" data-path="introduction-to-the-tidyverse.html"><a href="introduction-to-the-tidyverse.html"><i class="fa fa-check"></i><b>2</b> Introduction to the tidyverse</a></li>
 <li class="chapter" data-level="3" data-path="reporg.html"><a href="reporg.html"><i class="fa fa-check"></i><b>3</b> Organizing Research Projects for Reproducibility</a>
 <ul>
 <li class="chapter" data-level="3.1" data-path="reporg.html"><a href="reporg.html#rstudio-and-rstudio-projects"><i class="fa fa-check"></i><b>3.1</b> RStudio and RStudio Projects</a></li>
@@ -234,11 +234,11 @@ div.csl-indent {
 </div>
 <div id="explain-caching" class="section level2" number="3.6">
 <h2><span class="header-section-number">3.6</span> Explain caching</h2>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="reporg.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>) {</span>
-<span id="cb1-2"><a href="reporg.html#cb1-2" aria-hidden="true" tabindex="-1"></a>  r <span class="ot">&lt;-</span> <span class="fu">runif</span>(<span class="fl">1e08</span>)</span>
-<span id="cb1-3"><a href="reporg.html#cb1-3" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb1-4"><a href="reporg.html#cb1-4" aria-hidden="true" tabindex="-1"></a>silly <span class="ot">&lt;-</span> r[<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>]</span>
-<span id="cb1-5"><a href="reporg.html#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(r)</span></code></pre></div>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="reporg.html#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>) {</span>
+<span id="cb41-2"><a href="reporg.html#cb41-2" aria-hidden="true" tabindex="-1"></a>  r <span class="ot">&lt;-</span> <span class="fu">runif</span>(<span class="fl">1e08</span>)</span>
+<span id="cb41-3"><a href="reporg.html#cb41-3" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb41-4"><a href="reporg.html#cb41-4" aria-hidden="true" tabindex="-1"></a>silly <span class="ot">&lt;-</span> r[<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>]</span>
+<span id="cb41-5"><a href="reporg.html#cb41-5" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(r)</span></code></pre></div>
 
 </div>
 </div>
@@ -247,7 +247,7 @@ div.csl-indent {
           </div>
         </div>
       </div>
-<a href="rbasics.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="introduction-to-the-tidyverse.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 <a href="envdata.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
