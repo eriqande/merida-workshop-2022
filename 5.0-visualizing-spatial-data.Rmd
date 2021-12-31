@@ -148,15 +148,39 @@ And this downloads the zipped shapefile:
 
 After download that and unzipping it we get:
 ```{r}
-#yuc_roads <- st_read("~/Downloads/nyu_2451_37126/yuc_eje_vial.shp")
+yuc_roads <- st_read("~/Downloads/nyu_2451_37126/yuc_eje_vial.shp")
 ```
 
-Cool. What do we have in there?
+It looks like Carretera is the word for highway. There are 32 of those.
 ```{r}
-#yuc_roads %>% 
-#  count(TIPOVIAL)
+yuc_roads %>% 
+  ggplot() + 
+  geom_sf()
 ```
-Stuff here.
+Nope, this data set is not useful to us.
+
+## How about Yucatan counties?
+
+We might be better off just looking at how you can intersect
+points (eBird) with some polygons, to see which counties they
+occur in.  That shows one simple kind of geometric operation.
+
+It looks like we can get the counties at:
+[https://archive.nyu.edu/bitstream/2451/37132/1/nyu_2451_37132.zip](https://archive.nyu.edu/bitstream/2451/37132/1/nyu_2451_37132.zip)
+
+It is a small file.  I will download it and put it into the
+repo with the name `yucatan_counties`.
+
+Then we should be able to read it like:
+```{r}
+yuc_county <- st_read("data/spatial/yucatan_counties/yuc_municipio.shp")
+
+ggplot(yuc_county) +
+  geom_sf()
+```
+
+
+
 
 Marius and I brainstormed on this.  We will do an example
 that involves the Yucatan Jay (or, better yet, ask Richard
@@ -180,4 +204,64 @@ observations within X km of some features (like highways).
 - Explore the use of different raster backgrounds.
 
 
+## Appendix: Obtaining and Reducing The Example Spatial Datasets
 
+We don't want our teaching repository to be too large, so I
+subsetted our example data down to just the Yucatán region.
+The process for doing with the different data sets is shown here.
+
+### Raster Data
+
+To get the environmental data, I used the 'geodata' package, which
+makes it easy to download the data sets. Unfortunately, my computer
+is old enough that one of the security certificates on it does now
+allow direct downloading via R of the datasets, but the error message
+it gave told me the URL for the data set, and I could download it
+with my browser, then read it in.  I use namespace addressing
+(i.e., `package::function()`) to be explicit about which package
+each of the functions is in.
+
+#### Worldclim Data
+
+```{r, eval=FALSE}
+
+# get worldclim data for mexico at 0.5 minutes
+# this fails for me on Mac Mojave because of a certification issue.  Lame.
+mex_tmax <- geodata::worldclim_country(
+  country = "Mexico", 
+  var = "tmax", 
+  res = 0.5, 
+  path = "/tmp"
+)
+
+# the error from that showed me that the URL was:
+# https://biogeo.ucdavis.edu/data/worldclim/v2.1/tiles/iso/MEX_wc2.1_30s_tmax.tif
+
+mex_tmax <- terra::rast("~/Downloads/MEX_wc2.1_30s_tmax.tif")
+
+# I used the same procedure to get the BioClim variables
+mex_bioc <-  terra::rast("~/Downloads/MEX_wc2.1_30s_bio.tif")
+```
+
+Those rasters are very large, so we focus only on the area
+around the Yucatán Peninsula.  To do this we define a latitude and
+longitude _extent_, and then `crop()` the raster to that extent, using
+functions from the 'terra' package.
+```{r}
+# Here is the extent that includes the Yucatan Province
+yp_extent <- terra::ext(c(-91, -86.5, 19.5, 21.75 ))
+
+
+# now we crop the raster of all of Mexico down to just
+# a small part.
+yp_tmax <- crop(mex_tmax, yp_extent)
+yp_bioc <- crop(mex_bioc, yp_extent)
+```
+
+Finally, we save just that small Yucatán part of the raster in
+our repository here, so everyone can use it.
+```{r}
+dir.create("data/spatial/worldclim", recursive = TRUE, showWarnings = FALSE)
+writeRaster(yp_tmax, "data/spatial/worldclim/yp_tmax.tif", overwrite = TRUE)
+writeRaster(yp_bioc, "data/spatial/worldclim/yp_bioc.tif", overwrite = TRUE)
+```
