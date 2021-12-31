@@ -804,7 +804,7 @@ get_taxa <- function(x) {
  # Need to indicate sites where birds and butterflies have the same species richness 
    
   if(length(Top_taxa) > 1) {
-    paste(Top_taxa[1], Top_taxa[2], sep=" + ")
+    paste(Top_taxa[1], Top_taxa[2], sep = " + ")
     } else {
       Top_taxa
       } 
@@ -847,7 +847,7 @@ The model is mutated as a list column. We can mutate all model results by mappin
 richness_models <- data_all %>% 
   group_by(Taxa) %>% 
   nest() %>% 
-  mutate(Models = map(data, ~lm(Richness~NDVI, data=. ))) %>% 
+  mutate(Models = map(data, ~lm(Richness ~ NDVI, data = .))) %>% 
   mutate(Tidied = map(Models, tidy), 
          Glanced = map(Models, glance), 
          Augmented = map(Models, augment))
@@ -861,7 +861,7 @@ Is NDVI more strongly associated with bird or butterfly species richness? Let's 
 richness_models <- data_all %>% 
   group_by(Taxa) %>% 
   nest() %>% 
-  mutate(Models = map(data, ~lm(Richness~NDVI, data=. ))) %>% 
+  mutate(Models = map(data, ~lm(Richness ~ NDVI, data = .))) %>% 
   mutate(Tidied = map(Models, tidy, conf.int = TRUE, conf.level = 0.95), 
          Glanced = map(Models, glance), 
          Augmented = map(Models, augment)) %>% 
@@ -880,11 +880,11 @@ Graph the results: compare the relationship with NDVI for both species. Rather t
 richness_models <- data_all %>% 
   group_by(Taxa) %>% 
   nest() %>% 
-  mutate(Models = map(data, ~lm(Richness~NDVI, data=. ))) %>% 
+  mutate(Models = map(data, ~lm(Richness ~ NDVI, data = .))) %>% 
   mutate(Tidied = map(Models, tidy), 
          Glanced = map(Models, glance),  
-         Predictions = map(Models, augment, newdata = tibble(NDVI=seq(0,1,0.01)), 
-                           se_fit=TRUE, interval="confidence")) 
+         Predictions = map(Models, augment, newdata = tibble(NDVI = seq(0, 1, 0.01)), 
+                           se_fit = TRUE, interval = "confidence")) 
 
 # Rather than use the original NDVI values for prediction, 
 # specify a new data frame (newdata) with the NDVI values of interest
@@ -900,23 +900,124 @@ p <- richness_predictions %>%
   
   # Visualize confidence interval
   
-  geom_ribbon(aes(ymin = low.95, ymax = high.95, fill = Taxa), show.legend=FALSE, 
-              color=NA, alpha=0.3) +
+  geom_ribbon(aes(ymin = low.95, ymax = high.95, fill = Taxa), show.legend = FALSE, 
+              color = NA, alpha = 0.3) +
   
   # Add original data
   
-  geom_point(data = data_all, aes(x = NDVI, y = Richness, col = Taxa), size=3) + 
+  geom_point(data = data_all, aes(x = NDVI, y = Richness, col = Taxa), size = 3) + 
   scale_y_continuous(name = "Species richness\n") + 
   scale_x_continuous(name = "\nNDVI") + 
   scale_color_viridis_d() + 
   scale_fill_viridis_d() + 
   theme_classic() + 
   theme(axis.line.x = element_line(colour = "black"), 
-        axis.line.y = element_line(colour="black"), 
+        axis.line.y = element_line(colour = "black"), 
         text = element_text(size = 12))
 
 p
 #ggsave("Richness_vs_NDVI.pdf", device = "pdf", width = 6, height = 3, units = "in", dpi = 600)
 
+```
+
+An exercise to try out: to data_all, add a new column providing the temperature of each site. 
+Then use an analysis and figure to describe how the relationship between NDVI and bird and butterfly species richness is different at low and high temperatures.
+
+Hint: to create temperature values, you can sample from a normal distribution. (It's not entirely realistic as temperature and NDVI should be weakly correlated but for the purposes of the exercise, it is okay).
+
+---
+
+Cross-validation. 
+One of the best ways to assess model performance is via cross-validation. A good model should be able to predict new data, i.e., observations that were not used to construct the model. When you don't have new data, you can split your original data set into a training set used to build the model and a test set used to validate the model. You can make several splits - folds - to avoid the problem of any particular split containing extreme values.
+
+The package modelr has functions for cross-validation
+
+```{r}
+library(modelr)
+```
+
+We'll cross validate a model of the relationship between bird species richness and NDVI. We'll split the data five times, a five-fold cross-validation.
+
+```{r}
+birds_cv <- data_all %>% 
+  filter(Taxa == "Birds") %>% 
+  crossv_kfold(k = 5)
+
+birds_cv
+```
+
+We can see there are five training sets of 24 rows and 5 test sets of 6 rows. We can construct a model for the 24 row data set and then test how well each model predicts the "new" points corresponding to the 6 rows held out of the training data set. Root Mean Square Error (RMSE) measures the "distance" between the predicted and observed value. The model will predict the expected species richness for a held-out NDVI value and RMSE measures the distance between the predicted and observed species richness.
+
+Luckily, there is a built-in rmse function that takes two arguments, the model constructed from the training data set and the new, test, data set.
+
+To map a function with two arguments, we need map2.
+
+```{r}
+birds_cv <- data_all %>% 
+  filter(Taxa == "Birds") %>% 
+  crossv_kfold(k = 5) %>%
+    mutate(model = map(train, ~lm(Richness ~ NDVI, data = .)),
+           rmse_calc = map2(model, test, ~rmse(.x, .y)))
+
+birds_cv
+
+```
+
+Although, the rmse function makes cross-validation easy, we can calculate it manually to get better insight into what it is measuring. Remember the augment function predicts the y-values for a given set of x-values.
+
+```{r}
+birds_cv <- data_all %>% 
+  filter(Taxa == "Birds") %>% 
+  crossv_kfold(k = 5) %>%
+    mutate(model = map(train, ~lm(Richness ~ NDVI, data = .)),
+           predictions = map2(model, test, ~augment(.x, newdata = .y))) %>%
+  unnest(predictions)
+
+birds_cv
+
+```
+
+We can inspect if there are certain NDVI values for which our model is over or underpredicting species richness. Augment gives the residuals (.resid), which is the difference between the predicted and observed value.
+
+```{r}
+birds_cv <- data_all %>% 
+  filter(Taxa == "Birds") %>% 
+  crossv_kfold(k = 5) %>%
+    mutate(model = map(train, ~lm(Richness ~ NDVI, data = .)),
+           predictions = map2(model, test, ~augment(.x, newdata = .y))) %>%
+  unnest(predictions) %>% 
+  ggplot(aes(x = NDVI, y = .resid)) + 
+  geom_point(size = 2) + 
+  geom_hline(yintercept = 0) +
+  
+  # Perfect prediction would have a residual of zero
+  
+  scale_y_continuous(name = "Residual\n") + 
+  scale_x_continuous(name = "\nNDVI") + 
+ 
+  theme_classic() + 
+  theme(axis.line.x = element_line(colour = "black"), 
+        axis.line.y = element_line(colour = "black"), 
+        text = element_text(size = 12))
+
+birds_cv
+```
+
+Finally, we can manually calculate RMSE
+
+RMSE = square.root(sum(fitted - observed)^2)/N)
+
+```{r}
+birds_cv <- data_all %>% 
+  filter(Taxa == "Birds") %>% 
+  crossv_kfold(k = 5) %>%
+    mutate(model = map(train, ~lm(Richness ~ NDVI, data = .)),
+           predictions = map2(model, test, ~augment(.x, newdata = .y)),
+           rmse = map(predictions, function(x){ 
+             sqrt((sum(x$.resid^2))/nrow(x))}
+             )) %>%
+  unnest(rmse)
+
+birds_cv
 ```
 
