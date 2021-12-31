@@ -208,7 +208,7 @@ birdgrid
 #WIFL current random points, filter out 'bad' points
 birdgrid=read.table("data/6.0/wiflcurrentRH.csv",header=T,sep=",") %>% filter(BIO4!="-9999") #load your  random points with assocaited env predictors 
 ##Let's look at bird grid, untransformed environmental variable
-birdgrid
+head(birdgrid)
 dim(birdgrid)
 ```
 
@@ -241,7 +241,8 @@ predictors_uncor<-c("BIO11","BIO5","BIO4" ,"BIO17")
 currentgrid=cbind(birdgrid[,c("X","Y")], predict(wiflforest,birdgrid[,predictors_uncor])) #predict across your random sites using your forest
 
 ##Let's look at currentgrid, transformed environmental variables- see how they were transformed
-currentgrid
+head(currentgrid)
+dim(currentgrid)
 ```
 
 We can summarize the variation using principal components. We then convert those PC axes to RGB values for plotting.
