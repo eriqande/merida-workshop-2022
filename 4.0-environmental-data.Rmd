@@ -1,11 +1,6 @@
 #  Finding and Obtaining Environmental Data for Conservation {#envdata}
 
-Types of environmental data:
-
-- direcly observed (satellite data)
-- Interpolated or modeled etc.
-
-Discussion of CRSs.
+This is an introduction to environmental layers for conservation genomics analysis, which was created for the UCMexus Conservation Genomics Workshop 2022. This overview covers coordinate systems, projections, raster data and various examples of commonly-used environmental layers.
 
 ## Environmental Layers. A general overview
 
