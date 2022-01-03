@@ -352,10 +352,20 @@ First plot. A simple histogram, and we use the stats binning:
 
 ```{r}
 ggplot(mtcars, aes(hp)) +
-geom_histogram(bins = 10)
+  geom_histogram(bins = 10)
+```
+Second plot. The fil
+```{r}
+ggplot(mtcars, aes(hp)) +
+  stat_bin(bins = 10, col="black", fill = 'pink')
 ```
 
+Third plot is a stat = density plot.
 
+```{r}
+ggplot(mtcars, aes(hp, col = factor(am))) +
+  stat_density(fill = NA)
+```
 
 
 #5. What is a position?
@@ -386,7 +396,13 @@ ggplot(mtcars, aes(factor(cyl), fill = factor(am))) +
   geom_bar(position = 'dodge')
 ```
 
+Now, we are going to include facets.
 
+```{r}
+ggplot(mtcars, aes(factor(cyl), fill = factor(am))) +
+  geom_bar(position = 'dodge')+ # add the barpot
+  facet_wrap(c("am")) # put each level of "am" in a different facet
+```
 Let's add some labels here, where we have to specify position again.
 
 ```{r}
@@ -397,8 +413,7 @@ ggplot(mtcars, aes(factor(cyl),fill = factor(am))) +
              position = 'stack')
 ```
 
-Instead of defining the position as a string (e.g. position = "dodge"), you can write it as a full function
-with arguments (e.g. position = position_dodge(width = 0.5)) or tell ggplot where within the boxplot you'd like to posiiton the counts specifically (e.g position = position_stack(vjust=0.5)).
+Instead of defining the position as a string (e.g. position = "dodge"), you can write it as a full function with arguments (e.g. position = position_dodge(width = 0.5)) or tell ggplot where within the boxplot you'd like to posiiton the counts specifically (e.g position = position_stack(vjust=0.5)).
 
 ```{r}
 ggplot(mtcars, aes(factor(cyl), fill = factor(am))) +
