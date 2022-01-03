@@ -168,7 +168,7 @@ Geoms determine what aesthetics you need, and which you can use! (e.g. points ca
   
 Which aesthetics you need/can use is usually obvious, but is also clearly documented.
   
-### Simplifying the code
+**Simplifying the code**
 Instead of writing out the whole layer(), we can use geom_*() functions to create the layer for us. These functions use common defaults.
 
 We simply write:
@@ -190,7 +190,7 @@ ggplot() + geom_point(aes(hp, qsec), mtcars)+
  
 Like geom_point(), there are many such geom layers which we will see in a subsequent part in this tutorial series. Let's add details to this plot in the form of additional ashthetics.
 
-__How would you change color of the points to the cyl?__
+__How would you change color of the points to the cyl variable?__
 ```{r}
 ggplot() +
 geom_point(aes(hp, qsec, color = cyl), mtcars) +
@@ -231,7 +231,7 @@ ggplot() +
 ### Two special stats: stat_smooth
 We can keep adding additional layers to this plot to make it more informative. One thing that is often useful when you're looking at data on a scatter plot is a visual representation of how closely the variable on the x axis and the variable on the y axis are related to each other, and the strength of that relationship. We can summarize this using a fitted line.
 
-In ggplot, we can automatically add a fitted line using the layer geom_smooth(). By default, geom_smooth() will show the relationship between the x and y variables using locally weighted scatter plot smoothing (also known as LOESS) rather than by drawing a straight line. If we want a single straight line to summarize our data, we need to specify that we want geom_smooth() to fit a a linear model (or "lm").
+In ggplot, we can automatically add a fitted line using the layer *geom_smooth()*. By default, *geom_smooth()* will show the relationship between the x and y variables using locally weighted scatter plot smoothing (also known as LOESS) rather than by drawing a straight line. If we want a single straight line to summarize our data, we need to specify that we want *geom_smooth()* to fit a linear model (or "lm").
 ```{r}
 g<-ggplot(mtcars,aes(hp, qsec)) +
   geom_point() + geom_smooth(method = "lm", se = TRUE) +
@@ -240,9 +240,11 @@ g
 ```
 
 
+**Exercise 1: Create the following plot**
+
 Now, how would you change the code above to change the color of the point layer, withuot affecting the smooth layer since the aes() aesthetic mapping is passed at the point layer.
 
-```{r}
+```{r,echo=F}
 g<-ggplot(mtcars,aes(hp, qsec,color = as.character(cyl)) ) +
   geom_point() + 
   geom_smooth(method = lm, se = TRUE, color="black") +
@@ -251,7 +253,9 @@ g
 ```
 Note, the code above would only change the color of the point layer, it would not affect the color of the smooth layer since the aes() aesthetic mapping is passed at the point layer.
 
-**Exercise 1: Create the following plot**
+**Exercise 2: Create the following plot**
+
+Can you recreate this plot using other aesthetic options?
 
 ```{r,echo=FALSE}
 ggplot() +
@@ -260,17 +264,20 @@ ggplot() +
   theme_bw() + theme(aspect.ratio = 1)
 ```
 
-How about if we wanted to create a line plot with this data? How would you create the following plots create separate lines based on the "am" variable.
+**Exercise 3: Create the following plot**
 
-```{r}
+How about if we wanted to create a line plot with this data? How would you create the following plot create separate lines based on the "am" variable.
+
+```{r,echo = F}
 ggplot() +
   geom_line(aes(hp, qsec,lty = factor(am)), mtcars) + 
   theme_bw()+theme(aspect.ratio = 1)
 ```
 
+### Shared data and mapping
 Now what if we want to add labels. Let's look at another dataset and think about this- now we have multiple layers. You might've noticed this with the geom_smooth function too.
 
-Shared data and mapping
+
 *  When multiple layers share the same data or mapping you can define it inside of ggplot.
 *  Everything in ggplot will be used by default for all layers.
 *  Use data inside a layer in order to not use the default.
@@ -328,35 +335,28 @@ Let's move onto the other components of the ggplot syntax.
 
 **4. What is a stat?**
 
-> layer(data = mtcars, #1
-
-> mapping = aes(x = hp, y = qsec), #2
-
-> geom = 'point', #3
-
-> __stat = 'identity', #4__
- 
+> layer(data = mtcars, #1 
+> mapping = aes(x = hp, y = qsec), #2 
+> geom = 'point', #3 
+> __stat = 'identity', #4__ 
 > position = 'identity') + #5
 
 Often, you don’t want to directly plot the actual data, but rather some transformation of the data.
 
 stats perform all kinds of data transformations.
 
-The most common transformations:
-*  binning (StatBin)
-*  counting (StatCount)
-*  summing (StatSum)
-*  averaging (StatSummary)
-*  smoothing (StatSmooth)
-*  boxplots (StatBoxplot)
-*  densities (StatDensity)
-*  nothing (StatIdentity)
-
-
+The most common transformations: 
+*  binning (StatBin). 
+*  counting (StatCount). 
+*  summing (StatSum).
+*  averaging (StatSummary).
+*  smoothing (StatSmooth).
+*  boxplots (StatBoxplot).
+*  densities (StatDensity).
+*  nothing (StatIdentity).
 
 *Note* geom_* functions have default stats.
 E.g. ?geom_boxplot shows stat = "boxplot".
-
 
 ```{r}
 ggplot() +
@@ -365,48 +365,50 @@ ggplot() +
   theme_bw()+theme(aspect.ratio = 1)
 ```
 
-#One variable exercises
+**Exercise 4a-c: One variable exercises**
 
 How would you create the following plots?
-```{r, echo=FALSE, out.width='40%'}
+```{r, echo=FALSE, out.width='100%'}
 knitr::include_graphics("images/2.0_R_ggplot/GGplot.example3_stats.jgp.jpeg")
 ```
 
-First plot. A simple histogram, and we use the stats binning:
+ a) First plot. A simple histogram, and we use the stats binning:
 
-```{r}
+```{r, echo=F}
 ggplot(mtcars, aes(hp)) +
   geom_histogram(bins = 10)
 ```
-Second plot. The fil
-```{r}
+ 
+ b) Second plot. How would you change the color of the histogram?
+ 
+```{r, echo=F}
 ggplot(mtcars, aes(hp)) +
   stat_bin(bins = 10, col="black", fill = 'pink')
 ```
 
-Third plot is a stat = density plot.
+c) Third plot is a stat = density plot.
 
-```{r}
+```{r, echo=F}
 ggplot(mtcars, aes(hp, col = factor(am))) +
   stat_density(fill = NA)
 ```
 
+**5. What is a position?**
+> layer(data = mtcars, #1 
 
-#5. What is a position?
-layer(data = mtcars, #1
-mapping = aes(x = hp, y = qsec), #2
-geom = 'point', #3
-stat = 'identity', #4
-__position = 'identity') + #5__
+> mapping = aes(x = hp, y = qsec), #2
+> geom = 'point', #3
+> stat = 'identity', #4
+> __position = 'identity') + #5__
 
 Things in a plot can overlap. This is very common with categorical axes and overlap can be resolved by using a position
 
 Most commonly you:
-*  stack (put on top of each other)
-*  fill (stack in proportion, up to 1)
-*  dodge (put next to each other)
-*  jitter (add random noise)
-*  leave as is: identity
+*  stack (put on top of each other).
+*  fill (stack in proportion, up to 1).
+*  dodge (put next to each other).
+*  jitter (add random noise).
+*  leave as is: identity.
 
 For exmaple, the default of geom_bar is stacked: geom_bar(position = "stack")
 
@@ -414,20 +416,23 @@ For exmaple, the default of geom_bar is stacked: geom_bar(position = "stack")
 ggplot(mtcars, aes(factor(cyl), fill = factor(am))) +
   geom_bar(position = 'fill')
 ```
-To dodge the barplots:
+ 
+ To dodge the barplots:
+  
 ```{r}
 ggplot(mtcars, aes(factor(cyl), fill = factor(am))) +
   geom_bar(position = 'dodge')
 ```
-
+ 
 Now, we are going to include facets.
-
+ 
 ```{r}
 ggplot(mtcars, aes(factor(cyl), fill = factor(am))) +
   geom_bar(position = 'dodge')+ # add the barpot
   facet_wrap(c("am")) # put each level of "am" in a different facet
 ```
-That seems much easier to read! One thing that I would like to change, however, is the colors. Let's change the color theme of our plot. You can change the color of the fill using the layer scale_fill_manual()
+ 
+ That seems much easier to read! One thing that I would like to change, however, is the colors. Let's change the color theme of our plot. You can change the color of the fill using the layer scale_fill_manual()
 
 ```{r}
 ggplot(mtcars, aes(factor(cyl), fill = factor(am))) +
@@ -436,9 +441,9 @@ ggplot(mtcars, aes(factor(cyl), fill = factor(am))) +
   scale_fill_manual(values=c("#BBBBBB", # a nice, neuteral grey 
                                "#E69F00")) # a gold caramel color
 ```
-
+ 
 Let's add some labels here, where we have to specify position again.
-
+ 
 ```{r}
 ggplot(mtcars, aes(factor(cyl),fill = factor(am))) +
   geom_bar() +
@@ -448,9 +453,9 @@ ggplot(mtcars, aes(factor(cyl),fill = factor(am))) +
   scale_fill_manual(values=c("#BBBBBB", # a nice, neuteral grey 
                                "#E69F00")) # a gold caramel color
 ```
-
+ 
 Instead of defining the position as a string (e.g. position = "dodge"), you can write it as a full function with arguments (e.g. position = position_dodge(width = 0.5)) or tell ggplot where within the boxplot you'd like to posiiton the counts specifically (e.g position = position_stack(vjust=0.5)).
-
+ 
 ```{r}
 ggplot(mtcars, aes(factor(cyl), fill = factor(am))) +
   geom_bar() +
@@ -460,19 +465,48 @@ ggplot(mtcars, aes(factor(cyl), fill = factor(am))) +
   scale_fill_manual(values=c("#BBBBBB", 
                                "#E69F00"))
 ```
-
+ 
 As you can see, the general idea of behind ggplot (starting with just a blank plot and slowly adding more and more layers) also lends itself to a general workflow where we start with a very simple plot and add layers until it looks exactly the way we want.
 
-#Conclusion
+## Conclusion
 And that wraps it up for this beginner ggplot2 tutorial. At this point, particularly if you've been completing the exercises in the workbook, you should:
 
-*  Understand the underlying philosophy behind ggplot
-*  Be able to make a scatter plot and..
-  *  Add a fitted line
-  *  Add text labels to data points
-  *  Title and label your plot axes
-*  Be able to make a bar plot and...
-  *  Choose whether your bar plot is stacked or grouped
-  *  Split a plot across multiple subplots
-  *  Create a custom color palette for your plot
-*  Be able to make a line plot 
+*  Understand the underlying philosophy behind ggplot.
+*  Be able to make a scatter plot and.
+  *  Add a fitted line.
+  *  Add text labels to data points.
+  *  Title and label your plot axes.
+*  Be able to make a bar plot and.
+  *  Choose whether your bar plot is stacked or grouped.
+  *  Split a plot across multiple subplots.
+  *  Create a custom color palette for your plot.
+*  Be able to make a line plot. 
+
+## Exercise Answers
+
+**Exercise 1: Create the following plot**
+
+```{r}
+g<-ggplot(mtcars,aes(hp, qsec,color = as.character(cyl)) ) +
+  geom_point() + 
+  geom_smooth(method = lm, se = TRUE, color="black") +
+  theme_bw() + theme(aspect.ratio = 1)
+g
+```
+
+**Exercise 2: Create the following plot**
+
+```{r}
+ggplot() +
+  geom_point(aes(hp, qsec, shape = factor(vs), size = mpg), mtcars, alpha = 0.5, col = 'red') +
+  labs(shape = 'vs', size = 'qsec') +
+  theme_bw() + theme(aspect.ratio = 1)
+```
+
+**Exercise 3: Create the following plot**
+
+```{r}
+ggplot() +
+  geom_line(aes(hp, qsec,lty = factor(am)), mtcars) + 
+  theme_bw()+theme(aspect.ratio = 1)
+```
