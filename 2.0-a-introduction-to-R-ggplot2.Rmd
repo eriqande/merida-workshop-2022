@@ -123,13 +123,16 @@ head(mtcars)
 
 **2: What is a mapping?**
 
->  layer(data = mtcars, #1
->  __mapping = aes(x = hp, y = qsec), #2__
->  geom = 'point', #3
->  stat = 'identity', #4
->  position = 'identity') #5
+>  layer(data = mtcars, #1 
 
+>  __mapping = aes(x = hp, y = qsec), #2__ 
 
+>  geom = 'point', #3 
+
+>  stat = 'identity', #4 
+
+>  position = 'identity') #5 
+ 
 *  An aesthetic mapping connects your data to your plot. (e.g. x, y, color, shape, alpha, size, linetype, etc.).
 *  Aesthetics are “things that we can perceive on the graphic”.
 *  We use the aes() function to create this mapping.
@@ -144,11 +147,15 @@ aes(x = hp, y = qsec)
  
 **3: What is a geom?**
 
-  layer(data = mtcars, #1
-  mapping = aes(x = hp, y = qsec), #2
-  __geom = 'point', #3__
-  stat = 'identity', #4
-  position = 'identity') + #5
+> layer(data = mtcars, #1 
+ 
+> mapping = aes(x = hp, y = qsec), #2
+ 
+> __geom = 'point', #3__
+ 
+> stat = 'identity', #4
+ 
+> position = 'identity') + #5
 
 Simply the geometrical shape that you want to do draw.
  
@@ -174,16 +181,16 @@ geom_point(mapping = aes(x = hp, y = qsec), data = mtcars) +
 ```
   
 Or, using positional matching:
-
+ 
 ```{r}
 ggplot() + geom_point(aes(hp, qsec), mtcars)+
   theme_bw()+
   theme(aspect.ratio = 1)
 ```
-
+ 
 Like geom_point(), there are many such geom layers which we will see in a subsequent part in this tutorial series. Let's add details to this plot in the form of additional ashthetics.
 
-#How would you change color of the points to the cyl?
+__How would you change color of the points to the cyl?__
 ```{r}
 ggplot() +
 geom_point(aes(hp, qsec, color = cyl), mtcars) +
@@ -191,7 +198,7 @@ geom_point(aes(hp, qsec, color = cyl), mtcars) +
   theme(aspect.ratio = 1)
 ```
 
-#Continious versus discrete variables
+### Continious versus discrete variables
 R treats continuous and discrete information differently. ggplot directly uses the class of the variable to figure out how to best display data.
 
 In this case, it checks:
@@ -221,7 +228,7 @@ ggplot() +
 *  Plotting model fits.
 *  Some more challenges.
 
-#Two special stats: stat_smooth
+### Two special stats: stat_smooth
 We can keep adding additional layers to this plot to make it more informative. One thing that is often useful when you're looking at data on a scatter plot is a visual representation of how closely the variable on the x axis and the variable on the y axis are related to each other, and the strength of that relationship. We can summarize this using a fitted line.
 
 In ggplot, we can automatically add a fitted line using the layer geom_smooth(). By default, geom_smooth() will show the relationship between the x and y variables using locally weighted scatter plot smoothing (also known as LOESS) rather than by drawing a straight line. If we want a single straight line to summarize our data, we need to specify that we want geom_smooth() to fit a a linear model (or "lm").
@@ -244,12 +251,7 @@ g
 ```
 Note, the code above would only change the color of the point layer, it would not affect the color of the smooth layer since the aes() aesthetic mapping is passed at the point layer.
 
-###Exercises: Create the following plot
-
-```{r, echo=FALSE, out.width='40%'}
-knitr::include_graphics("images/2.0_R_ggplot/GGplot.example1_Size_shape.jgp.jpeg")
-```
-
+**Exercise 1: Create the following plot**
 
 ```{r,echo=FALSE}
 ggplot() +
@@ -275,7 +277,7 @@ Shared data and mapping
 *  Set or map an aesthetic to not use the default. You can map to NULL.
 *  This goes for each aesthetic individually! Not for the entire mapping.
  
- 
+
 ```
 ggplot(d, aes(x, y, col = z)) + geom_point(aes(col = NULL))
 ggplot(d, aes(x, y, col = z)) + geom_point(col = 'black')
@@ -289,6 +291,7 @@ g+ geom_point() + # then add a layer of points
     geom_text(size=3) # and then add labels to the points
 
 ```
+ 
  But this is a bit busy and messy. Let's move around the names to make this more readable (less overlap)! Let's also fix the axis names.
  
 ```{r}
@@ -304,7 +307,8 @@ g+ geom_point() + # then add a layer of points
          y = "log(brain weight)" # y axis label
         )
 ```
-Note above, there are some points without labels. Here's another way to add labels to your plot with ggrepel. 
+
+ Note above, there are some points without labels. Here's another way to add labels to your plot with ggrepel. 
 
 ```{r}
 library(ggrepel)
@@ -319,15 +323,20 @@ g +
          y = "log(brain weight)" # y axis label
         )
 ```
+
 Let's move onto the other components of the ggplot syntax. 
 
-#4. What is a stat?
+**4. What is a stat?**
 
-layer(data = mtcars, #1
-mapping = aes(x = hp, y = qsec), #2
-geom = 'point', #3
-__stat = 'identity', #4__
-position = 'identity') + #5
+> layer(data = mtcars, #1
+
+> mapping = aes(x = hp, y = qsec), #2
+
+> geom = 'point', #3
+
+> __stat = 'identity', #4__
+ 
+> position = 'identity') + #5
 
 Often, you don’t want to directly plot the actual data, but rather some transformation of the data.
 
@@ -343,9 +352,9 @@ The most common transformations:
 *  densities (StatDensity)
 *  nothing (StatIdentity)
 
-#Example
 
-geom_* functions have default stats.
+
+*Note* geom_* functions have default stats.
 E.g. ?geom_boxplot shows stat = "boxplot".
 
 
