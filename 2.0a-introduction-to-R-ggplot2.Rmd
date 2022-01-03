@@ -44,7 +44,6 @@ Next to the **Files** tab, there is **Plots**.  In the example **Source** pane a
 
 ```{r}
 library(tidyverse)
-library(ggplot2)
 
 p <- ggplot(data = mpg) +
         geom_point(mapping = aes(x = displ, y = hwy))
@@ -175,7 +174,8 @@ Like geom_point(), there are many such geom layers which we will see in a subseq
 #How would you change color of the points to the cyl?
 ```{r}
 ggplot() +
-geom_point(aes(hp, qsec, color = cyl), mtcars)+
+geom_point(aes(hp, qsec, color = cyl), mtcars) +
+  theme_bw() +
   theme(aspect.ratio = 1)
 ```
 
@@ -196,8 +196,9 @@ class(factor(mtcars$cyl))
 Character strings are silently converted to factors:
 ```{r}
 ggplot() +
-geom_point(aes(hp, qsec, color = as.character(cyl)), mtcars) +
-labs(color = 'cyl')
+  geom_point(aes(hp, qsec, color = as.character(cyl)), mtcars) +
+  labs(color = 'cyl') + 
+  theme_bw() + theme(aspect.ratio = 1)
 ```
 
 
@@ -214,17 +215,18 @@ labs(color = 'cyl')
 g<-ggplot(mtcars,aes(hp, qsec)) +
   geom_point() + geom_smooth(method = lm, se = TRUE) +
   theme_bw()+theme(aspect.ratio = 1)
-plot(g)
+g
 ```
 
  `geom_smooth()` using method = 'loess' and formula 'y ~ x' but you can also specify a linear model with standard errors
  
- Note, how would you change the code above to change the color of the point layer, withuot affecting the color of the smooth layer since the aes() aesthetic mapping is passed at the point layer.
+Now, how would you change the code above to change the color of the point layer, withuot affecting the smooth layer since the aes() aesthetic mapping is passed at the point layer.
 
 ```{r}
 g<-ggplot(mtcars,aes(hp, qsec,color = as.character(cyl)) ) +
-  geom_point() + geom_smooth(method = lm, se = TRUE, color="black") +
-  theme_bw()+theme(aspect.ratio = 1)
+  geom_point() + 
+  geom_smooth(method = lm, se = TRUE, color="black") +
+  theme_bw() + theme(aspect.ratio = 1)
 plot(g)
 ```
 Note, the code above would only change the color of the point layer, it would not affect the color of the smooth layer since the aes() aesthetic mapping is passed at the point layer.
@@ -238,16 +240,17 @@ knitr::include_graphics("images/2.0_R_ggplot/GGplot.example1_Size_shape.jgp.jpeg
 
 ```{r,echo=FALSE}
 ggplot() +
-geom_point(aes(hp, qsec, shape = factor(vs), size = mpg), mtcars,
-alpha = 0.5, col = 'red') +
-labs(shape = 'vs', size = 'qsec') +theme_bw() + theme(aspect.ratio = 1)
+  geom_point(aes(hp, qsec, shape = factor(vs), size = mpg), mtcars, alpha = 0.5, col = 'red') +
+  labs(shape = 'vs', size = 'qsec') +
+  theme_bw() + theme(aspect.ratio = 1)
 ```
 
 How about if we wanted to create a line plot with this data? How would you create the following plots create separate lines based on the variable am.
 
 ```{r}
 ggplot() +
-geom_line(aes(hp, qsec,lty = factor(am)), mtcars) + theme_bw()+theme(aspect.ratio = 1)
+  geom_line(aes(hp, qsec,lty = factor(am)), mtcars) + 
+  theme_bw()+theme(aspect.ratio = 1)
 ```
 
 Now what if we want to add labels. Let's look at another dataset and think about this- now we have multiple layers. You might've noticed this with the geom_smooth function too.
@@ -403,6 +406,16 @@ ggplot(mtcars, aes(factor(cyl), fill = factor(am))) +
   geom_bar(position = 'dodge')+ # add the barpot
   facet_wrap(c("am")) # put each level of "am" in a different facet
 ```
+That seems much easier to read! One thing that I would like to change, however, is the colors. Let's change the color theme of our plot. You can change the color of the fill using the layer scale_fill_manual()
+
+```{r}
+ggplot(mtcars, aes(factor(cyl), fill = factor(am))) +
+  geom_bar(position = 'dodge')+ # add the barpot
+  facet_wrap(c("am")) + # put each level of "am" in a different facet
+  scale_fill_manual(values=c("#BBBBBB", # a nice, neuteral grey 
+                               "#E69F00")) # a gold caramel color
+```
+
 Let's add some labels here, where we have to specify position again.
 
 ```{r}
@@ -410,7 +423,9 @@ ggplot(mtcars, aes(factor(cyl),fill = factor(am))) +
   geom_bar() +
   geom_label(aes(label = ..count..), 
              stat = 'count', 
-             position = 'stack')
+             position = 'stack') +
+  scale_fill_manual(values=c("#BBBBBB", # a nice, neuteral grey 
+                               "#E69F00")) # a gold caramel color
 ```
 
 Instead of defining the position as a string (e.g. position = "dodge"), you can write it as a full function with arguments (e.g. position = position_dodge(width = 0.5)) or tell ggplot where within the boxplot you'd like to posiiton the counts specifically (e.g position = position_stack(vjust=0.5)).
@@ -420,6 +435,23 @@ ggplot(mtcars, aes(factor(cyl), fill = factor(am))) +
   geom_bar() +
   geom_text(aes(label = ..count..),
             stat = 'count',
-            position = position_stack(vjust = 0.5))
+            position = position_stack(vjust = 0.5)) +
+  scale_fill_manual(values=c("#BBBBBB", 
+                               "#E69F00"))
 ```
 
+As you can see, the general idea of behind ggplot (starting with just a blank plot and slowly adding more and more layers) also lends itself to a general workflow where we start with a very simple plot and add layers until it looks exactly the way we want.
+
+#Conclusion
+And that wraps it up for this beginner ggplot2 tutorial. At this point, particularly if you've been completing the exercises in the workbook, you should:
+
+*  Understand the underlying philosophy behind ggplot
+*  Be able to make a scatter plot and..
+  *  Add a fitted line
+  *  Add text labels to data points
+  *  Title and label your plot axes
+*  Be able to make a bar plot and...
+  *  Choose whether your bar plot is stacked or grouped
+  *  Split a plot across multiple subplots
+  *  Create a custom color palette for your plot
+*  Be able to make a line plot 
