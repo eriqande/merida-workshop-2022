@@ -54,15 +54,14 @@ When this code is executed, the resulting scatterplot is displayed below. If thi
 
 Also useful is the **Help** tab for understanding what a function does.
     
-##Data visualization with ggplot2
+## Data visualization with ggplot2
   
-#Visualize
 1. We want to understand our data and our analysis.
 2. We want to produce graphics for publication and presentation.
     a. We want to create plots quickly and get many things “for free”.
     b. We want many options to customize and make things look awesome.
 
-#ggplot2
+### ggplot2
 ggplot2 uses the basic units of the “grammar of graphics” (Leland Wilkinson) to construct data visualizations in a layered approach.
 
 The basic units in the “grammar of graphics” consist of:
@@ -71,14 +70,13 @@ The basic units in the “grammar of graphics” consist of:
 *  The geometries, shortened to “geoms”, which describe the shapes that represent the data. These shapes can be dots on a scatter plot, bar charts on the graph, or a line to plot the data. Data are mapped to geoms.
 *  The aesthetics, or the visual attributes of the plot, including the scales on the axes, the color, the fill, and other attributes concerning appearance
 
-#Understanding the Ggplot Syntax
+#### Understanding the Ggplot Syntax
 The syntax for constructing ggplots could be puzzling if you are a beginner or work primarily with base graphics. The main difference is that, unlike base graphics, ggplot works with dataframes and not individual vectors. All the data needed to make the plot is typically be contained within the dataframe supplied to the ggplot() itself or can be supplied to respective geoms. More on that later.
 
-#A plot consists of components
+### A plot consists of components
 The second noticeable feature is that you can keep enhancing the plot by adding more layers (and themes) to an existing plot created using the ggplot() function
   
-#Verbose definition of a simple plot
-Note, this is not something you will see/use. But it's a nice way to break down the components
+Here is a verbose definition of a simple plot. Note, this is not something you will see/use. But it's a nice way to break down the components
 
 Ok, let's dive into this very long code to create a simple plot. Note there are 5 components in this code chunk.
 
@@ -93,8 +91,9 @@ ggplot() +
   theme(aspect.ratio = 1)
 ```
 
-#1: Data
-__layer(data = mtcars, #1__
+**1: Data**
+
+__layer(data = mtcars, #1__ 
   mapping = aes(x = hp, y = qsec), #2
   geom = 'point', #3
   stat = 'identity', #4
@@ -103,42 +102,42 @@ __layer(data = mtcars, #1__
 * A data layer needs data to display.
 * Data is a data.frame or tibble if you are using tidyverse
 
+Let's look at the top of a data set used by tidyverse 
 ```{r}
-mtcars
-msleep
+head(mtcars)
 ```
 
-#2: What is a mapping?
+**2: What is a mapping?**
 
-layer(data = mtcars, #1
-    __mapping = aes(x = hp, y = qsec), #2__
-    geom = 'point', #3
-    stat = 'identity', #4
-    position = 'identity') + #5
+  layer(data = mtcars, #1
+  __mapping = aes(x = hp, y = qsec), #2__
+  geom = 'point', #3
+  stat = 'identity', #4
+  position = 'identity') #5
 
 
-*  An aesthetic mapping connects your data to your plot. (e.g. x, y, color, shape, alpha, size, linetype, etc.)
+*  An aesthetic mapping connects your data to your plot. (e.g. x, y, color, shape, alpha, size, linetype, etc.).
 *  Aesthetics are “things that we can perceive on the graphic”.
 *  We use the aes() function to create this mapping.
-*  aes(aesthetic = variable)
+*  aes(aesthetic = variable).
 *  Never use $! So never aes(x = mtcars$mpg)!
 
-For the code:
+For the code chunk below, we would be mapping hp on the x-axis and qsec on the y-axis.
+
 ```
 aes(x = hp, y = qsec)
 ```
+ 
+**3: What is a geom?**
 
-Here, we are mapping hp on the x-axis and qsec on the y-axis.
-
-#3: What is a geom?
-
-layer(data = mtcars, #1
-    mapping = aes(x = hp, y = qsec), #2
-    __geom = 'point', #3__
-    stat = 'identity', #4
-    position = 'identity') + #5
+  layer(data = mtcars, #1
+  mapping = aes(x = hp, y = qsec), #2
+  __geom = 'point', #3__
+  stat = 'identity', #4
+  position = 'identity') + #5
 
 Simply the geometrical shape that you want to do draw.
+ 
 *  0d: point, text,
 *  1d: path, line (ordered path),
 *  2d: polygon, interval, boxplot etc.
@@ -148,7 +147,7 @@ Geoms determine what aesthetics you need, and which you can use! (e.g. points ca
   
 Which aesthetics you need/can use is usually obvious, but is also clearly documented.
   
-#Simplifying the code
+### Simplifying the code
 Instead of writing out the whole layer(), we can use geom_*() functions to create the layer for us. These functions use common defaults.
 
 We simply write:
