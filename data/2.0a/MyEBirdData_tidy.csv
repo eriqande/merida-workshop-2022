@@ -1,0 +1,524 @@
+eBirdID,CommonName,Count,Region,Location,County,Date,Time
+S63589677,Cackling Goose,3,US-CO,South Platte River--88th Ave area,Adams,1/19/20,10:51:00
+S66111081,Cackling Goose,14,US-CO,Colorado State University Environmental Learning Center,Larimer,3/22/20,17:06:00
+S65370798,Cackling Goose,5,US-CO,Grandview Cemetery,Larimer,3/2/20,11:20:00
+S66112732,Cackling Goose,11,US-CO,Prospect Ponds Natural Area,Larimer,3/22/20,17:38:00
+S63589677,Canada Goose,24,US-CO,South Platte River--88th Ave area,Adams,1/19/20,10:51:00
+S66719539,Canada Goose,7,US-CO,Arapahoe Bend Natural Area--Rigden Reservoir (Strauss Cabin Lake),Larimer,4/6/20,07:59:00
+S66858963,Canada Goose,6,US-CO,Arapahoe Bend Natural Area--Rigden Reservoir (Strauss Cabin Lake),Larimer,4/9/20,07:11:00
+S67143580,Canada Goose,2,US-CO,Arapahoe Bend Natural Area--Rigden Reservoir (Strauss Cabin Lake),Larimer,4/13/20,09:10:00
+S66111081,Canada Goose,12,US-CO,Colorado State University Environmental Learning Center,Larimer,3/22/20,17:06:00
+S66695801,Canada Goose,6,US-CO,Colorado State University Environmental Learning Center,Larimer,4/5/20,16:32:00
+S65364289,Canada Goose,41,US-CO,Grandview Cemetery,Larimer,3/2/20,08:23:00
+S65370798,Canada Goose,30,US-CO,Grandview Cemetery,Larimer,3/2/20,11:20:00
+S66024072,Canada Goose,3,US-CO,Lee Martinez Park,Larimer,3/20/20,17:59:00
+S66112732,Canada Goose,40,US-CO,Prospect Ponds Natural Area,Larimer,3/22/20,17:38:00
+S63606162,Canada Goose,12,US-CO,Rawhide Energy Station/Hamilton Reservoir,Larimer,1/20/20,14:39:00
+S63525614,Canada Goose,285,US-CO,Riverbend Ponds Natural Area,Larimer,1/18/20,14:11:00
+S63799861,Canada Goose,28,US-CO,Riverbend Ponds Natural Area,Larimer,1/26/20,08:12:00
+S66111768,Canada Goose,4,US-CO,Riverbend Ponds Natural Area,Larimer,3/22/20,17:24:00
+S66128302,Canada Goose,10,US-CO,Running Deer & Cottonwood Hollow Natural Areas,Larimer,3/23/20,08:29:00
+S66169221,Canada Goose,14,US-CO,Running Deer & Cottonwood Hollow Natural Areas,Larimer,3/24/20,10:42:00
+S66771868,Canada Goose,15,US-CO,Running Deer & Cottonwood Hollow Natural Areas,Larimer,4/7/20,07:41:00
+S66947114,Canada Goose,20,US-CO,Running Deer & Cottonwood Hollow Natural Areas,Larimer,4/10/20,18:02:00
+S65394077,Canada Goose,15,US-CO,Spring Park,Larimer,3/3/20,08:38:00
+S66438782,Canada Goose,2,US-CO,Spring Park,Larimer,3/31/20,08:55:00
+S66922839,Canada Goose,8,US-CO,Spring Park,Larimer,4/10/20,07:58:00
+S66718618,Canada Goose,NA,US-CO,Topminnow Natural Area (East Horsetooth Gravel Pit),Larimer,4/6/20,09:38:00
+S65698642,Cackling/Canada Goose,4,US-CO,Lee Martinez Park,Larimer,3/11/20,18:14:00
+S63606162,goose sp.,NA,US-CO,Rawhide Energy Station/Hamilton Reservoir,Larimer,1/20/20,14:39:00
+S63799861,goose sp.,50,US-CO,Riverbend Ponds Natural Area,Larimer,1/26/20,08:12:00
+S63478265,goose sp.,5,US-CO,Timnath Reservoir--east bay,Larimer,1/17/20,09:36:00
+S66695801,Wood Duck,2,US-CO,Colorado State University Environmental Learning Center,Larimer,4/5/20,16:32:00
+S67030975,Blue-winged Teal,1,US-CO,Arapahoe Bend Natural Area--Rigden Reservoir (Strauss Cabin Lake),Larimer,4/11/20,09:26:00
+S66676560,Blue-winged Teal,1,US-CO,Reservoir Ridge Natural Area,Larimer,4/5/20,09:54:00
+S66128302,Cinnamon Teal,2,US-CO,Running Deer & Cottonwood Hollow Natural Areas,Larimer,3/23/20,08:29:00
+S66771868,Cinnamon Teal,2,US-CO,Running Deer & Cottonwood Hollow Natural Areas,Larimer,4/7/20,07:41:00
+S63589677,Northern Shoveler,51,US-CO,South Platte River--88th Ave area,Adams,1/19/20,10:51:00
+S66108842,Northern Shoveler,6,US-CO,"3200–3648 E Horsetooth Rd, Fort Collins US-CO 40.53773, -105.01571",Larimer,3/22/20,16:22:00
+S67030975,Northern Shoveler,7,US-CO,Arapahoe Bend Natural Area--Rigden Reservoir (Strauss Cabin Lake),Larimer,4/11/20,09:26:00
+S67143580,Northern Shoveler,2,US-CO,Arapahoe Bend Natural Area--Rigden Reservoir (Strauss Cabin Lake),Larimer,4/13/20,09:10:00
+S66112732,Northern Shoveler,33,US-CO,Prospect Ponds Natural Area,Larimer,3/22/20,17:38:00
+S66676560,Northern Shoveler,1,US-CO,Reservoir Ridge Natural Area,Larimer,4/5/20,09:54:00
+S66169221,Northern Shoveler,5,US-CO,Running Deer & Cottonwood Hollow Natural Areas,Larimer,3/24/20,10:42:00
+S66771868,Northern Shoveler,2,US-CO,Running Deer & Cottonwood Hollow Natural Areas,Larimer,4/7/20,07:41:00
+S66718618,Northern Shoveler,NA,US-CO,Topminnow Natural Area (East Horsetooth Gravel Pit),Larimer,4/6/20,09:38:00
+S63589677,Gadwall,48,US-CO,South Platte River--88th Ave area,Adams,1/19/20,10:51:00
+S66108842,Gadwall,7,US-CO,"3200–3648 E Horsetooth Rd, Fort Collins US-CO 40.53773, -105.01571",Larimer,3/22/20,16:22:00
+S66719539,Gadwall,10,US-CO,Arapahoe Bend Natural Area--Rigden Reservoir (Strauss Cabin Lake),Larimer,4/6/20,07:59:00
+S66858963,Gadwall,4,US-CO,Arapahoe Bend Natural Area--Rigden Reservoir (Strauss Cabin Lake),Larimer,4/9/20,07:11:00
+S67030975,Gadwall,6,US-CO,Arapahoe Bend Natural Area--Rigden Reservoir (Strauss Cabin Lake),Larimer,4/11/20,09:26:00
+S67143580,Gadwall,4,US-CO,Arapahoe Bend Natural Area--Rigden Reservoir (Strauss Cabin Lake),Larimer,4/13/20,09:10:00
+S66112732,Gadwall,1,US-CO,Prospect Ponds Natural Area,Larimer,3/22/20,17:38:00
+S66331971,Gadwall,7,US-CO,Reservoir Ridge Natural Area,Larimer,3/28/20,13:40:00
+S66676560,Gadwall,4,US-CO,Reservoir Ridge Natural Area,Larimer,4/5/20,09:54:00
+S66128302,Gadwall,1,US-CO,Running Deer & Cottonwood Hollow Natural Areas,Larimer,3/23/20,08:29:00
+S66771868,Gadwall,5,US-CO,Running Deer & Cottonwood Hollow Natural Areas,Larimer,4/7/20,07:41:00
+S66947114,Gadwall,4,US-CO,Running Deer & Cottonwood Hollow Natural Areas,Larimer,4/10/20,18:02:00
+S66718618,Gadwall,NA,US-CO,Topminnow Natural Area (East Horsetooth Gravel Pit),Larimer,4/6/20,09:38:00
+S67143580,American Wigeon,2,US-CO,Arapahoe Bend Natural Area--Rigden Reservoir (Strauss Cabin Lake),Larimer,4/13/20,09:10:00
+S66111081,American Wigeon,9,US-CO,Colorado State University Environmental Learning Center,Larimer,3/22/20,17:06:00
+S65364289,American Wigeon,6,US-CO,Grandview Cemetery,Larimer,3/2/20,08:23:00
+S65370798,American Wigeon,2,US-CO,Grandview Cemetery,Larimer,3/2/20,11:20:00
+S66112732,American Wigeon,8,US-CO,Prospect Ponds Natural Area,Larimer,3/22/20,17:38:00
+S63606162,American Wigeon,NA,US-CO,Rawhide Energy Station/Hamilton Reservoir,Larimer,1/20/20,14:39:00
+S63589677,Mallard,2,US-CO,South Platte River--88th Ave area,Adams,1/19/20,10:51:00
+S66108842,Mallard,4,US-CO,"3200–3648 E Horsetooth Rd, Fort Collins US-CO 40.53773, -105.01571",Larimer,3/22/20,16:22:00
+S63726703,Mallard,4,US-CO,"913 E Prospect Rd, Fort Collins US-CO (40.5656,-105.0606)",Larimer,1/24/20,08:12:00
+S63805357,Mallard,4,US-CO,"913 E Prospect Rd, Fort Collins US-CO (40.5656,-105.0606)",Larimer,1/26/20,10:56:00
+S66719539,Mallard,5,US-CO,Arapahoe Bend Natural Area--Rigden Reservoir (Strauss Cabin Lake),Larimer,4/6/20,07:59:00
+S66858963,Mallard,8,US-CO,Arapahoe Bend Natural Area--Rigden Reservoir (Strauss Cabin Lake),Larimer,4/9/20,07:11:00
+S67030975,Mallard,10,US-CO,Arapahoe Bend Natural Area--Rigden Reservoir (Strauss Cabin Lake),Larimer,4/11/20,09:26:00
+S67143580,Mallard,3,US-CO,Arapahoe Bend Natural Area--Rigden Reservoir (Strauss Cabin Lake),Larimer,4/13/20,09:10:00
+S66111081,Mallard,12,US-CO,Colorado State University Environmental Learning Center,Larimer,3/22/20,17:06:00
+S66695801,Mallard,5,US-CO,Colorado State University Environmental Learning Center,Larimer,4/5/20,16:32:00
+S65364289,Mallard,43,US-CO,Grandview Cemetery,Larimer,3/2/20,08:23:00
+S65370798,Mallard,6,US-CO,Grandview Cemetery,Larimer,3/2/20,11:20:00
+S65698642,Mallard,2,US-CO,Lee Martinez Park,Larimer,3/11/20,18:14:00
+S66024072,Mallard,2,US-CO,Lee Martinez Park,Larimer,3/20/20,17:59:00
+S66112732,Mallard,36,US-CO,Prospect Ponds Natural Area,Larimer,3/22/20,17:38:00
+S63606162,Mallard,NA,US-CO,Rawhide Energy Station/Hamilton Reservoir,Larimer,1/20/20,14:39:00
+S66331971,Mallard,2,US-CO,Reservoir Ridge Natural Area,Larimer,3/28/20,13:40:00
+S66676560,Mallard,6,US-CO,Reservoir Ridge Natural Area,Larimer,4/5/20,09:54:00
+S63799861,Mallard,1,US-CO,Riverbend Ponds Natural Area,Larimer,1/26/20,08:12:00
+S66111768,Mallard,2,US-CO,Riverbend Ponds Natural Area,Larimer,3/22/20,17:24:00
+S66128302,Mallard,10,US-CO,Running Deer & Cottonwood Hollow Natural Areas,Larimer,3/23/20,08:29:00
+S66169221,Mallard,14,US-CO,Running Deer & Cottonwood Hollow Natural Areas,Larimer,3/24/20,10:42:00
+S66771868,Mallard,16,US-CO,Running Deer & Cottonwood Hollow Natural Areas,Larimer,4/7/20,07:41:00
+S66947114,Mallard,8,US-CO,Running Deer & Cottonwood Hollow Natural Areas,Larimer,4/10/20,18:02:00
+S65394077,Mallard,5,US-CO,Spring Park,Larimer,3/3/20,08:38:00
+S66438782,Mallard,4,US-CO,Spring Park,Larimer,3/31/20,08:55:00
+S66922839,Mallard,2,US-CO,Spring Park,Larimer,4/10/20,07:58:00
+S66718618,Mallard,NA,US-CO,Topminnow Natural Area (East Horsetooth Gravel Pit),Larimer,4/6/20,09:38:00
+S66696622,Mallard,5,US-CO,"Williams Lake, Fort Collins US-CO (40.5533,-105.0564)",Larimer,4/5/20,17:40:00
+S63589677,Northern Pintail,4,US-CO,South Platte River--88th Ave area,Adams,1/19/20,10:51:00
+S63606162,Northern Pintail,1,US-CO,Rawhide Energy Station/Hamilton Reservoir,Larimer,1/20/20,14:39:00
+S63589677,Green-winged Teal,9,US-CO,South Platte River--88th Ave area,Adams,1/19/20,10:51:00
+S66128302,Green-winged Teal,54,US-CO,Running Deer & Cottonwood Hollow Natural Areas,Larimer,3/23/20,08:29:00
+S66169221,Green-winged Teal,44,US-CO,Running Deer & Cottonwood Hollow Natural Areas,Larimer,3/24/20,10:42:00
+S66771868,Green-winged Teal,6,US-CO,Running Deer & Cottonwood Hollow Natural Areas,Larimer,4/7/20,07:41:00
+S66947114,Green-winged Teal,10,US-CO,Running Deer & Cottonwood Hollow Natural Areas,Larimer,4/10/20,18:02:00
+S63589677,Canvasback,5,US-CO,South Platte River--88th Ave area,Adams,1/19/20,10:51:00
+S63606162,Canvasback,NA,US-CO,Rawhide Energy Station/Hamilton Reservoir,Larimer,1/20/20,14:39:00
+S63606162,Redhead,6,US-CO,Rawhide Energy Station/Hamilton Reservoir,Larimer,1/20/20,14:39:00
+S66947114,Ring-necked Duck,2,US-CO,Running Deer & Cottonwood Hollow Natural Areas,Larimer,4/10/20,18:02:00
+S66110158,Lesser Scaup,1,US-CO,Arapahoe Bend Natural Area,Larimer,3/22/20,16:30:00
+S66676560,Lesser Scaup,20,US-CO,Reservoir Ridge Natural Area,Larimer,4/5/20,09:54:00
+S66718618,Greater/Lesser Scaup,NA,US-CO,Topminnow Natural Area (East Horsetooth Gravel Pit),Larimer,4/6/20,09:38:00
+S63589677,Bufflehead,30,US-CO,South Platte River--88th Ave area,Adams,1/19/20,10:51:00
+S66108842,Bufflehead,1,US-CO,"3200–3648 E Horsetooth Rd, Fort Collins US-CO 40.53773, -105.01571",Larimer,3/22/20,16:22:00
+S66858963,Bufflehead,2,US-CO,Arapahoe Bend Natural Area--Rigden Reservoir (Strauss Cabin Lake),Larimer,4/9/20,07:11:00
+S63606162,Bufflehead,1,US-CO,Rawhide Energy Station/Hamilton Reservoir,Larimer,1/20/20,14:39:00
+S66718618,Bufflehead,NA,US-CO,Topminnow Natural Area (East Horsetooth Gravel Pit),Larimer,4/6/20,09:38:00
+S63589677,Common Goldeneye,14,US-CO,South Platte River--88th Ave area,Adams,1/19/20,10:51:00
+S66111081,Common Goldeneye,2,US-CO,Colorado State University Environmental Learning Center,Larimer,3/22/20,17:06:00
+S63606162,Common Goldeneye,NA,US-CO,Rawhide Energy Station/Hamilton Reservoir,Larimer,1/20/20,14:39:00
+S66331971,Common Goldeneye,1,US-CO,Reservoir Ridge Natural Area,Larimer,3/28/20,13:40:00
+S66676560,Common Goldeneye,1,US-CO,Reservoir Ridge Natural Area,Larimer,4/5/20,09:54:00
+S63525614,Common Goldeneye,1,US-CO,Riverbend Ponds Natural Area,Larimer,1/18/20,14:11:00
+S66332159,Hooded Merganser,5,US-CO,"2952 Dean Dr, Fort Collins US-CO 40.60198, -105.13186",Larimer,3/28/20,15:24:00
+S66771868,Hooded Merganser,3,US-CO,Running Deer & Cottonwood Hollow Natural Areas,Larimer,4/7/20,07:41:00
+S63589677,Common Merganser,1,US-CO,South Platte River--88th Ave area,Adams,1/19/20,10:51:00
+S66110158,Common Merganser,6,US-CO,Arapahoe Bend Natural Area,Larimer,3/22/20,16:30:00
+S66858963,Common Merganser,2,US-CO,Arapahoe Bend Natural Area--Rigden Reservoir (Strauss Cabin Lake),Larimer,4/9/20,07:11:00
+S63606162,Common Merganser,NA,US-CO,Rawhide Energy Station/Hamilton Reservoir,Larimer,1/20/20,14:39:00
+S66331971,Common Merganser,13,US-CO,Reservoir Ridge Natural Area,Larimer,3/28/20,13:40:00
+S66771868,Common Merganser,3,US-CO,Running Deer & Cottonwood Hollow Natural Areas,Larimer,4/7/20,07:41:00
+S63606162,Red-breasted Merganser,11,US-CO,Rawhide Energy Station/Hamilton Reservoir,Larimer,1/20/20,14:39:00
+S66718618,Common/Red-breasted Merganser,NA,US-CO,Topminnow Natural Area (East Horsetooth Gravel Pit),Larimer,4/6/20,09:38:00
+S66719539,Ruddy Duck,10,US-CO,Arapahoe Bend Natural Area--Rigden Reservoir (Strauss Cabin Lake),Larimer,4/6/20,07:59:00
+S66858963,Ruddy Duck,11,US-CO,Arapahoe Bend Natural Area--Rigden Reservoir (Strauss Cabin Lake),Larimer,4/9/20,07:11:00
+S67143580,Ruddy Duck,NA,US-CO,Arapahoe Bend Natural Area--Rigden Reservoir (Strauss Cabin Lake),Larimer,4/13/20,09:10:00
+S66108842,duck sp.,NA,US-CO,"3200–3648 E Horsetooth Rd, Fort Collins US-CO 40.53773, -105.01571",Larimer,3/22/20,16:22:00
+S67143580,duck sp.,NA,US-CO,Arapahoe Bend Natural Area--Rigden Reservoir (Strauss Cabin Lake),Larimer,4/13/20,09:10:00
+S66719539,Horned Grebe,6,US-CO,Arapahoe Bend Natural Area--Rigden Reservoir (Strauss Cabin Lake),Larimer,4/6/20,07:59:00
+S66858963,Horned Grebe,3,US-CO,Arapahoe Bend Natural Area--Rigden Reservoir (Strauss Cabin Lake),Larimer,4/9/20,07:11:00
+S67030975,Horned Grebe,2,US-CO,Arapahoe Bend Natural Area--Rigden Reservoir (Strauss Cabin Lake),Larimer,4/11/20,09:26:00
+S67143580,Horned Grebe,2,US-CO,Arapahoe Bend Natural Area--Rigden Reservoir (Strauss Cabin Lake),Larimer,4/13/20,09:10:00
+S63606162,Horned Grebe,6,US-CO,Rawhide Energy Station/Hamilton Reservoir,Larimer,1/20/20,14:39:00
+S66719539,Horned/Eared Grebe,2,US-CO,Arapahoe Bend Natural Area--Rigden Reservoir (Strauss Cabin Lake),Larimer,4/6/20,07:59:00
+S66858963,Horned/Eared Grebe,2,US-CO,Arapahoe Bend Natural Area--Rigden Reservoir (Strauss Cabin Lake),Larimer,4/9/20,07:11:00
+S67030975,Horned/Eared Grebe,3,US-CO,Arapahoe Bend Natural Area--Rigden Reservoir (Strauss Cabin Lake),Larimer,4/11/20,09:26:00
+S67143580,Clark's Grebe,1,US-CO,Arapahoe Bend Natural Area--Rigden Reservoir (Strauss Cabin Lake),Larimer,4/13/20,09:10:00
+S67143580,Western/Clark's Grebe,2,US-CO,Arapahoe Bend Natural Area--Rigden Reservoir (Strauss Cabin Lake),Larimer,4/13/20,09:10:00
+S66695801,Rock Pigeon (Feral Pigeon),2,US-CO,Colorado State University Environmental Learning Center,Larimer,4/5/20,16:32:00
+S66112732,Rock Pigeon (Feral Pigeon),1,US-CO,Prospect Ponds Natural Area,Larimer,3/22/20,17:38:00
+S66128302,Rock Pigeon (Feral Pigeon),4,US-CO,Running Deer & Cottonwood Hollow Natural Areas,Larimer,3/23/20,08:29:00
+S66947114,Rock Pigeon (Feral Pigeon),2,US-CO,Running Deer & Cottonwood Hollow Natural Areas,Larimer,4/10/20,18:02:00
+S63589677,Eurasian Collared-Dove,2,US-CO,South Platte River--88th Ave area,Adams,1/19/20,10:51:00
+S66695801,Eurasian Collared-Dove,1,US-CO,Colorado State University Environmental Learning Center,Larimer,4/5/20,16:32:00
+S65364289,Eurasian Collared-Dove,6,US-CO,Grandview Cemetery,Larimer,3/2/20,08:23:00
+S66112732,Eurasian Collared-Dove,1,US-CO,Prospect Ponds Natural Area,Larimer,3/22/20,17:38:00
+S63525614,Eurasian Collared-Dove,4,US-CO,Riverbend Ponds Natural Area,Larimer,1/18/20,14:11:00
+S63525614,Mourning Dove,3,US-CO,Riverbend Ponds Natural Area,Larimer,1/18/20,14:11:00
+S66771868,Mourning Dove,1,US-CO,Running Deer & Cottonwood Hollow Natural Areas,Larimer,4/7/20,07:41:00
+S66947114,Mourning Dove,2,US-CO,Running Deer & Cottonwood Hollow Natural Areas,Larimer,4/10/20,18:02:00
+S66169221,Virginia Rail,1,US-CO,Running Deer & Cottonwood Hollow Natural Areas,Larimer,3/24/20,10:42:00
+S66771868,Virginia Rail,1,US-CO,Running Deer & Cottonwood Hollow Natural Areas,Larimer,4/7/20,07:41:00
+S63589677,American Coot,1,US-CO,South Platte River--88th Ave area,Adams,1/19/20,10:51:00
+S67030975,American Coot,2,US-CO,Arapahoe Bend Natural Area--Rigden Reservoir (Strauss Cabin Lake),Larimer,4/11/20,09:26:00
+S63606162,American Coot,NA,US-CO,Rawhide Energy Station/Hamilton Reservoir,Larimer,1/20/20,14:39:00
+S66771868,American Coot,3,US-CO,Running Deer & Cottonwood Hollow Natural Areas,Larimer,4/7/20,07:41:00
+S66947114,American Coot,2,US-CO,Running Deer & Cottonwood Hollow Natural Areas,Larimer,4/10/20,18:02:00
+S67143580,American Avocet,20,US-CO,Arapahoe Bend Natural Area--Rigden Reservoir (Strauss Cabin Lake),Larimer,4/13/20,09:10:00
+S66947114,American Avocet,2,US-CO,Running Deer & Cottonwood Hollow Natural Areas,Larimer,4/10/20,18:02:00
+S67143580,Snowy Plover,1,US-CO,Arapahoe Bend Natural Area--Rigden Reservoir (Strauss Cabin Lake),Larimer,4/13/20,09:10:00
+S63589677,Killdeer,4,US-CO,South Platte River--88th Ave area,Adams,1/19/20,10:51:00
+S66719539,Killdeer,4,US-CO,Arapahoe Bend Natural Area--Rigden Reservoir (Strauss Cabin Lake),Larimer,4/6/20,07:59:00
+S66858963,Killdeer,9,US-CO,Arapahoe Bend Natural Area--Rigden Reservoir (Strauss Cabin Lake),Larimer,4/9/20,07:11:00
+S67030975,Killdeer,8,US-CO,Arapahoe Bend Natural Area--Rigden Reservoir (Strauss Cabin Lake),Larimer,4/11/20,09:26:00
+S67143580,Killdeer,9,US-CO,Arapahoe Bend Natural Area--Rigden Reservoir (Strauss Cabin Lake),Larimer,4/13/20,09:10:00
+S66111081,Killdeer,3,US-CO,Colorado State University Environmental Learning Center,Larimer,3/22/20,17:06:00
+S66331971,Killdeer,1,US-CO,Reservoir Ridge Natural Area,Larimer,3/28/20,13:40:00
+S66128302,Killdeer,6,US-CO,Running Deer & Cottonwood Hollow Natural Areas,Larimer,3/23/20,08:29:00
+S66169221,Killdeer,8,US-CO,Running Deer & Cottonwood Hollow Natural Areas,Larimer,3/24/20,10:42:00
+S66771868,Killdeer,4,US-CO,Running Deer & Cottonwood Hollow Natural Areas,Larimer,4/7/20,07:41:00
+S66947114,Killdeer,4,US-CO,Running Deer & Cottonwood Hollow Natural Areas,Larimer,4/10/20,18:02:00
+S66718618,Killdeer,NA,US-CO,Topminnow Natural Area (East Horsetooth Gravel Pit),Larimer,4/6/20,09:38:00
+S67030975,Baird's Sandpiper,1,US-CO,Arapahoe Bend Natural Area--Rigden Reservoir (Strauss Cabin Lake),Larimer,4/11/20,09:26:00
+S67143580,Least Sandpiper,1,US-CO,Arapahoe Bend Natural Area--Rigden Reservoir (Strauss Cabin Lake),Larimer,4/13/20,09:10:00
+S66719539,Greater Yellowlegs,2,US-CO,Arapahoe Bend Natural Area--Rigden Reservoir (Strauss Cabin Lake),Larimer,4/6/20,07:59:00
+S66858963,Greater Yellowlegs,3,US-CO,Arapahoe Bend Natural Area--Rigden Reservoir (Strauss Cabin Lake),Larimer,4/9/20,07:11:00
+S67030975,Greater Yellowlegs,1,US-CO,Arapahoe Bend Natural Area--Rigden Reservoir (Strauss Cabin Lake),Larimer,4/11/20,09:26:00
+S67143580,Greater Yellowlegs,3,US-CO,Arapahoe Bend Natural Area--Rigden Reservoir (Strauss Cabin Lake),Larimer,4/13/20,09:10:00
+S66169221,Greater Yellowlegs,1,US-CO,Running Deer & Cottonwood Hollow Natural Areas,Larimer,3/24/20,10:42:00
+S67143580,Greater/Lesser Yellowlegs,3,US-CO,Arapahoe Bend Natural Area--Rigden Reservoir (Strauss Cabin Lake),Larimer,4/13/20,09:10:00
+S67143580,shorebird sp.,1,US-CO,Arapahoe Bend Natural Area--Rigden Reservoir (Strauss Cabin Lake),Larimer,4/13/20,09:10:00
+S67143580,Franklin's Gull,NA,US-CO,Arapahoe Bend Natural Area--Rigden Reservoir (Strauss Cabin Lake),Larimer,4/13/20,09:10:00
+S63589677,Ring-billed Gull,10,US-CO,South Platte River--88th Ave area,Adams,1/19/20,10:51:00
+S66108842,Ring-billed Gull,3,US-CO,"3200–3648 E Horsetooth Rd, Fort Collins US-CO 40.53773, -105.01571",Larimer,3/22/20,16:22:00
+S66719539,Ring-billed Gull,4,US-CO,Arapahoe Bend Natural Area--Rigden Reservoir (Strauss Cabin Lake),Larimer,4/6/20,07:59:00
+S67143580,Ring-billed Gull,4,US-CO,Arapahoe Bend Natural Area--Rigden Reservoir (Strauss Cabin Lake),Larimer,4/13/20,09:10:00
+S65364289,Ring-billed Gull,6,US-CO,Grandview Cemetery,Larimer,3/2/20,08:23:00
+S65370798,Ring-billed Gull,10,US-CO,Grandview Cemetery,Larimer,3/2/20,11:20:00
+S66128302,Ring-billed Gull,3,US-CO,Running Deer & Cottonwood Hollow Natural Areas,Larimer,3/23/20,08:29:00
+S67143580,California Gull,1,US-CO,Arapahoe Bend Natural Area--Rigden Reservoir (Strauss Cabin Lake),Larimer,4/13/20,09:10:00
+S63606162,Herring Gull,4,US-CO,Rawhide Energy Station/Hamilton Reservoir,Larimer,1/20/20,14:39:00
+S66108842,gull sp.,NA,US-CO,"3200–3648 E Horsetooth Rd, Fort Collins US-CO 40.53773, -105.01571",Larimer,3/22/20,16:22:00
+S66719539,gull sp.,6,US-CO,Arapahoe Bend Natural Area--Rigden Reservoir (Strauss Cabin Lake),Larimer,4/6/20,07:59:00
+S67143580,gull sp.,NA,US-CO,Arapahoe Bend Natural Area--Rigden Reservoir (Strauss Cabin Lake),Larimer,4/13/20,09:10:00
+S66642699,gull sp.,NA,US-CO,Lory State Park,Larimer,4/4/20,09:29:00
+S63606162,gull sp.,12,US-CO,Rawhide Energy Station/Hamilton Reservoir,Larimer,1/20/20,14:39:00
+S66331971,gull sp.,12,US-CO,Reservoir Ridge Natural Area,Larimer,3/28/20,13:40:00
+S66676560,gull sp.,6,US-CO,Reservoir Ridge Natural Area,Larimer,4/5/20,09:54:00
+S67030975,Double-crested Cormorant,1,US-CO,Arapahoe Bend Natural Area--Rigden Reservoir (Strauss Cabin Lake),Larimer,4/11/20,09:26:00
+S66718618,American White Pelican,2,US-CO,Topminnow Natural Area (East Horsetooth Gravel Pit),Larimer,4/6/20,09:38:00
+S66696622,American White Pelican,14,US-CO,"Williams Lake, Fort Collins US-CO (40.5533,-105.0564)",Larimer,4/5/20,17:40:00
+S63726703,Great Blue Heron,1,US-CO,"913 E Prospect Rd, Fort Collins US-CO (40.5656,-105.0606)",Larimer,1/24/20,08:12:00
+S63805357,Great Blue Heron,1,US-CO,"913 E Prospect Rd, Fort Collins US-CO (40.5656,-105.0606)",Larimer,1/26/20,10:56:00
+S66719539,Great Blue Heron,1,US-CO,Arapahoe Bend Natural Area--Rigden Reservoir (Strauss Cabin Lake),Larimer,4/6/20,07:59:00
+S66858963,Great Blue Heron,1,US-CO,Arapahoe Bend Natural Area--Rigden Reservoir (Strauss Cabin Lake),Larimer,4/9/20,07:11:00
+S67030975,Great Blue Heron,1,US-CO,Arapahoe Bend Natural Area--Rigden Reservoir (Strauss Cabin Lake),Larimer,4/11/20,09:26:00
+S65698642,Great Blue Heron,1,US-CO,Lee Martinez Park,Larimer,3/11/20,18:14:00
+S63525614,Great Blue Heron,1,US-CO,Riverbend Ponds Natural Area,Larimer,1/18/20,14:11:00
+S66111768,Great Blue Heron,2,US-CO,Riverbend Ponds Natural Area,Larimer,3/22/20,17:24:00
+S66128302,Great Blue Heron,3,US-CO,Running Deer & Cottonwood Hollow Natural Areas,Larimer,3/23/20,08:29:00
+S66947114,Great Blue Heron,1,US-CO,Running Deer & Cottonwood Hollow Natural Areas,Larimer,4/10/20,18:02:00
+S66642699,Turkey Vulture,2,US-CO,Lory State Park,Larimer,4/4/20,09:29:00
+S66676560,Turkey Vulture,12,US-CO,Reservoir Ridge Natural Area,Larimer,4/5/20,09:54:00
+S67143580,Osprey,1,US-CO,Arapahoe Bend Natural Area--Rigden Reservoir (Strauss Cabin Lake),Larimer,4/13/20,09:10:00
+S66169221,Osprey,1,US-CO,Running Deer & Cottonwood Hollow Natural Areas,Larimer,3/24/20,10:42:00
+S66771868,Osprey,1,US-CO,Running Deer & Cottonwood Hollow Natural Areas,Larimer,4/7/20,07:41:00
+S66947114,Osprey,1,US-CO,Running Deer & Cottonwood Hollow Natural Areas,Larimer,4/10/20,18:02:00
+S66642699,Golden Eagle,2,US-CO,Lory State Park,Larimer,4/4/20,09:29:00
+S63777493,Northern Harrier,1,US-WY,"1807–1813 US-287 S, Laramie US-WY (41.0781,-105.5037)",Albany,1/25/20,14:24:00
+S66128302,Northern Harrier,1,US-CO,Running Deer & Cottonwood Hollow Natural Areas,Larimer,3/23/20,08:29:00
+S63478265,Northern Harrier,1,US-CO,Timnath Reservoir--east bay,Larimer,1/17/20,09:36:00
+S63805357,Sharp-shinned Hawk,1,US-CO,"913 E Prospect Rd, Fort Collins US-CO (40.5656,-105.0606)",Larimer,1/26/20,10:56:00
+S66642699,Northern Goshawk,1,US-CO,Lory State Park,Larimer,4/4/20,09:29:00
+S63589677,Bald Eagle,1,US-CO,South Platte River--88th Ave area,Adams,1/19/20,10:51:00
+S66642699,Bald Eagle,1,US-CO,Lory State Park,Larimer,4/4/20,09:29:00
+S66169221,Bald Eagle,1,US-CO,Running Deer & Cottonwood Hollow Natural Areas,Larimer,3/24/20,10:42:00
+S66858963,Red-tailed Hawk,1,US-CO,Arapahoe Bend Natural Area--Rigden Reservoir (Strauss Cabin Lake),Larimer,4/9/20,07:11:00
+S67030975,Red-tailed Hawk,2,US-CO,Arapahoe Bend Natural Area--Rigden Reservoir (Strauss Cabin Lake),Larimer,4/11/20,09:26:00
+S66695801,Red-tailed Hawk,1,US-CO,Colorado State University Environmental Learning Center,Larimer,4/5/20,16:32:00
+S65370798,Red-tailed Hawk,2,US-CO,Grandview Cemetery,Larimer,3/2/20,11:20:00
+S63799861,Red-tailed Hawk,1,US-CO,Riverbend Ponds Natural Area,Larimer,1/26/20,08:12:00
+S66111768,Red-tailed Hawk,1,US-CO,Riverbend Ponds Natural Area,Larimer,3/22/20,17:24:00
+S66169221,Red-tailed Hawk,2,US-CO,Running Deer & Cottonwood Hollow Natural Areas,Larimer,3/24/20,10:42:00
+S66771868,Red-tailed Hawk,1,US-CO,Running Deer & Cottonwood Hollow Natural Areas,Larimer,4/7/20,07:41:00
+S66947114,Red-tailed Hawk,2,US-CO,Running Deer & Cottonwood Hollow Natural Areas,Larimer,4/10/20,18:02:00
+S63478265,Red-tailed Hawk,2,US-CO,Timnath Reservoir--east bay,Larimer,1/17/20,09:36:00
+S66111081,Red-tailed Hawk (Harlan's),1,US-CO,Colorado State University Environmental Learning Center,Larimer,3/22/20,17:06:00
+S63777487,Rough-legged Hawk,1,US-CO,"27367–27691 N Highway 287, Livermore US-CO (40.9097,-105.3131)",Larimer,1/25/20,14:39:00
+S63799861,Ferruginous Hawk,1,US-CO,Riverbend Ponds Natural Area,Larimer,1/26/20,08:12:00
+S63478265,Ferruginous Hawk,1,US-CO,Timnath Reservoir--east bay,Larimer,1/17/20,09:36:00
+S65698642,Eastern Screech-Owl,1,US-CO,Lee Martinez Park,Larimer,3/11/20,18:14:00
+S66024072,Eastern Screech-Owl,2,US-CO,Lee Martinez Park,Larimer,3/20/20,17:59:00
+S66695801,Great Horned Owl,1,US-CO,Colorado State University Environmental Learning Center,Larimer,4/5/20,16:32:00
+S65698642,Great Horned Owl,1,US-CO,Lee Martinez Park,Larimer,3/11/20,18:14:00
+S63589677,Belted Kingfisher,1,US-CO,South Platte River--88th Ave area,Adams,1/19/20,10:51:00
+S66110158,Belted Kingfisher,1,US-CO,Arapahoe Bend Natural Area,Larimer,3/22/20,16:30:00
+S66858963,Belted Kingfisher,1,US-CO,Arapahoe Bend Natural Area--Rigden Reservoir (Strauss Cabin Lake),Larimer,4/9/20,07:11:00
+S66695801,Belted Kingfisher,1,US-CO,Colorado State University Environmental Learning Center,Larimer,4/5/20,16:32:00
+S66169221,Belted Kingfisher,2,US-CO,Running Deer & Cottonwood Hollow Natural Areas,Larimer,3/24/20,10:42:00
+S66947114,Belted Kingfisher,1,US-CO,Running Deer & Cottonwood Hollow Natural Areas,Larimer,4/10/20,18:02:00
+S65370798,Yellow-bellied Sapsucker,1,US-CO,Grandview Cemetery,Larimer,3/2/20,11:20:00
+S63589677,Downy Woodpecker,1,US-CO,South Platte River--88th Ave area,Adams,1/19/20,10:51:00
+S63716995,Downy Woodpecker,1,US-CO,"913 E Prospect Rd, Fort Collins US-CO (40.5656,-105.0606)",Larimer,1/21/20,08:46:00
+S63726703,Downy Woodpecker,1,US-CO,"913 E Prospect Rd, Fort Collins US-CO (40.5656,-105.0606)",Larimer,1/24/20,08:12:00
+S66719539,Downy Woodpecker,1,US-CO,Arapahoe Bend Natural Area--Rigden Reservoir (Strauss Cabin Lake),Larimer,4/6/20,07:59:00
+S66695801,Downy Woodpecker,1,US-CO,Colorado State University Environmental Learning Center,Larimer,4/5/20,16:32:00
+S63597345,Downy Woodpecker,1,US-CO,Grandview Cemetery,Larimer,1/20/20,12:00:00
+S66024072,Downy Woodpecker,1,US-CO,Lee Martinez Park,Larimer,3/20/20,17:59:00
+S66112732,Downy Woodpecker,1,US-CO,Prospect Ponds Natural Area,Larimer,3/22/20,17:38:00
+S66676560,Downy Woodpecker,1,US-CO,Reservoir Ridge Natural Area,Larimer,4/5/20,09:54:00
+S65394077,Downy Woodpecker,2,US-CO,Spring Park,Larimer,3/3/20,08:38:00
+S66024072,Hairy Woodpecker,1,US-CO,Lee Martinez Park,Larimer,3/20/20,17:59:00
+S66642699,Hairy Woodpecker,1,US-CO,Lory State Park,Larimer,4/4/20,09:29:00
+S65364289,Downy/Hairy Woodpecker,1,US-CO,Grandview Cemetery,Larimer,3/2/20,08:23:00
+S66719539,Northern Flicker,1,US-CO,Arapahoe Bend Natural Area--Rigden Reservoir (Strauss Cabin Lake),Larimer,4/6/20,07:59:00
+S67030975,Northern Flicker,1,US-CO,Arapahoe Bend Natural Area--Rigden Reservoir (Strauss Cabin Lake),Larimer,4/11/20,09:26:00
+S67143580,Northern Flicker,2,US-CO,Arapahoe Bend Natural Area--Rigden Reservoir (Strauss Cabin Lake),Larimer,4/13/20,09:10:00
+S66695801,Northern Flicker,2,US-CO,Colorado State University Environmental Learning Center,Larimer,4/5/20,16:32:00
+S63597345,Northern Flicker,2,US-CO,Grandview Cemetery,Larimer,1/20/20,12:00:00
+S65364289,Northern Flicker,8,US-CO,Grandview Cemetery,Larimer,3/2/20,08:23:00
+S65370798,Northern Flicker,2,US-CO,Grandview Cemetery,Larimer,3/2/20,11:20:00
+S66024072,Northern Flicker,2,US-CO,Lee Martinez Park,Larimer,3/20/20,17:59:00
+S66642699,Northern Flicker,2,US-CO,Lory State Park,Larimer,4/4/20,09:29:00
+S66112732,Northern Flicker,1,US-CO,Prospect Ponds Natural Area,Larimer,3/22/20,17:38:00
+S66676560,Northern Flicker,1,US-CO,Reservoir Ridge Natural Area,Larimer,4/5/20,09:54:00
+S63525614,Northern Flicker,1,US-CO,Riverbend Ponds Natural Area,Larimer,1/18/20,14:11:00
+S63799861,Northern Flicker,2,US-CO,Riverbend Ponds Natural Area,Larimer,1/26/20,08:12:00
+S66128302,Northern Flicker,2,US-CO,Running Deer & Cottonwood Hollow Natural Areas,Larimer,3/23/20,08:29:00
+S66169221,Northern Flicker,3,US-CO,Running Deer & Cottonwood Hollow Natural Areas,Larimer,3/24/20,10:42:00
+S66771868,Northern Flicker,2,US-CO,Running Deer & Cottonwood Hollow Natural Areas,Larimer,4/7/20,07:41:00
+S66947114,Northern Flicker,3,US-CO,Running Deer & Cottonwood Hollow Natural Areas,Larimer,4/10/20,18:02:00
+S65394077,Northern Flicker,2,US-CO,Spring Park,Larimer,3/3/20,08:38:00
+S66438782,Northern Flicker,2,US-CO,Spring Park,Larimer,3/31/20,08:55:00
+S66922839,Northern Flicker,2,US-CO,Spring Park,Larimer,4/10/20,07:58:00
+S66718618,Northern Flicker,1,US-CO,Topminnow Natural Area (East Horsetooth Gravel Pit),Larimer,4/6/20,09:38:00
+S66013236,Northern Flicker,1,US-CO,Yard - Parker St,Larimer,3/16/20,11:00:00
+S65698642,Northern Flicker (Red-shafted),2,US-CO,Lee Martinez Park,Larimer,3/11/20,18:14:00
+S63589677,American Kestrel,1,US-CO,South Platte River--88th Ave area,Adams,1/19/20,10:51:00
+S67030975,American Kestrel,1,US-CO,Arapahoe Bend Natural Area--Rigden Reservoir (Strauss Cabin Lake),Larimer,4/11/20,09:26:00
+S66111081,American Kestrel,1,US-CO,Colorado State University Environmental Learning Center,Larimer,3/22/20,17:06:00
+S66375157,American Kestrel,1,US-CO,Coyote Ridge Natural Area,Larimer,3/29/20,12:31:00
+S66642699,Peregrine Falcon,1,US-CO,Lory State Park,Larimer,4/4/20,09:29:00
+S63799861,Northern Shrike,1,US-CO,Riverbend Ponds Natural Area,Larimer,1/26/20,08:12:00
+S66642699,Steller's Jay,6,US-CO,Lory State Park,Larimer,4/4/20,09:29:00
+S66041652,Steller's Jay,1,US-CO,"Pike and San Isabel National Forests, Woodland Park US-CO 39.12791, -105.23136",Teller,3/15/20,09:33:00
+S63716995,Blue Jay,3,US-CO,"913 E Prospect Rd, Fort Collins US-CO (40.5656,-105.0606)",Larimer,1/21/20,08:46:00
+S63726703,Blue Jay,1,US-CO,"913 E Prospect Rd, Fort Collins US-CO (40.5656,-105.0606)",Larimer,1/24/20,08:12:00
+S63805357,Blue Jay,1,US-CO,"913 E Prospect Rd, Fort Collins US-CO (40.5656,-105.0606)",Larimer,1/26/20,10:56:00
+S67030975,Blue Jay,2,US-CO,Arapahoe Bend Natural Area--Rigden Reservoir (Strauss Cabin Lake),Larimer,4/11/20,09:26:00
+S66695801,Blue Jay,1,US-CO,Colorado State University Environmental Learning Center,Larimer,4/5/20,16:32:00
+S65364289,Blue Jay,4,US-CO,Grandview Cemetery,Larimer,3/2/20,08:23:00
+S65370798,Blue Jay,1,US-CO,Grandview Cemetery,Larimer,3/2/20,11:20:00
+S66024072,Blue Jay,2,US-CO,Lee Martinez Park,Larimer,3/20/20,17:59:00
+S66676560,Blue Jay,2,US-CO,Reservoir Ridge Natural Area,Larimer,4/5/20,09:54:00
+S63799861,Blue Jay,1,US-CO,Riverbend Ponds Natural Area,Larimer,1/26/20,08:12:00
+S65394077,Blue Jay,1,US-CO,Spring Park,Larimer,3/3/20,08:38:00
+S66438782,Blue Jay,7,US-CO,Spring Park,Larimer,3/31/20,08:55:00
+S66922839,Blue Jay,4,US-CO,Spring Park,Larimer,4/10/20,07:58:00
+S66718618,Blue Jay,2,US-CO,Topminnow Natural Area (East Horsetooth Gravel Pit),Larimer,4/6/20,09:38:00
+S66642699,Woodhouse's Scrub-Jay,2,US-CO,Lory State Park,Larimer,4/4/20,09:29:00
+S63589677,Black-billed Magpie,2,US-CO,South Platte River--88th Ave area,Adams,1/19/20,10:51:00
+S66375157,Black-billed Magpie,5,US-CO,Coyote Ridge Natural Area,Larimer,3/29/20,12:31:00
+S65698642,Black-billed Magpie,1,US-CO,Lee Martinez Park,Larimer,3/11/20,18:14:00
+S66642699,Black-billed Magpie,6,US-CO,Lory State Park,Larimer,4/4/20,09:29:00
+S66676560,Black-billed Magpie,4,US-CO,Reservoir Ridge Natural Area,Larimer,4/5/20,09:54:00
+S63771755,Clark's Nutcracker,1,US-WY,Medicine Bow NF--Vedauwoo CG area,Albany,1/25/20,13:14:00
+S66108842,American Crow,4,US-CO,"3200–3648 E Horsetooth Rd, Fort Collins US-CO 40.53773, -105.01571",Larimer,3/22/20,16:22:00
+S63716995,American Crow,3,US-CO,"913 E Prospect Rd, Fort Collins US-CO (40.5656,-105.0606)",Larimer,1/21/20,08:46:00
+S66719539,American Crow,1,US-CO,Arapahoe Bend Natural Area--Rigden Reservoir (Strauss Cabin Lake),Larimer,4/6/20,07:59:00
+S63597345,American Crow,2,US-CO,Grandview Cemetery,Larimer,1/20/20,12:00:00
+S65364289,American Crow,6,US-CO,Grandview Cemetery,Larimer,3/2/20,08:23:00
+S65370798,American Crow,2,US-CO,Grandview Cemetery,Larimer,3/2/20,11:20:00
+S66642699,American Crow,4,US-CO,Lory State Park,Larimer,4/4/20,09:29:00
+S65394077,American Crow,2,US-CO,Spring Park,Larimer,3/3/20,08:38:00
+S66438782,American Crow,6,US-CO,Spring Park,Larimer,3/31/20,08:55:00
+S66922839,American Crow,3,US-CO,Spring Park,Larimer,4/10/20,07:58:00
+S63771755,Common Raven,2,US-WY,Medicine Bow NF--Vedauwoo CG area,Albany,1/25/20,13:14:00
+S66375157,Common Raven,3,US-CO,Coyote Ridge Natural Area,Larimer,3/29/20,12:31:00
+S66642699,Common Raven,1,US-CO,Lory State Park,Larimer,4/4/20,09:29:00
+S66112732,Common Raven,1,US-CO,Prospect Ponds Natural Area,Larimer,3/22/20,17:38:00
+S63726703,Black-capped Chickadee,8,US-CO,"913 E Prospect Rd, Fort Collins US-CO (40.5656,-105.0606)",Larimer,1/24/20,08:12:00
+S66110158,Black-capped Chickadee,4,US-CO,Arapahoe Bend Natural Area,Larimer,3/22/20,16:30:00
+S66719539,Black-capped Chickadee,9,US-CO,Arapahoe Bend Natural Area--Rigden Reservoir (Strauss Cabin Lake),Larimer,4/6/20,07:59:00
+S67030975,Black-capped Chickadee,2,US-CO,Arapahoe Bend Natural Area--Rigden Reservoir (Strauss Cabin Lake),Larimer,4/11/20,09:26:00
+S66695801,Black-capped Chickadee,6,US-CO,Colorado State University Environmental Learning Center,Larimer,4/5/20,16:32:00
+S63597345,Black-capped Chickadee,6,US-CO,Grandview Cemetery,Larimer,1/20/20,12:00:00
+S65364289,Black-capped Chickadee,19,US-CO,Grandview Cemetery,Larimer,3/2/20,08:23:00
+S65370798,Black-capped Chickadee,8,US-CO,Grandview Cemetery,Larimer,3/2/20,11:20:00
+S65698642,Black-capped Chickadee,2,US-CO,Lee Martinez Park,Larimer,3/11/20,18:14:00
+S66024072,Black-capped Chickadee,2,US-CO,Lee Martinez Park,Larimer,3/20/20,17:59:00
+S66642699,Black-capped Chickadee,2,US-CO,Lory State Park,Larimer,4/4/20,09:29:00
+S66112732,Black-capped Chickadee,3,US-CO,Prospect Ponds Natural Area,Larimer,3/22/20,17:38:00
+S66676560,Black-capped Chickadee,2,US-CO,Reservoir Ridge Natural Area,Larimer,4/5/20,09:54:00
+S63525614,Black-capped Chickadee,5,US-CO,Riverbend Ponds Natural Area,Larimer,1/18/20,14:11:00
+S63799861,Black-capped Chickadee,2,US-CO,Riverbend Ponds Natural Area,Larimer,1/26/20,08:12:00
+S66169221,Black-capped Chickadee,2,US-CO,Running Deer & Cottonwood Hollow Natural Areas,Larimer,3/24/20,10:42:00
+S66947114,Black-capped Chickadee,2,US-CO,Running Deer & Cottonwood Hollow Natural Areas,Larimer,4/10/20,18:02:00
+S65394077,Black-capped Chickadee,4,US-CO,Spring Park,Larimer,3/3/20,08:38:00
+S66438782,Black-capped Chickadee,4,US-CO,Spring Park,Larimer,3/31/20,08:55:00
+S66922839,Black-capped Chickadee,4,US-CO,Spring Park,Larimer,4/10/20,07:58:00
+S66718618,Black-capped Chickadee,NA,US-CO,Topminnow Natural Area (East Horsetooth Gravel Pit),Larimer,4/6/20,09:38:00
+S66013236,Black-capped Chickadee,2,US-CO,Yard - Parker St,Larimer,3/16/20,11:00:00
+S63771755,Mountain Chickadee,5,US-WY,Medicine Bow NF--Vedauwoo CG area,Albany,1/25/20,13:14:00
+S66041652,Mountain Chickadee,2,US-CO,"Pike and San Isabel National Forests, Woodland Park US-CO 39.12791, -105.23136",Teller,3/15/20,09:33:00
+S67030975,Horned Lark,1,US-CO,Arapahoe Bend Natural Area--Rigden Reservoir (Strauss Cabin Lake),Larimer,4/11/20,09:26:00
+S67143580,Horned Lark,5,US-CO,Arapahoe Bend Natural Area--Rigden Reservoir (Strauss Cabin Lake),Larimer,4/13/20,09:10:00
+S67143580,Tree Swallow,4,US-CO,Arapahoe Bend Natural Area--Rigden Reservoir (Strauss Cabin Lake),Larimer,4/13/20,09:10:00
+S66719539,Violet-green Swallow,1,US-CO,Arapahoe Bend Natural Area--Rigden Reservoir (Strauss Cabin Lake),Larimer,4/6/20,07:59:00
+S67143580,swallow sp.,NA,US-CO,Arapahoe Bend Natural Area--Rigden Reservoir (Strauss Cabin Lake),Larimer,4/13/20,09:10:00
+S63716995,Bushtit,10,US-CO,"913 E Prospect Rd, Fort Collins US-CO (40.5656,-105.0606)",Larimer,1/21/20,08:46:00
+S66642699,Bushtit,2,US-CO,Lory State Park,Larimer,4/4/20,09:29:00
+S63771755,Red-breasted Nuthatch,1,US-WY,Medicine Bow NF--Vedauwoo CG area,Albany,1/25/20,13:14:00
+S63726703,Red-breasted Nuthatch,3,US-CO,"913 E Prospect Rd, Fort Collins US-CO (40.5656,-105.0606)",Larimer,1/24/20,08:12:00
+S63597345,Red-breasted Nuthatch,2,US-CO,Grandview Cemetery,Larimer,1/20/20,12:00:00
+S65364289,Red-breasted Nuthatch,4,US-CO,Grandview Cemetery,Larimer,3/2/20,08:23:00
+S65370798,Red-breasted Nuthatch,8,US-CO,Grandview Cemetery,Larimer,3/2/20,11:20:00
+S65698642,Red-breasted Nuthatch,2,US-CO,Lee Martinez Park,Larimer,3/11/20,18:14:00
+S66024072,Red-breasted Nuthatch,2,US-CO,Lee Martinez Park,Larimer,3/20/20,17:59:00
+S66642699,Red-breasted Nuthatch,8,US-CO,Lory State Park,Larimer,4/4/20,09:29:00
+S65394077,Red-breasted Nuthatch,1,US-CO,Spring Park,Larimer,3/3/20,08:38:00
+S66438782,Red-breasted Nuthatch,2,US-CO,Spring Park,Larimer,3/31/20,08:55:00
+S66013236,Red-breasted Nuthatch,2,US-CO,Yard - Parker St,Larimer,3/16/20,11:00:00
+S66041652,Red-breasted Nuthatch,3,US-CO,"Pike and San Isabel National Forests, Woodland Park US-CO 39.12791, -105.23136",Teller,3/15/20,09:33:00
+S65370798,White-breasted Nuthatch,1,US-CO,Grandview Cemetery,Larimer,3/2/20,11:20:00
+S65698642,White-breasted Nuthatch,1,US-CO,Lee Martinez Park,Larimer,3/11/20,18:14:00
+S66642699,Pygmy Nuthatch,12,US-CO,Lory State Park,Larimer,4/4/20,09:29:00
+S66041652,Pygmy Nuthatch,3,US-CO,"Pike and San Isabel National Forests, Woodland Park US-CO 39.12791, -105.23136",Teller,3/15/20,09:33:00
+S65364289,Brown Creeper,2,US-CO,Grandview Cemetery,Larimer,3/2/20,08:23:00
+S65698642,Brown Creeper,2,US-CO,Lee Martinez Park,Larimer,3/11/20,18:14:00
+S66642699,Canyon Wren,1,US-CO,Lory State Park,Larimer,4/4/20,09:29:00
+S63492186,American Dipper,1,US-CO,"913 E Prospect Rd, Fort Collins US-CO (40.5656,-105.0606)",Larimer,1/17/20,17:16:00
+S65394077,American Dipper,1,US-CO,Spring Park,Larimer,3/3/20,08:38:00
+S63589677,European Starling,20,US-CO,South Platte River--88th Ave area,Adams,1/19/20,10:51:00
+S66719539,European Starling,13,US-CO,Arapahoe Bend Natural Area--Rigden Reservoir (Strauss Cabin Lake),Larimer,4/6/20,07:59:00
+S66858963,European Starling,2,US-CO,Arapahoe Bend Natural Area--Rigden Reservoir (Strauss Cabin Lake),Larimer,4/9/20,07:11:00
+S67030975,European Starling,25,US-CO,Arapahoe Bend Natural Area--Rigden Reservoir (Strauss Cabin Lake),Larimer,4/11/20,09:26:00
+S66111081,European Starling,3,US-CO,Colorado State University Environmental Learning Center,Larimer,3/22/20,17:06:00
+S66695801,European Starling,2,US-CO,Colorado State University Environmental Learning Center,Larimer,4/5/20,16:32:00
+S65364289,European Starling,5,US-CO,Grandview Cemetery,Larimer,3/2/20,08:23:00
+S65698642,European Starling,4,US-CO,Lee Martinez Park,Larimer,3/11/20,18:14:00
+S66024072,European Starling,11,US-CO,Lee Martinez Park,Larimer,3/20/20,17:59:00
+S66676560,European Starling,9,US-CO,Reservoir Ridge Natural Area,Larimer,4/5/20,09:54:00
+S63799861,European Starling,4,US-CO,Riverbend Ponds Natural Area,Larimer,1/26/20,08:12:00
+S66111768,European Starling,1,US-CO,Riverbend Ponds Natural Area,Larimer,3/22/20,17:24:00
+S66771868,European Starling,2,US-CO,Running Deer & Cottonwood Hollow Natural Areas,Larimer,4/7/20,07:41:00
+S66695801,Western Bluebird,2,US-CO,Colorado State University Environmental Learning Center,Larimer,4/5/20,16:32:00
+S66642699,Western Bluebird,2,US-CO,Lory State Park,Larimer,4/4/20,09:29:00
+S66129081,Western Bluebird,1,US-CO,Yard - Parker St,Larimer,3/22/20,16:00:00
+S66642699,Mountain Bluebird,8,US-CO,Lory State Park,Larimer,4/4/20,09:29:00
+S66331971,Mountain Bluebird,15,US-CO,Reservoir Ridge Natural Area,Larimer,3/28/20,13:40:00
+S66642699,Townsend's Solitaire,7,US-CO,Lory State Park,Larimer,4/4/20,09:29:00
+S63606162,Townsend's Solitaire,1,US-CO,Rawhide Energy Station/Hamilton Reservoir,Larimer,1/20/20,14:39:00
+S66108842,American Robin,3,US-CO,"3200–3648 E Horsetooth Rd, Fort Collins US-CO 40.53773, -105.01571",Larimer,3/22/20,16:22:00
+S66719539,American Robin,25,US-CO,Arapahoe Bend Natural Area--Rigden Reservoir (Strauss Cabin Lake),Larimer,4/6/20,07:59:00
+S66858963,American Robin,11,US-CO,Arapahoe Bend Natural Area--Rigden Reservoir (Strauss Cabin Lake),Larimer,4/9/20,07:11:00
+S67030975,American Robin,4,US-CO,Arapahoe Bend Natural Area--Rigden Reservoir (Strauss Cabin Lake),Larimer,4/11/20,09:26:00
+S67143580,American Robin,7,US-CO,Arapahoe Bend Natural Area--Rigden Reservoir (Strauss Cabin Lake),Larimer,4/13/20,09:10:00
+S66695801,American Robin,15,US-CO,Colorado State University Environmental Learning Center,Larimer,4/5/20,16:32:00
+S66375157,American Robin,1,US-CO,Coyote Ridge Natural Area,Larimer,3/29/20,12:31:00
+S65364289,American Robin,2,US-CO,Grandview Cemetery,Larimer,3/2/20,08:23:00
+S65370798,American Robin,1,US-CO,Grandview Cemetery,Larimer,3/2/20,11:20:00
+S65698642,American Robin,10,US-CO,Lee Martinez Park,Larimer,3/11/20,18:14:00
+S66024072,American Robin,7,US-CO,Lee Martinez Park,Larimer,3/20/20,17:59:00
+S66642699,American Robin,20,US-CO,Lory State Park,Larimer,4/4/20,09:29:00
+S66112732,American Robin,1,US-CO,Prospect Ponds Natural Area,Larimer,3/22/20,17:38:00
+S66676560,American Robin,3,US-CO,Reservoir Ridge Natural Area,Larimer,4/5/20,09:54:00
+S63525614,American Robin,1,US-CO,Riverbend Ponds Natural Area,Larimer,1/18/20,14:11:00
+S63799861,American Robin,1,US-CO,Riverbend Ponds Natural Area,Larimer,1/26/20,08:12:00
+S66128302,American Robin,18,US-CO,Running Deer & Cottonwood Hollow Natural Areas,Larimer,3/23/20,08:29:00
+S66169221,American Robin,6,US-CO,Running Deer & Cottonwood Hollow Natural Areas,Larimer,3/24/20,10:42:00
+S66771868,American Robin,13,US-CO,Running Deer & Cottonwood Hollow Natural Areas,Larimer,4/7/20,07:41:00
+S66947114,American Robin,4,US-CO,Running Deer & Cottonwood Hollow Natural Areas,Larimer,4/10/20,18:02:00
+S66438782,American Robin,2,US-CO,Spring Park,Larimer,3/31/20,08:55:00
+S66922839,American Robin,3,US-CO,Spring Park,Larimer,4/10/20,07:58:00
+S66013236,American Robin,1,US-CO,Yard - Parker St,Larimer,3/16/20,11:00:00
+S66041652,American Robin,2,US-CO,"Pike and San Isabel National Forests, Woodland Park US-CO 39.12791, -105.23136",Teller,3/15/20,09:33:00
+S65364289,Cedar Waxwing,9,US-CO,Grandview Cemetery,Larimer,3/2/20,08:23:00
+S66922839,Cedar Waxwing,25,US-CO,Spring Park,Larimer,4/10/20,07:58:00
+S63597345,House Sparrow,5,US-CO,Grandview Cemetery,Larimer,1/20/20,12:00:00
+S65364289,House Sparrow,11,US-CO,Grandview Cemetery,Larimer,3/2/20,08:23:00
+S65394077,House Sparrow,4,US-CO,Spring Park,Larimer,3/3/20,08:38:00
+S66858963,American Pipit,4,US-CO,Arapahoe Bend Natural Area--Rigden Reservoir (Strauss Cabin Lake),Larimer,4/9/20,07:11:00
+S67030975,American Pipit,5,US-CO,Arapahoe Bend Natural Area--Rigden Reservoir (Strauss Cabin Lake),Larimer,4/11/20,09:26:00
+S67143580,American Pipit,4,US-CO,Arapahoe Bend Natural Area--Rigden Reservoir (Strauss Cabin Lake),Larimer,4/13/20,09:10:00
+S63597345,House Finch,6,US-CO,Grandview Cemetery,Larimer,1/20/20,12:00:00
+S65364289,House Finch,11,US-CO,Grandview Cemetery,Larimer,3/2/20,08:23:00
+S65370798,House Finch,20,US-CO,Grandview Cemetery,Larimer,3/2/20,11:20:00
+S66024072,House Finch,5,US-CO,Lee Martinez Park,Larimer,3/20/20,17:59:00
+S65394077,House Finch,8,US-CO,Spring Park,Larimer,3/3/20,08:38:00
+S66438782,House Finch,11,US-CO,Spring Park,Larimer,3/31/20,08:55:00
+S66922839,House Finch,2,US-CO,Spring Park,Larimer,4/10/20,07:58:00
+S63478265,House Finch,4,US-CO,Timnath Reservoir--east bay,Larimer,1/17/20,09:36:00
+S66013236,House Finch,3,US-CO,Yard - Parker St,Larimer,3/16/20,11:00:00
+S63771755,Red Crossbill,3,US-WY,Medicine Bow NF--Vedauwoo CG area,Albany,1/25/20,13:14:00
+S66642699,Red Crossbill,3,US-CO,Lory State Park,Larimer,4/4/20,09:29:00
+S66041652,Red Crossbill,12,US-CO,"Pike and San Isabel National Forests, Woodland Park US-CO 39.12791, -105.23136",Teller,3/15/20,09:33:00
+S65370798,Pine Siskin,1,US-CO,Grandview Cemetery,Larimer,3/2/20,11:20:00
+S66719539,American Goldfinch,3,US-CO,Arapahoe Bend Natural Area--Rigden Reservoir (Strauss Cabin Lake),Larimer,4/6/20,07:59:00
+S66858963,American Goldfinch,5,US-CO,Arapahoe Bend Natural Area--Rigden Reservoir (Strauss Cabin Lake),Larimer,4/9/20,07:11:00
+S67030975,American Goldfinch,2,US-CO,Arapahoe Bend Natural Area--Rigden Reservoir (Strauss Cabin Lake),Larimer,4/11/20,09:26:00
+S66695801,American Goldfinch,1,US-CO,Colorado State University Environmental Learning Center,Larimer,4/5/20,16:32:00
+S66676560,American Goldfinch,2,US-CO,Reservoir Ridge Natural Area,Larimer,4/5/20,09:54:00
+S66771868,American Goldfinch,9,US-CO,Running Deer & Cottonwood Hollow Natural Areas,Larimer,4/7/20,07:41:00
+S66438782,American Goldfinch,2,US-CO,Spring Park,Larimer,3/31/20,08:55:00
+S66922839,American Goldfinch,3,US-CO,Spring Park,Larimer,4/10/20,07:58:00
+S63478265,American Goldfinch,2,US-CO,Timnath Reservoir--east bay,Larimer,1/17/20,09:36:00
+S63597345,Dark-eyed Junco,1,US-CO,Grandview Cemetery,Larimer,1/20/20,12:00:00
+S65364289,Dark-eyed Junco,5,US-CO,Grandview Cemetery,Larimer,3/2/20,08:23:00
+S65370798,Dark-eyed Junco,2,US-CO,Grandview Cemetery,Larimer,3/2/20,11:20:00
+S66642699,Dark-eyed Junco,3,US-CO,Lory State Park,Larimer,4/4/20,09:29:00
+S66331971,Dark-eyed Junco,2,US-CO,Reservoir Ridge Natural Area,Larimer,3/28/20,13:40:00
+S65394077,Dark-eyed Junco,2,US-CO,Spring Park,Larimer,3/3/20,08:38:00
+S66438782,Dark-eyed Junco,2,US-CO,Spring Park,Larimer,3/31/20,08:55:00
+S66013236,Dark-eyed Junco,1,US-CO,Yard - Parker St,Larimer,3/16/20,11:00:00
+S66128302,White-crowned Sparrow,4,US-CO,Running Deer & Cottonwood Hollow Natural Areas,Larimer,3/23/20,08:29:00
+S66169221,White-crowned Sparrow,1,US-CO,Running Deer & Cottonwood Hollow Natural Areas,Larimer,3/24/20,10:42:00
+S66771868,White-crowned Sparrow,3,US-CO,Running Deer & Cottonwood Hollow Natural Areas,Larimer,4/7/20,07:41:00
+S66013236,White-throated Sparrow,1,US-CO,Yard - Parker St,Larimer,3/16/20,11:00:00
+S63589677,Song Sparrow,2,US-CO,South Platte River--88th Ave area,Adams,1/19/20,10:51:00
+S66719539,Song Sparrow,2,US-CO,Arapahoe Bend Natural Area--Rigden Reservoir (Strauss Cabin Lake),Larimer,4/6/20,07:59:00
+S66858963,Song Sparrow,4,US-CO,Arapahoe Bend Natural Area--Rigden Reservoir (Strauss Cabin Lake),Larimer,4/9/20,07:11:00
+S67030975,Song Sparrow,3,US-CO,Arapahoe Bend Natural Area--Rigden Reservoir (Strauss Cabin Lake),Larimer,4/11/20,09:26:00
+S63525614,Song Sparrow,1,US-CO,Riverbend Ponds Natural Area,Larimer,1/18/20,14:11:00
+S66128302,Song Sparrow,5,US-CO,Running Deer & Cottonwood Hollow Natural Areas,Larimer,3/23/20,08:29:00
+S66169221,Song Sparrow,6,US-CO,Running Deer & Cottonwood Hollow Natural Areas,Larimer,3/24/20,10:42:00
+S66771868,Song Sparrow,4,US-CO,Running Deer & Cottonwood Hollow Natural Areas,Larimer,4/7/20,07:41:00
+S66438782,Song Sparrow,1,US-CO,Spring Park,Larimer,3/31/20,08:55:00
+S66695801,Spotted Towhee,1,US-CO,Colorado State University Environmental Learning Center,Larimer,4/5/20,16:32:00
+S66375157,Spotted Towhee,2,US-CO,Coyote Ridge Natural Area,Larimer,3/29/20,12:31:00
+S66642699,Spotted Towhee,5,US-CO,Lory State Park,Larimer,4/4/20,09:29:00
+S66676560,Spotted Towhee,4,US-CO,Reservoir Ridge Natural Area,Larimer,4/5/20,09:54:00
+S66858963,Yellow-headed Blackbird,1,US-CO,Arapahoe Bend Natural Area--Rigden Reservoir (Strauss Cabin Lake),Larimer,4/9/20,07:11:00
+S67143580,Yellow-headed Blackbird,35,US-CO,Arapahoe Bend Natural Area--Rigden Reservoir (Strauss Cabin Lake),Larimer,4/13/20,09:10:00
+S66719539,Western Meadowlark,4,US-CO,Arapahoe Bend Natural Area--Rigden Reservoir (Strauss Cabin Lake),Larimer,4/6/20,07:59:00
+S66858963,Western Meadowlark,11,US-CO,Arapahoe Bend Natural Area--Rigden Reservoir (Strauss Cabin Lake),Larimer,4/9/20,07:11:00
+S67030975,Western Meadowlark,7,US-CO,Arapahoe Bend Natural Area--Rigden Reservoir (Strauss Cabin Lake),Larimer,4/11/20,09:26:00
+S67143580,Western Meadowlark,4,US-CO,Arapahoe Bend Natural Area--Rigden Reservoir (Strauss Cabin Lake),Larimer,4/13/20,09:10:00
+S66375157,Western Meadowlark,3,US-CO,Coyote Ridge Natural Area,Larimer,3/29/20,12:31:00
+S66642699,Western Meadowlark,2,US-CO,Lory State Park,Larimer,4/4/20,09:29:00
+S66676560,Western Meadowlark,8,US-CO,Reservoir Ridge Natural Area,Larimer,4/5/20,09:54:00
+S66169221,Western Meadowlark,2,US-CO,Running Deer & Cottonwood Hollow Natural Areas,Larimer,3/24/20,10:42:00
+S66771868,Western Meadowlark,4,US-CO,Running Deer & Cottonwood Hollow Natural Areas,Larimer,4/7/20,07:41:00
+S63478265,Western Meadowlark,1,US-CO,Timnath Reservoir--east bay,Larimer,1/17/20,09:36:00
+S66108842,Red-winged Blackbird,8,US-CO,"3200–3648 E Horsetooth Rd, Fort Collins US-CO 40.53773, -105.01571",Larimer,3/22/20,16:22:00
+S66719539,Red-winged Blackbird,25,US-CO,Arapahoe Bend Natural Area--Rigden Reservoir (Strauss Cabin Lake),Larimer,4/6/20,07:59:00
+S66858963,Red-winged Blackbird,NA,US-CO,Arapahoe Bend Natural Area--Rigden Reservoir (Strauss Cabin Lake),Larimer,4/9/20,07:11:00
+S67030975,Red-winged Blackbird,31,US-CO,Arapahoe Bend Natural Area--Rigden Reservoir (Strauss Cabin Lake),Larimer,4/11/20,09:26:00
+S67143580,Red-winged Blackbird,25,US-CO,Arapahoe Bend Natural Area--Rigden Reservoir (Strauss Cabin Lake),Larimer,4/13/20,09:10:00
+S66111081,Red-winged Blackbird,3,US-CO,Colorado State University Environmental Learning Center,Larimer,3/22/20,17:06:00
+S66695801,Red-winged Blackbird,9,US-CO,Colorado State University Environmental Learning Center,Larimer,4/5/20,16:32:00
+S65698642,Red-winged Blackbird,2,US-CO,Lee Martinez Park,Larimer,3/11/20,18:14:00
+S66024072,Red-winged Blackbird,3,US-CO,Lee Martinez Park,Larimer,3/20/20,17:59:00
+S66642699,Red-winged Blackbird,3,US-CO,Lory State Park,Larimer,4/4/20,09:29:00
+S66676560,Red-winged Blackbird,4,US-CO,Reservoir Ridge Natural Area,Larimer,4/5/20,09:54:00
+S63525614,Red-winged Blackbird,11,US-CO,Riverbend Ponds Natural Area,Larimer,1/18/20,14:11:00
+S63799861,Red-winged Blackbird,17,US-CO,Riverbend Ponds Natural Area,Larimer,1/26/20,08:12:00
+S66111768,Red-winged Blackbird,6,US-CO,Riverbend Ponds Natural Area,Larimer,3/22/20,17:24:00
+S66128302,Red-winged Blackbird,100,US-CO,Running Deer & Cottonwood Hollow Natural Areas,Larimer,3/23/20,08:29:00
+S66169221,Red-winged Blackbird,100,US-CO,Running Deer & Cottonwood Hollow Natural Areas,Larimer,3/24/20,10:42:00
+S66771868,Red-winged Blackbird,50,US-CO,Running Deer & Cottonwood Hollow Natural Areas,Larimer,4/7/20,07:41:00
+S66947114,Red-winged Blackbird,NA,US-CO,Running Deer & Cottonwood Hollow Natural Areas,Larimer,4/10/20,18:02:00
+S66718618,Red-winged Blackbird,NA,US-CO,Topminnow Natural Area (East Horsetooth Gravel Pit),Larimer,4/6/20,09:38:00
+S66112732,Brewer's Blackbird,35,US-CO,Prospect Ponds Natural Area,Larimer,3/22/20,17:38:00
+S66771868,Brewer's Blackbird,1,US-CO,Running Deer & Cottonwood Hollow Natural Areas,Larimer,4/7/20,07:41:00
+S67143580,Common Grackle,2,US-CO,Arapahoe Bend Natural Area--Rigden Reservoir (Strauss Cabin Lake),Larimer,4/13/20,09:10:00
+S66771868,Common Grackle,4,US-CO,Running Deer & Cottonwood Hollow Natural Areas,Larimer,4/7/20,07:41:00
+S66947114,Common Grackle,12,US-CO,Running Deer & Cottonwood Hollow Natural Areas,Larimer,4/10/20,18:02:00
+S66858963,Great-tailed Grackle,3,US-CO,Arapahoe Bend Natural Area--Rigden Reservoir (Strauss Cabin Lake),Larimer,4/9/20,07:11:00
+S63799861,blackbird sp.,41,US-CO,Riverbend Ponds Natural Area,Larimer,1/26/20,08:12:00

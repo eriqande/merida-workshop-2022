@@ -428,7 +428,7 @@ Now, we are going to include facets.
  
 ```{r}
 ggplot(mtcars, aes(factor(cyl), fill = factor(am))) +
-  geom_bar(position = 'dodge')+ # add the barpot
+  geom_bar(position = 'dodge') + # add the barpot
   facet_wrap(c("am")) # put each level of "am" in a different facet
 ```
  
@@ -450,8 +450,7 @@ ggplot(mtcars, aes(factor(cyl),fill = factor(am))) +
   geom_label(aes(label = ..count..), 
              stat = 'count', 
              position = 'stack') +
-  scale_fill_manual(values=c("#BBBBBB", # a nice, neuteral grey 
-                               "#E69F00")) # a gold caramel color
+  scale_fill_manual(values=c("#BBBBBB", "#E69F00"))
 ```
  
 Instead of defining the position as a string (e.g. position = "dodge"), you can write it as a full function with arguments (e.g. position = position_dodge(width = 0.5)) or tell ggplot where within the boxplot you'd like to posiiton the counts specifically (e.g position = position_stack(vjust=0.5)).
@@ -462,8 +461,7 @@ ggplot(mtcars, aes(factor(cyl), fill = factor(am))) +
   geom_text(aes(label = ..count..),
             stat = 'count',
             position = position_stack(vjust = 0.5)) +
-  scale_fill_manual(values=c("#BBBBBB", 
-                               "#E69F00"))
+  scale_fill_manual(values=c("#BBBBBB", "#E69F00"))
 ```
  
 As you can see, the general idea of behind ggplot (starting with just a blank plot and slowly adding more and more layers) also lends itself to a general workflow where we start with a very simple plot and add layers until it looks exactly the way we want.
@@ -482,31 +480,61 @@ And that wraps it up for this beginner ggplot2 tutorial. At this point, particul
   *  Create a custom color palette for your plot.
 *  Be able to make a line plot. 
 
-## Exercise Answers
+## Appendix 1: Exercise Answers
 
-**Exercise 1: Create the following plot**
+**Exercise 1**
 
 ```{r}
 g<-ggplot(mtcars,aes(hp, qsec,color = as.character(cyl)) ) +
   geom_point() + 
   geom_smooth(method = lm, se = TRUE, color="black") +
-  theme_bw() + theme(aspect.ratio = 1)
+  theme_bw() + 
+  theme(aspect.ratio = 1)
 g
 ```
 
-**Exercise 2: Create the following plot**
+**Exercise 2**
 
 ```{r}
 ggplot() +
-  geom_point(aes(hp, qsec, shape = factor(vs), size = mpg), mtcars, alpha = 0.5, col = 'red') +
+  geom_point(aes(hp, 
+                 qsec, 
+                 shape = factor(vs), 
+                 size = mpg), 
+             mtcars, 
+             alpha = 0.5, 
+             col = 'red') +
   labs(shape = 'vs', size = 'qsec') +
-  theme_bw() + theme(aspect.ratio = 1)
+  theme_bw() + 
+  theme(aspect.ratio = 1)
 ```
 
-**Exercise 3: Create the following plot**
+**Exercise 3**
 
 ```{r}
 ggplot() +
   geom_line(aes(hp, qsec,lty = factor(am)), mtcars) + 
-  theme_bw()+theme(aspect.ratio = 1)
+  theme_bw() + 
+  theme(aspect.ratio = 1)
+```
+
+**Exercise 4a-c**
+
+a) 
+
+```{r, echo=F}
+ggplot(mtcars, aes(hp)) +
+  geom_histogram(bins = 10)
+```
+  
+b) 
+```{r, echo=F}
+ggplot(mtcars, aes(hp)) +
+  stat_bin(bins = 10, col="black", fill = 'pink')
+```
+ 
+c) 
+```{r, echo=F}
+ggplot(mtcars, aes(hp, col = factor(am))) +
+  stat_density(fill = NA)
 ```
