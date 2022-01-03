@@ -1,0 +1,1445 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Session 2 Introduction to the tidyverse | Reproducible Research for Conservation — Mérida, Mexico</title>
+  <meta name="description" content="A book example for a Chapman &amp; Hall book." />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Session 2 Introduction to the tidyverse | Reproducible Research for Conservation — Mérida, Mexico" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="A book example for a Chapman &amp; Hall book." />
+  <meta name="github-repo" content="yihui/bookdown-crc" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Session 2 Introduction to the tidyverse | Reproducible Research for Conservation — Mérida, Mexico" />
+  
+  <meta name="twitter:description" content="A book example for a Chapman &amp; Hall book." />
+  
+
+<meta name="author" content="Eric C. Anderson, Christen Bossu, Richard Evan Feldman, Kristen C. Ruegg, Marius Somveille" />
+
+
+<meta name="date" content="2021-12-31" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="congen-intro.html"/>
+<link rel="next" href="reporg.html"/>
+<script src="libs/header-attrs/header-attrs.js"></script>
+<script src="libs/jquery/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections/anchor-sections.js"></script>
+<script src="libs/kePrint/kePrint.js"></script>
+<link href="libs/lightable/lightable.css" rel="stylesheet" />
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="css/style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Mérida Workshop</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
+<li class="chapter" data-level="1" data-path="congen-intro.html"><a href="congen-intro.html"><i class="fa fa-check"></i><b>1</b> Introduction to Conservation Genomics Approaches</a></li>
+<li class="chapter" data-level="2" data-path="introduction-to-the-tidyverse.html"><a href="introduction-to-the-tidyverse.html"><i class="fa fa-check"></i><b>2</b> Introduction to the tidyverse</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="introduction-to-the-tidyverse.html"><a href="introduction-to-the-tidyverse.html#what-on-earth-is-the-tidyerse"><i class="fa fa-check"></i><b>2.1</b> What on earth is the tidyerse?</a></li>
+<li class="chapter" data-level="2.2" data-path="introduction-to-the-tidyverse.html"><a href="introduction-to-the-tidyverse.html#an-example-data-set"><i class="fa fa-check"></i><b>2.2</b> An example data set</a></li>
+<li class="chapter" data-level="2.3" data-path="introduction-to-the-tidyverse.html"><a href="introduction-to-the-tidyverse.html#reading-data-in-the-tidyverse"><i class="fa fa-check"></i><b>2.3</b> Reading data in the tidyverse</a></li>
+<li class="chapter" data-level="2.4" data-path="introduction-to-the-tidyverse.html"><a href="introduction-to-the-tidyverse.html#a-word-on-tibbles"><i class="fa fa-check"></i><b>2.4</b> A word on tibbles</a></li>
+<li class="chapter" data-level="2.5" data-path="introduction-to-the-tidyverse.html"><a href="introduction-to-the-tidyverse.html#back-to-tidying-up-our-genotype-data"><i class="fa fa-check"></i><b>2.5</b> Back to “tidying” up our genotype data</a></li>
+<li class="chapter" data-level="2.6" data-path="introduction-to-the-tidyverse.html"><a href="introduction-to-the-tidyverse.html#what-the-heck-is-that-thingie"><i class="fa fa-check"></i><b>2.6</b> What the heck is that <code>%&gt;%</code> thingie?!</a></li>
+<li class="chapter" data-level="2.7" data-path="introduction-to-the-tidyverse.html"><a href="introduction-to-the-tidyverse.html#the-dplyr-package-the-heart-of-the-tidyverse"><i class="fa fa-check"></i><b>2.7</b> The ‘dplyr’ package: the heart of the tidyverse</a>
+<ul>
+<li class="chapter" data-level="2.7.1" data-path="introduction-to-the-tidyverse.html"><a href="introduction-to-the-tidyverse.html#non-standard-evaluation-nse-you-dont-wrap-column-names-in-quotation-marks"><i class="fa fa-check"></i><b>2.7.1</b> Non-standard Evaluation (NSE): You don’t wrap column names in quotation marks</a></li>
+<li class="chapter" data-level="2.7.2" data-path="introduction-to-the-tidyverse.html"><a href="introduction-to-the-tidyverse.html#select-to-select-columns-of-a-tibble"><i class="fa fa-check"></i><b>2.7.2</b> <code>select()</code> to select columns of a tibble</a></li>
+<li class="chapter" data-level="2.7.3" data-path="introduction-to-the-tidyverse.html"><a href="introduction-to-the-tidyverse.html#filter-to-retain-certain-rows"><i class="fa fa-check"></i><b>2.7.3</b> <code>filter()</code> to retain certain rows</a></li>
+<li class="chapter" data-level="2.7.4" data-path="introduction-to-the-tidyverse.html"><a href="introduction-to-the-tidyverse.html#arrange-to-reorder-the-rows-of-the-tibble"><i class="fa fa-check"></i><b>2.7.4</b> <code>arrange()</code> to reorder the rows of the tibble</a></li>
+<li class="chapter" data-level="2.7.5" data-path="introduction-to-the-tidyverse.html"><a href="introduction-to-the-tidyverse.html#mutate-to-create-new-columns"><i class="fa fa-check"></i><b>2.7.5</b> <code>mutate()</code> to create new columns</a></li>
+<li class="chapter" data-level="2.7.6" data-path="introduction-to-the-tidyverse.html"><a href="introduction-to-the-tidyverse.html#compute-a-single-value-from-many-rows-summarise"><i class="fa fa-check"></i><b>2.7.6</b> Compute a single value from many rows: <code>summarise()</code></a></li>
+<li class="chapter" data-level="2.7.7" data-path="introduction-to-the-tidyverse.html"><a href="introduction-to-the-tidyverse.html#group_by-to-operate-tidily-on-subsets-of-a-tibble"><i class="fa fa-check"></i><b>2.7.7</b> <code>group_by()</code> to operate tidily on subsets of a tibble</a></li>
+<li class="chapter" data-level="2.7.8" data-path="introduction-to-the-tidyverse.html"><a href="introduction-to-the-tidyverse.html#joins"><i class="fa fa-check"></i><b>2.7.8</b> Joins</a></li>
+<li class="chapter" data-level="2.7.9" data-path="introduction-to-the-tidyverse.html"><a href="introduction-to-the-tidyverse.html#wrap-up"><i class="fa fa-check"></i><b>2.7.9</b> Wrap Up</a></li>
+</ul></li>
+<li class="chapter" data-level="2.8" data-path="introduction-to-the-tidyverse.html"><a href="introduction-to-the-tidyverse.html#modeling-within-the-tidyverse"><i class="fa fa-check"></i><b>2.8</b> Modeling within the Tidyverse</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="reporg.html"><a href="reporg.html"><i class="fa fa-check"></i><b>3</b> Organizing Research Projects for Reproducibility</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="reporg.html"><a href="reporg.html#goals-for-this-session"><i class="fa fa-check"></i><b>3.1</b> Goals for this session</a></li>
+<li class="chapter" data-level="3.2" data-path="reporg.html"><a href="reporg.html#why-do-this"><i class="fa fa-check"></i><b>3.2</b> Why do this?</a></li>
+<li class="chapter" data-level="3.3" data-path="reporg.html"><a href="reporg.html#what-can-this-look-like"><i class="fa fa-check"></i><b>3.3</b> What can this look like?</a></li>
+<li class="chapter" data-level="3.4" data-path="reporg.html"><a href="reporg.html#reproducibility-edict-1-dont-save-your-r-workspace-and-then-reload-it"><i class="fa fa-check"></i><b>3.4</b> Reproducibility Edict #1: Don’t Save Your R Workspace and then Reload It</a></li>
+<li class="chapter" data-level="3.5" data-path="reporg.html"><a href="reporg.html#paths-an-important-concept-for-reproducibility"><i class="fa fa-check"></i><b>3.5</b> Paths, an important concept for reproducibility</a></li>
+<li class="chapter" data-level="3.6" data-path="reporg.html"><a href="reporg.html#the-working-directory"><i class="fa fa-check"></i><b>3.6</b> The Working Directory</a>
+<ul>
+<li class="chapter" data-level="3.6.1" data-path="reporg.html"><a href="reporg.html#a-hugely-important-point"><i class="fa fa-check"></i><b>3.6.1</b> A Hugely Important Point!</a></li>
+<li class="chapter" data-level="3.6.2" data-path="reporg.html"><a href="reporg.html#skeletal-anatomy-of-an-rstudio-project"><i class="fa fa-check"></i><b>3.6.2</b> Skeletal anatomy of an RStudio Project</a></li>
+</ul></li>
+<li class="chapter" data-level="3.7" data-path="reporg.html"><a href="reporg.html#reproducibility-edict-2-dont-change-directories-in-your-code"><i class="fa fa-check"></i><b>3.7</b> Reproducibility Edict #2: Don’t Change Directories in Your Code</a></li>
+<li class="chapter" data-level="3.8" data-path="reporg.html"><a href="reporg.html#relative-paths"><i class="fa fa-check"></i><b>3.8</b> Relative Paths</a></li>
+<li class="chapter" data-level="3.9" data-path="reporg.html"><a href="reporg.html#reproducibility-edict-3-always-use-relative-paths-from-the-project-directory-to-files-inside-the-project-directory"><i class="fa fa-check"></i><b>3.9</b> Reproducibility Edict #3: Always Use Relative Paths from the Project Directory to Files <em>inside</em> the Project Directory</a></li>
+<li class="chapter" data-level="3.10" data-path="reporg.html"><a href="reporg.html#reproducibility-edict-4-put-data-files-into-a-data-directory"><i class="fa fa-check"></i><b>3.10</b> Reproducibility Edict #4: Put data files into a <code>data</code> directory</a></li>
+<li class="chapter" data-level="3.11" data-path="reporg.html"><a href="reporg.html#reproducibility-edict-5-write-analysis-scripts-as-.r-or-.rmd-files"><i class="fa fa-check"></i><b>3.11</b> Reproducibility Edict #5: Write Analysis Scripts as <code>.R</code> or <code>.Rmd</code> files</a></li>
+<li class="chapter" data-level="3.12" data-path="reporg.html"><a href="reporg.html#download-an-example-project-to-play-with"><i class="fa fa-check"></i><b>3.12</b> Download an example project to play with</a>
+<ul>
+<li class="chapter" data-level="3.12.1" data-path="reporg.html"><a href="reporg.html#lets-have-a-moment"><i class="fa fa-check"></i><b>3.12.1</b> Let’s have a moment</a></li>
+</ul></li>
+<li class="chapter" data-level="3.13" data-path="reporg.html"><a href="reporg.html#reproducibility-edict-6-write-your-code-with-style"><i class="fa fa-check"></i><b>3.13</b> Reproducibility Edict #6: Write your code with style!</a></li>
+<li class="chapter" data-level="3.14" data-path="reporg.html"><a href="reporg.html#what-about-shared-data-sets"><i class="fa fa-check"></i><b>3.14</b> What About Shared Data Sets?</a></li>
+<li class="chapter" data-level="3.15" data-path="reporg.html"><a href="reporg.html#reproducibility-edict-7-use-git-for-version-control"><i class="fa fa-check"></i><b>3.15</b> Reproducibility Edict #7: Use git for Version Control</a></li>
+<li class="chapter" data-level="3.16" data-path="reporg.html"><a href="reporg.html#in-the-meantime-a-short-demo-of-gitgithub-on-rstudio"><i class="fa fa-check"></i><b>3.16</b> In the meantime, a short demo of git/GitHub on RStudio</a></li>
+<li class="chapter" data-level="3.17" data-path="reporg.html"><a href="reporg.html#what-to-keep-under-version-control-and-what-not-to"><i class="fa fa-check"></i><b>3.17</b> What to keep under version control and what not to</a></li>
+<li class="chapter" data-level="3.18" data-path="reporg.html"><a href="reporg.html#create-a-readme-to-describe-the-parts-of-your-analysis-project"><i class="fa fa-check"></i><b>3.18</b> Create a README to describe the parts of your analysis project</a></li>
+<li class="chapter" data-level="3.19" data-path="reporg.html"><a href="reporg.html#github-and-very-large-data-sets"><i class="fa fa-check"></i><b>3.19</b> GitHub and Very large data sets</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="envdata.html"><a href="envdata.html"><i class="fa fa-check"></i><b>4</b> Finding and Obtaining Environmental Data for Conservation</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="envdata.html"><a href="envdata.html#environmental-layers.-a-general-overview"><i class="fa fa-check"></i><b>4.1</b> Environmental Layers. A general overview</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="envdata.html"><a href="envdata.html#environmental-layers-in-conservation-genetics"><i class="fa fa-check"></i><b>4.1.1</b> Environmental layers in conservation genetics</a></li>
+<li class="chapter" data-level="4.1.2" data-path="envdata.html"><a href="envdata.html#environmental-layers-as-raster-data"><i class="fa fa-check"></i><b>4.1.2</b> Environmental layers as raster data</a></li>
+<li class="chapter" data-level="4.1.3" data-path="envdata.html"><a href="envdata.html#coordinate-system-and-projections"><i class="fa fa-check"></i><b>4.1.3</b> Coordinate system and projections</a></li>
+<li class="chapter" data-level="4.1.4" data-path="envdata.html"><a href="envdata.html#parameters-of-raster-data"><i class="fa fa-check"></i><b>4.1.4</b> Parameters of raster data</a></li>
+<li class="chapter" data-level="4.1.5" data-path="envdata.html"><a href="envdata.html#examples-of-climate-layers"><i class="fa fa-check"></i><b>4.1.5</b> Examples of climate layers</a></li>
+<li class="chapter" data-level="4.1.6" data-path="envdata.html"><a href="envdata.html#examples-of-atmospheric-layers"><i class="fa fa-check"></i><b>4.1.6</b> Examples of atmospheric layers</a></li>
+<li class="chapter" data-level="4.1.7" data-path="envdata.html"><a href="envdata.html#examples-of-vegetation-layers"><i class="fa fa-check"></i><b>4.1.7</b> Examples of vegetation layers</a></li>
+<li class="chapter" data-level="4.1.8" data-path="envdata.html"><a href="envdata.html#examples-of-landscape-layers"><i class="fa fa-check"></i><b>4.1.8</b> Examples of landscape layers</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="spatdata.html"><a href="spatdata.html"><i class="fa fa-check"></i><b>5</b> Handling and Visualizing Spatial Data in R</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="spatdata.html"><a href="spatdata.html#getting-environmental-raster-data-into-r"><i class="fa fa-check"></i><b>5.1</b> Getting Environmental (Raster) data into R</a></li>
+<li class="chapter" data-level="5.2" data-path="spatdata.html"><a href="spatdata.html#playing-around-with-the-yucatan-jay"><i class="fa fa-check"></i><b>5.2</b> Playing around with the Yucatan Jay</a></li>
+<li class="chapter" data-level="5.3" data-path="spatdata.html"><a href="spatdata.html#how-about-population-densities"><i class="fa fa-check"></i><b>5.3</b> How about population densities?</a></li>
+<li class="chapter" data-level="5.4" data-path="spatdata.html"><a href="spatdata.html#now-how-about-finding-roads"><i class="fa fa-check"></i><b>5.4</b> Now, How about finding roads?</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="geassoc.html"><a href="geassoc.html"><i class="fa fa-check"></i><b>6</b> Genetic and Environmental Associations</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="geassoc.html"><a href="geassoc.html#background"><i class="fa fa-check"></i><b>6.1</b> Background</a></li>
+<li class="chapter" data-level="6.2" data-path="geassoc.html"><a href="geassoc.html#motivation"><i class="fa fa-check"></i><b>6.2</b> Motivation</a></li>
+<li class="chapter" data-level="6.3" data-path="geassoc.html"><a href="geassoc.html#housekeeping"><i class="fa fa-check"></i><b>6.3</b> Housekeeping</a></li>
+<li class="chapter" data-level="6.4" data-path="geassoc.html"><a href="geassoc.html#running-gradient-forest"><i class="fa fa-check"></i><b>6.4</b> Running Gradient Forest</a></li>
+<li class="chapter" data-level="6.5" data-path="geassoc.html"><a href="geassoc.html#basic-gradient-forest-preparation"><i class="fa fa-check"></i><b>6.5</b> Basic Gradient Forest Preparation</a></li>
+<li class="chapter" data-level="6.6" data-path="geassoc.html"><a href="geassoc.html#defining-genomic-vulnerabilitygenomic-offset-given-future-climate-predictions"><i class="fa fa-check"></i><b>6.6</b> Defining “Genomic Vulnerability/Genomic offset” Given Future Climate Predictions</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="conclude.html"><a href="conclude.html"><i class="fa fa-check"></i><b>7</b> Concluding Remarks / Parting Words</a></li>
+<li class="divider"></li>
+<li><a href="https://bookdown.org" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Reproducible Research for Conservation — Mérida, Mexico</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="introduction-to-the-tidyverse" class="section level1" number="2">
+<h1><span class="header-section-number">Session 2</span> Introduction to the tidyverse</h1>
+<div id="what-on-earth-is-the-tidyerse" class="section level2" number="2.1">
+<h2><span class="header-section-number">2.1</span> What on earth is the tidyerse?</h2>
+<p>Broadly and briefly, the tidyverse is a collection of packages
+that are tailored to operating on data that are stored in what
+is called a “tidy” format. Such a format is one that is typical
+of the manner in which data are stored in relational data bases.
+(We will be talking more about “tidy” format throughout this session).</p>
+<p>There is an R package called ‘tidyverse’ that is simply a wrapper that
+automatically loads the 8 <em>core</em> packages of the tidyverse. In this session
+we will talk specifically about functions in 5 of those packages, encountering
+them in this order:</p>
+<ul>
+<li>‘readr’</li>
+<li>‘tibble’</li>
+<li>‘tidyr’</li>
+<li>‘dplyr’</li>
+<li>‘purrr’</li>
+</ul>
+<p>The other core packages in the tidyverse are:</p>
+<ul>
+<li>‘ggplot2’ — the well known graphics plotting package</li>
+<li>‘stringr’ — a package for manipulating string data</li>
+<li>‘forcats’ — a package to simplify the use of factors</li>
+</ul>
+<p>These packages provide a unified way of handling data in a tidy format.
+And, it turns out, almost any data type can be stored and expressed
+in a tidy format. This means that 99% of your data analysis tasks
+can be tackled in a tidy fashion.</p>
+<p>Some “big-data” data sets (like
+genome sequencing alignments, or doppler radar data, etc.) come in
+specialized data formats that allow for fast access and compression,
+and would not by amenable to storage in a tidy format. However, these
+are specialized cases, and for almost every data analysis application
+you will encounter, it behooves you to get comfortable in the
+tidyverse.</p>
+<p>At any rate, to have access to all the functions from the 8 core
+packages of the ‘tidyverse’ we just load the package like this:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="introduction-to-the-tidyverse.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div>
+</div>
+<div id="an-example-data-set" class="section level2" number="2.2">
+<h2><span class="header-section-number">2.2</span> An example data set</h2>
+<p>We will start our exploration of the tidyverse with a data set
+that is decidedly <em>not</em> tidy. It is a small data set of <em>genotypes</em>
+of 34 fish from four different rivers with code names <code>BALGA</code>, <code>BCHNC</code>,
+<code>BEMME</code>, and <code>BMTMA</code>. The fish have been genotyped
+at 5 genetic markers, named <code>mk1</code>, <code>mk2</code>, <code>mk3</code>, <code>mk4</code>, and <code>mk5</code>.<br />
+Because these fish are <em>diploids</em> they have two copies of each
+gene, and therefore, their genotype at a single markers
+consists of the <em>allele</em> or <em>allelic type</em> of the two gene copies
+at that marker. So, in this data set, for example, the <code>mk1_1</code> column
+holds information about the first gene copy at marker <code>mk1</code> and,
+<code>mk1_2</code> holds information about the second gene copy at marker <code>mk1</code>.
+Different alleles are specified as different positive integer
+values, (like <code>228</code>)</p>
+<p>The data set is in the merida-workshop-2022 Rstudio project, stored as a CSV
+file at <code>data/tidy-intro/genotypes.csv</code>. It looks like this:</p>
+<pre class="csv"><code>river,indiv,mk1_1,mk1_2,mk2_1,mk2_2,mk3_1,mk3_2,mk4_1,mk4_2,mk5_1,mk5_2
+BALGA,BALGA_001,311,311,228,228,234,234,184,164,211,211
+BALGA,BALGA_002,311,225,228,228,230,226,184,184,NA,NA
+BALGA,BALGA_006,311,311,228,228,234,234,184,168,219,215
+BALGA,BALGA_007,311,311,228,220,230,218,184,164,215,215
+BALGA,BALGA_008,311,311,228,228,234,230,168,164,NA,NA
+BALGA,BALGA_009,315,315,220,220,238,230,184,184,231,207
+BALGA,BALGA_012,311,311,228,220,230,230,184,164,227,211
+BCHNC,BCHNC_001,311,311,228,228,234,230,184,184,227,211
+BCHNC,BCHNC_002,311,259,228,228,238,226,184,184,227,215
+BCHNC,BCHNC_003,311,311,228,212,238,226,NA,NA,227,227
+BCHNC,BCHNC_004,NA,NA,NA,NA,NA,NA,NA,NA,207,207
+BCHNC,BCHNC_005,311,299,232,228,234,234,184,184,219,203
+BCHNC,BCHNC_006,NA,NA,228,228,NA,NA,168,168,215,215
+BCHNC,BCHNC_007,315,311,228,228,234,234,168,168,215,211
+BCHNC,BCHNC_008,NA,NA,228,228,NA,NA,168,168,231,219
+BCHNC,BCHNC_009,349,311,236,228,234,214,184,168,219,219
+BCHNC,BCHNC_010,311,311,232,228,238,230,184,168,219,215
+BEMME,BEMME_001,311,311,228,228,238,226,184,184,NA,NA
+BEMME,BEMME_002,349,299,232,220,246,234,184,168,211,203
+BEMME,BEMME_003,311,311,236,228,238,234,184,168,NA,NA
+BEMME,BEMME_006,311,311,236,228,238,234,184,168,NA,NA
+BEMME,BEMME_008,349,349,228,228,234,230,184,184,215,211
+BEMME,BEMME_009,311,311,228,220,238,238,184,184,235,203
+BEMME,BEMME_010,311,311,228,228,242,234,168,168,223,203
+BEMME,BEMME_011,307,307,228,228,238,234,184,168,231,215
+BMTMA,BMTMA_001,NA,NA,228,220,234,234,196,168,223,211
+BMTMA,BMTMA_003,311,311,228,228,234,230,208,196,223,219
+BMTMA,BMTMA_005,311,253,228,228,242,230,NA,NA,211,203
+BMTMA,BMTMA_006,311,311,228,228,234,226,196,184,223,211
+BMTMA,BMTMA_007,NA,NA,228,220,234,230,196,184,223,223
+BMTMA,BMTMA_008,311,311,228,228,242,238,196,188,223,223
+BMTMA,BMTMA_009,NA,NA,228,228,234,230,200,184,223,219
+BMTMA,BMTMA_010,311,311,232,232,230,230,196,184,223,211
+BMTMA,BMTMA_011,NA,NA,228,228,NA,NA,184,168,223,203</code></pre>
+</div>
+<div id="reading-data-in-the-tidyverse" class="section level2" number="2.3">
+<h2><span class="header-section-number">2.3</span> Reading data in the tidyverse</h2>
+<p>The package ‘readr’ has a large number of functions for reading in
+data of different types. They all start with <code>read_</code>. These functions
+typically read things into tidyverse-specific data frames that are
+called “tibbles,” about which we will hear more later.</p>
+<p>We can read the <code>genotypes.csv</code> file using the readr function,
+<code>read_csv()</code>.</p>
+<p>Note: this looks like the base R function <code>read.csv()</code>, but it is not the
+same!! Most notably,</p>
+<ul>
+<li><code>read_csv()</code> will never automatically convert strings to factors (Rejoice!)</li>
+<li><code>read_csv()</code> is faster than <code>read.csv()</code></li>
+<li><code>read_csv()</code> is more likely to tell you if there are unexpected
+irregularities found while reading your data set. It also has
+facilities to tell you exactly where those data-reading problems
+occurred.</li>
+<li><code>read_csv()</code> will return data in a <em>tibble</em> rather than simply
+a <em>data frame</em>. (More about this soon!).</li>
+</ul>
+<p>These characteristics are shared amongst all the <code>read_*()</code> functions
+(such as <code>read_tsv()</code>, <code>read_table()</code>, <code>read_table2()</code> and
+<code>read_delim()</code>) in the ‘readr’ package.</p>
+<p>A delightful overview of the readr package can be found on the
+“readr Cheatsheet” from RStudio available
+<a href="https://raw.githubusercontent.com/rstudio/cheatsheets/main/data-import.pdf">here</a> or
+by clicking the thumbnail below.</p>
+<p><a href="https://raw.githubusercontent.com/rstudio/cheatsheets/main/data-import.pdf"><img src="https://github.com/rstudio/cheatsheets/raw/main/pngs/thumbnails/data-import-cheatsheet-thumbs.png" /></a></p>
+<p>Reading the data set with <code>read_csv()</code> is simple:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="introduction-to-the-tidyverse.html#cb3-1" aria-hidden="true" tabindex="-1"></a>genos <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/tidy-intro/genotypes.csv&quot;</span>)</span></code></pre></div>
+<p>And then we can display it like this:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="introduction-to-the-tidyverse.html#cb4-1" aria-hidden="true" tabindex="-1"></a>genos</span></code></pre></div>
+<pre><code>## # A tibble: 34 × 12
+##    river indiv     mk1_1 mk1_2 mk2_1 mk2_2 mk3_1 mk3_2
+##    &lt;chr&gt; &lt;chr&gt;     &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+##  1 BALGA BALGA_001   311   311   228   228   234   234
+##  2 BALGA BALGA_002   311   225   228   228   230   226
+##  3 BALGA BALGA_006   311   311   228   228   234   234
+##  4 BALGA BALGA_007   311   311   228   220   230   218
+##  5 BALGA BALGA_008   311   311   228   228   234   230
+##  6 BALGA BALGA_009   315   315   220   220   238   230
+##  7 BALGA BALGA_012   311   311   228   220   230   230
+##  8 BCHNC BCHNC_001   311   311   228   228   234   230
+##  9 BCHNC BCHNC_002   311   259   228   228   238   226
+## 10 BCHNC BCHNC_003   311   311   228   212   238   226
+## # … with 24 more rows, and 4 more variables:
+## #   mk4_1 &lt;dbl&gt;, mk4_2 &lt;dbl&gt;, mk5_1 &lt;dbl&gt;, mk5_2 &lt;dbl&gt;</code></pre>
+<p>Each row coresponds to one individual, and each column corresponds to
+one of the two gene copies at a genetic marker.</p>
+</div>
+<div id="a-word-on-tibbles" class="section level2" number="2.4">
+<h2><span class="header-section-number">2.4</span> A word on tibbles</h2>
+<p>It is worth noting how it is that this tibble, this special type
+of a <em>data frame</em> is displayed when you print it:</p>
+<ul>
+<li>The first line, <code># A tibble: 34 × 12</code>, tells how many rows (34) and
+columns (12) are in the tibble.</li>
+<li>By default, only the first ten rows are printed.</li>
+<li>Beneath the name of each column, the <em>type</em> of data in the column
+is listed. In this case, <code>&lt;dbl&gt;</code> means numeric data and <code>&lt;chr&gt;</code> means
+the column is a vector of character (string) data (i.e. text). Other possibilities
+are <code>&lt;int&gt;</code> for integer, <code>&lt;fct&gt;</code> for factor, and <code>&lt;list&gt;</code> for a column that
+is a list (Richard will talk more about that!)</li>
+<li>If there are too many columns for the width of the screen, only
+the contents of the first few columns are printed. The remaining columns
+are just shown beneath by their names and types.</li>
+<li>If there a a very large number of columns, the names and types of some of
+the remaining ones are not shown.</li>
+</ul>
+<p>In this way, you can quickly get a sense for how a data set is
+structured by simply printing it to the screen without running the
+risk of bombing your whole R console by having it print all the lines
+of a very large data frame!</p>
+<p>While the <code>readr</code> package always returns a tibble, the <code>as_tibble()</code>
+function from the ‘tibble’ package provides an easy way to turn
+an existing data frame into a tibble. For example, to witness
+how much easier it is to see what is contained in the built-in
+R data set, <code>iris</code>, by converting it into a tibble, the reader
+is invited to evaluate the following two lines in their
+R console and compare the output:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="introduction-to-the-tidyverse.html#cb6-1" aria-hidden="true" tabindex="-1"></a>iris <span class="co"># the whole data set gets spit out and you end up at bottom of it</span></span>
+<span id="cb6-2"><a href="introduction-to-the-tidyverse.html#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="introduction-to-the-tidyverse.html#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="fu">as_tibble</span>(iris) <span class="co"># a nice tibble summary gets printed</span></span></code></pre></div>
+<p>Finally, the ‘tibble’ package provides the function <code>tibble()</code> that
+allows the user to create a tibble from vectors. It is much like
+the built-in R function, <code>data.frame()</code> except that it deals appropriately
+with list vectors.</p>
+<p>For more about tibbles, the best place if you are new is the
+<a href="https://r4ds.had.co.nz/tibbles.html">tibble chapter</a>, in the <em>R For Data Science</em>
+book.</p>
+</div>
+<div id="back-to-tidying-up-our-genotype-data" class="section level2" number="2.5">
+<h2><span class="header-section-number">2.5</span> Back to “tidying” up our genotype data</h2>
+<p>Our small data set <code>genos</code> might seem pretty neat and tidy—it is easy
+to look at as a human, and it would not take a whole lot of space to
+print it out on a page. However, in the current format, doing
+a number of summaries of the data would require somewhat specialized
+code.</p>
+<p>For example, if you wanted to count up the number of occurrences of each
+allelic type (i.e. each number, like <code>311</code>) at each of the markers, within
+each of the rivers, it would not be straightforward! Just imagine
+counting alleles at markers <code>mk_1</code>: the alleles are in two different
+columns, and you would have to account for fish being from different rivers.</p>
+<p>While one could certainly write base R code to traverse the data frame and
+pick out the appropriate columns and rows to make these summaries, the
+<em>tidyverse</em> approach is to recognize that converting the data to
+a different format (often called a “long” format), will make it easier
+to do most any operation on the data.</p>
+<p>The main problem of the current data set, <code>genos</code>, is that
+the observed values at all the markers are the same—they are all
+just different <em>alleles</em>; however, they occupy lots of different columns.
+A general principle in tidying data is to strive for having only a single
+column to represent a certain type of observation.</p>
+<p>In the case of <code>genos</code>,
+the column headers <code>mk1_1, mk1_2, ... , mk_5_2</code> tell us which particular
+markers and gene copies have a particular allelic type. But another way
+to represent that is to have a column that gives the marker and the gene copy.</p>
+<p>Perhaps it is best to simply show what a tidy, long version of these data
+look like. The core tidyverse package ‘tidyr’ provides many functions for
+tidying data sets. We will use the <code>pivot_longer()</code> function to turn
+the column names into data values in new columns:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="introduction-to-the-tidyverse.html#cb7-1" aria-hidden="true" tabindex="-1"></a>genos_long <span class="ot">&lt;-</span> genos <span class="sc">%&gt;%</span></span>
+<span id="cb7-2"><a href="introduction-to-the-tidyverse.html#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(</span>
+<span id="cb7-3"><a href="introduction-to-the-tidyverse.html#cb7-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">cols =</span> <span class="fu">c</span>(mk1_1<span class="sc">:</span>mk5_2), </span>
+<span id="cb7-4"><a href="introduction-to-the-tidyverse.html#cb7-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">names_to =</span> <span class="fu">c</span>(<span class="st">&quot;marker&quot;</span>, <span class="st">&quot;gene_copy&quot;</span>),</span>
+<span id="cb7-5"><a href="introduction-to-the-tidyverse.html#cb7-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">names_sep =</span> <span class="st">&quot;_&quot;</span>, </span>
+<span id="cb7-6"><a href="introduction-to-the-tidyverse.html#cb7-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">values_to =</span> <span class="st">&quot;allele&quot;</span></span>
+<span id="cb7-7"><a href="introduction-to-the-tidyverse.html#cb7-7" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb7-8"><a href="introduction-to-the-tidyverse.html#cb7-8" aria-hidden="true" tabindex="-1"></a>genos_long</span></code></pre></div>
+<pre><code>## # A tibble: 340 × 5
+##    river indiv     marker gene_copy allele
+##    &lt;chr&gt; &lt;chr&gt;     &lt;chr&gt;  &lt;chr&gt;      &lt;dbl&gt;
+##  1 BALGA BALGA_001 mk1    1            311
+##  2 BALGA BALGA_001 mk1    2            311
+##  3 BALGA BALGA_001 mk2    1            228
+##  4 BALGA BALGA_001 mk2    2            228
+##  5 BALGA BALGA_001 mk3    1            234
+##  6 BALGA BALGA_001 mk3    2            234
+##  7 BALGA BALGA_001 mk4    1            184
+##  8 BALGA BALGA_001 mk4    2            164
+##  9 BALGA BALGA_001 mk5    1            211
+## 10 BALGA BALGA_001 mk5    2            211
+## # … with 330 more rows</code></pre>
+<p>Wow, that is a wildly different format! We now only have 5 columns:</p>
+<ul>
+<li><code>river</code>: tells us what river the fish is from</li>
+<li><code>indiv</code>: the ID of the individual fish</li>
+<li><code>marker</code>: the name of the marker (i.e. <code>mk_1</code>, or <code>mk_2</code>, etc.)</li>
+<li><code>gene_copy</code>: whether we are looking at the first (<code>1</code>) or the second (<code>2</code>)
+gene copy of the fish.</li>
+<li><code>allele</code>: the allelic type of the gene_copy at the marker in the individual fish from
+the particular river.</li>
+</ul>
+<p>Though our data set has only 5 columns, it now has 340 rows. As a consequence,
+it is not really possible to “look at” a large portion of the data set as a human
+(as was possible before).</p>
+<p>Furthermore, if you don’t know how to handle data like these
+it can seem daunting. But, once you learn the tools of the tidyverse (and particularly
+of the package ‘dplyr’) this format lets you learn the same, simple approach that
+will work for many, many different data sets.</p>
+<p>The ‘tidyr’ package has a number of functions for tidying data. Check out
+the <a href="https://raw.githubusercontent.com/rstudio/cheatsheets/main/tidyr.pdf">RStudio tidyr cheatsheet</a> for a great overview of ‘tidyr’ features.</p>
+<p><a href="https://raw.githubusercontent.com/rstudio/cheatsheets/main/tidyr.pdf"><img src="https://raw.githubusercontent.com/rstudio/cheatsheets/master/pngs/thumbnails/tidyr-thumbs.png" /></a></p>
+</div>
+<div id="what-the-heck-is-that-thingie" class="section level2" number="2.6">
+<h2><span class="header-section-number">2.6</span> What the heck is that <code>%&gt;%</code> thingie?!</h2>
+<p>Before we proceed, we want to make sure that everyone understands
+what the <code>%&gt;%</code> in the above code block is doing.</p>
+<p>The packages of the tidyverse all import the R symbol <code>%&gt;%</code> from the
+‘magrittr’ package. This is referred to as the tidyverse “pipe” because
+it allows the user to “pipe” the output of one function into the input
+for another function (in the same way that experience Unix computer users
+will “pipe” output from one command into the input for another command).</p>
+<p>In short, the <code>%&gt;%</code> symbol takes whatever is on the
+<em>left</em> of it and it supplies that as the first argument of the function
+that is to the <em>right</em> of it. The thing on the left can be an R object or
+the output of a functio.</p>
+<p>For a simple, contrived example, suppose you wanted to add the integers from
+1 to 10, take the square root of the result, and then calculate the sin of that
+result, and then take the log of it. Without piping capability, you could write that
+operation in a horribly nested set of parentheses:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="introduction-to-the-tidyverse.html#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">log</span>(<span class="fu">sin</span>(<span class="fu">sqrt</span>(<span class="fu">sum</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>))))</span></code></pre></div>
+<pre><code>## [1] -0.09905</code></pre>
+<p>which is hard to read because the direction of operations runs
+right to left. It is much easier to read and understand what is going
+on by piping results from one function to the next:</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="introduction-to-the-tidyverse.html#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span><span class="sc">:</span><span class="dv">10</span> <span class="sc">%&gt;%</span></span>
+<span id="cb11-2"><a href="introduction-to-the-tidyverse.html#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sum</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb11-3"><a href="introduction-to-the-tidyverse.html#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sqrt</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb11-4"><a href="introduction-to-the-tidyverse.html#cb11-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sin</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb11-5"><a href="introduction-to-the-tidyverse.html#cb11-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">log</span>()</span></code></pre></div>
+<pre><code>## [1] -0.09905</code></pre>
+<p>Operating upon tibbles with the pipe let’s you chain multiple
+different functions/operations upon the data in an easy-to-read
+fashion. And, it let’s you check intermediate results along the way
+as you build up more complex expressions. It is a crucial
+capability in the tidyverse.</p>
+<p>We will see the tidyverse pipe used extensively in the following.</p>
+</div>
+<div id="the-dplyr-package-the-heart-of-the-tidyverse" class="section level2" number="2.7">
+<h2><span class="header-section-number">2.7</span> The ‘dplyr’ package: the heart of the tidyverse</h2>
+<p>‘dplyr’ is the tidyverse package that offers the most functionality for operating
+on data sets. The main ‘dplyr’ functions for performing actions on a tibble
+are described as “verbs”: and their names are meant to describe the actions they do.</p>
+<p>There are a lot of other functions within ‘dplyr.’ We can’t cover them all here,
+but, once again, the
+<a href="https://raw.githubusercontent.com/rstudio/cheatsheets/main/data-transformation.pdf">RStudio dplyr cheatsheet</a> is the perfect place for an overview.</p>
+<p><a href="https://raw.githubusercontent.com/rstudio/cheatsheets/main/data-transformation.pdf"><img src="https://raw.githubusercontent.com/rstudio/cheatsheets/master/pngs/thumbnails/data-transformation-cheatsheet-thumbs.png" /></a></p>
+<p>Here, we will cover just the main verbs, namely:</p>
+<ul>
+<li><p><code>select()</code>, <code>filter()</code>, <code>arrange()</code> change the extent of columns, or rows, or
+the sort order of rows, respectively.</p></li>
+<li><p><code>mutate()</code> allows for the creation of new columns that are functions of
+existing columns (and have the same length as the existing columns).</p></li>
+<li><p><code>summarise()</code> allows for summarising existing columns down to a single value.</p></li>
+<li><p><code>group_by()</code> allows the ‘dplyr’ verbs to operate on multiple subsets of data
+defined by the values of grouping variables. I dare say this is the most
+important concept in all the tidyverse.</p></li>
+<li><p><code>left_join()</code> the simplest of a whole family of <em>joins</em> (<code>left_join()</code>, <code>full_join()</code>,
+<code>inner_join()</code>, etc.), that
+combine rows of two tibbles together according to shared values in certain columns.</p></li>
+</ul>
+<div id="non-standard-evaluation-nse-you-dont-wrap-column-names-in-quotation-marks" class="section level3" number="2.7.1">
+<h3><span class="header-section-number">2.7.1</span> Non-standard Evaluation (NSE): You don’t wrap column names in quotation marks</h3>
+<p>Importantly, in the tidyverse, when you operate on a column of a tibble, it is
+customary to refer to that column by its <em>name</em>, rather than by the number that
+describes its position (this makes the code more resilient to things like ordering
+of columns in a tibble). Within the tidyverse, names of columns are given
+as if they were variable names—they should almost never be wrapped
+in quotation marks.</p>
+</div>
+<div id="select-to-select-columns-of-a-tibble" class="section level3" number="2.7.2">
+<h3><span class="header-section-number">2.7.2</span> <code>select()</code> to select columns of a tibble</h3>
+<p>The select function is used to choose which columns of a tibble are returned.
+They get returned in a tibble of their own. Examples:</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="introduction-to-the-tidyverse.html#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># return a tibble with just the river and indiv of</span></span>
+<span id="cb13-2"><a href="introduction-to-the-tidyverse.html#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="co"># the original genos tibble</span></span>
+<span id="cb13-3"><a href="introduction-to-the-tidyverse.html#cb13-3" aria-hidden="true" tabindex="-1"></a>genos <span class="sc">%&gt;%</span></span>
+<span id="cb13-4"><a href="introduction-to-the-tidyverse.html#cb13-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(river, indiv)</span></code></pre></div>
+<pre><code>## # A tibble: 34 × 2
+##    river indiv    
+##    &lt;chr&gt; &lt;chr&gt;    
+##  1 BALGA BALGA_001
+##  2 BALGA BALGA_002
+##  3 BALGA BALGA_006
+##  4 BALGA BALGA_007
+##  5 BALGA BALGA_008
+##  6 BALGA BALGA_009
+##  7 BALGA BALGA_012
+##  8 BCHNC BCHNC_001
+##  9 BCHNC BCHNC_002
+## 10 BCHNC BCHNC_003
+## # … with 24 more rows</code></pre>
+<p>Ranges of columns can be selected by putting a colon between
+the name of the column at the start of the range and the name
+of the column at the end of the range.</p>
+<p>Furthermore, adding a <code>-</code> to a column name in <code>select()</code> will remove
+it. And adding a <code>-</code> before a column name range (surrounded by parentheses) will
+remove all those columns. For example:</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="introduction-to-the-tidyverse.html#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># remove the columns mk1_1 to mk3_2 from the original</span></span>
+<span id="cb15-2"><a href="introduction-to-the-tidyverse.html#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="co"># genos tibble</span></span>
+<span id="cb15-3"><a href="introduction-to-the-tidyverse.html#cb15-3" aria-hidden="true" tabindex="-1"></a>genos <span class="sc">%&gt;%</span></span>
+<span id="cb15-4"><a href="introduction-to-the-tidyverse.html#cb15-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>(mk1_1<span class="sc">:</span>mk3_2))</span></code></pre></div>
+<pre><code>## # A tibble: 34 × 6
+##    river indiv     mk4_1 mk4_2 mk5_1 mk5_2
+##    &lt;chr&gt; &lt;chr&gt;     &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+##  1 BALGA BALGA_001   184   164   211   211
+##  2 BALGA BALGA_002   184   184    NA    NA
+##  3 BALGA BALGA_006   184   168   219   215
+##  4 BALGA BALGA_007   184   164   215   215
+##  5 BALGA BALGA_008   168   164    NA    NA
+##  6 BALGA BALGA_009   184   184   231   207
+##  7 BALGA BALGA_012   184   164   227   211
+##  8 BCHNC BCHNC_001   184   184   227   211
+##  9 BCHNC BCHNC_002   184   184   227   215
+## 10 BCHNC BCHNC_003    NA    NA   227   227
+## # … with 24 more rows</code></pre>
+</div>
+<div id="filter-to-retain-certain-rows" class="section level3" number="2.7.3">
+<h3><span class="header-section-number">2.7.3</span> <code>filter()</code> to retain certain rows</h3>
+<p>The <code>filter()</code> function takes any vectorized logical expression involving
+columns of the tibble. Rows for which that expression evaluate to <code>TRUE</code>
+are retained, and those that evaluate to <code>FALSE</code> are not.</p>
+<p>Examples:</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="introduction-to-the-tidyverse.html#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># only keep rows with river code &quot;BALGA&quot;</span></span>
+<span id="cb17-2"><a href="introduction-to-the-tidyverse.html#cb17-2" aria-hidden="true" tabindex="-1"></a>genos_long <span class="sc">%&gt;%</span></span>
+<span id="cb17-3"><a href="introduction-to-the-tidyverse.html#cb17-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(river <span class="sc">==</span> <span class="st">&quot;BALGA&quot;</span>)</span></code></pre></div>
+<pre><code>## # A tibble: 70 × 5
+##    river indiv     marker gene_copy allele
+##    &lt;chr&gt; &lt;chr&gt;     &lt;chr&gt;  &lt;chr&gt;      &lt;dbl&gt;
+##  1 BALGA BALGA_001 mk1    1            311
+##  2 BALGA BALGA_001 mk1    2            311
+##  3 BALGA BALGA_001 mk2    1            228
+##  4 BALGA BALGA_001 mk2    2            228
+##  5 BALGA BALGA_001 mk3    1            234
+##  6 BALGA BALGA_001 mk3    2            234
+##  7 BALGA BALGA_001 mk4    1            184
+##  8 BALGA BALGA_001 mk4    2            164
+##  9 BALGA BALGA_001 mk5    1            211
+## 10 BALGA BALGA_001 mk5    2            211
+## # … with 60 more rows</code></pre>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="introduction-to-the-tidyverse.html#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># only keep data from markers mk3 and mk4</span></span>
+<span id="cb19-2"><a href="introduction-to-the-tidyverse.html#cb19-2" aria-hidden="true" tabindex="-1"></a>genos_long <span class="sc">%&gt;%</span></span>
+<span id="cb19-3"><a href="introduction-to-the-tidyverse.html#cb19-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(marker <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;mk3&quot;</span>, <span class="st">&quot;mk4&quot;</span>))</span></code></pre></div>
+<pre><code>## # A tibble: 136 × 5
+##    river indiv     marker gene_copy allele
+##    &lt;chr&gt; &lt;chr&gt;     &lt;chr&gt;  &lt;chr&gt;      &lt;dbl&gt;
+##  1 BALGA BALGA_001 mk3    1            234
+##  2 BALGA BALGA_001 mk3    2            234
+##  3 BALGA BALGA_001 mk4    1            184
+##  4 BALGA BALGA_001 mk4    2            164
+##  5 BALGA BALGA_002 mk3    1            230
+##  6 BALGA BALGA_002 mk3    2            226
+##  7 BALGA BALGA_002 mk4    1            184
+##  8 BALGA BALGA_002 mk4    2            184
+##  9 BALGA BALGA_006 mk3    1            234
+## 10 BALGA BALGA_006 mk3    2            234
+## # … with 126 more rows</code></pre>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="introduction-to-the-tidyverse.html#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># remove rows for which allele is NA</span></span>
+<span id="cb21-2"><a href="introduction-to-the-tidyverse.html#cb21-2" aria-hidden="true" tabindex="-1"></a>genos_long <span class="sc">%&gt;%</span></span>
+<span id="cb21-3"><a href="introduction-to-the-tidyverse.html#cb21-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(allele))</span></code></pre></div>
+<pre><code>## # A tibble: 300 × 5
+##    river indiv     marker gene_copy allele
+##    &lt;chr&gt; &lt;chr&gt;     &lt;chr&gt;  &lt;chr&gt;      &lt;dbl&gt;
+##  1 BALGA BALGA_001 mk1    1            311
+##  2 BALGA BALGA_001 mk1    2            311
+##  3 BALGA BALGA_001 mk2    1            228
+##  4 BALGA BALGA_001 mk2    2            228
+##  5 BALGA BALGA_001 mk3    1            234
+##  6 BALGA BALGA_001 mk3    2            234
+##  7 BALGA BALGA_001 mk4    1            184
+##  8 BALGA BALGA_001 mk4    2            164
+##  9 BALGA BALGA_001 mk5    1            211
+## 10 BALGA BALGA_001 mk5    2            211
+## # … with 290 more rows</code></pre>
+</div>
+<div id="arrange-to-reorder-the-rows-of-the-tibble" class="section level3" number="2.7.4">
+<h3><span class="header-section-number">2.7.4</span> <code>arrange()</code> to reorder the rows of the tibble</h3>
+<p>For example, perhaps you wish to see which of the alleles have the
+highest numbers. Then:</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="introduction-to-the-tidyverse.html#cb23-1" aria-hidden="true" tabindex="-1"></a>genos_long <span class="sc">%&gt;%</span></span>
+<span id="cb23-2"><a href="introduction-to-the-tidyverse.html#cb23-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(allele))</span></code></pre></div>
+<pre><code>## # A tibble: 340 × 5
+##    river indiv     marker gene_copy allele
+##    &lt;chr&gt; &lt;chr&gt;     &lt;chr&gt;  &lt;chr&gt;      &lt;dbl&gt;
+##  1 BCHNC BCHNC_009 mk1    1            349
+##  2 BEMME BEMME_002 mk1    1            349
+##  3 BEMME BEMME_008 mk1    1            349
+##  4 BEMME BEMME_008 mk1    2            349
+##  5 BALGA BALGA_009 mk1    1            315
+##  6 BALGA BALGA_009 mk1    2            315
+##  7 BCHNC BCHNC_007 mk1    1            315
+##  8 BALGA BALGA_001 mk1    1            311
+##  9 BALGA BALGA_001 mk1    2            311
+## 10 BALGA BALGA_002 mk1    1            311
+## # … with 330 more rows</code></pre>
+<p>The ‘dplyr’ function <code>desc()</code> means: arrange rows in descending order of
+the variable named within it.</p>
+<p>You can arrange/sort rows according to multiple columns, as well. For example
+to sort things that show individual genotypes in adjacent rows,
+but with rivers in reverse alphabetical order, we could do:</p>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="introduction-to-the-tidyverse.html#cb25-1" aria-hidden="true" tabindex="-1"></a>genos_long <span class="sc">%&gt;%</span></span>
+<span id="cb25-2"><a href="introduction-to-the-tidyverse.html#cb25-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(river), indiv, marker, gene_copy)</span></code></pre></div>
+<pre><code>## # A tibble: 340 × 5
+##    river indiv     marker gene_copy allele
+##    &lt;chr&gt; &lt;chr&gt;     &lt;chr&gt;  &lt;chr&gt;      &lt;dbl&gt;
+##  1 BMTMA BMTMA_001 mk1    1             NA
+##  2 BMTMA BMTMA_001 mk1    2             NA
+##  3 BMTMA BMTMA_001 mk2    1            228
+##  4 BMTMA BMTMA_001 mk2    2            220
+##  5 BMTMA BMTMA_001 mk3    1            234
+##  6 BMTMA BMTMA_001 mk3    2            234
+##  7 BMTMA BMTMA_001 mk4    1            196
+##  8 BMTMA BMTMA_001 mk4    2            168
+##  9 BMTMA BMTMA_001 mk5    1            223
+## 10 BMTMA BMTMA_001 mk5    2            211
+## # … with 330 more rows</code></pre>
+</div>
+<div id="mutate-to-create-new-columns" class="section level3" number="2.7.5">
+<h3><span class="header-section-number">2.7.5</span> <code>mutate()</code> to create new columns</h3>
+<p>With the <code>mutate()</code> function, it is easy to create a new
+column that is a function of other columns. The syntax is like:</p>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="introduction-to-the-tidyverse.html#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># create a new column named new_column that is a function</span></span>
+<span id="cb27-2"><a href="introduction-to-the-tidyverse.html#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="co"># or existing columns col1, col2</span></span>
+<span id="cb27-3"><a href="introduction-to-the-tidyverse.html#cb27-3" aria-hidden="true" tabindex="-1"></a>genos_long <span class="sc">%&gt;%</span></span>
+<span id="cb27-4"><a href="introduction-to-the-tidyverse.html#cb27-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">new_column_name =</span> <span class="fu">some_function</span>(col1, col2))</span></code></pre></div>
+<p>In this capacity, ‘dplyr’ is very particular:</p>
+<ul>
+<li>If the function returns the same number of rows as the tibble,
+it works.</li>
+<li>If the function returns a single value, that single value is
+replicated in each row of the new column.</li>
+<li>Otherwise, <code>mutate()</code> throws an error.</li>
+</ul>
+<p>Simple examples. Try these on your own:</p>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="introduction-to-the-tidyverse.html#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># make a column, &quot;long_marker_names&quot; that give</span></span>
+<span id="cb28-2"><a href="introduction-to-the-tidyverse.html#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="co"># a long name in the form &quot;Marker X&quot; for each marker</span></span>
+<span id="cb28-3"><a href="introduction-to-the-tidyverse.html#cb28-3" aria-hidden="true" tabindex="-1"></a>genos_long <span class="sc">%&gt;%</span></span>
+<span id="cb28-4"><a href="introduction-to-the-tidyverse.html#cb28-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">long_marker_names =</span> <span class="fu">str_replace</span>(marker, <span class="st">&quot;mk&quot;</span>, <span class="st">&quot;Marker &quot;</span>))</span>
+<span id="cb28-5"><a href="introduction-to-the-tidyverse.html#cb28-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-6"><a href="introduction-to-the-tidyverse.html#cb28-6" aria-hidden="true" tabindex="-1"></a><span class="co"># make a new column called gc_ab that gives the gene copies</span></span>
+<span id="cb28-7"><a href="introduction-to-the-tidyverse.html#cb28-7" aria-hidden="true" tabindex="-1"></a><span class="co"># as &quot;a&quot; and &quot;b&quot;, rather than &quot;1&quot; and &quot;2&quot;</span></span>
+<span id="cb28-8"><a href="introduction-to-the-tidyverse.html#cb28-8" aria-hidden="true" tabindex="-1"></a>genos_long <span class="sc">%&gt;%</span></span>
+<span id="cb28-9"><a href="introduction-to-the-tidyverse.html#cb28-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb28-10"><a href="introduction-to-the-tidyverse.html#cb28-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">gc_ab =</span> <span class="fu">case_when</span>(</span>
+<span id="cb28-11"><a href="introduction-to-the-tidyverse.html#cb28-11" aria-hidden="true" tabindex="-1"></a>      gene_copy <span class="sc">==</span> <span class="dv">1</span> <span class="sc">~</span> <span class="st">&quot;a&quot;</span>,</span>
+<span id="cb28-12"><a href="introduction-to-the-tidyverse.html#cb28-12" aria-hidden="true" tabindex="-1"></a>      gene_copy <span class="sc">==</span> <span class="dv">2</span> <span class="sc">~</span> <span class="st">&quot;b&quot;</span>,</span>
+<span id="cb28-13"><a href="introduction-to-the-tidyverse.html#cb28-13" aria-hidden="true" tabindex="-1"></a>      <span class="cn">TRUE</span> <span class="sc">~</span> <span class="cn">NA_character_</span></span>
+<span id="cb28-14"><a href="introduction-to-the-tidyverse.html#cb28-14" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb28-15"><a href="introduction-to-the-tidyverse.html#cb28-15" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb28-16"><a href="introduction-to-the-tidyverse.html#cb28-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-17"><a href="introduction-to-the-tidyverse.html#cb28-17" aria-hidden="true" tabindex="-1"></a><span class="co"># make a new column called season that tells us that</span></span>
+<span id="cb28-18"><a href="introduction-to-the-tidyverse.html#cb28-18" aria-hidden="true" tabindex="-1"></a><span class="co"># all of these data were collected in the &quot;Autumn&quot;</span></span>
+<span id="cb28-19"><a href="introduction-to-the-tidyverse.html#cb28-19" aria-hidden="true" tabindex="-1"></a>genos_long <span class="sc">%&gt;%</span></span>
+<span id="cb28-20"><a href="introduction-to-the-tidyverse.html#cb28-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">season =</span> <span class="st">&quot;Autumn&quot;</span>)</span></code></pre></div>
+</div>
+<div id="compute-a-single-value-from-many-rows-summarise" class="section level3" number="2.7.6">
+<h3><span class="header-section-number">2.7.6</span> Compute a single value from many rows: <code>summarise()</code></h3>
+<p>While <code>mutate()</code> always returns a new column that is the same length
+as all the other columns in the tibble, <code>summarise()</code> does something
+quite different: it allows you to make a column that will have only
+a single row in it. We will see more examples later on, but for now,
+consider one of the simplest ways to summarise a tibble: count
+how many rows are in it. That is done with the ‘dplyr’ function
+<code>n()</code>:</p>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="introduction-to-the-tidyverse.html#cb29-1" aria-hidden="true" tabindex="-1"></a>genos_long <span class="sc">%&gt;%</span></span>
+<span id="cb29-2"><a href="introduction-to-the-tidyverse.html#cb29-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">num_rows =</span> <span class="fu">n</span>())</span></code></pre></div>
+<pre><code>## # A tibble: 1 × 1
+##   num_rows
+##      &lt;int&gt;
+## 1      340</code></pre>
+<p>See how that <code>summarise()</code> function takes an entire tibble, and returns
+a single value (the number of rows of the original tibble).</p>
+<p>This behavior might not seem all that useful, but as we will see,
+when combined with <em>grouping</em> it is extraordinarily useful.</p>
+</div>
+<div id="group_by-to-operate-tidily-on-subsets-of-a-tibble" class="section level3" number="2.7.7">
+<h3><span class="header-section-number">2.7.7</span> <code>group_by()</code> to operate tidily on subsets of a tibble</h3>
+<p>One of the most important aspects of working with tibbles is
+that of <em>grouping</em> them by variables. In fact, without <em>grouping</em>
+the “tidy” or “long” format would be nearly impossible to deal with; however
+with grouping, a huge number of problems can be solved upon tidy data
+within the tidyverse.</p>
+<p>Much of the time, we want to apply functions to separate parts of the
+data set, each part in turn. An example might help: suppose that
+we want to compute the allele frequencies from <code>genos_long</code>. In other words,
+we want to count how many times <em>within each river</em>, <em>each allele</em>, <em>at each locus</em> is observed.</p>
+<p>Each time we say something like <em>at each locus</em>, or
+<em>within each river</em>, we are implicitly talking about <em>grouping</em> our
+data. Thus, if we “group our data by river,” we are conceptually,
+breaking our data set into four distinct tibbles:</p>
+<ul>
+<li>one with all the rows in which <code>river == "BALGA"</code></li>
+<li>one with all the rows in which <code>river == "BCHNC"</code></li>
+<li>one with all the rows in which <code>river == "BEMME"</code></li>
+<li>one with all the rows in which <code>river == "BMTMA"</code></li>
+</ul>
+<p>Then (and this is the <em>really</em> important part!) if we
+pass such a “grouped” tibble to <code>mutate()</code> or <code>summarise()</code>,
+then those functions will operate on each of those four separate
+groups, independently, but it will still return the result
+as a single tibble.</p>
+<p>To group a tibble, we use the <code>group_by()</code> function. Here we
+group <code>genos_long</code> by <code>river</code>:</p>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="introduction-to-the-tidyverse.html#cb31-1" aria-hidden="true" tabindex="-1"></a>genos_long <span class="sc">%&gt;%</span></span>
+<span id="cb31-2"><a href="introduction-to-the-tidyverse.html#cb31-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(river)</span></code></pre></div>
+<pre><code>## # A tibble: 340 × 5
+## # Groups:   river [4]
+##    river indiv     marker gene_copy allele
+##    &lt;chr&gt; &lt;chr&gt;     &lt;chr&gt;  &lt;chr&gt;      &lt;dbl&gt;
+##  1 BALGA BALGA_001 mk1    1            311
+##  2 BALGA BALGA_001 mk1    2            311
+##  3 BALGA BALGA_001 mk2    1            228
+##  4 BALGA BALGA_001 mk2    2            228
+##  5 BALGA BALGA_001 mk3    1            234
+##  6 BALGA BALGA_001 mk3    2            234
+##  7 BALGA BALGA_001 mk4    1            184
+##  8 BALGA BALGA_001 mk4    2            164
+##  9 BALGA BALGA_001 mk5    1            211
+## 10 BALGA BALGA_001 mk5    2            211
+## # … with 330 more rows</code></pre>
+<p>From the output that gets printed out, it looks like almost nothing
+has changed about the tibble, <em>except</em> there is this extra line:</p>
+<pre><code># Groups:   river [4]</code></pre>
+<p>This tells us that after running <code>genos_long</code> through <code>group_by(river)</code>,
+the result is a tibble that is grouped by the <code>river</code> column, and there
+are 4 groups.</p>
+<p>But, now, if we count the number of rows in each of those groups
+we start to see how powerful this approach can be:</p>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="introduction-to-the-tidyverse.html#cb34-1" aria-hidden="true" tabindex="-1"></a>genos_long <span class="sc">%&gt;%</span></span>
+<span id="cb34-2"><a href="introduction-to-the-tidyverse.html#cb34-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(river) <span class="sc">%&gt;%</span></span>
+<span id="cb34-3"><a href="introduction-to-the-tidyverse.html#cb34-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">num_rows =</span> <span class="fu">n</span>())</span></code></pre></div>
+<pre><code>## # A tibble: 4 × 2
+##   river num_rows
+##   &lt;chr&gt;    &lt;int&gt;
+## 1 BALGA       70
+## 2 BCHNC      100
+## 3 BEMME       80
+## 4 BMTMA       90</code></pre>
+<p>OK! That is telling us about the sizes of those 4 groups, and we can
+conceptually think of each group as being a “sub-tibble” with the
+number of rows as listed above.</p>
+<p>Note that you can group tibbles by more than one column. When grouped on
+multiple columns, the groups are formed from all the observed combinations
+of values in the different columns. For example:</p>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="introduction-to-the-tidyverse.html#cb36-1" aria-hidden="true" tabindex="-1"></a>genos_long <span class="sc">%&gt;%</span></span>
+<span id="cb36-2"><a href="introduction-to-the-tidyverse.html#cb36-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(river, marker, allele)</span></code></pre></div>
+<pre><code>## # A tibble: 340 × 5
+## # Groups:   river, marker, allele [93]
+##    river indiv     marker gene_copy allele
+##    &lt;chr&gt; &lt;chr&gt;     &lt;chr&gt;  &lt;chr&gt;      &lt;dbl&gt;
+##  1 BALGA BALGA_001 mk1    1            311
+##  2 BALGA BALGA_001 mk1    2            311
+##  3 BALGA BALGA_001 mk2    1            228
+##  4 BALGA BALGA_001 mk2    2            228
+##  5 BALGA BALGA_001 mk3    1            234
+##  6 BALGA BALGA_001 mk3    2            234
+##  7 BALGA BALGA_001 mk4    1            184
+##  8 BALGA BALGA_001 mk4    2            164
+##  9 BALGA BALGA_001 mk5    1            211
+## 10 BALGA BALGA_001 mk5    2            211
+## # … with 330 more rows</code></pre>
+<p>apparently groups the data into 93 different groups.</p>
+<p>Now, we are ready to try computing allele frequencies (i.e. counting alleles) at different
+markers. Remember, we want to count how many times <em>within each river</em> and <em>at each locus</em> that
+<em>each allele</em> is observed. (Note we also don’t want to count missing data for this so we can
+filter it out in the beginning). Hence:</p>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="introduction-to-the-tidyverse.html#cb38-1" aria-hidden="true" tabindex="-1"></a>genos_long <span class="sc">%&gt;%</span></span>
+<span id="cb38-2"><a href="introduction-to-the-tidyverse.html#cb38-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(allele)) <span class="sc">%&gt;%</span></span>
+<span id="cb38-3"><a href="introduction-to-the-tidyverse.html#cb38-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(river, marker, allele) <span class="sc">%&gt;%</span></span>
+<span id="cb38-4"><a href="introduction-to-the-tidyverse.html#cb38-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">num_alleles =</span> <span class="fu">n</span>())</span></code></pre></div>
+<pre><code>## `summarise()` has grouped output by &#39;river&#39;, &#39;marker&#39;. You can override using the `.groups` argument.</code></pre>
+<pre><code>## # A tibble: 84 × 4
+## # Groups:   river, marker [20]
+##    river marker allele num_alleles
+##    &lt;chr&gt; &lt;chr&gt;   &lt;dbl&gt;       &lt;int&gt;
+##  1 BALGA mk1       225           1
+##  2 BALGA mk1       311          11
+##  3 BALGA mk1       315           2
+##  4 BALGA mk2       220           4
+##  5 BALGA mk2       228          10
+##  6 BALGA mk3       218           1
+##  7 BALGA mk3       226           1
+##  8 BALGA mk3       230           6
+##  9 BALGA mk3       234           5
+## 10 BALGA mk3       238           1
+## # … with 74 more rows</code></pre>
+<p>Wow! That is fast and easy.</p>
+<p>It is relatively straightforward to think about how <code>summarise()</code> works on grouped tibbles, but
+it is just as important to know that <code>mutate()</code> also operates on the separate groups of a
+grouped tibble.</p>
+<p>Note, that the result above has the notation:</p>
+<pre><code># Groups:   river, marker [20]</code></pre>
+<p>So, the result is still a grouped tibble, but in this case it is grouped by
+<code>river, marker</code>. We had originally grouped it by <code>river, marker, allele</code>, BUT
+by default, the <code>summarise()</code> function will return a tibble in which the last
+grouping variable (in this case <code>allele</code>) is no longer in effect.</p>
+<p>In our case, this is convenient, because such a grouping is good for
+computing <em>relative frequencies</em> of the alleles. We can just add that on
+to the chain with the pipe. (And while we are at it, sort things
+by allele frequency.)</p>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="introduction-to-the-tidyverse.html#cb42-1" aria-hidden="true" tabindex="-1"></a>genos_long <span class="sc">%&gt;%</span></span>
+<span id="cb42-2"><a href="introduction-to-the-tidyverse.html#cb42-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(allele)) <span class="sc">%&gt;%</span></span>
+<span id="cb42-3"><a href="introduction-to-the-tidyverse.html#cb42-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(river, marker, allele) <span class="sc">%&gt;%</span></span>
+<span id="cb42-4"><a href="introduction-to-the-tidyverse.html#cb42-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">num_alleles =</span> <span class="fu">n</span>()) <span class="sc">%&gt;%</span></span>
+<span id="cb42-5"><a href="introduction-to-the-tidyverse.html#cb42-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">freq =</span> num_alleles <span class="sc">/</span> <span class="fu">sum</span>(num_alleles)) <span class="sc">%&gt;%</span></span>
+<span id="cb42-6"><a href="introduction-to-the-tidyverse.html#cb42-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb42-7"><a href="introduction-to-the-tidyverse.html#cb42-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(river, marker, <span class="fu">desc</span>(freq))</span></code></pre></div>
+<pre><code>## `summarise()` has grouped output by &#39;river&#39;, &#39;marker&#39;. You can override using the `.groups` argument.</code></pre>
+<pre><code>## # A tibble: 84 × 5
+##    river marker allele num_alleles   freq
+##    &lt;chr&gt; &lt;chr&gt;   &lt;dbl&gt;       &lt;int&gt;  &lt;dbl&gt;
+##  1 BALGA mk1       311          11 0.786 
+##  2 BALGA mk1       315           2 0.143 
+##  3 BALGA mk1       225           1 0.0714
+##  4 BALGA mk2       228          10 0.714 
+##  5 BALGA mk2       220           4 0.286 
+##  6 BALGA mk3       230           6 0.429 
+##  7 BALGA mk3       234           5 0.357 
+##  8 BALGA mk3       218           1 0.0714
+##  9 BALGA mk3       226           1 0.0714
+## 10 BALGA mk3       238           1 0.0714
+## # … with 74 more rows</code></pre>
+<p>A few things are worth noting:</p>
+<ul>
+<li><code>sum(num_allele)</code> sums the number of alleles in each river at each marker (because
+that is how the tibble is grouped). Hence, <code>num_allele / sum(num_allele)</code> gives the
+relative frequency of each allele (in the river at the marker).</li>
+<li><code>ungroup()</code> removes any grouping criteria from a tibble. It is handy if you
+don’t want to have any groups in your tibble any longer.</li>
+<li>The arrange function lets us sort the rows in a useful fashion.</li>
+</ul>
+<div id="exercises-for-you" class="section level4" number="2.7.7.1">
+<h4><span class="header-section-number">2.7.7.1</span> Exercises for you</h4>
+<p>The reason that the tidy format is wonderful is because you can get a number
+of different results by following the same principles, but grouping things
+differently.</p>
+<p>Try using the tools of ‘dplyr’ to compute the following.
+A skeleton has been provided. Put the missing code into the <code>...</code> in each.</p>
+<ol style="list-style-type: decimal">
+<li>A tibble with the relative frequency of missing data within each river</li>
+</ol>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="introduction-to-the-tidyverse.html#cb45-1" aria-hidden="true" tabindex="-1"></a>genos_long <span class="sc">%&gt;%</span></span>
+<span id="cb45-2"><a href="introduction-to-the-tidyverse.html#cb45-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(...) <span class="sc">%&gt;%</span></span>
+<span id="cb45-3"><a href="introduction-to-the-tidyverse.html#cb45-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">fract_miss =</span> <span class="fu">sum</span>(<span class="fu">is.na</span>(allele) <span class="sc">/</span> <span class="fu">n</span>())</span></code></pre></div>
+<ol start="2" style="list-style-type: decimal">
+<li>A tibble with the relative frequency of missing data at each marker</li>
+</ol>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="introduction-to-the-tidyverse.html#cb46-1" aria-hidden="true" tabindex="-1"></a>genos_long <span class="sc">%&gt;%</span></span>
+<span id="cb46-2"><a href="introduction-to-the-tidyverse.html#cb46-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(...) <span class="sc">%&gt;%</span></span>
+<span id="cb46-3"><a href="introduction-to-the-tidyverse.html#cb46-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">fract_miss =</span> ...)</span></code></pre></div>
+</div>
+</div>
+<div id="joins" class="section level3" number="2.7.8">
+<h3><span class="header-section-number">2.7.8</span> Joins</h3>
+<p>Joins are what you use to add columns from one tibble to
+another tibble by matching the values in one or more shared columns.</p>
+<p>We will just show the simplest join, the <code>left_join()</code>.</p>
+<p>Suppose that we have data about each fish, that tells us:</p>
+<ul>
+<li>whether they were caught in the autumn or the spring</li>
+<li>whether they were a juvenile or an adult</li>
+<li>the length in centimeters.</li>
+</ul>
+<p>We have an example of such a data set that we can read in:</p>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="introduction-to-the-tidyverse.html#cb47-1" aria-hidden="true" tabindex="-1"></a>fish_meta <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/tidy-intro/fish-metadata.csv&quot;</span>)</span>
+<span id="cb47-2"><a href="introduction-to-the-tidyverse.html#cb47-2" aria-hidden="true" tabindex="-1"></a>fish_meta</span></code></pre></div>
+<pre><code>## # A tibble: 1,252 × 4
+##    indiv     season stage    length
+##    &lt;chr&gt;     &lt;chr&gt;  &lt;chr&gt;     &lt;dbl&gt;
+##  1 BEMME_001 autumn juvenile   12.9
+##  2 BEMME_002 spring juvenile    6.7
+##  3 BEMME_003 spring adult      23  
+##  4 BEMME_004 autumn adult      25.5
+##  5 BEMME_005 autumn juvenile   10  
+##  6 BEMME_006 spring juvenile   11.3
+##  7 BEMME_008 spring juvenile   10  
+##  8 BEMME_009 spring juvenile   10.2
+##  9 BEMME_010 autumn juvenile    9.3
+## 10 BEMME_011 spring adult      21  
+## # … with 1,242 more rows</code></pre>
+<p>OK! This has season, stage, and length for 1,252 fish. That is a lot more
+than the 34 fish we have genotype data for. So, how can we pick out the relevant
+rows from <code>fish_meta</code> to join them on to the columns of <code>genos_long</code>? We use
+<code>left_join()</code>.</p>
+<p>Note that in both <code>genos_long</code> and in <code>fish_meta</code>, the individual ID is
+in the column <code>indiv</code>. This means that we can <em>join</em> the two tibbles
+<em>by</em> the <code>indiv</code> column in each tibble. Thus:</p>
+<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="introduction-to-the-tidyverse.html#cb49-1" aria-hidden="true" tabindex="-1"></a>genos_long2 <span class="ot">&lt;-</span> genos_long <span class="sc">%&gt;%</span></span>
+<span id="cb49-2"><a href="introduction-to-the-tidyverse.html#cb49-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(fish_meta, <span class="at">by =</span> <span class="st">&quot;indiv&quot;</span>)</span>
+<span id="cb49-3"><a href="introduction-to-the-tidyverse.html#cb49-3" aria-hidden="true" tabindex="-1"></a>genos_long2</span></code></pre></div>
+<pre><code>## # A tibble: 340 × 8
+##    river indiv     marker gene_copy allele season stage
+##    &lt;chr&gt; &lt;chr&gt;     &lt;chr&gt;  &lt;chr&gt;      &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt;
+##  1 BALGA BALGA_001 mk1    1            311 spring juve…
+##  2 BALGA BALGA_001 mk1    2            311 spring juve…
+##  3 BALGA BALGA_001 mk2    1            228 spring juve…
+##  4 BALGA BALGA_001 mk2    2            228 spring juve…
+##  5 BALGA BALGA_001 mk3    1            234 spring juve…
+##  6 BALGA BALGA_001 mk3    2            234 spring juve…
+##  7 BALGA BALGA_001 mk4    1            184 spring juve…
+##  8 BALGA BALGA_001 mk4    2            164 spring juve…
+##  9 BALGA BALGA_001 mk5    1            211 spring juve…
+## 10 BALGA BALGA_001 mk5    2            211 spring juve…
+## # … with 330 more rows, and 1 more variable:
+## #   length &lt;dbl&gt;</code></pre>
+<p>Now, you could do all sorts of things like explore allele frequency differences
+in different seasons or from different life stages.</p>
+</div>
+<div id="wrap-up" class="section level3" number="2.7.9">
+<h3><span class="header-section-number">2.7.9</span> Wrap Up</h3>
+<p>We have just scratched the surface of what is possible with the tidyverse.</p>
+<p>One thing we haven’t mentioned much is that the columns of a tibble can, themselves,
+be list-vectors. This can be very powerful when doing statistical modeling, as the
+outputs of different models can be stored in lists that are themselves columns of
+tibbles. Manipulating such lists is done with the <code>purrr</code> package, which is part of
+the tidyverse.</p>
+<p>Richard will give us an example of that for the rest of the session.</p>
+</div>
+</div>
+<div id="modeling-within-the-tidyverse" class="section level2" number="2.8">
+<h2><span class="header-section-number">2.8</span> Modeling within the Tidyverse</h2>
+<p>Load required packages</p>
+<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="introduction-to-the-tidyverse.html#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(viridis) <span class="co"># preferred color palette for graphing </span></span></code></pre></div>
+<pre><code>## Loading required package: viridisLite</code></pre>
+<p>Import bird data.</p>
+<p>The data provides information on the species richness of birds and butterflies and NDVI at 30 sites.
+Our goal is to run a linear model that estimates the magnitude, direction, and uncertainty in the species richness-NDVI relationship for each taxa and then visualize the relationship.</p>
+<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="introduction-to-the-tidyverse.html#cb53-1" aria-hidden="true" tabindex="-1"></a>data_all <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/data.richard.new.csv&quot;</span>)</span></code></pre></div>
+<pre><code>## New names:
+## * `` -&gt; ...1</code></pre>
+<pre><code>## Rows: 60 Columns: 5</code></pre>
+<pre><code>## ── Column specification ───────────────────────────────
+## Delimiter: &quot;,&quot;
+## chr (2): Site, Taxa
+## dbl (3): ...1, NDVI, Richness</code></pre>
+<pre><code>## 
+## ℹ Use `spec()` to retrieve the full column specification for this data.
+## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="introduction-to-the-tidyverse.html#cb58-1" aria-hidden="true" tabindex="-1"></a>data_all</span></code></pre></div>
+<pre><code>## # A tibble: 60 × 5
+##     ...1 Site     NDVI Taxa  Richness
+##    &lt;dbl&gt; &lt;chr&gt;   &lt;dbl&gt; &lt;chr&gt;    &lt;dbl&gt;
+##  1     1 Site.1   0.66 Birds       14
+##  2     2 Site.2   0.4  Birds       10
+##  3     3 Site.3   0.36 Birds        9
+##  4     4 Site.4   0.82 Birds       16
+##  5     5 Site.5   0.55 Birds       12
+##  6     6 Site.6   0.29 Birds        7
+##  7     7 Site.7   0.51 Birds       11
+##  8     8 Site.8   0.74 Birds       16
+##  9     9 Site.9   1    Birds       25
+## 10    10 Site.10  0.76 Birds       16
+## # … with 50 more rows</code></pre>
+<p>The old way is to run a model on each taxa separately:</p>
+<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="introduction-to-the-tidyverse.html#cb60-1" aria-hidden="true" tabindex="-1"></a><span class="co"># subset the Birds data</span></span>
+<span id="cb60-2"><a href="introduction-to-the-tidyverse.html#cb60-2" aria-hidden="true" tabindex="-1"></a>model_birds <span class="ot">&lt;-</span> <span class="fu">lm</span>(Richness <span class="sc">~</span> NDVI, <span class="at">data =</span> data_all[data_all<span class="sc">$</span>Taxa <span class="sc">==</span> <span class="st">&quot;Birds&quot;</span>, ]) </span>
+<span id="cb60-3"><a href="introduction-to-the-tidyverse.html#cb60-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-4"><a href="introduction-to-the-tidyverse.html#cb60-4" aria-hidden="true" tabindex="-1"></a><span class="co"># subset the Butterflies</span></span>
+<span id="cb60-5"><a href="introduction-to-the-tidyverse.html#cb60-5" aria-hidden="true" tabindex="-1"></a>model_butterflies <span class="ot">&lt;-</span> <span class="fu">lm</span>(Richness <span class="sc">~</span> NDVI, <span class="at">data =</span> data_all[data_all<span class="sc">$</span>Taxa <span class="sc">==</span> <span class="st">&quot;Butterflies&quot;</span>, ]) </span></code></pre></div>
+<p>Extracting results from the summary file is not easy.</p>
+<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb61-1"><a href="introduction-to-the-tidyverse.html#cb61-1" aria-hidden="true" tabindex="-1"></a><span class="co"># You have to remember that subscript [[4]] corresponds to the main results</span></span>
+<span id="cb61-2"><a href="introduction-to-the-tidyverse.html#cb61-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb61-3"><a href="introduction-to-the-tidyverse.html#cb61-3" aria-hidden="true" tabindex="-1"></a>key_results_birds <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(<span class="fu">summary</span>(model_birds)[[<span class="dv">4</span>]]) </span></code></pre></div>
+<p>The broom package presents model results in a tidy way.</p>
+<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb62-1"><a href="introduction-to-the-tidyverse.html#cb62-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(broom)</span></code></pre></div>
+<p>broom::tidy() returns parameter estimates.</p>
+<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb63-1"><a href="introduction-to-the-tidyverse.html#cb63-1" aria-hidden="true" tabindex="-1"></a>birds_tidy <span class="ot">&lt;-</span> model_birds <span class="sc">%&gt;%</span> </span>
+<span id="cb63-2"><a href="introduction-to-the-tidyverse.html#cb63-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tidy</span>()</span>
+<span id="cb63-3"><a href="introduction-to-the-tidyverse.html#cb63-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb63-4"><a href="introduction-to-the-tidyverse.html#cb63-4" aria-hidden="true" tabindex="-1"></a>birds_tidy</span></code></pre></div>
+<pre><code>## # A tibble: 2 × 5
+##   term        estimate std.error statistic  p.value
+##   &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
+## 1 (Intercept)    0.952      1.22     0.780 4.42e- 1
+## 2 NDVI          19.9        1.77    11.2   6.75e-12</code></pre>
+<p>broom::glance() includes R2, AIC, and more.</p>
+<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb65-1"><a href="introduction-to-the-tidyverse.html#cb65-1" aria-hidden="true" tabindex="-1"></a>birds_glance <span class="ot">&lt;-</span> model_birds <span class="sc">%&gt;%</span> </span>
+<span id="cb65-2"><a href="introduction-to-the-tidyverse.html#cb65-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">glance</span>()</span>
+<span id="cb65-3"><a href="introduction-to-the-tidyverse.html#cb65-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb65-4"><a href="introduction-to-the-tidyverse.html#cb65-4" aria-hidden="true" tabindex="-1"></a>birds_glance</span></code></pre></div>
+<pre><code>## # A tibble: 1 × 12
+##   r.squared adj.r.squared sigma statistic  p.value
+##       &lt;dbl&gt;         &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
+## 1     0.819         0.812  1.70      127. 6.75e-12
+## # … with 7 more variables: df &lt;dbl&gt;, logLik &lt;dbl&gt;,
+## #   AIC &lt;dbl&gt;, BIC &lt;dbl&gt;, deviance &lt;dbl&gt;,
+## #   df.residual &lt;int&gt;, nobs &lt;int&gt;</code></pre>
+<p>broom::augment() returns fitted values</p>
+<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb67-1"><a href="introduction-to-the-tidyverse.html#cb67-1" aria-hidden="true" tabindex="-1"></a>birds_augment <span class="ot">&lt;-</span> model_birds <span class="sc">%&gt;%</span> </span>
+<span id="cb67-2"><a href="introduction-to-the-tidyverse.html#cb67-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">augment</span>()</span>
+<span id="cb67-3"><a href="introduction-to-the-tidyverse.html#cb67-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb67-4"><a href="introduction-to-the-tidyverse.html#cb67-4" aria-hidden="true" tabindex="-1"></a>birds_augment</span></code></pre></div>
+<pre><code>## # A tibble: 30 × 8
+##    Richness  NDVI .fitted  .resid   .hat .sigma .cooksd
+##       &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;
+##  1       14  0.66   14.1  -0.0743 0.0334   1.73 3.41e-5
+##  2       10  0.4     8.91  1.09   0.111    1.72 2.90e-2
+##  3        9  0.36    8.11  0.890  0.136    1.72 2.49e-2
+##  4       16  0.82   17.3  -1.26   0.0583   1.71 1.79e-2
+##  5       12  0.55   11.9   0.113  0.0484   1.73 1.17e-4
+##  6        7  0.29    6.72  0.282  0.188    1.73 3.90e-3
+##  7       11  0.51   11.1  -0.0920 0.0603   1.73 9.98e-5
+##  8       16  0.74   15.7   0.335  0.0389   1.73 8.18e-4
+##  9       25  1      20.8   4.17   0.152    1.50 6.35e-1
+## 10       16  0.76   16.1  -0.0625 0.0425   1.73 3.12e-5
+## # … with 20 more rows, and 1 more variable:
+## #   .std.resid &lt;dbl&gt;</code></pre>
+<p>To run models or implement any function on the different groups within a data frame, one must master tidyr::nest() and purrr::map().</p>
+<p>nest() creates a list of data frames with each corresponding to a different group.</p>
+<p>Example: create a data frame for each taxa.</p>
+<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb69-1"><a href="introduction-to-the-tidyverse.html#cb69-1" aria-hidden="true" tabindex="-1"></a>data_taxa <span class="ot">&lt;-</span> data_all <span class="sc">%&gt;%</span> </span>
+<span id="cb69-2"><a href="introduction-to-the-tidyverse.html#cb69-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Taxa) <span class="sc">%&gt;%</span> </span>
+<span id="cb69-3"><a href="introduction-to-the-tidyverse.html#cb69-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">nest</span>()</span>
+<span id="cb69-4"><a href="introduction-to-the-tidyverse.html#cb69-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb69-5"><a href="introduction-to-the-tidyverse.html#cb69-5" aria-hidden="true" tabindex="-1"></a>data_taxa</span></code></pre></div>
+<pre><code>## # A tibble: 2 × 2
+## # Groups:   Taxa [2]
+##   Taxa        data             
+##   &lt;chr&gt;       &lt;list&gt;           
+## 1 Birds       &lt;tibble [30 × 4]&gt;
+## 2 Butterflies &lt;tibble [30 × 4]&gt;</code></pre>
+<p>The grouping variable is left out of the nested data frame. All other data is now in a separate data frame, nested with the whole data frame.</p>
+<p>You can inspect what lies behind the “data” column by using unnest() to display the original data.</p>
+<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb71-1"><a href="introduction-to-the-tidyverse.html#cb71-1" aria-hidden="true" tabindex="-1"></a>data_original_birds <span class="ot">&lt;-</span> data_taxa <span class="sc">%&gt;%</span> </span>
+<span id="cb71-2"><a href="introduction-to-the-tidyverse.html#cb71-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb71-3"><a href="introduction-to-the-tidyverse.html#cb71-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice</span>(<span class="at">n =</span> <span class="dv">1</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb71-4"><a href="introduction-to-the-tidyverse.html#cb71-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unnest</span>(data) </span>
+<span id="cb71-5"><a href="introduction-to-the-tidyverse.html#cb71-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-6"><a href="introduction-to-the-tidyverse.html#cb71-6" aria-hidden="true" tabindex="-1"></a><span class="co"># slice(n = 1) means extract the first row of the data_taxa data frame</span></span>
+<span id="cb71-7"><a href="introduction-to-the-tidyverse.html#cb71-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-8"><a href="introduction-to-the-tidyverse.html#cb71-8" aria-hidden="true" tabindex="-1"></a>data_original_birds</span></code></pre></div>
+<pre><code>## # A tibble: 30 × 5
+##    Taxa   ...1 Site     NDVI Richness
+##    &lt;chr&gt; &lt;dbl&gt; &lt;chr&gt;   &lt;dbl&gt;    &lt;dbl&gt;
+##  1 Birds     1 Site.1   0.66       14
+##  2 Birds     2 Site.2   0.4        10
+##  3 Birds     3 Site.3   0.36        9
+##  4 Birds     4 Site.4   0.82       16
+##  5 Birds     5 Site.5   0.55       12
+##  6 Birds     6 Site.6   0.29        7
+##  7 Birds     7 Site.7   0.51       11
+##  8 Birds     8 Site.8   0.74       16
+##  9 Birds     9 Site.9   1          25
+## 10 Birds    10 Site.10  0.76       16
+## # … with 20 more rows</code></pre>
+<p>map() applies a function to each nested data frame.</p>
+<p>Example: find the mean number of species of each taxa</p>
+<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb73-1"><a href="introduction-to-the-tidyverse.html#cb73-1" aria-hidden="true" tabindex="-1"></a>mean_taxa <span class="ot">&lt;-</span> data_all <span class="sc">%&gt;%</span> </span>
+<span id="cb73-2"><a href="introduction-to-the-tidyverse.html#cb73-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Taxa) <span class="sc">%&gt;%</span> </span>
+<span id="cb73-3"><a href="introduction-to-the-tidyverse.html#cb73-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">nest</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb73-4"><a href="introduction-to-the-tidyverse.html#cb73-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">mean_richness =</span> <span class="fu">map</span>(data, <span class="cf">function</span>(x) {</span>
+<span id="cb73-5"><a href="introduction-to-the-tidyverse.html#cb73-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mean</span>(x <span class="sc">%&gt;%</span> </span>
+<span id="cb73-6"><a href="introduction-to-the-tidyverse.html#cb73-6" aria-hidden="true" tabindex="-1"></a>           <span class="fu">pull</span>(Richness))</span>
+<span id="cb73-7"><a href="introduction-to-the-tidyverse.html#cb73-7" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb73-8"><a href="introduction-to-the-tidyverse.html#cb73-8" aria-hidden="true" tabindex="-1"></a>    )) </span>
+<span id="cb73-9"><a href="introduction-to-the-tidyverse.html#cb73-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb73-10"><a href="introduction-to-the-tidyverse.html#cb73-10" aria-hidden="true" tabindex="-1"></a><span class="co"># map indicates the data frame column with the nested data (i.e., data) and applies a function to that data.</span></span>
+<span id="cb73-11"><a href="introduction-to-the-tidyverse.html#cb73-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb73-12"><a href="introduction-to-the-tidyverse.html#cb73-12" aria-hidden="true" tabindex="-1"></a><span class="co"># data becomes the &quot;x&quot; in the function. </span></span>
+<span id="cb73-13"><a href="introduction-to-the-tidyverse.html#cb73-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb73-14"><a href="introduction-to-the-tidyverse.html#cb73-14" aria-hidden="true" tabindex="-1"></a><span class="co"># pull() extracts the variable of interest and returns a vector.</span></span>
+<span id="cb73-15"><a href="introduction-to-the-tidyverse.html#cb73-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb73-16"><a href="introduction-to-the-tidyverse.html#cb73-16" aria-hidden="true" tabindex="-1"></a>mean_taxa</span></code></pre></div>
+<pre><code>## # A tibble: 2 × 3
+## # Groups:   Taxa [2]
+##   Taxa        data              mean_richness
+##   &lt;chr&gt;       &lt;list&gt;            &lt;list&gt;       
+## 1 Birds       &lt;tibble [30 × 4]&gt; &lt;dbl [1]&gt;    
+## 2 Butterflies &lt;tibble [30 × 4]&gt; &lt;dbl [1]&gt;</code></pre>
+<p>The results are mutated as another list column in the original data frame. They can be unnested.</p>
+<div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb75-1"><a href="introduction-to-the-tidyverse.html#cb75-1" aria-hidden="true" tabindex="-1"></a>mean_taxa <span class="ot">&lt;-</span> data_all <span class="sc">%&gt;%</span> </span>
+<span id="cb75-2"><a href="introduction-to-the-tidyverse.html#cb75-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Taxa) <span class="sc">%&gt;%</span> </span>
+<span id="cb75-3"><a href="introduction-to-the-tidyverse.html#cb75-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">nest</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb75-4"><a href="introduction-to-the-tidyverse.html#cb75-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">mean_richness =</span> <span class="fu">map</span>(data, <span class="cf">function</span>(x) {</span>
+<span id="cb75-5"><a href="introduction-to-the-tidyverse.html#cb75-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mean</span>(x <span class="sc">%&gt;%</span> </span>
+<span id="cb75-6"><a href="introduction-to-the-tidyverse.html#cb75-6" aria-hidden="true" tabindex="-1"></a>           <span class="fu">pull</span>(Richness))</span>
+<span id="cb75-7"><a href="introduction-to-the-tidyverse.html#cb75-7" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb75-8"><a href="introduction-to-the-tidyverse.html#cb75-8" aria-hidden="true" tabindex="-1"></a>    )) <span class="sc">%&gt;%</span> </span>
+<span id="cb75-9"><a href="introduction-to-the-tidyverse.html#cb75-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unnest</span>(mean_richness)</span>
+<span id="cb75-10"><a href="introduction-to-the-tidyverse.html#cb75-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb75-11"><a href="introduction-to-the-tidyverse.html#cb75-11" aria-hidden="true" tabindex="-1"></a>mean_taxa</span></code></pre></div>
+<pre><code>## # A tibble: 2 × 3
+## # Groups:   Taxa [2]
+##   Taxa        data              mean_richness
+##   &lt;chr&gt;       &lt;list&gt;                    &lt;dbl&gt;
+## 1 Birds       &lt;tibble [30 × 4]&gt;          14.2
+## 2 Butterflies &lt;tibble [30 × 4]&gt;          10.7</code></pre>
+<p>More complicated functions are easier to specify outside of the pipe.</p>
+<p>Example: find the sites with the highest and lowest bird and butterfly species richness</p>
+<div class="sourceCode" id="cb77"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb77-1"><a href="introduction-to-the-tidyverse.html#cb77-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Each element of the list column data will correspond to data frame &quot;x&quot; in the function.</span></span>
+<span id="cb77-2"><a href="introduction-to-the-tidyverse.html#cb77-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb77-3"><a href="introduction-to-the-tidyverse.html#cb77-3" aria-hidden="true" tabindex="-1"></a>get_sites <span class="ot">&lt;-</span> <span class="cf">function</span>(x) { </span>
+<span id="cb77-4"><a href="introduction-to-the-tidyverse.html#cb77-4" aria-hidden="true" tabindex="-1"></a>  x <span class="sc">%&gt;%</span></span>
+<span id="cb77-5"><a href="introduction-to-the-tidyverse.html#cb77-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(Richness <span class="sc">%in%</span> <span class="fu">c</span>(<span class="fu">max</span>(Richness), <span class="fu">min</span>(Richness))) <span class="sc">%&gt;%</span> </span>
+<span id="cb77-6"><a href="introduction-to-the-tidyverse.html#cb77-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">Type =</span> <span class="fu">ifelse</span>(Richness <span class="sc">==</span> <span class="fu">max</span>(Richness), <span class="st">&quot;High&quot;</span>, <span class="st">&quot;Low&quot;</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb77-7"><a href="introduction-to-the-tidyverse.html#cb77-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">arrange</span>(<span class="fu">desc</span>(Richness))</span>
+<span id="cb77-8"><a href="introduction-to-the-tidyverse.html#cb77-8" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb77-9"><a href="introduction-to-the-tidyverse.html#cb77-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb77-10"><a href="introduction-to-the-tidyverse.html#cb77-10" aria-hidden="true" tabindex="-1"></a><span class="co"># The function get.sites is applied to each element in the list column data.</span></span>
+<span id="cb77-11"><a href="introduction-to-the-tidyverse.html#cb77-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb77-12"><a href="introduction-to-the-tidyverse.html#cb77-12" aria-hidden="true" tabindex="-1"></a>sites_taxa <span class="ot">&lt;-</span> data_all <span class="sc">%&gt;%</span> </span>
+<span id="cb77-13"><a href="introduction-to-the-tidyverse.html#cb77-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Taxa) <span class="sc">%&gt;%</span> </span>
+<span id="cb77-14"><a href="introduction-to-the-tidyverse.html#cb77-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">nest</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb77-15"><a href="introduction-to-the-tidyverse.html#cb77-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Types =</span> <span class="fu">map</span>(data, get_sites)) <span class="sc">%&gt;%</span> </span>
+<span id="cb77-16"><a href="introduction-to-the-tidyverse.html#cb77-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unnest</span>(Types) <span class="sc">%&gt;%</span> </span>
+<span id="cb77-17"><a href="introduction-to-the-tidyverse.html#cb77-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>data) </span>
+<span id="cb77-18"><a href="introduction-to-the-tidyverse.html#cb77-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb77-19"><a href="introduction-to-the-tidyverse.html#cb77-19" aria-hidden="true" tabindex="-1"></a>sites_taxa</span></code></pre></div>
+<pre><code>## # A tibble: 4 × 6
+## # Groups:   Taxa [2]
+##   Taxa         ...1 Site     NDVI Richness Type 
+##   &lt;chr&gt;       &lt;dbl&gt; &lt;chr&gt;   &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;
+## 1 Birds           9 Site.9   1          25 High 
+## 2 Birds           6 Site.6   0.29        7 Low  
+## 3 Butterflies    48 Site.18  0.81       20 High 
+## 4 Butterflies    32 Site.2   0.4         6 Low</code></pre>
+<p>Another example, this time nesting the data based on sites and finding whether a site has more bird or butterfly species.</p>
+<div class="sourceCode" id="cb79"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb79-1"><a href="introduction-to-the-tidyverse.html#cb79-1" aria-hidden="true" tabindex="-1"></a>get_taxa <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
+<span id="cb79-2"><a href="introduction-to-the-tidyverse.html#cb79-2" aria-hidden="true" tabindex="-1"></a>  Top_taxa<span class="ot">&lt;-</span> x <span class="sc">%&gt;%</span></span>
+<span id="cb79-3"><a href="introduction-to-the-tidyverse.html#cb79-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(Richness <span class="sc">==</span> <span class="fu">max</span>(Richness)) <span class="sc">%&gt;%</span></span>
+<span id="cb79-4"><a href="introduction-to-the-tidyverse.html#cb79-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">pull</span>(Taxa)</span>
+<span id="cb79-5"><a href="introduction-to-the-tidyverse.html#cb79-5" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb79-6"><a href="introduction-to-the-tidyverse.html#cb79-6" aria-hidden="true" tabindex="-1"></a> <span class="co"># Need to indicate sites where birds and butterflies have the same species richness </span></span>
+<span id="cb79-7"><a href="introduction-to-the-tidyverse.html#cb79-7" aria-hidden="true" tabindex="-1"></a>   </span>
+<span id="cb79-8"><a href="introduction-to-the-tidyverse.html#cb79-8" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(<span class="fu">length</span>(Top_taxa) <span class="sc">&gt;</span> <span class="dv">1</span>) {</span>
+<span id="cb79-9"><a href="introduction-to-the-tidyverse.html#cb79-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">paste</span>(Top_taxa[<span class="dv">1</span>], Top_taxa[<span class="dv">2</span>], <span class="at">sep=</span><span class="st">&quot; + &quot;</span>)</span>
+<span id="cb79-10"><a href="introduction-to-the-tidyverse.html#cb79-10" aria-hidden="true" tabindex="-1"></a>    } <span class="cf">else</span> {</span>
+<span id="cb79-11"><a href="introduction-to-the-tidyverse.html#cb79-11" aria-hidden="true" tabindex="-1"></a>      Top_taxa</span>
+<span id="cb79-12"><a href="introduction-to-the-tidyverse.html#cb79-12" aria-hidden="true" tabindex="-1"></a>      } </span>
+<span id="cb79-13"><a href="introduction-to-the-tidyverse.html#cb79-13" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb79-14"><a href="introduction-to-the-tidyverse.html#cb79-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb79-15"><a href="introduction-to-the-tidyverse.html#cb79-15" aria-hidden="true" tabindex="-1"></a>sites_richness <span class="ot">&lt;-</span> data_all <span class="sc">%&gt;%</span> </span>
+<span id="cb79-16"><a href="introduction-to-the-tidyverse.html#cb79-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Site) <span class="sc">%&gt;%</span> </span>
+<span id="cb79-17"><a href="introduction-to-the-tidyverse.html#cb79-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">nest</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb79-18"><a href="introduction-to-the-tidyverse.html#cb79-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Animal =</span> <span class="fu">map</span>(data, get_taxa)) <span class="sc">%&gt;%</span></span>
+<span id="cb79-19"><a href="introduction-to-the-tidyverse.html#cb79-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unnest</span>(Animal) <span class="sc">%&gt;%</span> </span>
+<span id="cb79-20"><a href="introduction-to-the-tidyverse.html#cb79-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>data)</span>
+<span id="cb79-21"><a href="introduction-to-the-tidyverse.html#cb79-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb79-22"><a href="introduction-to-the-tidyverse.html#cb79-22" aria-hidden="true" tabindex="-1"></a>sites_richness</span></code></pre></div>
+<pre><code>## # A tibble: 30 × 2
+## # Groups:   Site [30]
+##    Site    Animal     
+##    &lt;chr&gt;   &lt;chr&gt;      
+##  1 Site.1  Birds      
+##  2 Site.2  Birds      
+##  3 Site.3  Birds      
+##  4 Site.4  Birds      
+##  5 Site.5  Birds      
+##  6 Site.6  Butterflies
+##  7 Site.7  Birds      
+##  8 Site.8  Birds      
+##  9 Site.9  Birds      
+## 10 Site.10 Birds      
+## # … with 20 more rows</code></pre>
+<p>Are there any sites where birds and butterflies have equal species richness?</p>
+<div class="sourceCode" id="cb81"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb81-1"><a href="introduction-to-the-tidyverse.html#cb81-1" aria-hidden="true" tabindex="-1"></a>site_animals <span class="ot">&lt;-</span> sites_richness <span class="sc">%&gt;%</span> </span>
+<span id="cb81-2"><a href="introduction-to-the-tidyverse.html#cb81-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Animal <span class="sc">==</span> <span class="st">&quot;Birds + Butterflies&quot;</span>)</span>
+<span id="cb81-3"><a href="introduction-to-the-tidyverse.html#cb81-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb81-4"><a href="introduction-to-the-tidyverse.html#cb81-4" aria-hidden="true" tabindex="-1"></a>site_animals</span></code></pre></div>
+<pre><code>## # A tibble: 1 × 2
+## # Groups:   Site [1]
+##   Site    Animal             
+##   &lt;chr&gt;   &lt;chr&gt;              
+## 1 Site.25 Birds + Butterflies</code></pre>
+<p>Are there more sites with higher bird or butterfly species richness?</p>
+<div class="sourceCode" id="cb83"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb83-1"><a href="introduction-to-the-tidyverse.html#cb83-1" aria-hidden="true" tabindex="-1"></a>richness_summary <span class="ot">&lt;-</span> sites_richness <span class="sc">%&gt;%</span> </span>
+<span id="cb83-2"><a href="introduction-to-the-tidyverse.html#cb83-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Animal) <span class="sc">%&gt;%</span> </span>
+<span id="cb83-3"><a href="introduction-to-the-tidyverse.html#cb83-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">No_Sites =</span> <span class="fu">n</span>())</span>
+<span id="cb83-4"><a href="introduction-to-the-tidyverse.html#cb83-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb83-5"><a href="introduction-to-the-tidyverse.html#cb83-5" aria-hidden="true" tabindex="-1"></a>richness_summary</span></code></pre></div>
+<pre><code>## # A tibble: 3 × 2
+##   Animal              No_Sites
+##   &lt;chr&gt;                  &lt;int&gt;
+## 1 Birds                     26
+## 2 Birds + Butterflies        1
+## 3 Butterflies                3</code></pre>
+<p>Run a linear model to estimate the relationship between NDVI and richness for each taxa.
+“lm” can be specified as a function in map().
+The model is mutated as a list column. We can mutate all model results by mapping tidy, glance, and augument onto each model.</p>
+<div class="sourceCode" id="cb85"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb85-1"><a href="introduction-to-the-tidyverse.html#cb85-1" aria-hidden="true" tabindex="-1"></a>richness_models <span class="ot">&lt;-</span> data_all <span class="sc">%&gt;%</span> </span>
+<span id="cb85-2"><a href="introduction-to-the-tidyverse.html#cb85-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Taxa) <span class="sc">%&gt;%</span> </span>
+<span id="cb85-3"><a href="introduction-to-the-tidyverse.html#cb85-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">nest</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb85-4"><a href="introduction-to-the-tidyverse.html#cb85-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Models =</span> <span class="fu">map</span>(data, <span class="sc">~</span><span class="fu">lm</span>(Richness<span class="sc">~</span>NDVI, <span class="at">data=</span>. ))) <span class="sc">%&gt;%</span> </span>
+<span id="cb85-5"><a href="introduction-to-the-tidyverse.html#cb85-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Tidied =</span> <span class="fu">map</span>(Models, tidy), </span>
+<span id="cb85-6"><a href="introduction-to-the-tidyverse.html#cb85-6" aria-hidden="true" tabindex="-1"></a>         <span class="at">Glanced =</span> <span class="fu">map</span>(Models, glance), </span>
+<span id="cb85-7"><a href="introduction-to-the-tidyverse.html#cb85-7" aria-hidden="true" tabindex="-1"></a>         <span class="at">Augmented =</span> <span class="fu">map</span>(Models, augment))</span>
+<span id="cb85-8"><a href="introduction-to-the-tidyverse.html#cb85-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb85-9"><a href="introduction-to-the-tidyverse.html#cb85-9" aria-hidden="true" tabindex="-1"></a>richness_models</span></code></pre></div>
+<pre><code>## # A tibble: 2 × 6
+## # Groups:   Taxa [2]
+##   Taxa        data    Models Tidied  Glanced  Augmented
+##   &lt;chr&gt;       &lt;list&gt;  &lt;list&gt; &lt;list&gt;  &lt;list&gt;   &lt;list&gt;   
+## 1 Birds       &lt;tibbl… &lt;lm&gt;   &lt;tibbl… &lt;tibble… &lt;tibble …
+## 2 Butterflies &lt;tibbl… &lt;lm&gt;   &lt;tibbl… &lt;tibble… &lt;tibble …</code></pre>
+<p>Is NDVI more strongly associated with bird or butterfly species richness? Let’s compare the parameter estimates and their precision, which can be returned as a 95% confidence interval by specifying conf.int=TRUE and conf.level=0.95 (the default).</p>
+<div class="sourceCode" id="cb87"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb87-1"><a href="introduction-to-the-tidyverse.html#cb87-1" aria-hidden="true" tabindex="-1"></a>richness_models <span class="ot">&lt;-</span> data_all <span class="sc">%&gt;%</span> </span>
+<span id="cb87-2"><a href="introduction-to-the-tidyverse.html#cb87-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Taxa) <span class="sc">%&gt;%</span> </span>
+<span id="cb87-3"><a href="introduction-to-the-tidyverse.html#cb87-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">nest</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb87-4"><a href="introduction-to-the-tidyverse.html#cb87-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Models =</span> <span class="fu">map</span>(data, <span class="sc">~</span><span class="fu">lm</span>(Richness<span class="sc">~</span>NDVI, <span class="at">data=</span>. ))) <span class="sc">%&gt;%</span> </span>
+<span id="cb87-5"><a href="introduction-to-the-tidyverse.html#cb87-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Tidied =</span> <span class="fu">map</span>(Models, tidy, <span class="at">conf.int =</span> <span class="cn">TRUE</span>, <span class="at">conf.level =</span> <span class="fl">0.95</span>), </span>
+<span id="cb87-6"><a href="introduction-to-the-tidyverse.html#cb87-6" aria-hidden="true" tabindex="-1"></a>         <span class="at">Glanced =</span> <span class="fu">map</span>(Models, glance), </span>
+<span id="cb87-7"><a href="introduction-to-the-tidyverse.html#cb87-7" aria-hidden="true" tabindex="-1"></a>         <span class="at">Augmented =</span> <span class="fu">map</span>(Models, augment)) <span class="sc">%&gt;%</span> </span>
+<span id="cb87-8"><a href="introduction-to-the-tidyverse.html#cb87-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unnest</span>(Tidied)</span>
+<span id="cb87-9"><a href="introduction-to-the-tidyverse.html#cb87-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb87-10"><a href="introduction-to-the-tidyverse.html#cb87-10" aria-hidden="true" tabindex="-1"></a>parameter_estimates <span class="ot">&lt;-</span> richness_models <span class="sc">%&gt;%</span> </span>
+<span id="cb87-11"><a href="introduction-to-the-tidyverse.html#cb87-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Taxa, term, estimate, conf.low, conf.high) <span class="sc">%&gt;%</span> </span>
+<span id="cb87-12"><a href="introduction-to-the-tidyverse.html#cb87-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(term <span class="sc">==</span> <span class="st">&quot;NDVI&quot;</span>)</span>
+<span id="cb87-13"><a href="introduction-to-the-tidyverse.html#cb87-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb87-14"><a href="introduction-to-the-tidyverse.html#cb87-14" aria-hidden="true" tabindex="-1"></a>parameter_estimates</span></code></pre></div>
+<pre><code>## # A tibble: 2 × 5
+## # Groups:   Taxa [2]
+##   Taxa        term  estimate conf.low conf.high
+##   &lt;chr&gt;       &lt;chr&gt;    &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;
+## 1 Birds       NDVI      19.9    16.3       23.5
+## 2 Butterflies NDVI      12.7     8.91      16.4</code></pre>
+<p>Graph the results: compare the relationship with NDVI for both species. Rather than use the fitted values, predict richness for all NDVI values from 0 to 1 at intervals of 0.01. The precision of the prediction can be estimated as confidence intervals (interval=“confidence”) or prediction intervals (interval=“prediction”)</p>
+<div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb89-1"><a href="introduction-to-the-tidyverse.html#cb89-1" aria-hidden="true" tabindex="-1"></a>richness_models <span class="ot">&lt;-</span> data_all <span class="sc">%&gt;%</span> </span>
+<span id="cb89-2"><a href="introduction-to-the-tidyverse.html#cb89-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Taxa) <span class="sc">%&gt;%</span> </span>
+<span id="cb89-3"><a href="introduction-to-the-tidyverse.html#cb89-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">nest</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb89-4"><a href="introduction-to-the-tidyverse.html#cb89-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Models =</span> <span class="fu">map</span>(data, <span class="sc">~</span><span class="fu">lm</span>(Richness<span class="sc">~</span>NDVI, <span class="at">data=</span>. ))) <span class="sc">%&gt;%</span> </span>
+<span id="cb89-5"><a href="introduction-to-the-tidyverse.html#cb89-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Tidied =</span> <span class="fu">map</span>(Models, tidy), </span>
+<span id="cb89-6"><a href="introduction-to-the-tidyverse.html#cb89-6" aria-hidden="true" tabindex="-1"></a>         <span class="at">Glanced =</span> <span class="fu">map</span>(Models, glance),  </span>
+<span id="cb89-7"><a href="introduction-to-the-tidyverse.html#cb89-7" aria-hidden="true" tabindex="-1"></a>         <span class="at">Predictions =</span> <span class="fu">map</span>(Models, augment, <span class="at">newdata =</span> <span class="fu">tibble</span>(<span class="at">NDVI=</span><span class="fu">seq</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="fl">0.01</span>)), </span>
+<span id="cb89-8"><a href="introduction-to-the-tidyverse.html#cb89-8" aria-hidden="true" tabindex="-1"></a>                           <span class="at">se_fit=</span><span class="cn">TRUE</span>, <span class="at">interval=</span><span class="st">&quot;confidence&quot;</span>)) </span>
+<span id="cb89-9"><a href="introduction-to-the-tidyverse.html#cb89-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb89-10"><a href="introduction-to-the-tidyverse.html#cb89-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Rather than use the original NDVI values for prediction, </span></span>
+<span id="cb89-11"><a href="introduction-to-the-tidyverse.html#cb89-11" aria-hidden="true" tabindex="-1"></a><span class="co"># specify a new data frame (newdata) with the NDVI values of interest</span></span>
+<span id="cb89-12"><a href="introduction-to-the-tidyverse.html#cb89-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb89-13"><a href="introduction-to-the-tidyverse.html#cb89-13" aria-hidden="true" tabindex="-1"></a>richness_predictions <span class="ot">&lt;-</span> richness_models <span class="sc">%&gt;%</span> </span>
+<span id="cb89-14"><a href="introduction-to-the-tidyverse.html#cb89-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unnest</span>(Predictions) <span class="sc">%&gt;%</span> </span>
+<span id="cb89-15"><a href="introduction-to-the-tidyverse.html#cb89-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Taxa, NDVI, .fitted, .lower, .upper) <span class="sc">%&gt;%</span> </span>
+<span id="cb89-16"><a href="introduction-to-the-tidyverse.html#cb89-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">Richness =</span> .fitted, <span class="at">low.95 =</span> .lower, <span class="at">high.95 =</span> .upper)</span>
+<span id="cb89-17"><a href="introduction-to-the-tidyverse.html#cb89-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb89-18"><a href="introduction-to-the-tidyverse.html#cb89-18" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> richness_predictions <span class="sc">%&gt;%</span> </span>
+<span id="cb89-19"><a href="introduction-to-the-tidyverse.html#cb89-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> NDVI, <span class="at">y =</span> Richness, <span class="at">col =</span> Taxa)) <span class="sc">+</span> </span>
+<span id="cb89-20"><a href="introduction-to-the-tidyverse.html#cb89-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb89-21"><a href="introduction-to-the-tidyverse.html#cb89-21" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb89-22"><a href="introduction-to-the-tidyverse.html#cb89-22" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Visualize confidence interval</span></span>
+<span id="cb89-23"><a href="introduction-to-the-tidyverse.html#cb89-23" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb89-24"><a href="introduction-to-the-tidyverse.html#cb89-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_ribbon</span>(<span class="fu">aes</span>(<span class="at">ymin =</span> low<span class="fl">.95</span>, <span class="at">ymax =</span> high<span class="fl">.95</span>, <span class="at">fill =</span> Taxa), <span class="at">show.legend=</span><span class="cn">FALSE</span>, </span>
+<span id="cb89-25"><a href="introduction-to-the-tidyverse.html#cb89-25" aria-hidden="true" tabindex="-1"></a>              <span class="at">color=</span><span class="cn">NA</span>, <span class="at">alpha=</span><span class="fl">0.3</span>) <span class="sc">+</span></span>
+<span id="cb89-26"><a href="introduction-to-the-tidyverse.html#cb89-26" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb89-27"><a href="introduction-to-the-tidyverse.html#cb89-27" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Add original data</span></span>
+<span id="cb89-28"><a href="introduction-to-the-tidyverse.html#cb89-28" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb89-29"><a href="introduction-to-the-tidyverse.html#cb89-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">data =</span> data_all, <span class="fu">aes</span>(<span class="at">x =</span> NDVI, <span class="at">y =</span> Richness, <span class="at">col =</span> Taxa), <span class="at">size=</span><span class="dv">3</span>) <span class="sc">+</span> </span>
+<span id="cb89-30"><a href="introduction-to-the-tidyverse.html#cb89-30" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">name =</span> <span class="st">&quot;Species richness</span><span class="sc">\n</span><span class="st">&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb89-31"><a href="introduction-to-the-tidyverse.html#cb89-31" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">name =</span> <span class="st">&quot;</span><span class="sc">\n</span><span class="st">NDVI&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb89-32"><a href="introduction-to-the-tidyverse.html#cb89-32" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_viridis_d</span>() <span class="sc">+</span> </span>
+<span id="cb89-33"><a href="introduction-to-the-tidyverse.html#cb89-33" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_viridis_d</span>() <span class="sc">+</span> </span>
+<span id="cb89-34"><a href="introduction-to-the-tidyverse.html#cb89-34" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>() <span class="sc">+</span> </span>
+<span id="cb89-35"><a href="introduction-to-the-tidyverse.html#cb89-35" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.line.x =</span> <span class="fu">element_line</span>(<span class="at">colour =</span> <span class="st">&quot;black&quot;</span>), </span>
+<span id="cb89-36"><a href="introduction-to-the-tidyverse.html#cb89-36" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.line.y =</span> <span class="fu">element_line</span>(<span class="at">colour=</span><span class="st">&quot;black&quot;</span>), </span>
+<span id="cb89-37"><a href="introduction-to-the-tidyverse.html#cb89-37" aria-hidden="true" tabindex="-1"></a>        <span class="at">text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">12</span>))</span>
+<span id="cb89-38"><a href="introduction-to-the-tidyverse.html#cb89-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb89-39"><a href="introduction-to-the-tidyverse.html#cb89-39" aria-hidden="true" tabindex="-1"></a>p</span></code></pre></div>
+<p><img src="merida-workshop-2022_files/figure-html/unnamed-chunk-46-1.png" width="672" /></p>
+<div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb90-1"><a href="introduction-to-the-tidyverse.html#cb90-1" aria-hidden="true" tabindex="-1"></a><span class="co">#ggsave(&quot;Richness_vs_NDVI.pdf&quot;, device = &quot;pdf&quot;, width = 6, height = 3, units = &quot;in&quot;, dpi = 600)</span></span></code></pre></div>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="congen-intro.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="reporg.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook/js/app.min.js"></script>
+<script src="libs/gitbook/js/clipboard.min.js"></script>
+<script src="libs/gitbook/js/plugin-search.js"></script>
+<script src="libs/gitbook/js/plugin-sharing.js"></script>
+<script src="libs/gitbook/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook/js/jquery.highlight.js"></script>
+<script src="libs/gitbook/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": true,
+"facebook": false,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/eriqande/merida-workshop-2022/edit/master/2.0-introduction-to-R.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": "https://github.com/eriqande/merida-workshop-2022/commits/master/2.0-introduction-to-R.Rmd",
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["merida-workshop-2022.pdf", "merida-workshop-2022.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "section"
+}
+});
+});
+</script>
+
+</body>
+
+</html>
