@@ -599,8 +599,9 @@ ggplot() +
 
 ```
 
-The points are nowhere to be found(!), because the x and y coordinates
-in an LCC projection and totally different!
+The points are nowhere to be found (Actually, I think that they are all piled
+up on top of one another where the single blue dot is visible!), because the x and y coordinates
+in an LCC projection are totally different than they are in WGS84!
 
 This shows that if you want to do _spatial_ things on
 georeferenced data that simply have lat-long coordinates,
@@ -662,14 +663,29 @@ few of them here.
 
 One very powerful operation is a spatial intersection.  These
 intersections can be quite complex, though intersecting point
-data with polygon data will lead simply to point data.
+data with polygon data will lead simply to point data, so, for
+intersecting points, things are not terribly complex.
 
 For example, what if we want to know which Mexican states each of these observed
-Yucatán Jays occurred in.  To find this, we would _intersect_ the location of each
+Yucatán Jays occurred in.  
+
+The GBIF data actually tells us that information in the `stateProvice` column, but let's pretend for a
+moment that we don't have that information --- only where they birds were caught:
+```{r}
+yjay_just_coord <- yjay_sf %>%
+  select(gbifID, geometry)
+
+# now, we just have the IDs and the positions of the observations
+yjay_just_coord
+```
+
+So, if that was all we knew, and we wanted to figure out
+which states all those birds were observed in, we 
+would _intersect_ the location of each
 observation with the polygons that define the states.
 ```{r}
 jays_in_states <- st_intersection(
-  yjay_sf, # this requires the spatial object that we made
+  yjay_just_coord, # this requires the spatial object that we made
   ms_thin
 )
 
@@ -680,7 +696,7 @@ jays_in_states
 No way!  That is so cool!  This new simple features tibble now has all the
 birds that were seen in Mexico, and, for each one, it has added the columns
 from the Mexican states data.  So, we know for each bird, which state
-is was found in.
+(in the column `name`) is was found in.
 
 Now, for example, if we wanted to plot these points and color them by `stateProvince`
 we could do this:
@@ -692,7 +708,7 @@ ggplot() +
   ) + 
   geom_sf(  # placing the points as spatial objects
     data = jays_in_states, 
-    mapping = aes(fill = stateProvince), # coloring by stateProvince column
+    mapping = aes(fill = name), # coloring by name column
     shape = 21,
     stroke = 0.2
   ) + 
@@ -703,30 +719,142 @@ ggplot() +
 
 Cool!
 
+### Treat the result as a tibble
 
-## Ideas
+One very important thing to keep in mind is that a simple features
+collection works quite nicely within the tidyverse.
 
-Marius and I brainstormed on this.  We will do an example
-that involves the Yucatan Jay (or, better yet, ask Richard
-if a more interesting/iconic species is available).  ECA has downloaded
-occurrences from GBIF (3 Mb compressed) and has put them
-into `data`.
+So, for example, if you wanted to retain only those observations of
+jays that occurred in the state of Yucatàn, you can use a simple `filter()`:
+```{r}
+yuc_state_jays <- jays_in_states %>%
+  filter(name == "Yucatán")
 
-We can use that and some of the raster data and some
-vector data to do a little exploration of how to use the
-`sf` package in combination with ggplot2.
+# have a look:
+yuc_state_jays
+```
 
-Also, some filtering in the tidyverse.
+### The same filtering can be done on the state polygons
 
-Ideas:
+By way of demonstration, we could also filter our data set of
+state boundaries to have just the state of Yucatán:
+```{r}
+yuc_boundary <- ms_thin %>%
+    filter(name == "Yucatán")
 
-- Do some filtering of the data set (tidyverse reprise)
-- Talk about lubridate for dealing with dates and times
-- facet wrap over months to look at occurrences, etc.
-- Some very light geometrical operations, for example get all the
-observations within X km of some features (like highways).
-- Explore the use of different raster backgrounds.
+```
 
+And then we could plot the two together quite easily:
+```{r}
+ggplot() +
+  geom_sf(data = yuc_boundary) + 
+  geom_sf(
+    data = yuc_state_jays,
+    fill = "deepskyblue3",
+    shape = 21,
+    stroke = 0.2
+  ) +
+  theme_bw() +
+  coord_sf() +
+  ggtitle("Year 2017 EBIRD observations of YUJA in Yucatán state")
+
+```
+
+## Joint Operations with Raster and Vector data I: Masking a Raster with a Polygon
+
+In the previous section, we saw an example of a geometric operation
+between two vector spatial features---the intersection between
+polygons and points. 
+
+Another class of important operations are those involving
+raster data and vector data.
+
+Suppose that we want to make a plot of the BioClim variables that
+only includes the state of Yucatán. 
+
+The way this is typically done is to create a raster that has the
+shape of the state of Yucatán polygon, and then using that state of
+Yucatán raster as a _mask_ for the BioClim rasters.
+
+
+In the variable
+`yuc_bioc`, we have that BioClim raster data.  Let's remind ourselves of that:
+```{r}
+yuc_bioc
+```
+Note that the coordinate reference system is WGS 84.  
+
+We also have the polygon data for the state of Yucatán:
+```{r}
+yuc_boundary
+```
+
+Note that the Coordinate Reference system (CRS) with the above
+object is listed as unknown, though the datum used for it is WGS 84:
+```{r}
+st_crs(yuc_boundary)
+```
+### Explicitly setting the CRS on `yuc_boundary`
+
+So, let's go ahead and set the CRS to WGS 84, just so that the raster and the
+polygon are explicitly on the same CRS.  
+
+The WGS84 CRS is known in the EPSG data base as 4326. So we will set that:
+```{r}
+st_crs(yuc_boundary) <- 4326
+```
+
+Now, note that the CRS is listed as WGS 84:
+```{r}
+yuc_boundary
+```
+
+
+### Creating a raster of the Yucatán polygon
+
+For this we use the `rasterize()` function from the 'terra' package.
+This function takes as its first argument a `SpatVector` object that gives the
+shape to rasterize.  Its second argument is a `SpatRaster` object that tells
+the function what extent and resolution the resulting raster should have.
+
+### What is a `SpatVector`?
+
+A `SpatVector` is a `terra` data type for holding vector spatial data.
+
+Fortunately, it is easy to convert as `sf` object (like `yuc_boundary`) to
+a `SpatVector` using the `vect()` function from the 'terra' package, like this:
+```{r}
+yuc_bound_spat_vect <- vect(yuc_boundary)
+
+# see what that looks like when we print it:
+yuc_bound_spat_vect
+```
+### Using the `rasterize()` function
+
+Now, creating a raster from the Yucatán state polygon happens like this:
+```{r}
+yuc_bound_raster <- rasterize(
+  x = yuc_bound_spat_vect,
+  y = yuc_bioc
+)
+```
+
+Plotting this, we see that everywhere within the shape of the state of Yucatán,
+that cells have the value of 1, and everywhere outside the cells have the
+value of NA:
+```{r}
+plot(yuc_bound_raster)
+```
+
+### Masking the BioClim rasters with the Yucatán state raster
+
+Now that we have `yuc_bound_raster` we can use it to mask
+the `yuc_bioc` data to only inlude cells within the state
+boundaries.  This used the 'terra' function `mask()`, which is
+quite simple.  
+```{r}
+yuc_state_bioc <- mask(yuc_bioc, yuc_spat_vect)
+```
 
 ## Appendix: Obtaining and Reducing The Example Spatial Datasets {#spat_data_appendix}
 
@@ -893,7 +1021,14 @@ archived at New York University:
 [https://archive.nyu.edu/bitstream/2451/37132/1/nyu_2451_37132.zip](https://archive.nyu.edu/bitstream/2451/37132/1/nyu_2451_37132.zip)
 
 This is a small file that I downloaded and then put into the
-repo with the name `yuc_municipio`. 
+repo with the name `yuc_municipio`.  It can be loaded like this:
+```{r, eval=FALSE}
+yuc_muni <- st_read("data/spatial/yuc_municipio/yuc_municipio.shp")
+```
+We didn't end up using this in this session/notebook, but it
+is a fun data set if you want to play with it.  Here is something
+to try: count up how many jay observations there were in each of the
+municipalities.
 
 ### Species Occurrence Data
 
