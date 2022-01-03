@@ -10,7 +10,7 @@ The RStudio layout is broken up into four panes: **Source**, **Console**, **Envi
 knitr::include_graphics("images/2.0_R_ggplot/RStudio.png")
 ```
 
-The **Source** pane is where you can read, edit, and run your R code and the code can be saved as a *.R* file indicating it is an R script document.
+The **Source** pane is where you can read, edit, and run your R code and the code can be saved as a *.R* file indicating it is an R script document, or *.Rmd* file indicating it is an R markdown file with the code split into code chunks that you'll see throughout this tutorial. 
 
 ```{r, echo=FALSE, out.width='75%'}
 knitr::include_graphics("images/2.0_R_ggplot/Source.png")
@@ -28,6 +28,15 @@ knitr::include_graphics("images/2.0_R_ggplot/Console.png")
   
 The **Environment** pane lists all available data and variables in the current session.  For example, in the example **Source** pane above I have a line of code `another_variable <- 5` which sets the string `another_variable` to represent the value 5.  After executing this line of code, the variable is stored and can be called at any point.  Once a variable has been created, it will be displayed in the **Environment**.  
 
+```{r}
+another_variable<-5
+
+another_variable
+
+another_variable*5
+```
+
+
 *Note*: Whenever opening a script into a new session of R, you will need to re-run the lines of code you wish to use.  Opening a .R script does not automatically run the code.
 
 ```{r, echo=FALSE, out.width='75%'}
@@ -40,7 +49,7 @@ The **Files** pane is used to navigate through directories and can be used to op
 knitr::include_graphics("images/2.0_R_ggplot/Files.png")
 ```
 
-Next to the **Files** tab, there is **Plots**.  In the example **Source** pane above I created a plot with the following code (*note*: the function `ggplot()` and the `mpg` dataset are from the `ggplot2` package that comes in the `tidyverse` package. You need to have `tidyverse` installed and loaded for this code to work on your console, this is addressed further down). 
+Next to the **Files** tab, there is **Plots**.  In the example **Source** pane above I created a plot with the following code (*note*: the function `ggplot()` and the `mpg` dataset are from the `ggplot2` package that comes in the `tidyverse` package. You need to have `tidyverse` installed and loaded for this code to work on your console. 
 
 ```{r}
 library(tidyverse)
@@ -50,7 +59,7 @@ p <- ggplot(data = mpg) +
 p
 ```
   
-When this code is executed, the resulting scatterplot is displayed below. If this was run in a R script rather than an Rmarkdown, the plot would be displayed in the *Plots* window on the left.
+When the code is executed, the resulting scatterplot is displayed below. If this was run in a R script rather than an Rmarkdown, the plot would be displayed in the *Plots* window on the left.
 
 Also useful is the **Help** tab for understanding what a function does.
     
@@ -61,7 +70,8 @@ Also useful is the **Help** tab for understanding what a function does.
     a. We want to create plots quickly and get many things “for free”.
     b. We want many options to customize and make things look awesome.
 
-### ggplot2
+## Understanding the Ggplot Syntax
+
 ggplot2 uses the basic units of the “grammar of graphics” (Leland Wilkinson) to construct data visualizations in a layered approach.
 
 The basic units in the “grammar of graphics” consist of:
@@ -70,7 +80,6 @@ The basic units in the “grammar of graphics” consist of:
 *  The geometries, shortened to “geoms”, which describe the shapes that represent the data. These shapes can be dots on a scatter plot, bar charts on the graph, or a line to plot the data. Data are mapped to geoms.
 *  The aesthetics, or the visual attributes of the plot, including the scales on the axes, the color, the fill, and other attributes concerning appearance
 
-#### Understanding the Ggplot Syntax
 The syntax for constructing ggplots could be puzzling if you are a beginner or work primarily with base graphics. The main difference is that, unlike base graphics, ggplot works with dataframes and not individual vectors. All the data needed to make the plot is typically be contained within the dataframe supplied to the ggplot() itself or can be supplied to respective geoms. More on that later.
 
 ### A plot consists of components
@@ -93,12 +102,14 @@ ggplot() +
 
 **1: Data**
 
-__layer(data = mtcars, #1__ 
+```
+ggplot() +
+<b>layer(data = mtcars, #1 </b>
   mapping = aes(x = hp, y = qsec), #2
   geom = 'point', #3
   stat = 'identity', #4
   position = 'identity') + #5
-
+```
 * A data layer needs data to display.
 * Data is a data.frame or tibble if you are using tidyverse
 
