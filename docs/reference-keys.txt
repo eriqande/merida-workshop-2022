@@ -7,6 +7,8 @@ fig:unnamed-chunk-126
 fig:unnamed-chunk-128
 congen-intro
 introduction-to-the-tidyverse
+<<<<<<< HEAD
+=======
 what-on-earth-is-the-tidyerse
 an-example-data-set
 reading-data-in-the-tidyverse
@@ -25,6 +27,7 @@ exercises-for-you
 joins
 wrap-up
 modeling-within-the-tidyverse
+>>>>>>> 0c67f20f6dcebfef75edc15346c485f4050f802b
 reporg
 goals-for-this-session
 why-do-this
