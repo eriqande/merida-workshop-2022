@@ -55,7 +55,7 @@ knitr::include_graphics("images/env_layers/robertson-table.png")
 
 @ruegg2021linking shows another example of the use of environmental layers
 in conservation genetics.  In this case, genetic differences resolved separate
-breeding populations of the willow flycatcher in North America, and also made it
+breeding populations of the Willow Flycatcher, _Empidonax traillii_, in North America, and also made it
 possible to identify where birds from each breeding population spend their
 winters, as shown in the following figure (in which the different breeding
 populations are denoted by different colors):
@@ -65,8 +65,7 @@ knitr::include_graphics("images/env_layers/wifl-map.png")
 ``` 
 
 With the breeding and wintering areas for each subpopulation identified,
-other environmental layers (not shown) were used to identify the environmental
-and climatic conditions that defined the birds breeding and wintering
+climate layers (temperature and precipitation) were used to identify the climatic conditions that defined the birds breeding and wintering
 _niches_ for the subpopulations. Population trends were found to be associated
 with overlap between breeding and wintering niches, with the subpopulation showing 
 the least niche overlap being the only subpopulation not showing a decreasing trend.
@@ -93,16 +92,55 @@ figures from the paper:
 knitr::include_graphics("images/env_layers/bay-science.png")
 ``` 
   
+  
+#### Environmental layers as raster data
+
+Digital environmental layers are obtained by abstracting reality in either _vector_ or _raster_ format, as shown below: 
+
+```{r, echo=FALSE, out.width='90%', fig.align='center'}
+knitr::include_graphics("images/env_layers/GIS_abstraction.png")
+``` 
+
+The most common format encountered is _raster_, which is composed of a grid of cells.
+
+```{r, echo=FALSE, out.width='90%', fig.align='center'}
+knitr::include_graphics("images/env_layers/raster.png")
+``` 
+
+A cell value can represent a measured value at the center point of the cell (e.g. elevation) or for the whole cell square (average, max, category). The cell values represent the phenomenon portrayed by the raster dataset such as a category (e.g. grassland, forest, road), magnitude (e.g. noise pollution, rainfall), height (e.g. elevation), or spectral value. Cell values can be either positive or negative, integer, or floating point. 
+
+Commonly used format to store _rasters_ on a computer are: TIFF, Hierarchichal Data Format (HDF), JPEG, NetCDF.
 
 
-### Environmental layers as raster data
+#### Coordinate system and projections
 
-### Coordinate system and projections
+For geographic analysis, we use a coordinate system that uses a three-dimensional spherical surface to determine location on the Earth. Each point on Earth is defined by a latitude value and a longitude value, which are measures of angle as shown in the following figure:
 
-### Parameters of raster data
+```{r, echo=FALSE, out.width='90%', fig.align='center'}
+knitr::include_graphics("images/env_layers/lat_lon.png")
+``` 
+
+The units of the _geographic coordinate system_ are units of angle as follows: 1 degree = 60 arc-minutes = 3600 arc-seconds.
+
+To visualize geographic data as maps, we need to draw it on a two-dimensional surface using a _projected coordinate system_. _Map projections_ tell how to distort the earth so that it is displayed on a flat surface. A _coordinate reference system_ (CRS) then defines how the projected map is related to real places on the earth. Many _projections_ exist, here are some examples:
+
+```{r, echo=FALSE, out.width='90%', fig.align='center'}
+knitr::include_graphics("images/env_layers/projections.png")
+``` 
+
+Good practice: raster data storing environmental layers should have a projection, and you choose one projection for the whole analysis, i.e. converting all of the geographic data into the same projection.
 
 
-### Examples of climate layers
+#### Parameters of raster data
+
+Rasters storing environmental layers are defined by multiple parameters. The _extent_ is defined by the top, bottom, left, and right coordinates of the rectangular area covered by a raster. The _spatial resolution_ is defined by the width and height of cells/pixels (cells are square and the width and height of all cells have the same value), usually given in degree / arc-minute / arc-second. For environmental variables that have layers at different time, it is possible to _stack_ these layers and define a _temporal extent_. i.e. the first and last date, and _temporal resolution_, which is the time step (e.g. daily, weekly, monthly, yearly).
+
+```{r, echo=FALSE, out.width='90%', fig.align='center'}
+knitr::include_graphics("images/env_layers/raster_parameters.png")
+``` 
+
+
+#### Examples of climate layers
 
 ```{r tbl9, echo = FALSE}
 tbl9 <- tibble::tribble(
