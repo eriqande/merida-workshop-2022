@@ -97,13 +97,13 @@ knitr::include_graphics("images/env_layers/bay-science.png")
 
 Digital environmental layers are obtained by abstracting reality in either _vector_ or _raster_ format, as shown below: 
 
-```{r, echo=FALSE, out.width='90%', fig.align='center'}
+```{r, echo=FALSE, out.width='60%', fig.align='center'}
 knitr::include_graphics("images/env_layers/GIS_abstraction.png")
 ``` 
 
-The most common format encountered is _raster_, which is composed of a grid of cells.
+The most common format encountered for environmental layers is _raster_, which is composed of a grid of cells like this:
 
-```{r, echo=FALSE, out.width='90%', fig.align='center'}
+```{r, echo=FALSE, out.width='50%', fig.align='center'}
 knitr::include_graphics("images/env_layers/raster.png")
 ``` 
 
@@ -116,7 +116,7 @@ Commonly used format to store _rasters_ on a computer are: TIFF, Hierarchichal D
 
 For geographic analysis, we use a coordinate system that uses a three-dimensional spherical surface to determine location on the Earth. Each point on Earth is defined by a latitude value and a longitude value, which are measures of angle as shown in the following figure:
 
-```{r, echo=FALSE, out.width='90%', fig.align='center'}
+```{r, echo=FALSE, out.width='60%', fig.align='center'}
 knitr::include_graphics("images/env_layers/lat_lon.png")
 ``` 
 
@@ -124,11 +124,11 @@ The units of the _geographic coordinate system_ are units of angle as follows: 1
 
 To visualize geographic data as maps, we need to draw it on a two-dimensional surface using a _projected coordinate system_. _Map projections_ tell how to distort the earth so that it is displayed on a flat surface. A _coordinate reference system_ (CRS) then defines how the projected map is related to real places on the earth. Many _projections_ exist, here are some examples:
 
-```{r, echo=FALSE, out.width='90%', fig.align='center'}
+```{r, echo=FALSE, out.width='60%', fig.align='center'}
 knitr::include_graphics("images/env_layers/projections.png")
 ``` 
 
-Good practice: raster data storing environmental layers should have a projection, and you choose one projection for the whole analysis, i.e. converting all of the geographic data into the same projection.
+Good practice: raster data storing environmental layers should have a projection, and choose one projection for the whole analysis, i.e. converting all of the geographic data into the same projection.
 
 
 #### Parameters of raster data

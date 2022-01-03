@@ -100,3 +100,5 @@ running-gradient-forest
 basic-gradient-forest-preparation
 defining-genomic-vulnerabilitygenomic-offset-given-future-climate-predictions
 conclude
+basic-introduction-to-r-and-ggplot
+rstudio-layout
