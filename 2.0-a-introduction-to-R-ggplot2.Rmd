@@ -102,14 +102,12 @@ ggplot() +
 
 **1: Data**
 
-```
-ggplot() +
-<b>layer(data = mtcars, #1 </b>
-  mapping = aes(x = hp, y = qsec), #2
-  geom = 'point', #3
-  stat = 'identity', #4
-  position = 'identity') + #5
-```
+> __layer(data = mtcars, #1__
+>  mapping = aes(x = hp, y = qsec), #2
+>  geom = 'point', #3
+>  stat = 'identity', #4
+>  position = 'identity') + #5
+
 * A data layer needs data to display.
 * Data is a data.frame or tibble if you are using tidyverse
 
@@ -120,11 +118,11 @@ head(mtcars)
 
 **2: What is a mapping?**
 
-  layer(data = mtcars, #1
-  __mapping = aes(x = hp, y = qsec), #2__
-  geom = 'point', #3
-  stat = 'identity', #4
-  position = 'identity') #5
+>  layer(data = mtcars, #1
+>  __mapping = aes(x = hp, y = qsec), #2__
+>  geom = 'point', #3
+>  stat = 'identity', #4
+>  position = 'identity') #5
 
 
 *  An aesthetic mapping connects your data to your plot. (e.g. x, y, color, shape, alpha, size, linetype, etc.).
