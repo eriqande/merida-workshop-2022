@@ -24,7 +24,7 @@
 <meta name="author" content="Eric C. Anderson, Christen Bossu, Richard Evan Feldman, Kristen C. Ruegg, Marius Somveille" />
 
 
-<meta name="date" content="2021-12-31" />
+<meta name="date" content="2022-01-02" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -230,10 +230,40 @@ div.csl-indent {
 </ul></li>
 <li class="chapter" data-level="5" data-path="spatdata.html"><a href="spatdata.html"><i class="fa fa-check"></i><b>5</b> Handling and Visualizing Spatial Data in R</a>
 <ul>
-<li class="chapter" data-level="5.1" data-path="spatdata.html"><a href="spatdata.html#getting-environmental-raster-data-into-r"><i class="fa fa-check"></i><b>5.1</b> Getting Environmental (Raster) data into R</a></li>
-<li class="chapter" data-level="5.2" data-path="spatdata.html"><a href="spatdata.html#playing-around-with-the-yucatan-jay"><i class="fa fa-check"></i><b>5.2</b> Playing around with the Yucatan Jay</a></li>
-<li class="chapter" data-level="5.3" data-path="spatdata.html"><a href="spatdata.html#how-about-population-densities"><i class="fa fa-check"></i><b>5.3</b> How about population densities?</a></li>
-<li class="chapter" data-level="5.4" data-path="spatdata.html"><a href="spatdata.html#now-how-about-finding-roads"><i class="fa fa-check"></i><b>5.4</b> Now, How about finding roads?</a></li>
+<li class="chapter" data-level="5.1" data-path="spatdata.html"><a href="spatdata.html#handling-spatial-rasters-in-r"><i class="fa fa-check"></i><b>5.1</b> Handling Spatial Rasters in R</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="spatdata.html"><a href="spatdata.html#reading-and-printing-raster-data"><i class="fa fa-check"></i><b>5.1.1</b> Reading and Printing Raster Data</a></li>
+<li class="chapter" data-level="5.1.2" data-path="spatdata.html"><a href="spatdata.html#plotting-raster-data-with-plot"><i class="fa fa-check"></i><b>5.1.2</b> Plotting Raster Data with <code>plot()</code></a></li>
+<li class="chapter" data-level="5.1.3" data-path="spatdata.html"><a href="spatdata.html#plotting-raster-data-with-ggplot2"><i class="fa fa-check"></i><b>5.1.3</b> Plotting raster data with ggplot2</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="spatdata.html"><a href="spatdata.html#vector-spatial-data"><i class="fa fa-check"></i><b>5.2</b> Vector Spatial Data</a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="spatdata.html"><a href="spatdata.html#vector-data-features"><i class="fa fa-check"></i><b>5.2.1</b> Vector data features</a></li>
+<li class="chapter" data-level="5.2.2" data-path="spatdata.html"><a href="spatdata.html#shapefiles"><i class="fa fa-check"></i><b>5.2.2</b> Shapefiles</a></li>
+<li class="chapter" data-level="5.2.3" data-path="spatdata.html"><a href="spatdata.html#spatial-vector-data-in-r"><i class="fa fa-check"></i><b>5.2.3</b> Spatial vector data in R</a></li>
+<li class="chapter" data-level="5.2.4" data-path="spatdata.html"><a href="spatdata.html#an-example-mexican-states"><i class="fa fa-check"></i><b>5.2.4</b> An example: Mexican states</a></li>
+<li class="chapter" data-level="5.2.5" data-path="spatdata.html"><a href="spatdata.html#plotting-simple-features-with-ggplot"><i class="fa fa-check"></i><b>5.2.5</b> Plotting simple features with <code>ggplot()</code></a></li>
+<li class="chapter" data-level="5.2.6" data-path="spatdata.html"><a href="spatdata.html#a-word-about-coord_sf"><i class="fa fa-check"></i><b>5.2.6</b> A word about <code>coord_sf()</code></a></li>
+<li class="chapter" data-level="5.2.7" data-path="spatdata.html"><a href="spatdata.html#a-word-about-resolution-of-spatial-vector-data"><i class="fa fa-check"></i><b>5.2.7</b> A word about <em>resolution</em> of spatial vector data</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="spatdata.html"><a href="spatdata.html#yucatan-jay-occurrences"><i class="fa fa-check"></i><b>5.3</b> Yucatan Jay Occurrences</a>
+<ul>
+<li class="chapter" data-level="5.3.1" data-path="spatdata.html"><a href="spatdata.html#example-data-set-with-latitude-and-longitude-points"><i class="fa fa-check"></i><b>5.3.1</b> Example data set with Latitude and Longitude points</a></li>
+<li class="chapter" data-level="5.3.2" data-path="spatdata.html"><a href="spatdata.html#plotting-lat-long-data"><i class="fa fa-check"></i><b>5.3.2</b> Plotting Lat-Long data</a></li>
+<li class="chapter" data-level="5.3.3" data-path="spatdata.html"><a href="spatdata.html#but-geom_point-wont-work-with-different-projections-coordinate-reference-sysytems"><i class="fa fa-check"></i><b>5.3.3</b> But, <code>geom_point()</code> won’t work with Different Projections / Coordinate Reference Sysytems</a></li>
+<li class="chapter" data-level="5.3.4" data-path="spatdata.html"><a href="spatdata.html#turning-something-into-a-simple-features-object"><i class="fa fa-check"></i><b>5.3.4</b> Turning something into a simple features object</a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="spatdata.html"><a href="spatdata.html#geometric-operations"><i class="fa fa-check"></i><b>5.4</b> Geometric operations</a>
+<ul>
+<li class="chapter" data-level="5.4.1" data-path="spatdata.html"><a href="spatdata.html#spatial-intersection"><i class="fa fa-check"></i><b>5.4.1</b> Spatial Intersection</a></li>
+</ul></li>
+<li class="chapter" data-level="5.5" data-path="spatdata.html"><a href="spatdata.html#ideas"><i class="fa fa-check"></i><b>5.5</b> Ideas</a></li>
+<li class="chapter" data-level="5.6" data-path="spatdata.html"><a href="spatdata.html#spat_data_appendix"><i class="fa fa-check"></i><b>5.6</b> Appendix: Obtaining and Reducing The Example Spatial Datasets</a>
+<ul>
+<li class="chapter" data-level="5.6.1" data-path="spatdata.html"><a href="spatdata.html#raster-data"><i class="fa fa-check"></i><b>5.6.1</b> Raster Data</a></li>
+<li class="chapter" data-level="5.6.2" data-path="spatdata.html"><a href="spatdata.html#vector-data"><i class="fa fa-check"></i><b>5.6.2</b> Vector data</a></li>
+<li class="chapter" data-level="5.6.3" data-path="spatdata.html"><a href="spatdata.html#species-occurrence-data"><i class="fa fa-check"></i><b>5.6.3</b> Species Occurrence Data</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="geassoc.html"><a href="geassoc.html"><i class="fa fa-check"></i><b>6</b> Genetic and Environmental Associations</a>
 <ul>
@@ -268,7 +298,7 @@ div.csl-indent {
 <div id="header">
 <h1 class="title">Reproducible Research for Conservation — Mérida, Mexico</h1>
 <p class="author"><em>Eric C. Anderson, Christen Bossu, Richard Evan Feldman, Kristen C. Ruegg, Marius Somveille</em></p>
-<p class="date"><em>2021-12-31</em></p>
+<p class="date"><em>2022-01-02</em></p>
 </div>
 <div id="preface" class="section level1 unnumbered">
 <h1>Preface</h1>
