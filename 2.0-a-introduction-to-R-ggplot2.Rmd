@@ -219,6 +219,7 @@ g<-ggplot(mtcars,aes(hp, qsec)) +
 g
 ```
 
+
 Now, how would you change the code above to change the color of the point layer, withuot affecting the smooth layer since the aes() aesthetic mapping is passed at the point layer.
 
 ```{r}

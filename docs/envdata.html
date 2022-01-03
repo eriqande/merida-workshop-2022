@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Session 4 Finding and Obtaining Environmental Data for Conservation | Reproducible Research for Conservation — Mérida, Mexico</title>
+  <title>Session 5 Finding and Obtaining Environmental Data for Conservation | Reproducible Research for Conservation — Mérida, Mexico</title>
   <meta name="description" content="A book example for a Chapman &amp; Hall book." />
   <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Session 4 Finding and Obtaining Environmental Data for Conservation | Reproducible Research for Conservation — Mérida, Mexico" />
+  <meta property="og:title" content="Session 5 Finding and Obtaining Environmental Data for Conservation | Reproducible Research for Conservation — Mérida, Mexico" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="yihui/bookdown-crc" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Session 4 Finding and Obtaining Environmental Data for Conservation | Reproducible Research for Conservation — Mérida, Mexico" />
+  <meta name="twitter:title" content="Session 5 Finding and Obtaining Environmental Data for Conservation | Reproducible Research for Conservation — Mérida, Mexico" />
   
   <meta name="twitter:description" content="A book example for a Chapman &amp; Hall book." />
   
@@ -24,7 +24,7 @@
 <meta name="author" content="Eric C. Anderson, Christen Bossu, Richard Evan Feldman, Kristen C. Ruegg, Marius Somveille" />
 
 
-<meta name="date" content="2022-01-02" />
+<meta name="date" content="2022-01-03" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,16 +33,16 @@
   
 <link rel="prev" href="reporg.html"/>
 <link rel="next" href="spatdata.html"/>
-<script src="libs/header-attrs/header-attrs.js"></script>
-<script src="libs/jquery/jquery-3.6.0.min.js"></script>
+<script src="libs/header-attrs-2.10/header-attrs.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
-<link href="libs/gitbook/css/style.css" rel="stylesheet" />
-<link href="libs/gitbook/css/plugin-table.css" rel="stylesheet" />
-<link href="libs/gitbook/css/plugin-bookdown.css" rel="stylesheet" />
-<link href="libs/gitbook/css/plugin-highlight.css" rel="stylesheet" />
-<link href="libs/gitbook/css/plugin-search.css" rel="stylesheet" />
-<link href="libs/gitbook/css/plugin-fontsettings.css" rel="stylesheet" />
-<link href="libs/gitbook/css/plugin-clipboard.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
 
 
 
@@ -51,76 +51,12 @@
 
 
 
-<link href="libs/anchor-sections/anchor-sections.css" rel="stylesheet" />
-<script src="libs/anchor-sections/anchor-sections.js"></script>
-<script src="libs/kePrint/kePrint.js"></script>
-<link href="libs/lightable/lightable.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
 
 
-<style type="text/css">
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-    color: #aaaaaa;
-  }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
-code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #7d9029; } /* Attribute */
-code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
-code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #4070a0; } /* Char */
-code span.cn { color: #880000; } /* Constant */
-code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code span.dt { color: #902000; } /* DataType */
-code span.dv { color: #40a070; } /* DecVal */
-code span.er { color: #ff0000; font-weight: bold; } /* Error */
-code span.ex { } /* Extension */
-code span.fl { color: #40a070; } /* Float */
-code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
-code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code span.op { color: #666666; } /* Operator */
-code span.ot { color: #007020; } /* Other */
-code span.pp { color: #bc7a00; } /* Preprocessor */
-code span.sc { color: #4070a0; } /* SpecialChar */
-code span.ss { color: #bb6688; } /* SpecialString */
-code span.st { color: #4070a0; } /* String */
-code span.va { color: #19177c; } /* Variable */
-code span.vs { color: #4070a0; } /* VerbatimString */
-code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-</style>
 
 <style type="text/css">
 /* Used with Pandoc 2.11+ new --citeproc when CSL is used */
@@ -185,96 +121,96 @@ div.csl-indent {
 </ul></li>
 <li class="chapter" data-level="2.8" data-path="introduction-to-the-tidyverse.html"><a href="introduction-to-the-tidyverse.html#modeling-within-the-tidyverse"><i class="fa fa-check"></i><b>2.8</b> Modeling within the Tidyverse</a></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="reporg.html"><a href="reporg.html"><i class="fa fa-check"></i><b>3</b> Organizing Research Projects for Reproducibility</a>
+<li class="chapter" data-level="3" data-path="basic-introduction-to-r-and-ggplot.html"><a href="basic-introduction-to-r-and-ggplot.html"><i class="fa fa-check"></i><b>3</b> Basic Introduction to R and ggplot</a>
 <ul>
-<li class="chapter" data-level="3.1" data-path="reporg.html"><a href="reporg.html#goals-for-this-session"><i class="fa fa-check"></i><b>3.1</b> Goals for this session</a></li>
-<li class="chapter" data-level="3.2" data-path="reporg.html"><a href="reporg.html#why-do-this"><i class="fa fa-check"></i><b>3.2</b> Why do this?</a></li>
-<li class="chapter" data-level="3.3" data-path="reporg.html"><a href="reporg.html#what-can-this-look-like"><i class="fa fa-check"></i><b>3.3</b> What can this look like?</a></li>
-<li class="chapter" data-level="3.4" data-path="reporg.html"><a href="reporg.html#reproducibility-edict-1-dont-save-your-r-workspace-and-then-reload-it"><i class="fa fa-check"></i><b>3.4</b> Reproducibility Edict #1: Don’t Save Your R Workspace and then Reload It</a></li>
-<li class="chapter" data-level="3.5" data-path="reporg.html"><a href="reporg.html#paths-an-important-concept-for-reproducibility"><i class="fa fa-check"></i><b>3.5</b> Paths, an important concept for reproducibility</a></li>
-<li class="chapter" data-level="3.6" data-path="reporg.html"><a href="reporg.html#the-working-directory"><i class="fa fa-check"></i><b>3.6</b> The Working Directory</a>
-<ul>
-<li class="chapter" data-level="3.6.1" data-path="reporg.html"><a href="reporg.html#a-hugely-important-point"><i class="fa fa-check"></i><b>3.6.1</b> A Hugely Important Point!</a></li>
-<li class="chapter" data-level="3.6.2" data-path="reporg.html"><a href="reporg.html#skeletal-anatomy-of-an-rstudio-project"><i class="fa fa-check"></i><b>3.6.2</b> Skeletal anatomy of an RStudio Project</a></li>
+<li class="chapter" data-level="3.1" data-path="basic-introduction-to-r-and-ggplot.html"><a href="basic-introduction-to-r-and-ggplot.html#rstudio-layout"><i class="fa fa-check"></i><b>3.1</b> RStudio Layout</a></li>
 </ul></li>
-<li class="chapter" data-level="3.7" data-path="reporg.html"><a href="reporg.html#reproducibility-edict-2-dont-change-directories-in-your-code"><i class="fa fa-check"></i><b>3.7</b> Reproducibility Edict #2: Don’t Change Directories in Your Code</a></li>
-<li class="chapter" data-level="3.8" data-path="reporg.html"><a href="reporg.html#relative-paths"><i class="fa fa-check"></i><b>3.8</b> Relative Paths</a></li>
-<li class="chapter" data-level="3.9" data-path="reporg.html"><a href="reporg.html#reproducibility-edict-3-always-use-relative-paths-from-the-project-directory-to-files-inside-the-project-directory"><i class="fa fa-check"></i><b>3.9</b> Reproducibility Edict #3: Always Use Relative Paths from the Project Directory to Files <em>inside</em> the Project Directory</a></li>
-<li class="chapter" data-level="3.10" data-path="reporg.html"><a href="reporg.html#reproducibility-edict-4-put-data-files-into-a-data-directory"><i class="fa fa-check"></i><b>3.10</b> Reproducibility Edict #4: Put data files into a <code>data</code> directory</a></li>
-<li class="chapter" data-level="3.11" data-path="reporg.html"><a href="reporg.html#reproducibility-edict-5-write-analysis-scripts-as-.r-or-.rmd-files"><i class="fa fa-check"></i><b>3.11</b> Reproducibility Edict #5: Write Analysis Scripts as <code>.R</code> or <code>.Rmd</code> files</a></li>
-<li class="chapter" data-level="3.12" data-path="reporg.html"><a href="reporg.html#download-an-example-project-to-play-with"><i class="fa fa-check"></i><b>3.12</b> Download an example project to play with</a>
+<li class="chapter" data-level="4" data-path="reporg.html"><a href="reporg.html"><i class="fa fa-check"></i><b>4</b> Organizing Research Projects for Reproducibility</a>
 <ul>
-<li class="chapter" data-level="3.12.1" data-path="reporg.html"><a href="reporg.html#lets-have-a-moment"><i class="fa fa-check"></i><b>3.12.1</b> Let’s have a moment</a></li>
+<li class="chapter" data-level="4.1" data-path="reporg.html"><a href="reporg.html#goals-for-this-session"><i class="fa fa-check"></i><b>4.1</b> Goals for this session</a></li>
+<li class="chapter" data-level="4.2" data-path="reporg.html"><a href="reporg.html#why-do-this"><i class="fa fa-check"></i><b>4.2</b> Why do this?</a></li>
+<li class="chapter" data-level="4.3" data-path="reporg.html"><a href="reporg.html#what-can-this-look-like"><i class="fa fa-check"></i><b>4.3</b> What can this look like?</a></li>
+<li class="chapter" data-level="4.4" data-path="reporg.html"><a href="reporg.html#reproducibility-edict-1-dont-save-your-r-workspace-and-then-reload-it"><i class="fa fa-check"></i><b>4.4</b> Reproducibility Edict #1: Don’t Save Your R Workspace and then Reload It</a></li>
+<li class="chapter" data-level="4.5" data-path="reporg.html"><a href="reporg.html#paths-an-important-concept-for-reproducibility"><i class="fa fa-check"></i><b>4.5</b> Paths, an important concept for reproducibility</a></li>
+<li class="chapter" data-level="4.6" data-path="reporg.html"><a href="reporg.html#the-working-directory"><i class="fa fa-check"></i><b>4.6</b> The Working Directory</a>
+<ul>
+<li class="chapter" data-level="4.6.1" data-path="reporg.html"><a href="reporg.html#a-hugely-important-point"><i class="fa fa-check"></i><b>4.6.1</b> A Hugely Important Point!</a></li>
+<li class="chapter" data-level="4.6.2" data-path="reporg.html"><a href="reporg.html#skeletal-anatomy-of-an-rstudio-project"><i class="fa fa-check"></i><b>4.6.2</b> Skeletal anatomy of an RStudio Project</a></li>
 </ul></li>
-<li class="chapter" data-level="3.13" data-path="reporg.html"><a href="reporg.html#reproducibility-edict-6-write-your-code-with-style"><i class="fa fa-check"></i><b>3.13</b> Reproducibility Edict #6: Write your code with style!</a></li>
-<li class="chapter" data-level="3.14" data-path="reporg.html"><a href="reporg.html#what-about-shared-data-sets"><i class="fa fa-check"></i><b>3.14</b> What About Shared Data Sets?</a></li>
-<li class="chapter" data-level="3.15" data-path="reporg.html"><a href="reporg.html#reproducibility-edict-7-use-git-for-version-control"><i class="fa fa-check"></i><b>3.15</b> Reproducibility Edict #7: Use git for Version Control</a></li>
-<li class="chapter" data-level="3.16" data-path="reporg.html"><a href="reporg.html#in-the-meantime-a-short-demo-of-gitgithub-on-rstudio"><i class="fa fa-check"></i><b>3.16</b> In the meantime, a short demo of git/GitHub on RStudio</a></li>
-<li class="chapter" data-level="3.17" data-path="reporg.html"><a href="reporg.html#what-to-keep-under-version-control-and-what-not-to"><i class="fa fa-check"></i><b>3.17</b> What to keep under version control and what not to</a></li>
-<li class="chapter" data-level="3.18" data-path="reporg.html"><a href="reporg.html#create-a-readme-to-describe-the-parts-of-your-analysis-project"><i class="fa fa-check"></i><b>3.18</b> Create a README to describe the parts of your analysis project</a></li>
-<li class="chapter" data-level="3.19" data-path="reporg.html"><a href="reporg.html#github-and-very-large-data-sets"><i class="fa fa-check"></i><b>3.19</b> GitHub and Very large data sets</a></li>
+<li class="chapter" data-level="4.7" data-path="reporg.html"><a href="reporg.html#reproducibility-edict-2-dont-change-directories-in-your-code"><i class="fa fa-check"></i><b>4.7</b> Reproducibility Edict #2: Don’t Change Directories in Your Code</a></li>
+<li class="chapter" data-level="4.8" data-path="reporg.html"><a href="reporg.html#relative-paths"><i class="fa fa-check"></i><b>4.8</b> Relative Paths</a></li>
+<li class="chapter" data-level="4.9" data-path="reporg.html"><a href="reporg.html#reproducibility-edict-3-always-use-relative-paths-from-the-project-directory-to-files-inside-the-project-directory"><i class="fa fa-check"></i><b>4.9</b> Reproducibility Edict #3: Always Use Relative Paths from the Project Directory to Files <em>inside</em> the Project Directory</a></li>
+<li class="chapter" data-level="4.10" data-path="reporg.html"><a href="reporg.html#reproducibility-edict-4-put-data-files-into-a-data-directory"><i class="fa fa-check"></i><b>4.10</b> Reproducibility Edict #4: Put data files into a <code>data</code> directory</a></li>
+<li class="chapter" data-level="4.11" data-path="reporg.html"><a href="reporg.html#reproducibility-edict-5-write-analysis-scripts-as-.r-or-.rmd-files"><i class="fa fa-check"></i><b>4.11</b> Reproducibility Edict #5: Write Analysis Scripts as <code>.R</code> or <code>.Rmd</code> files</a></li>
+<li class="chapter" data-level="4.12" data-path="reporg.html"><a href="reporg.html#download-an-example-project-to-play-with"><i class="fa fa-check"></i><b>4.12</b> Download an example project to play with</a>
+<ul>
+<li class="chapter" data-level="4.12.1" data-path="reporg.html"><a href="reporg.html#lets-have-a-moment"><i class="fa fa-check"></i><b>4.12.1</b> Let’s have a moment</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="envdata.html"><a href="envdata.html"><i class="fa fa-check"></i><b>4</b> Finding and Obtaining Environmental Data for Conservation</a>
-<ul>
-<li class="chapter" data-level="4.1" data-path="envdata.html"><a href="envdata.html#environmental-layers.-a-general-overview"><i class="fa fa-check"></i><b>4.1</b> Environmental Layers. A general overview</a>
-<ul>
-<li class="chapter" data-level="4.1.1" data-path="envdata.html"><a href="envdata.html#environmental-layers-in-conservation-genetics"><i class="fa fa-check"></i><b>4.1.1</b> Environmental layers in conservation genetics</a></li>
-<li class="chapter" data-level="4.1.2" data-path="envdata.html"><a href="envdata.html#environmental-layers-as-raster-data"><i class="fa fa-check"></i><b>4.1.2</b> Environmental layers as raster data</a></li>
-<li class="chapter" data-level="4.1.3" data-path="envdata.html"><a href="envdata.html#coordinate-system-and-projections"><i class="fa fa-check"></i><b>4.1.3</b> Coordinate system and projections</a></li>
-<li class="chapter" data-level="4.1.4" data-path="envdata.html"><a href="envdata.html#parameters-of-raster-data"><i class="fa fa-check"></i><b>4.1.4</b> Parameters of raster data</a></li>
-<li class="chapter" data-level="4.1.5" data-path="envdata.html"><a href="envdata.html#examples-of-climate-layers"><i class="fa fa-check"></i><b>4.1.5</b> Examples of climate layers</a></li>
-<li class="chapter" data-level="4.1.6" data-path="envdata.html"><a href="envdata.html#examples-of-atmospheric-layers"><i class="fa fa-check"></i><b>4.1.6</b> Examples of atmospheric layers</a></li>
-<li class="chapter" data-level="4.1.7" data-path="envdata.html"><a href="envdata.html#examples-of-vegetation-layers"><i class="fa fa-check"></i><b>4.1.7</b> Examples of vegetation layers</a></li>
-<li class="chapter" data-level="4.1.8" data-path="envdata.html"><a href="envdata.html#examples-of-landscape-layers"><i class="fa fa-check"></i><b>4.1.8</b> Examples of landscape layers</a></li>
+<li class="chapter" data-level="4.13" data-path="reporg.html"><a href="reporg.html#reproducibility-edict-6-write-your-code-with-style"><i class="fa fa-check"></i><b>4.13</b> Reproducibility Edict #6: Write your code with style!</a></li>
+<li class="chapter" data-level="4.14" data-path="reporg.html"><a href="reporg.html#what-about-shared-data-sets"><i class="fa fa-check"></i><b>4.14</b> What About Shared Data Sets?</a></li>
+<li class="chapter" data-level="4.15" data-path="reporg.html"><a href="reporg.html#reproducibility-edict-7-use-git-for-version-control"><i class="fa fa-check"></i><b>4.15</b> Reproducibility Edict #7: Use git for Version Control</a></li>
+<li class="chapter" data-level="4.16" data-path="reporg.html"><a href="reporg.html#in-the-meantime-a-short-demo-of-gitgithub-on-rstudio"><i class="fa fa-check"></i><b>4.16</b> In the meantime, a short demo of git/GitHub on RStudio</a></li>
+<li class="chapter" data-level="4.17" data-path="reporg.html"><a href="reporg.html#what-to-keep-under-version-control-and-what-not-to"><i class="fa fa-check"></i><b>4.17</b> What to keep under version control and what not to</a></li>
+<li class="chapter" data-level="4.18" data-path="reporg.html"><a href="reporg.html#create-a-readme-to-describe-the-parts-of-your-analysis-project"><i class="fa fa-check"></i><b>4.18</b> Create a README to describe the parts of your analysis project</a></li>
+<li class="chapter" data-level="4.19" data-path="reporg.html"><a href="reporg.html#github-and-very-large-data-sets"><i class="fa fa-check"></i><b>4.19</b> GitHub and Very large data sets</a></li>
 </ul></li>
-</ul></li>
-<li class="chapter" data-level="5" data-path="spatdata.html"><a href="spatdata.html"><i class="fa fa-check"></i><b>5</b> Handling and Visualizing Spatial Data in R</a>
+<li class="chapter" data-level="5" data-path="envdata.html"><a href="envdata.html"><i class="fa fa-check"></i><b>5</b> Finding and Obtaining Environmental Data for Conservation</a>
 <ul>
-<li class="chapter" data-level="5.1" data-path="spatdata.html"><a href="spatdata.html#handling-spatial-rasters-in-r"><i class="fa fa-check"></i><b>5.1</b> Handling Spatial Rasters in R</a>
+<li class="chapter" data-level="5.1" data-path="envdata.html"><a href="envdata.html#environmental-layers.-a-general-overview"><i class="fa fa-check"></i><b>5.1</b> Environmental Layers. A general overview</a>
 <ul>
-<li class="chapter" data-level="5.1.1" data-path="spatdata.html"><a href="spatdata.html#reading-and-printing-raster-data"><i class="fa fa-check"></i><b>5.1.1</b> Reading and Printing Raster Data</a></li>
-<li class="chapter" data-level="5.1.2" data-path="spatdata.html"><a href="spatdata.html#plotting-raster-data-with-plot"><i class="fa fa-check"></i><b>5.1.2</b> Plotting Raster Data with <code>plot()</code></a></li>
-<li class="chapter" data-level="5.1.3" data-path="spatdata.html"><a href="spatdata.html#plotting-raster-data-with-ggplot2"><i class="fa fa-check"></i><b>5.1.3</b> Plotting raster data with ggplot2</a></li>
-</ul></li>
-<li class="chapter" data-level="5.2" data-path="spatdata.html"><a href="spatdata.html#vector-spatial-data"><i class="fa fa-check"></i><b>5.2</b> Vector Spatial Data</a>
-<ul>
-<li class="chapter" data-level="5.2.1" data-path="spatdata.html"><a href="spatdata.html#vector-data-features"><i class="fa fa-check"></i><b>5.2.1</b> Vector data features</a></li>
-<li class="chapter" data-level="5.2.2" data-path="spatdata.html"><a href="spatdata.html#shapefiles"><i class="fa fa-check"></i><b>5.2.2</b> Shapefiles</a></li>
-<li class="chapter" data-level="5.2.3" data-path="spatdata.html"><a href="spatdata.html#spatial-vector-data-in-r"><i class="fa fa-check"></i><b>5.2.3</b> Spatial vector data in R</a></li>
-<li class="chapter" data-level="5.2.4" data-path="spatdata.html"><a href="spatdata.html#an-example-mexican-states"><i class="fa fa-check"></i><b>5.2.4</b> An example: Mexican states</a></li>
-<li class="chapter" data-level="5.2.5" data-path="spatdata.html"><a href="spatdata.html#plotting-simple-features-with-ggplot"><i class="fa fa-check"></i><b>5.2.5</b> Plotting simple features with <code>ggplot()</code></a></li>
-<li class="chapter" data-level="5.2.6" data-path="spatdata.html"><a href="spatdata.html#a-word-about-coord_sf"><i class="fa fa-check"></i><b>5.2.6</b> A word about <code>coord_sf()</code></a></li>
-<li class="chapter" data-level="5.2.7" data-path="spatdata.html"><a href="spatdata.html#a-word-about-resolution-of-spatial-vector-data"><i class="fa fa-check"></i><b>5.2.7</b> A word about <em>resolution</em> of spatial vector data</a></li>
-</ul></li>
-<li class="chapter" data-level="5.3" data-path="spatdata.html"><a href="spatdata.html#yucatan-jay-occurrences"><i class="fa fa-check"></i><b>5.3</b> Yucatan Jay Occurrences</a>
-<ul>
-<li class="chapter" data-level="5.3.1" data-path="spatdata.html"><a href="spatdata.html#example-data-set-with-latitude-and-longitude-points"><i class="fa fa-check"></i><b>5.3.1</b> Example data set with Latitude and Longitude points</a></li>
-<li class="chapter" data-level="5.3.2" data-path="spatdata.html"><a href="spatdata.html#plotting-lat-long-data"><i class="fa fa-check"></i><b>5.3.2</b> Plotting Lat-Long data</a></li>
-<li class="chapter" data-level="5.3.3" data-path="spatdata.html"><a href="spatdata.html#but-geom_point-wont-work-with-different-projections-coordinate-reference-sysytems"><i class="fa fa-check"></i><b>5.3.3</b> But, <code>geom_point()</code> won’t work with Different Projections / Coordinate Reference Sysytems</a></li>
-<li class="chapter" data-level="5.3.4" data-path="spatdata.html"><a href="spatdata.html#turning-something-into-a-simple-features-object"><i class="fa fa-check"></i><b>5.3.4</b> Turning something into a simple features object</a></li>
-</ul></li>
-<li class="chapter" data-level="5.4" data-path="spatdata.html"><a href="spatdata.html#geometric-operations"><i class="fa fa-check"></i><b>5.4</b> Geometric operations</a>
-<ul>
-<li class="chapter" data-level="5.4.1" data-path="spatdata.html"><a href="spatdata.html#spatial-intersection"><i class="fa fa-check"></i><b>5.4.1</b> Spatial Intersection</a></li>
-</ul></li>
-<li class="chapter" data-level="5.5" data-path="spatdata.html"><a href="spatdata.html#ideas"><i class="fa fa-check"></i><b>5.5</b> Ideas</a></li>
-<li class="chapter" data-level="5.6" data-path="spatdata.html"><a href="spatdata.html#spat_data_appendix"><i class="fa fa-check"></i><b>5.6</b> Appendix: Obtaining and Reducing The Example Spatial Datasets</a>
-<ul>
-<li class="chapter" data-level="5.6.1" data-path="spatdata.html"><a href="spatdata.html#raster-data"><i class="fa fa-check"></i><b>5.6.1</b> Raster Data</a></li>
-<li class="chapter" data-level="5.6.2" data-path="spatdata.html"><a href="spatdata.html#vector-data"><i class="fa fa-check"></i><b>5.6.2</b> Vector data</a></li>
-<li class="chapter" data-level="5.6.3" data-path="spatdata.html"><a href="spatdata.html#species-occurrence-data"><i class="fa fa-check"></i><b>5.6.3</b> Species Occurrence Data</a></li>
+<li class="chapter" data-level="5.1.1" data-path="envdata.html"><a href="envdata.html#environmental-layers-in-conservation-genetics"><i class="fa fa-check"></i><b>5.1.1</b> Environmental layers in conservation genetics</a></li>
+<li class="chapter" data-level="5.1.2" data-path="envdata.html"><a href="envdata.html#examples-of-atmospheric-layers"><i class="fa fa-check"></i><b>5.1.2</b> Examples of atmospheric layers</a></li>
+<li class="chapter" data-level="5.1.3" data-path="envdata.html"><a href="envdata.html#examples-of-vegetation-layers"><i class="fa fa-check"></i><b>5.1.3</b> Examples of vegetation layers</a></li>
+<li class="chapter" data-level="5.1.4" data-path="envdata.html"><a href="envdata.html#examples-of-landscape-layers"><i class="fa fa-check"></i><b>5.1.4</b> Examples of landscape layers</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="geassoc.html"><a href="geassoc.html"><i class="fa fa-check"></i><b>6</b> Genetic and Environmental Associations</a>
+<li class="chapter" data-level="6" data-path="spatdata.html"><a href="spatdata.html"><i class="fa fa-check"></i><b>6</b> Handling and Visualizing Spatial Data in R</a>
 <ul>
-<li class="chapter" data-level="6.1" data-path="geassoc.html"><a href="geassoc.html#background"><i class="fa fa-check"></i><b>6.1</b> Background</a></li>
-<li class="chapter" data-level="6.2" data-path="geassoc.html"><a href="geassoc.html#motivation"><i class="fa fa-check"></i><b>6.2</b> Motivation</a></li>
-<li class="chapter" data-level="6.3" data-path="geassoc.html"><a href="geassoc.html#housekeeping"><i class="fa fa-check"></i><b>6.3</b> Housekeeping</a></li>
-<li class="chapter" data-level="6.4" data-path="geassoc.html"><a href="geassoc.html#running-gradient-forest"><i class="fa fa-check"></i><b>6.4</b> Running Gradient Forest</a></li>
-<li class="chapter" data-level="6.5" data-path="geassoc.html"><a href="geassoc.html#basic-gradient-forest-preparation"><i class="fa fa-check"></i><b>6.5</b> Basic Gradient Forest Preparation</a></li>
-<li class="chapter" data-level="6.6" data-path="geassoc.html"><a href="geassoc.html#defining-genomic-vulnerabilitygenomic-offset-given-future-climate-predictions"><i class="fa fa-check"></i><b>6.6</b> Defining “Genomic Vulnerability/Genomic offset” Given Future Climate Predictions</a></li>
+<li class="chapter" data-level="6.1" data-path="spatdata.html"><a href="spatdata.html#handling-spatial-rasters-in-r"><i class="fa fa-check"></i><b>6.1</b> Handling Spatial Rasters in R</a>
+<ul>
+<li class="chapter" data-level="6.1.1" data-path="spatdata.html"><a href="spatdata.html#reading-and-printing-raster-data"><i class="fa fa-check"></i><b>6.1.1</b> Reading and Printing Raster Data</a></li>
+<li class="chapter" data-level="6.1.2" data-path="spatdata.html"><a href="spatdata.html#plotting-raster-data-with-plot"><i class="fa fa-check"></i><b>6.1.2</b> Plotting Raster Data with <code>plot()</code></a></li>
+<li class="chapter" data-level="6.1.3" data-path="spatdata.html"><a href="spatdata.html#plotting-raster-data-with-ggplot2"><i class="fa fa-check"></i><b>6.1.3</b> Plotting raster data with ggplot2</a></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="conclude.html"><a href="conclude.html"><i class="fa fa-check"></i><b>7</b> Concluding Remarks / Parting Words</a></li>
+<li class="chapter" data-level="6.2" data-path="spatdata.html"><a href="spatdata.html#vector-spatial-data"><i class="fa fa-check"></i><b>6.2</b> Vector Spatial Data</a>
+<ul>
+<li class="chapter" data-level="6.2.1" data-path="spatdata.html"><a href="spatdata.html#vector-data-features"><i class="fa fa-check"></i><b>6.2.1</b> Vector data features</a></li>
+<li class="chapter" data-level="6.2.2" data-path="spatdata.html"><a href="spatdata.html#shapefiles"><i class="fa fa-check"></i><b>6.2.2</b> Shapefiles</a></li>
+<li class="chapter" data-level="6.2.3" data-path="spatdata.html"><a href="spatdata.html#spatial-vector-data-in-r"><i class="fa fa-check"></i><b>6.2.3</b> Spatial vector data in R</a></li>
+<li class="chapter" data-level="6.2.4" data-path="spatdata.html"><a href="spatdata.html#an-example-mexican-states"><i class="fa fa-check"></i><b>6.2.4</b> An example: Mexican states</a></li>
+<li class="chapter" data-level="6.2.5" data-path="spatdata.html"><a href="spatdata.html#plotting-simple-features-with-ggplot"><i class="fa fa-check"></i><b>6.2.5</b> Plotting simple features with <code>ggplot()</code></a></li>
+<li class="chapter" data-level="6.2.6" data-path="spatdata.html"><a href="spatdata.html#a-word-about-coord_sf"><i class="fa fa-check"></i><b>6.2.6</b> A word about <code>coord_sf()</code></a></li>
+<li class="chapter" data-level="6.2.7" data-path="spatdata.html"><a href="spatdata.html#a-word-about-resolution-of-spatial-vector-data"><i class="fa fa-check"></i><b>6.2.7</b> A word about <em>resolution</em> of spatial vector data</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="spatdata.html"><a href="spatdata.html#yucatan-jay-occurrences"><i class="fa fa-check"></i><b>6.3</b> Yucatan Jay Occurrences</a>
+<ul>
+<li class="chapter" data-level="6.3.1" data-path="spatdata.html"><a href="spatdata.html#example-data-set-with-latitude-and-longitude-points"><i class="fa fa-check"></i><b>6.3.1</b> Example data set with Latitude and Longitude points</a></li>
+<li class="chapter" data-level="6.3.2" data-path="spatdata.html"><a href="spatdata.html#plotting-lat-long-data"><i class="fa fa-check"></i><b>6.3.2</b> Plotting Lat-Long data</a></li>
+<li class="chapter" data-level="6.3.3" data-path="spatdata.html"><a href="spatdata.html#but-geom_point-wont-work-with-different-projections-coordinate-reference-sysytems"><i class="fa fa-check"></i><b>6.3.3</b> But, <code>geom_point()</code> won’t work with Different Projections / Coordinate Reference Sysytems</a></li>
+<li class="chapter" data-level="6.3.4" data-path="spatdata.html"><a href="spatdata.html#turning-something-into-a-simple-features-object"><i class="fa fa-check"></i><b>6.3.4</b> Turning something into a simple features object</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="spatdata.html"><a href="spatdata.html#geometric-operations"><i class="fa fa-check"></i><b>6.4</b> Geometric operations</a>
+<ul>
+<li class="chapter" data-level="6.4.1" data-path="spatdata.html"><a href="spatdata.html#spatial-intersection"><i class="fa fa-check"></i><b>6.4.1</b> Spatial Intersection</a></li>
+</ul></li>
+<li class="chapter" data-level="6.5" data-path="spatdata.html"><a href="spatdata.html#ideas"><i class="fa fa-check"></i><b>6.5</b> Ideas</a></li>
+<li class="chapter" data-level="6.6" data-path="spatdata.html"><a href="spatdata.html#spat_data_appendix"><i class="fa fa-check"></i><b>6.6</b> Appendix: Obtaining and Reducing The Example Spatial Datasets</a>
+<ul>
+<li class="chapter" data-level="6.6.1" data-path="spatdata.html"><a href="spatdata.html#raster-data"><i class="fa fa-check"></i><b>6.6.1</b> Raster Data</a></li>
+<li class="chapter" data-level="6.6.2" data-path="spatdata.html"><a href="spatdata.html#vector-data"><i class="fa fa-check"></i><b>6.6.2</b> Vector data</a></li>
+<li class="chapter" data-level="6.6.3" data-path="spatdata.html"><a href="spatdata.html#species-occurrence-data"><i class="fa fa-check"></i><b>6.6.3</b> Species Occurrence Data</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="geassoc.html"><a href="geassoc.html"><i class="fa fa-check"></i><b>7</b> Genetic and Environmental Associations</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="geassoc.html"><a href="geassoc.html#background"><i class="fa fa-check"></i><b>7.1</b> Background</a></li>
+<li class="chapter" data-level="7.2" data-path="geassoc.html"><a href="geassoc.html#motivation"><i class="fa fa-check"></i><b>7.2</b> Motivation</a></li>
+<li class="chapter" data-level="7.3" data-path="geassoc.html"><a href="geassoc.html#housekeeping"><i class="fa fa-check"></i><b>7.3</b> Housekeeping</a></li>
+<li class="chapter" data-level="7.4" data-path="geassoc.html"><a href="geassoc.html#running-gradient-forest"><i class="fa fa-check"></i><b>7.4</b> Running Gradient Forest</a></li>
+<li class="chapter" data-level="7.5" data-path="geassoc.html"><a href="geassoc.html#basic-gradient-forest-preparation"><i class="fa fa-check"></i><b>7.5</b> Basic Gradient Forest Preparation</a></li>
+<li class="chapter" data-level="7.6" data-path="geassoc.html"><a href="geassoc.html#defining-genomic-vulnerabilitygenomic-offset-given-future-climate-predictions"><i class="fa fa-check"></i><b>7.6</b> Defining “Genomic Vulnerability/Genomic offset” Given Future Climate Predictions</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="conclude.html"><a href="conclude.html"><i class="fa fa-check"></i><b>8</b> Concluding Remarks / Parting Words</a></li>
 <li class="divider"></li>
 <li><a href="https://bookdown.org" target="blank">Published with bookdown</a></li>
 
@@ -295,16 +231,16 @@ div.csl-indent {
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="envdata" class="section level1" number="4">
-<h1><span class="header-section-number">Session 4</span> Finding and Obtaining Environmental Data for Conservation</h1>
+<div id="envdata" class="section level1" number="5">
+<h1><span class="header-section-number">Session 5</span> Finding and Obtaining Environmental Data for Conservation</h1>
 <p>Types of environmental data:</p>
 <ul>
 <li>direcly observed (satellite data)</li>
 <li>Interpolated or modeled etc.</li>
 </ul>
 <p>Discussion of CRSs.</p>
-<div id="environmental-layers.-a-general-overview" class="section level2" number="4.1">
-<h2><span class="header-section-number">4.1</span> Environmental Layers. A general overview</h2>
+<div id="environmental-layers.-a-general-overview" class="section level2" number="5.1">
+<h2><span class="header-section-number">5.1</span> Environmental Layers. A general overview</h2>
 <p>This section provides a brief narrative of Marius Someveille’s
 PowerPoint presentation. We are trying to succinctly capture the
 main points in this web/bookdown version so that it might easily
@@ -315,10 +251,10 @@ All of these terms will be defined in detail later. For now, here are a few
 pictures of what environmental layers might look like when they are plotted
 and displayed:</p>
 <p><img src="images/env_layers/three-layers-intro.png" width="100%" /></p>
-<div id="environmental-layers-in-conservation-genetics" class="section level3" number="4.1.1">
-<h3><span class="header-section-number">4.1.1</span> Environmental layers in conservation genetics</h3>
-<div id="landscape-connectivity-analysis-gene-flow" class="section level4" number="4.1.1.1">
-<h4><span class="header-section-number">4.1.1.1</span> Landscape connectivity analysis (gene flow)</h4>
+<div id="environmental-layers-in-conservation-genetics" class="section level3" number="5.1.1">
+<h3><span class="header-section-number">5.1.1</span> Environmental layers in conservation genetics</h3>
+<div id="landscape-connectivity-analysis-gene-flow" class="section level4" number="5.1.1.1">
+<h4><span class="header-section-number">5.1.1.1</span> Landscape connectivity analysis (gene flow)</h4>
 <p>Connectivity is essential for long term persistence of populations and metapopulations as it affects gene flow. Functional connectivity is the degree to which individuals move through a landscape, which is affected by landscape features and environmental heterogeneity. Landscape genetics tests which landscape and environmental factors best explain genetic connectivity among populations and highlights which landscape features need to be maintained or enhanced to facilitate connectivity (gene flow) for different species.</p>
 <p>For example, <span class="citation"><a href="#ref-robertson2018regional" role="doc-biblioref">Robertson <em>et al.</em></a> (<a href="#ref-robertson2018regional" role="doc-biblioref">2018</a>)</span> studied frogs in multiple locations in
 North America, shown here:</p>
@@ -332,25 +268,24 @@ each of the different regions (i.e, different colors on the map). They summarize
 those results as follows:</p>
 <p><img src="images/env_layers/robertson-table.png" width="90%" style="display: block; margin: auto;" /></p>
 </div>
-<div id="environmental-niche-analysis" class="section level4" number="4.1.1.2">
-<h4><span class="header-section-number">4.1.1.2</span> Environmental Niche Analysis</h4>
+<div id="environmental-niche-analysis" class="section level4" number="5.1.1.2">
+<h4><span class="header-section-number">5.1.1.2</span> Environmental Niche Analysis</h4>
 <p><span class="citation"><a href="#ref-ruegg2021linking" role="doc-biblioref">Ruegg <em>et al.</em></a> (<a href="#ref-ruegg2021linking" role="doc-biblioref">2021</a>)</span> shows another example of the use of environmental layers
 in conservation genetics. In this case, genetic differences resolved separate
-breeding populations of the willow flycatcher in North America, and also made it
+breeding populations of the Willow Flycatcher, <em>Empidonax traillii</em>, in North America, and also made it
 possible to identify where birds from each breeding population spend their
 winters, as shown in the following figure (in which the different breeding
 populations are denoted by different colors):</p>
 <p><img src="images/env_layers/wifl-map.png" width="90%" style="display: block; margin: auto;" /></p>
 <p>With the breeding and wintering areas for each subpopulation identified,
-other environmental layers (not shown) were used to identify the environmental
-and climatic conditions that defined the birds breeding and wintering
+climate layers (temperature and precipitation) were used to identify the climatic conditions that defined the birds breeding and wintering
 <em>niches</em> for the subpopulations. Population trends were found to be associated
 with overlap between breeding and wintering niches, with the subpopulation showing
 the least niche overlap being the only subpopulation not showing a decreasing trend.</p>
 <p><img src="images/env_layers/wifl-niches.png" width="90%" style="display: block; margin: auto;" /></p>
 </div>
-<div id="genome-environment-association-to-study-vulnerability" class="section level4" number="4.1.1.3">
-<h4><span class="header-section-number">4.1.1.3</span> Genome-environment association to study vulnerability</h4>
+<div id="genome-environment-association-to-study-vulnerability" class="section level4" number="5.1.1.3">
+<h4><span class="header-section-number">5.1.1.3</span> Genome-environment association to study vulnerability</h4>
 <p>Associations between genetic variation and environmental variation
 (that we will hear about from Christen Bossu!) can be used to identify
 places where there is expected to be a mismatch between expected genetic patterns
@@ -362,18 +297,31 @@ be associated with genetic variation, as shown in the following montage of
 figures from the paper:</p>
 <p><img src="images/env_layers/bay-science.png" width="90%" style="display: block; margin: auto;" /></p>
 </div>
+<div id="environmental-layers-as-raster-data" class="section level4" number="5.1.1.4">
+<h4><span class="header-section-number">5.1.1.4</span> Environmental layers as raster data</h4>
+<p>Digital environmental layers are obtained by abstracting reality in either <em>vector</em> or <em>raster</em> format, as shown below:</p>
+<p><img src="images/env_layers/GIS_abstraction.png" width="60%" style="display: block; margin: auto;" /></p>
+<p>The most common format encountered for environmental layers is <em>raster</em>, which is composed of a grid of cells like this:</p>
+<p><img src="images/env_layers/Raster.png" width="50%" style="display: block; margin: auto;" /></p>
+<p>A cell value can represent a measured value at the center point of the cell (e.g. elevation) or for the whole cell square (average, max, category). The cell values represent the phenomenon portrayed by the raster dataset such as a category (e.g. grassland, forest, road), magnitude (e.g. noise pollution, rainfall), height (e.g. elevation), or spectral value. Cell values can be either positive or negative, integer, or floating point.</p>
+<p>Commonly used format to store <em>rasters</em> on a computer are: TIFF, Hierarchichal Data Format (HDF), JPEG, NetCDF.</p>
 </div>
-<div id="environmental-layers-as-raster-data" class="section level3" number="4.1.2">
-<h3><span class="header-section-number">4.1.2</span> Environmental layers as raster data</h3>
+<div id="coordinate-system-and-projections" class="section level4" number="5.1.1.5">
+<h4><span class="header-section-number">5.1.1.5</span> Coordinate system and projections</h4>
+<p>For geographic analysis, we use a coordinate system that uses a three-dimensional spherical surface to determine location on the Earth. Each point on Earth is defined by a latitude value and a longitude value, which are measures of angle as shown in the following figure:</p>
+<p><img src="images/env_layers/lat_lon.png" width="60%" style="display: block; margin: auto;" /></p>
+<p>The units of the <em>geographic coordinate system</em> are units of angle as follows: 1 degree = 60 arc-minutes = 3600 arc-seconds.</p>
+<p>To visualize geographic data as maps, we need to draw it on a two-dimensional surface using a <em>projected coordinate system</em>. <em>Map projections</em> tell how to distort the earth so that it is displayed on a flat surface. A <em>coordinate reference system</em> (CRS) then defines how the projected map is related to real places on the earth. Many <em>projections</em> exist, here are some examples:</p>
+<p><img src="images/env_layers/Projections.png" width="60%" style="display: block; margin: auto;" /></p>
+<p>Good practice: raster data storing environmental layers should have a projection, and you choose one projection for the whole analysis, i.e. converting all of the geographic data into the same projection.</p>
 </div>
-<div id="coordinate-system-and-projections" class="section level3" number="4.1.3">
-<h3><span class="header-section-number">4.1.3</span> Coordinate system and projections</h3>
+<div id="parameters-of-raster-data" class="section level4" number="5.1.1.6">
+<h4><span class="header-section-number">5.1.1.6</span> Parameters of raster data</h4>
+<p>Rasters storing environmental layers are defined by multiple parameters. The <em>extent</em> is defined by the top, bottom, left, and right coordinates of the rectangular area covered by a raster. The <em>spatial resolution</em> is defined by the width and height of cells/pixels (cells are square and the width and height of all cells have the same value), usually given in degree / arc-minute / arc-second. For environmental variables that have layers at different time, it is possible to <em>stack</em> these layers and define a <em>temporal extent</em>. i.e. the first and last date, and <em>temporal resolution</em>, which is the time step (e.g. daily, weekly, monthly, yearly).</p>
+<p><img src="images/env_layers/raster_parameters.png" width="90%" style="display: block; margin: auto;" /></p>
 </div>
-<div id="parameters-of-raster-data" class="section level3" number="4.1.4">
-<h3><span class="header-section-number">4.1.4</span> Parameters of raster data</h3>
-</div>
-<div id="examples-of-climate-layers" class="section level3" number="4.1.5">
-<h3><span class="header-section-number">4.1.5</span> Examples of climate layers</h3>
+<div id="examples-of-climate-layers" class="section level4" number="5.1.1.7">
+<h4><span class="header-section-number">5.1.1.7</span> Examples of climate layers</h4>
 <table class="table" style="font-size: 14px; margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
@@ -462,8 +410,9 @@ Monthly 1981–2010
 </table>
 <hr />
 </div>
-<div id="examples-of-atmospheric-layers" class="section level3" number="4.1.6">
-<h3><span class="header-section-number">4.1.6</span> Examples of atmospheric layers</h3>
+</div>
+<div id="examples-of-atmospheric-layers" class="section level3" number="5.1.2">
+<h3><span class="header-section-number">5.1.2</span> Examples of atmospheric layers</h3>
 <table class="table" style="font-size: 14px; margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
@@ -532,8 +481,8 @@ Monthly 1970 – 2000
 </table>
 <hr />
 </div>
-<div id="examples-of-vegetation-layers" class="section level3" number="4.1.7">
-<h3><span class="header-section-number">4.1.7</span> Examples of vegetation layers</h3>
+<div id="examples-of-vegetation-layers" class="section level3" number="5.1.3">
+<h3><span class="header-section-number">5.1.3</span> Examples of vegetation layers</h3>
 <table class="table" style="font-size: 14px; margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
@@ -622,8 +571,8 @@ Annual Present
 </table>
 <hr />
 </div>
-<div id="examples-of-landscape-layers" class="section level3" number="4.1.8">
-<h3><span class="header-section-number">4.1.8</span> Examples of landscape layers</h3>
+<div id="examples-of-landscape-layers" class="section level3" number="5.1.4">
+<h3><span class="header-section-number">5.1.4</span> Examples of landscape layers</h3>
 <table class="table" style="font-size: 14px; margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
@@ -754,14 +703,14 @@ Ruegg K, Anderson EC, Somveille M <em>et al.</em> (2021) Linking climate niches 
 <a href="spatdata.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
-<script src="libs/gitbook/js/app.min.js"></script>
-<script src="libs/gitbook/js/clipboard.min.js"></script>
-<script src="libs/gitbook/js/plugin-search.js"></script>
-<script src="libs/gitbook/js/plugin-sharing.js"></script>
-<script src="libs/gitbook/js/plugin-fontsettings.js"></script>
-<script src="libs/gitbook/js/plugin-bookdown.js"></script>
-<script src="libs/gitbook/js/jquery.highlight.js"></script>
-<script src="libs/gitbook/js/plugin-clipboard.js"></script>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
 <script>
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
