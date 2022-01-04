@@ -1,6 +1,6 @@
 # Introduction to the tidyverse
 
-## What on earth is the tidyerse?
+## What on earth is the tidyerse? {#what-tidyverse}
 
 Broadly and briefly, the tidyverse is a collection of packages
 that are tailored to operating on data that are stored in what

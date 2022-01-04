@@ -74,6 +74,17 @@ follow instructions to install RStudio.
 Our work will require a number of packages that can be found in binary
 form on CRAN.  As such, installing them is typically not to arduous.
 
+Sometimes, when installing packages, you may get a message telling you that
+a later version of the package you want is available in source form than in
+binary form.  Typically, it is still easiest, fastest, and usually reliable,
+to just use the binary form.  So, after R gives you such a message,
+if you see R asking a question like:
+```
+Do you want to install from sources the package which needs compilation? (Yes/no/cancel)
+```
+Usually the appropriate answer is to type `no` into the console, and hit return.
+
+
 I have found that sometimes, when requesting the installation of a large number
 of packages, there can be the occasional problem.  Sometimes, an error message
 tells you which package (often a dependency) failed to install.  If that is
@@ -81,39 +92,153 @@ the case, try to install the failed package by itself with the `install.packages
 function, directly, and then re-run the `install.packages()` command that
 originally failed.
 
-Here are the packages that we load in the Rmds:
-```
-"RColorBrewer",
-"bookdown", # this will get knitr and rmarkdown, I do believe
-"broom",
-"data.table",
-"ggrepel",
-"ggspatial",
-"googledrive",
-"googlesheets4",
-"gradientForest",
-"gstat",
-"modelr",
-"raster",
-"rasterVis",
-"rgdal",
-"sf",
-"terra",
-"tidyverse",
-"viridis", # preferred color palette for graphing
-```
+You can install packages in a few rounds of different types.  Note that I tend to
+use the RStudio CRAN mirror.
 
-We also have a few extra ones from namespace addressing:
-```
-"kableExtra",
-"geodata",
-"rnaturalearth",
-"cowplot",
-"knitr",
+#### RMarkdown related packages
+
+To build the entire bookdown project of notes we need the 'bookdown' package
+and some other related package. Installing
+these also installs a bunch of other things that are essential for using
+RMarkdown.
+```{r, eval=FALSE}
+install.packages(
+  c(
+    "knitr",
+    "rmarkdown",
+    "bookdown",
+    "kableExtra" # for making nice tables in Rmarkdown
+  ),
+  repos = "https://cran.rstudio.com"
+)
 ```
 
-That is not too many.
+
+#### Tidyverse related packages
+
+The next big slug of packages to install are the tidyverse packages,
+and a few other related ones.
+Typically this can be done by just installing 'tidyverse' itself, and
+then a few more that we need.  If you already have the core packages of the
+tidyverse, (see [this section](#what-tidyverse)), you might need to reinstall
+these to ensure you have the latest versions.
+```{r, eval=FALSE}
+install.packages(
+  c(
+    "tidyverse",
+    "broom",
+    "modelr",
+    "googledrive",
+    "googlesheets4",
+    "ggrepel",      # for fitting labels in space into ggplots
+    "cowplot",      # for arranging ggplots together
+    "RColorBrewer", # a color palette for graphing
+    "viridis",      # a color palette for graphing
+    "data.table"    # not really a tidyverse package, but
+                    # useful for many things.
+  ),
+  repos = "https://cran.rstudio.com"
+)
+```
 
 
+#### Geospatial-related packages
 
+The last collection of packages to install are a few geospatial
+packages for handling raster and vector spatial data.  A few of these,
+like 'sf' and 'terra',
+are large packages because they include all the underlying libraries
+for geometric computations, etc.  This means that, as long as you get the binary versions
+from CRAN, for Mac and Windows, you don't have to bother
+with installing all those external library dependencies.  If you are using
+Linux, or you try to install 'terra' or 'sf' from GitHub, then dealing with
+all those dependencies becomes a much bigger headache.
+
+```{r, eval=FALSE}
+install.packages(
+  c(
+    "terra",
+    "sf",
+    "raster", # this has been largely replaced by terra, but we still use
+              # it in some code.
+    "rasterVis",
+    "gstat",
+    "rgdal",  # this may eventually be phased out...
+    "ggspatial", # for plotting RGB rasters in ggplot, efficiently, among other things
+    "geodata",   # for easy fetching of environmental layers
+    "rnaturalearth",  # for easy fetching of Natural Earth data
+    "rnaturalearthdata"
+  ),
+  repos = "https://cran.rstudio.com"
+)
+```
+
+#### The 'gradientForest' package
+
+Now, we come to a somewhat harder package to install, because it requires
+some compilation.  We use these packages for the gradient random forest
+analysis on the last day. 'gradientForest' requires the dependancy 'extendedForest', an R package for
+classification and regression based on forest trees using random inputs. 
+
+Both of these packages require compilation, it seems.  With the newest version of R, 'extendedForest' is installed automatically as a dependency.
+
+To compile packages might require a little more configuration, etc.
+
+**If you are using a Mac** 
+
+You should be running R 4.0.0 or above.  In that case, 
+to build packages, you need the XCode Command line tools.  If you don't already
+have these, then you should install them.  Doing so requires administrator access
+on your computer. Open the "Terminal" app and type:
+```sh
+xcode-select --install
+```
+into the command line.  When asked for your password, provide it.  Then click to agree
+on the software license agreement, and finally click the blue "install" button that comes
+up on the other screen.
+
+Then, you also need to get the gFortran compiler for Mac.  Information about this
+can be found by going to [https://mac.r-project.org/tools/](https://mac.r-project.org/tools/).
+Find the link (inside the yellow boxes) for your appropriate type of mac (intel or ARM64), and
+download the appropriate installer for the gFortran compiler. Then install it.  In my case, since
+I have an Intel Mac, I downloaded, `gfortran-8.2-Mojave.dmg`.  To install it, you have to
+double click it and then go inside the folder that creates, to find the `gfortran.pkg`, which
+you can double click to launch the installer.  Install it to the default location.
+
+On my Mac running Mojave (10.14.6) I got errors when trying to compile this package.  It
+was unable to find the C 'stdlib.h' header file.  So, I ended up also having to do this:
+```{sh, eval=FALSE}
+sudo installer -pkg /Library/Developer/CommandLineTools/Packages/macOS_SDK_headers_for_macOS_10.14.pkg -target /
+```
+
+If you have compilation problems on your Mac you might try something similar. But you might have
+to name the headers for your own system.  perhaps by tab completing on:
+```sh
+sudo installer -pkg /Library/Developer/CommandLineTools/Packages/macOS_SDK_headers_for_macOS_10
+```
+
+
+** If you have a Windows computer **
+
+We haven't tested it, but you should be just fine so long as you
+installed the `Rtools` as described above.
+
+
+** Finally, if you have set up your system on Mac or Windows, install the packages **
+
+The package we need is not on CRAN.  Rather, it is on the R-forge repository.
+
+In this case, we might be asked:
+```
+Package which is only available in source form, and may need compilation of
+  C/C++/Fortran: ‘extendedForest’
+Do you want to attempt to install these from sources? (Yes/no/cancel)
+```
+And, for this one, we need to respond, `Yes`
+
+```{r, eval=FALSE}
+install.packages("gradientForest", repos="https://R-Forge.R-project.org")
+```
+
+If all goes well, this should compile for you.
 
