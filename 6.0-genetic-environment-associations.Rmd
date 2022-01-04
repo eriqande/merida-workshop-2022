@@ -73,12 +73,12 @@ knitr::include_graphics("images/6.0/AlleleTurnover.jpg")
 If we look at different subsets of genetic variation in Balsam Poplar space
 
 a) reference SNPs,  
-b) GI5 candidate gene,
+b) GI5, a candidate gene for genetic control of bud set and bud flush (Olson et al. 2013), which are temperature-sensitive traits known to be under local adaptation,
 
-you can see that different environmental variables predict genetic variation of the subsets and there are locally adpative pockets for each- different colors = locally adapted genotypes.
+you can see that different environmental variables predict genetic variation of the reference and candidate genes. *Note* different colors = locally adapted genotypes. 
 
 ```{r, echo=FALSE, out.width='100%'}
-knitr::include_graphics("images/6.0/Fitzpatrick.Fig5.jpg")
+knitr::include_graphics("images/6.0/Fitzpatrick.Fig5.jpeg")
 ```
 
 Below is code for quantifying and visualizing intraspecific gene-environment variation across space. As part of The Bird Genoscape Project, we compare present-day gene-environment associations to predicted future changes to identify regions of genomic vulnerability. For now, this tutorial focuses on analyzing and plotting the allelic variation as estimated from gradient forest for a single species, the Willow Flycatcher, but is easily adpated to include other species and methods for esimating variation.
@@ -110,7 +110,7 @@ And we will need to load a realistic, polygon shapefile (an outline of the Willo
 
 That will produce this map:
 ```{r}
-wifl_shape=st_read("data/6.0/WIFLrev.shp")
+wifl_shape <-st_read("data/6.0/WIFLrev.shp")
 ```
 
 ```{r, fig.cap = "A basic outline of Willow Flycatcher breeding range we will use for this exercise"}
@@ -122,7 +122,6 @@ ggplot(wifl_shape) +
 ## Running Gradient Forest
 We will use gradient forest to test whether a subset of genomic variation can be explained by environmental variables and to visualize climate-associated genetic variation across the breeding range of the Willow Flycatcher. To run gradient forest we need two main files. First we need the environmental data/climate variables associated with each population. Populations are defined by their latitude and longitude. 
 
-Note to those interested in collecting environmental variables for their own species. 
 For each sampling location, we obtained environmental data from publically available databases. Specifically, we chose variables with known impacts on bird physiology and ecology and that were publically available at high resolution. These variables included 19 climate variables downloaded from WorldClim (Hijmans et al. 2005) as well as vegetation indices (Carroll et al. 2004) (NDVI and NDVIstd), Tree Cover (Sexton et al. 2013) and elevation data from the Global Land Cover Facility (http://www.landcover.org). We also downloaded and used a measure of surface moisture characteristics from the NASA Scatterometer Climate Record Pathfinder project (QuickSCAT, downloaded from scp.byu.edu).
 
 Read in the environmental variables, and take a look at the dimensions and the actual data.
