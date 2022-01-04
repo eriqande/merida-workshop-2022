@@ -25,24 +25,95 @@ fig-retina: 2
 options(
   htmltools.dir.version = FALSE, formatR.indent = 2, width = 55, digits = 4
 )
-
-# install the packages needed by this book; you fill out c(), e.g. c('ggplot2', 'dplyr')
-lapply(c('xfun'), function(pkg) {
-  if (system.file(package = pkg) == '') install.packages(pkg)
-})
-
-library(tidyverse)
 ```
 
 # Preface {-}
 
-This is the site/book associated with a course scheduled for January 2022.
-
-More on this later...
+This is the website/book associated with the _UCMexus Conservation Genomics Workshop 2022_, held January 10th and 11th in Mérida, Mexico.
 
 
 ```{r include=FALSE}
 # put my knitr options here
 options(knitr.graphics.auto_pdf = TRUE)
 ```
+
+## Setting up your computer
+
+This course covers topics in landscape genetics/genomics, and relies
+heavily on the R programming language.  In order to follow
+along with the code and be successful in running all of the
+examples, it is imperative to have very recent versions of
+R and RStudio, and updated versions of a number of packages.  
+
+The following is a description of the software needed to engage in the
+course.  This setup was tested on a Mac running Mojave 10.14.6, but
+should also work on most other Mac or Windows operating systems.
+
+If you are running Linux, there will be some external dependencies to install
+(such as the GEOS library), that are actually wrapped up in the binary
+versions of packages 'terra' and 'sf' on CRAN for Mac and Windows.
+
+### Step 1. Get the latest versions of R and RStudio
+
+* First, install the latest version of R.  Go to 
+[https://cran.r-project.org/](https://cran.r-project.org/) and follow the appropriate
+link to _Download and Install_, depending on your operating system (Linux, MacOS, or Windows).
+    - For Mac, you can download `R-4.1.2.pkg` and install.
+    - For Windows, first go into the `base` directory and Download R 4.1.2, and install it. **THEN**, go back to "R for Window" page where you clicked into
+    `base`, and download and install the `Rtools` as well.   The latter gives you
+    tools for building packages, which is required for a few packages we use.
+
+* Download and install the latest stable version of RStudio for
+your operating system.  Go to 
+[https://www.rstudio.com/products/rstudio/download/](https://www.rstudio.com/products/rstudio/download/) and choose the big blue download button for "RStudio Desktop, Open 
+Source License, **Free**", then hit the download button on the next page and
+follow instructions to install RStudio.
+
+### Step 2. Install a number of R packages that are relatively easy to install
+
+Our work will require a number of packages that can be found in binary
+form on CRAN.  As such, installing them is typically not to arduous.
+
+I have found that sometimes, when requesting the installation of a large number
+of packages, there can be the occasional problem.  Sometimes, an error message
+tells you which package (often a dependency) failed to install.  If that is
+the case, try to install the failed package by itself with the `install.packages()`, 
+function, directly, and then re-run the `install.packages()` command that
+originally failed.
+
+Here are the packages that we load in the Rmds:
+```
+"RColorBrewer",
+"bookdown", # this will get knitr and rmarkdown, I do believe
+"broom",
+"data.table",
+"ggrepel",
+"ggspatial",
+"googledrive",
+"googlesheets4",
+"gradientForest",
+"gstat",
+"modelr",
+"raster",
+"rasterVis",
+"rgdal",
+"sf",
+"terra",
+"tidyverse",
+"viridis", # preferred color palette for graphing
+```
+
+We also have a few extra ones from namespace addressing:
+```
+"kableExtra",
+"geodata",
+"rnaturalearth",
+"cowplot",
+"knitr",
+```
+
+That is not too many.
+
+
+
 
