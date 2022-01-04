@@ -503,7 +503,7 @@ And that wraps it up for this beginner ggplot2 tutorial. At this point, particul
 ```{r}
 g<-ggplot(mtcars,aes(hp, qsec,color = as.character(cyl)) ) +
   geom_point() + 
-  geom_smooth(method = lm, se = TRUE, color="black") +
+  geom_smooth(method = lm, se = TRUE, color="black",lty=3) +
   theme_bw() + 
   theme(aspect.ratio = 1)
 g
