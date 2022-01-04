@@ -286,7 +286,7 @@ g + geom_point() + # then add a layer of points
     geom_text(size=3) # and then add labels to the points
 ```
  
-But this is a bit busy and messy. Let's move around the names to make this more readable (less overlap)! Let's also fix the axis names.
+But this plot is a bit busy and messy. Let's move around the names to make this more readable (less overlap)! Let's also fix the axes names.
  
 ```{r}
  g + #the ggplot object you created above that you can add layers to
@@ -371,7 +371,7 @@ In order to create the next plots, we may need to *tidy* some of the data. While
 
 With a smaller version of the dataset, we are going to create histograms and density plots with some eBird data specific from Colorado. Histograms are a way to show variation in data and are plotted on a single numeric value. In this case we will just look at the Count column of the data frame. This is plotted on the x-axis and to avoid confusion I change the name of the x-axis since the y-axis is the counts of each value.
 
-To make things more interpretable for you as new R users, I am now breaking up the data tidying you can do in Richard's tidyverse section and assigning that to a variable, then using that tidied data frame variable in the *ggplot()* function for plotting (again we could pipe into ggplot but that might not be so clear at this point). Note that *ggplot()* uses "+" not the pipe function to add more commands/functions.
+To make things more interpretable for you as new R users, I am now breaking up the data tidying you can do in Richard's tidyverse section and assigning that to a variable, then using that tidied data frame variable in the *ggplot()* function for plotting (again we could pipe into ggplot but that might not be so clear at this point). Remember from our previous examples that *ggplot()* uses "+" not the pipe function to add more commands/functions.
 
 ```{r}
 myebird2 <- myebird %>%
