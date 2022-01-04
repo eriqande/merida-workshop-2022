@@ -10,7 +10,7 @@ knitr::include_graphics("images/env_layers/three-layers-intro.png")
 ```
   
   
-And we might have genomic information to create a spatially explicit map of population structure, called the genoscape of the Willow Flycatcher.  
+And many of us now have genomic data. Here, we used genome-wide reduced representation sequencing to create a spatially explicit map of population structure, called the genoscape, of the Willow Flycatcher.  
 
 ```{r, echo=FALSE, out.width='90%'}
 knitr::include_graphics("images/6.0/Ruegg et al2021.Fig1.jpg")
@@ -20,12 +20,10 @@ knitr::include_graphics("images/6.0/Ruegg et al2021.Fig1.jpg")
 What we ultimately want to investigate is how environmental variables are correlated with genetic variation. 
 
 ```{r, echo=FALSE, out.width='90%'}
-knitr::include_graphics("images/6.0/GEA.Fig1.jpg")
+knitr::include_graphics("images/6.0/GEA.Fig1.jpeg")
 ```
 
 Standing genetic variation associated with current climate gradients theoretically indicates adaptive capacity. However, modeling future adaptation from individual loci is difficult because we don’t understand all GxE interactions.
-
-Note, this is *not* to investigate or identify candidate genes, but rather what combination of environmental variables shapes overall population genetic structure of a species.
 
 A recent example illustrated that not only is geography ("isolation by distance") strongly correlated genetic structure, but environment plays a role in differentiation too. Specifically, precipitation is a strong predictor of Yellow Warbler genetic structure. 
 
@@ -37,7 +35,7 @@ knitr::include_graphics("images/6.0/Bay et al.Fig1.jpg")
 
 The R package gradientForest traditionally quantifies multi-species compositional turnover along environmental gradients. In the era of next-generation sequencing, where genome-wide data is common, we can extend this community ecology framework to determine which variants are associated with specific environmental variables. So rather than thinking of the large-scale species turnover in space, we can map fine-scale allele frequency changes along environemntal gradients. 
 
-Gradient forest is a machine learning approach for classification and regresion based on decision trees. We've all seen and used decision trees, for mundane tasks like waking up to an alarm each morning to more intricate decisions like optimal pairing of individuals in a captive breeding program to increase/maintain genetic diversity of a population. Regardless of which decision tree you are implementing, the assumption remains, the higher the split, the more important the predictor.
+Gradient forest is a machine learning approach for classification and regression based on decision trees. We've all seen and used decision trees, for mundane tasks like waking up to an alarm each morning to more intricate decisions like optimal pairing of individuals in a captive breeding program to increase/maintain genetic diversity of a population. Regardless of which decision tree you are implementing, the assumption remains, the higher the split, the more important the predictor.
 
 Because decision trees are prone to overiftting, gradient forest uses random forests to test associations. Random forests use a random subset of predictors for each decision tree. 
 
@@ -49,13 +47,15 @@ knitr::include_graphics("images/6.0/RandomForest.ConceptMap.jpg")
 2) Find predictor (and value) that optimizes split.
 3) Create many trees and aggregate.
 
-You can apply random forests with genomics. Brieuc et al. 2018 used this approach to rank the importance of SNPs for predicting a specific binary phenotype, *e.g.* disease resistance in fish. This is an example of one random tree, which can ultimately create a predictive polygenic model.
+**Random forests and genomic data**
+
+Brieuc et al. 2018 used this approach to rank the importance of SNPs for predicting a specific binary phenotype, *e.g.* disease resistance in fish. This is an example of one random tree, which can ultimately create a predictive polygenic model.
 
 ```{r, echo=FALSE, out.width='100%'}
 knitr::include_graphics("images/6.0/RandomForest.Genomics.jpg")
 ```
 
-Another interesting exmaple used random forests to find the predictive variants for cold hardiness, which was subsequently used to predict cold injury in the Sitka Spruce (Holliday et al. 2012).
+Another interesting study used random forests to find the predictive variants for cold hardiness, which was subsequently used to predict cold injury in the Sitka Spruce (Holliday et al. 2012).
 
 ```{r, echo=FALSE, out.width='100%'}
 knitr::include_graphics("images/6.0/RandomForest.Genomics2.jpg")
@@ -73,7 +73,7 @@ knitr::include_graphics("images/6.0/AlleleTurnover.jpg")
 If we look at different subsets of genetic variation in Balsam Poplar space
 
 a) reference SNPs,  
-b) GI5, a candidate gene for genetic control of bud set and bud flush (Olson et al. 2013), which are temperature-sensitive traits known to be under local adaptation,
+b) GI5, a candidate gene for genetic control of bud set and bud flush (Olson et al. 2013)
 
 you can see that different environmental variables predict genetic variation of the reference and candidate genes. *Note* different colors = locally adapted genotypes. 
 
