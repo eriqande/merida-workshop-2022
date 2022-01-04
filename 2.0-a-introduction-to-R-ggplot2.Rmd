@@ -1,6 +1,6 @@
-# Basic Introduction to R and ggplot
+# Basic Introduction to R and *ggplot2*
 
-This is an introduction to R and ggplot2 that was created specificially for the UCMexus Conservation Genomics Workshop 2022.  The data used in this tutorial is a typical dataset used in ggplot.
+This is an introduction to R and *ggplot2* that was created specificially for the UCMexus Conservation Genomics Workshop 2022.  The data used in this tutorial is a typical dataset used in ggplot.
 
 ## RStudio Layout
 
@@ -70,7 +70,7 @@ Also useful is the **Help** tab for understanding what a function does.
     a. We want to create plots quickly and get many things “for free”.
     b. We want many options to customize and make things look awesome.
 
-## Understanding the Ggplot Syntax
+### Understanding the Ggplot Syntax
 
 *ggplot2* uses the basic units of the “grammar of graphics” (Leland Wilkinson) to construct data visualizations in a layered approach.
 
@@ -82,7 +82,7 @@ The basic units in the “grammar of graphics” consist of:
 
 The syntax for constructing ggplots could be puzzling if you are a beginner or work primarily with base graphics. The main difference is that, unlike base graphics, ggplot works with dataframes and not individual vectors. All the data needed to make the plot is typically be contained within the dataframe supplied to the ggplot() itself or can be supplied to respective geoms. More on that later.
 
-### A plot consists of components
+#### A plot consists of components
 The second noticeable feature is that you can keep enhancing the plot by adding more layers (and themes) to an existing plot created using the ggplot() function
   
 Here is a verbose definition of a simple plot. Note, this is not something you will see/use. But it's a nice way to break down the components
@@ -104,14 +104,6 @@ ggplot() +
 
 > __layer(data = mtcars, #1__ 
   
->  mapping = aes(x = hp, y = qsec), #2 
-  
->  geom = 'point', #3 
-  
->  stat = 'identity', #4 
-  
->  position = 'identity') + #5 
-  
 
 * A data layer needs data to display.
 * Data is a data.frame or tibble if you are using tidyverse
@@ -127,17 +119,10 @@ head(mtcars)
 
 >  __mapping = aes(x = hp, y = qsec), #2__ 
 
->  geom = 'point', #3 
-
->  stat = 'identity', #4 
-
->  position = 'identity') #5 
- 
 *  An aesthetic mapping connects your data to your plot. (e.g. x, y, color, shape, alpha, size, linetype, etc.).
 *  Aesthetics are “things that we can perceive on the graphic”.
 *  We use the aes() function to create this mapping.
 *  aes(aesthetic = variable).
-*  Never use $! So never aes(x = mtcars$mpg)!
 
 For the code chunk below, we would be mapping hp on the x-axis and qsec on the y-axis.
 
@@ -152,10 +137,6 @@ aes(x = hp, y = qsec)
 > mapping = aes(x = hp, y = qsec), #2
  
 > __geom = 'point', #3__
- 
-> stat = 'identity', #4
- 
-> position = 'identity') + #5
 
 Simply the geometrical shape that you want to do draw.
  
@@ -175,16 +156,17 @@ We simply write:
 
 ```{r}
 ggplot() +
-geom_point(mapping = aes(x = hp, y = qsec), data = mtcars) +
-  theme_bw()+
+  geom_point(mapping = aes(x = hp, y = qsec), data = mtcars) +
+  theme_bw() +
   theme(aspect.ratio = 1)
 ```
   
 Or, using positional matching:
  
 ```{r}
-ggplot() + geom_point(aes(hp, qsec), mtcars)+
-  theme_bw()+
+ggplot() + 
+  geom_point(aes(hp, qsec), mtcars) +
+  theme_bw() +
   theme(aspect.ratio = 1)
 ```
  
@@ -198,7 +180,7 @@ geom_point(aes(hp, qsec, color = cyl), mtcars) +
   theme(aspect.ratio = 1)
 ```
 
-### Continious versus discrete variables
+**Continious versus discrete variables**
 R treats continuous and discrete information differently. ggplot directly uses the class of the variable to figure out how to best display data.
 
 In this case, it checks:
@@ -219,36 +201,37 @@ ggplot() +
   theme_bw() + theme(aspect.ratio = 1)
 ```
 
-
 *  Some more on stats.
 *  Scales.
 *  Coordinate systems (brief).
 *  Facets.
-*  Themes.
 *  Plotting model fits.
 *  Some more challenges.
 
-### Two special stats: stat_smooth
+### A special stat: stat_smooth
 We can keep adding additional layers to this plot to make it more informative. One thing that is often useful when you're looking at data on a scatter plot is a visual representation of how closely the variable on the x axis and the variable on the y axis are related to each other, and the strength of that relationship. We can summarize this using a fitted line.
 
 In ggplot, we can automatically add a fitted line using the layer *geom_smooth()*. By default, *geom_smooth()* will show the relationship between the x and y variables using locally weighted scatter plot smoothing (also known as LOESS) rather than by drawing a straight line. If we want a single straight line to summarize our data, we need to specify that we want *geom_smooth()* to fit a linear model (or "lm").
+
 ```{r}
 g<-ggplot(mtcars,aes(hp, qsec)) +
-  geom_point() + geom_smooth(method = "lm", se = TRUE) +
-  theme_bw()+theme(aspect.ratio = 1)
+  geom_point() + 
+  geom_smooth(method = "lm", se = TRUE) +
+  theme_bw() + 
+  theme(aspect.ratio = 1)
 g
 ```
-
-
+ 
 **Exercise 1: Create the following plot**
-
+ 
 Now, how would you change the code above to change the color of the point layer, withuot affecting the smooth layer since the aes() aesthetic mapping is passed at the point layer.
-
+  
 ```{r,echo=F}
-g<-ggplot(mtcars,aes(hp, qsec,color = as.character(cyl)) ) +
+g <- ggplot(mtcars,aes(hp, qsec, color = as.character(cyl)) ) +
   geom_point() + 
   geom_smooth(method = lm, se = TRUE, color="black") +
-  theme_bw() + theme(aspect.ratio = 1)
+  theme_bw() + 
+  theme(aspect.ratio = 1)
 g
 ```
 Note, the code above would only change the color of the point layer, it would not affect the color of the smooth layer since the aes() aesthetic mapping is passed at the point layer.
@@ -259,47 +242,51 @@ Can you recreate this plot using other aesthetic options?
 
 ```{r,echo=FALSE}
 ggplot() +
-  geom_point(aes(hp, qsec, shape = factor(vs), size = mpg), mtcars, alpha = 0.5, col = 'red') +
+  geom_point(aes(hp, 
+                 qsec, 
+                 shape = factor(vs), 
+                 size = mpg), 
+             mtcars, 
+             alpha = 0.5, 
+             col = 'red') +
   labs(shape = 'vs', size = 'qsec') +
-  theme_bw() + theme(aspect.ratio = 1)
+  theme_bw() + 
+  theme(aspect.ratio = 1)
 ```
 
 **Exercise 3: Create the following plot**
 
 How about if we wanted to create a line plot with this data? How would you create the following plot create separate lines based on the "am" variable.
-
+ 
 ```{r,echo = F}
 ggplot() +
   geom_line(aes(hp, qsec,lty = factor(am)), mtcars) + 
-  theme_bw()+theme(aspect.ratio = 1)
+  theme_bw() + 
+  theme(aspect.ratio = 1)
 ```
-
-### Shared data and mapping
+ 
+#### Shared data and mapping
 Now what if we want to add labels. Let's look at another dataset and think about this- now we have multiple layers. You might've noticed this with the geom_smooth function too.
-
 
 *  When multiple layers share the same data or mapping you can define it inside of ggplot.
 *  Everything in ggplot will be used by default for all layers.
 *  Use data inside a layer in order to not use the default.
 *  Set or map an aesthetic to not use the default. You can map to NULL.
 *  This goes for each aesthetic individually! Not for the entire mapping.
- 
-
-```
-ggplot(d, aes(x, y, col = z)) + geom_point(aes(col = NULL))
-ggplot(d, aes(x, y, col = z)) + geom_point(col = 'black')
-```
 
 In many cases I provide the data and mapping in ggplot.
 ```{r}
-g<-ggplot(msleep,aes(sleep_total, log(brainwt), label = name, col=vore)) #make sure to add the label aes!
+g <- ggplot(msleep,
+          aes(sleep_total, 
+              log(brainwt), 
+              label = name, #make sure to add the label aes!
+              col=vore)) 
     
-g+ geom_point() + # then add a layer of points 
+g + geom_point() + # then add a layer of points 
     geom_text(size=3) # and then add labels to the points
-
 ```
  
- But this is a bit busy and messy. Let's move around the names to make this more readable (less overlap)! Let's also fix the axis names.
+But this is a bit busy and messy. Let's move around the names to make this more readable (less overlap)! Let's also fix the axis names.
  
 ```{r}
  g + #the ggplot object you created above that you can add layers to
@@ -335,15 +322,17 @@ Let's move onto the other components of the ggplot syntax.
 
 **4. What is a stat?**
 
-> layer(data = mtcars, #1 
+> layer(data = mtcars, #1  
+
 > mapping = aes(x = hp, y = qsec), #2 
+ 
 > geom = 'point', #3 
+ 
 > __stat = 'identity', #4__ 
-> position = 'identity') + #5
 
 Often, you don’t want to directly plot the actual data, but rather some transformation of the data.
 
-stats perform all kinds of data transformations.
+__stats__ perform all kinds of data transformations.
 
 The most common transformations: 
 *  binning (StatBin). 
@@ -360,36 +349,60 @@ E.g. ?geom_boxplot shows stat = "boxplot".
 
 ```{r}
 ggplot() +
-  geom_boxplot(aes(factor(cyl), hp, fill=factor(cyl)),mtcars) +
+  geom_boxplot(aes(factor(cyl), hp, fill=factor(cyl)), mtcars) +
   xlab('Cylinder') +
-  theme_bw()+theme(aspect.ratio = 1)
+  theme_bw() + 
+  theme(aspect.ratio = 1)
 ```
 
 **Exercise 4a-c: One variable exercises**
 
-How would you create the following plots?
-```{r, echo=FALSE, out.width='100%'}
-knitr::include_graphics("images/2.0_R_ggplot/GGplot.example3_stats.jgp.jpeg")
+How would you create the following plots? I want you to use a new eBird dataset, however, the syntax still applies. 
+
+```{r}
+myebird<-read_csv("data/2.0a/MyEBirdData_tidy.csv")
+```
+Let's take a quick look at this new data set. It has counts of several bird species in Colorado, and the locations and dates of these observations. 
+
+```{r}
+head(myebird)
+```
+In order to create the next plots, we may need to *tidy* some of the data. While, the module concurrently being run by Richard goes into how to use *tidyverse* in more depth, this section will provide a *small* hint of what *tidying* data can mean and how we can pipe (%>%) this directly into the  *ggplot()* command.
+
+With a smaller version of the dataset, we are going to create histograms and density plots with some eBird data specific from Colorado. Histograms are a way to show variation in data and are plotted on a single numeric value. In this case we will just look at the Count column of the data frame. This is plotted on the x-axis and to avoid confusion I change the name of the x-axis since the y-axis is the counts of each value.
+
+To make things more interpretable for you as new R users, I am now breaking up the data tidying you can do in Richard's tidyverse section and assigning that to a variable, then using that tidied data frame variable in the *ggplot()* function for plotting (again we could pipe into ggplot but that might not be so clear at this point). Note that *ggplot()* uses "+" not the pipe function to add more commands/functions.
+
+```{r}
+myebird2 <- myebird %>%
+  filter(CommonName %in% c("Canada Goose"))
+
+myebird3 <- myebird %>%
+  filter(CommonName %in% c("Canada Goose","American Robin"))
 ```
 
- a) First plot. A simple histogram, and we use the stats binning:
-
+a) First plot. A simple histogram of counts for the Canada Goose, and we use the stats binning. 
+ 
 ```{r, echo=F}
-ggplot(mtcars, aes(hp)) +
-  geom_histogram(bins = 10)
+ggplot(myebird2) +
+  geom_histogram(aes(x = Count), bins = 100) +
+  xlab("Number of individuals seen per observation") +
+  ggtitle("Histogram of Canadian Goose observations")
 ```
  
  b) Second plot. How would you change the color of the histogram?
  
 ```{r, echo=F}
-ggplot(mtcars, aes(hp)) +
-  stat_bin(bins = 10, col="black", fill = 'pink')
+ggplot(myebird2,aes(Count)) +
+  stat_bin(bins = 50, col="black",fill="pink") +
+  xlab("Number of individuals seen per observation") +
+  ggtitle("Histogram of Canada Goose observations")
 ```
 
-c) Third plot is a stat = density plot.
+c) Third plot is a stat = density plot, for counts of two bird species.
 
 ```{r, echo=F}
-ggplot(mtcars, aes(hp, col = factor(am))) +
+ggplot(myebird3, aes(Count, col = factor(CommonName))) +
   stat_density(fill = NA)
 ```
 
@@ -397,10 +410,13 @@ ggplot(mtcars, aes(hp, col = factor(am))) +
 > layer(data = mtcars, #1 
 
 > mapping = aes(x = hp, y = qsec), #2
+ 
 > geom = 'point', #3
+ 
 > stat = 'identity', #4
+ 
 > __position = 'identity') + #5__
-
+ 
 Things in a plot can overlap. This is very common with categorical axes and overlap can be resolved by using a position
 
 Most commonly you:
@@ -521,20 +537,34 @@ ggplot() +
 **Exercise 4a-c**
 
 a) 
+```{r}
+ggplot(myebird2) +
+  geom_histogram(aes(x = Count), bins = 100) +
+  xlab("Number of individuals seen per observation") +
+  ggtitle("Histogram of Canadian Goose observations")
 
-```{r, echo=F}
-ggplot(mtcars, aes(hp)) +
-  geom_histogram(bins = 10)
-```
-  
-b) 
-```{r, echo=F}
-ggplot(mtcars, aes(hp)) +
-  stat_bin(bins = 10, col="black", fill = 'pink')
+#or 
+
+myebird2 %>% ggplot() +
+  geom_histogram(aes(x = Count), bins = 100) +
+  xlab("Number of individuals seen per observation") +
+  ggtitle("Histogram of Canadian Goose observations")
+
 ```
  
-c) 
+ b) 
+ 
 ```{r, echo=F}
-ggplot(mtcars, aes(hp, col = factor(am))) +
+ggplot(myebird2,aes(Count)) +
+  stat_bin(bins = 50, col="black",fill="pink") +
+  xlab("Number of individuals seen per observation") +
+  ggtitle("Histogram of Canada Goose observations")
+```
+
+c) Third plot is a stat = density plot, for counts of two bird species.
+
+```{r, echo=F}
+ggplot(myebird3, aes(Count, col = factor(CommonName))) +
   stat_density(fill = NA)
 ```
+
