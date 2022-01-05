@@ -1,0 +1,861 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Session 2 Basic Introduction to R and ggplot2 | Reproducible Research for Conservation — Mérida, Mexico</title>
+  <meta name="description" content="A book example for a Chapman &amp; Hall book." />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Session 2 Basic Introduction to R and ggplot2 | Reproducible Research for Conservation — Mérida, Mexico" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="A book example for a Chapman &amp; Hall book." />
+  <meta name="github-repo" content="yihui/bookdown-crc" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Session 2 Basic Introduction to R and ggplot2 | Reproducible Research for Conservation — Mérida, Mexico" />
+  
+  <meta name="twitter:description" content="A book example for a Chapman &amp; Hall book." />
+  
+
+<meta name="author" content="Eric C. Anderson, Christen Bossu, Richard Evan Feldman, Kristen C. Ruegg, Marius Somveille" />
+
+
+<meta name="date" content="2022-01-04" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="congen-intro.html"/>
+<link rel="next" href="introduction-to-the-tidyverse.html"/>
+<script src="libs/header-attrs/header-attrs.js"></script>
+<script src="libs/jquery/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections/anchor-sections.js"></script>
+<script src="libs/kePrint/kePrint.js"></script>
+<link href="libs/lightable/lightable.css" rel="stylesheet" />
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="css/style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Mérida Workshop</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a>
+<ul>
+<li class="chapter" data-level="0.1" data-path="index.html"><a href="index.html#setting-computer"><i class="fa fa-check"></i><b>0.1</b> Setting up your computer</a>
+<ul>
+<li class="chapter" data-level="0.1.1" data-path="index.html"><a href="index.html#step-1.-get-the-latest-versions-of-r-and-rstudio"><i class="fa fa-check"></i><b>0.1.1</b> Step 1. Get the latest versions of R and RStudio</a></li>
+<li class="chapter" data-level="0.1.2" data-path="index.html"><a href="index.html#step-2.-install-a-number-of-r-packages-that-are-relatively-easy-to-install"><i class="fa fa-check"></i><b>0.1.2</b> Step 2. Install a number of R packages that are relatively easy to install</a></li>
+<li class="chapter" data-level="0.1.3" data-path="index.html"><a href="index.html#step-3.-make-sure-you-have-git-and-an-account-on-github"><i class="fa fa-check"></i><b>0.1.3</b> Step 3. Make sure you have git and an account on GitHub</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="congen-intro.html"><a href="congen-intro.html"><i class="fa fa-check"></i><b>1</b> Introduction to Conservation Genomics Approaches</a></li>
+<li class="chapter" data-level="2" data-path="basic-introduction-to-r-and-ggplot2.html"><a href="basic-introduction-to-r-and-ggplot2.html"><i class="fa fa-check"></i><b>2</b> Basic Introduction to R and <em>ggplot2</em></a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="basic-introduction-to-r-and-ggplot2.html"><a href="basic-introduction-to-r-and-ggplot2.html#rstudio-layout"><i class="fa fa-check"></i><b>2.1</b> RStudio Layout</a></li>
+<li class="chapter" data-level="2.2" data-path="basic-introduction-to-r-and-ggplot2.html"><a href="basic-introduction-to-r-and-ggplot2.html#data-visualization-with-ggplot2"><i class="fa fa-check"></i><b>2.2</b> Data visualization with ggplot2</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="basic-introduction-to-r-and-ggplot2.html"><a href="basic-introduction-to-r-and-ggplot2.html#understanding-the-ggplot-syntax"><i class="fa fa-check"></i><b>2.2.1</b> Understanding the Ggplot Syntax</a></li>
+<li class="chapter" data-level="2.2.2" data-path="basic-introduction-to-r-and-ggplot2.html"><a href="basic-introduction-to-r-and-ggplot2.html#a-special-stat-stat_smooth"><i class="fa fa-check"></i><b>2.2.2</b> A special stat: stat_smooth</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="basic-introduction-to-r-and-ggplot2.html"><a href="basic-introduction-to-r-and-ggplot2.html#conclusion"><i class="fa fa-check"></i><b>2.3</b> Conclusion</a></li>
+<li class="chapter" data-level="2.4" data-path="basic-introduction-to-r-and-ggplot2.html"><a href="basic-introduction-to-r-and-ggplot2.html#appendix-1-exercise-answers"><i class="fa fa-check"></i><b>2.4</b> Appendix 1: Exercise Answers</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="introduction-to-the-tidyverse.html"><a href="introduction-to-the-tidyverse.html"><i class="fa fa-check"></i><b>3</b> Introduction to the tidyverse</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="introduction-to-the-tidyverse.html"><a href="introduction-to-the-tidyverse.html#what-tidyverse"><i class="fa fa-check"></i><b>3.1</b> What on earth is the tidyerse?</a></li>
+<li class="chapter" data-level="3.2" data-path="introduction-to-the-tidyverse.html"><a href="introduction-to-the-tidyverse.html#an-example-data-set"><i class="fa fa-check"></i><b>3.2</b> An example data set</a></li>
+<li class="chapter" data-level="3.3" data-path="introduction-to-the-tidyverse.html"><a href="introduction-to-the-tidyverse.html#reading-data-in-the-tidyverse"><i class="fa fa-check"></i><b>3.3</b> Reading data in the tidyverse</a></li>
+<li class="chapter" data-level="3.4" data-path="introduction-to-the-tidyverse.html"><a href="introduction-to-the-tidyverse.html#a-word-on-tibbles"><i class="fa fa-check"></i><b>3.4</b> A word on tibbles</a></li>
+<li class="chapter" data-level="3.5" data-path="introduction-to-the-tidyverse.html"><a href="introduction-to-the-tidyverse.html#back-to-tidying-up-our-genotype-data"><i class="fa fa-check"></i><b>3.5</b> Back to “tidying” up our genotype data</a></li>
+<li class="chapter" data-level="3.6" data-path="introduction-to-the-tidyverse.html"><a href="introduction-to-the-tidyverse.html#what-the-heck-is-that-thingie"><i class="fa fa-check"></i><b>3.6</b> What the heck is that <code>%&gt;%</code> thingie?!</a></li>
+<li class="chapter" data-level="3.7" data-path="introduction-to-the-tidyverse.html"><a href="introduction-to-the-tidyverse.html#the-dplyr-package-the-heart-of-the-tidyverse"><i class="fa fa-check"></i><b>3.7</b> The ‘dplyr’ package: the heart of the tidyverse</a>
+<ul>
+<li class="chapter" data-level="3.7.1" data-path="introduction-to-the-tidyverse.html"><a href="introduction-to-the-tidyverse.html#non-standard-evaluation-nse-you-dont-wrap-column-names-in-quotation-marks"><i class="fa fa-check"></i><b>3.7.1</b> Non-standard Evaluation (NSE): You don’t wrap column names in quotation marks</a></li>
+<li class="chapter" data-level="3.7.2" data-path="introduction-to-the-tidyverse.html"><a href="introduction-to-the-tidyverse.html#select-to-select-columns-of-a-tibble"><i class="fa fa-check"></i><b>3.7.2</b> <code>select()</code> to select columns of a tibble</a></li>
+<li class="chapter" data-level="3.7.3" data-path="introduction-to-the-tidyverse.html"><a href="introduction-to-the-tidyverse.html#filter-to-retain-certain-rows"><i class="fa fa-check"></i><b>3.7.3</b> <code>filter()</code> to retain certain rows</a></li>
+<li class="chapter" data-level="3.7.4" data-path="introduction-to-the-tidyverse.html"><a href="introduction-to-the-tidyverse.html#arrange-to-reorder-the-rows-of-the-tibble"><i class="fa fa-check"></i><b>3.7.4</b> <code>arrange()</code> to reorder the rows of the tibble</a></li>
+<li class="chapter" data-level="3.7.5" data-path="introduction-to-the-tidyverse.html"><a href="introduction-to-the-tidyverse.html#mutate-to-create-new-columns"><i class="fa fa-check"></i><b>3.7.5</b> <code>mutate()</code> to create new columns</a></li>
+<li class="chapter" data-level="3.7.6" data-path="introduction-to-the-tidyverse.html"><a href="introduction-to-the-tidyverse.html#compute-a-single-value-from-many-rows-summarise"><i class="fa fa-check"></i><b>3.7.6</b> Compute a single value from many rows: <code>summarise()</code></a></li>
+<li class="chapter" data-level="3.7.7" data-path="introduction-to-the-tidyverse.html"><a href="introduction-to-the-tidyverse.html#group_by-to-operate-tidily-on-subsets-of-a-tibble"><i class="fa fa-check"></i><b>3.7.7</b> <code>group_by()</code> to operate tidily on subsets of a tibble</a></li>
+<li class="chapter" data-level="3.7.8" data-path="introduction-to-the-tidyverse.html"><a href="introduction-to-the-tidyverse.html#joins"><i class="fa fa-check"></i><b>3.7.8</b> Joins</a></li>
+<li class="chapter" data-level="3.7.9" data-path="introduction-to-the-tidyverse.html"><a href="introduction-to-the-tidyverse.html#wrap-up"><i class="fa fa-check"></i><b>3.7.9</b> Wrap Up</a></li>
+</ul></li>
+<li class="chapter" data-level="3.8" data-path="introduction-to-the-tidyverse.html"><a href="introduction-to-the-tidyverse.html#modeling-within-the-tidyverse"><i class="fa fa-check"></i><b>3.8</b> Modeling within the Tidyverse</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="reporg.html"><a href="reporg.html"><i class="fa fa-check"></i><b>4</b> Organizing Research Projects for Reproducibility</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="reporg.html"><a href="reporg.html#goals-for-this-session"><i class="fa fa-check"></i><b>4.1</b> Goals for this session</a></li>
+<li class="chapter" data-level="4.2" data-path="reporg.html"><a href="reporg.html#why-do-this"><i class="fa fa-check"></i><b>4.2</b> Why do this?</a></li>
+<li class="chapter" data-level="4.3" data-path="reporg.html"><a href="reporg.html#what-can-this-look-like"><i class="fa fa-check"></i><b>4.3</b> What can this look like?</a></li>
+<li class="chapter" data-level="4.4" data-path="reporg.html"><a href="reporg.html#reproducibility-edict-1-dont-save-your-r-workspace-and-then-reload-it"><i class="fa fa-check"></i><b>4.4</b> Reproducibility Edict #1: Don’t Save Your R Workspace and then Reload It</a></li>
+<li class="chapter" data-level="4.5" data-path="reporg.html"><a href="reporg.html#paths-an-important-concept-for-reproducibility"><i class="fa fa-check"></i><b>4.5</b> Paths, an important concept for reproducibility</a></li>
+<li class="chapter" data-level="4.6" data-path="reporg.html"><a href="reporg.html#the-working-directory"><i class="fa fa-check"></i><b>4.6</b> The Working Directory</a>
+<ul>
+<li class="chapter" data-level="4.6.1" data-path="reporg.html"><a href="reporg.html#a-hugely-important-point"><i class="fa fa-check"></i><b>4.6.1</b> A Hugely Important Point!</a></li>
+<li class="chapter" data-level="4.6.2" data-path="reporg.html"><a href="reporg.html#skeletal-anatomy-of-an-rstudio-project"><i class="fa fa-check"></i><b>4.6.2</b> Skeletal anatomy of an RStudio Project</a></li>
+</ul></li>
+<li class="chapter" data-level="4.7" data-path="reporg.html"><a href="reporg.html#reproducibility-edict-2-dont-change-directories-in-your-code"><i class="fa fa-check"></i><b>4.7</b> Reproducibility Edict #2: Don’t Change Directories in Your Code</a></li>
+<li class="chapter" data-level="4.8" data-path="reporg.html"><a href="reporg.html#relative-paths"><i class="fa fa-check"></i><b>4.8</b> Relative Paths</a></li>
+<li class="chapter" data-level="4.9" data-path="reporg.html"><a href="reporg.html#reproducibility-edict-3-always-use-relative-paths-from-the-project-directory-to-files-inside-the-project-directory"><i class="fa fa-check"></i><b>4.9</b> Reproducibility Edict #3: Always Use Relative Paths from the Project Directory to Files <em>inside</em> the Project Directory</a></li>
+<li class="chapter" data-level="4.10" data-path="reporg.html"><a href="reporg.html#reproducibility-edict-4-put-data-files-into-a-data-directory"><i class="fa fa-check"></i><b>4.10</b> Reproducibility Edict #4: Put data files into a <code>data</code> directory</a></li>
+<li class="chapter" data-level="4.11" data-path="reporg.html"><a href="reporg.html#reproducibility-edict-5-write-analysis-scripts-as-.r-or-.rmd-files"><i class="fa fa-check"></i><b>4.11</b> Reproducibility Edict #5: Write Analysis Scripts as <code>.R</code> or <code>.Rmd</code> files</a></li>
+<li class="chapter" data-level="4.12" data-path="reporg.html"><a href="reporg.html#download-an-example-project-to-play-with"><i class="fa fa-check"></i><b>4.12</b> Download an example project to play with</a>
+<ul>
+<li class="chapter" data-level="4.12.1" data-path="reporg.html"><a href="reporg.html#lets-have-a-moment"><i class="fa fa-check"></i><b>4.12.1</b> Let’s have a moment</a></li>
+</ul></li>
+<li class="chapter" data-level="4.13" data-path="reporg.html"><a href="reporg.html#reproducibility-edict-6-write-your-code-with-style"><i class="fa fa-check"></i><b>4.13</b> Reproducibility Edict #6: Write your code with style!</a></li>
+<li class="chapter" data-level="4.14" data-path="reporg.html"><a href="reporg.html#what-about-shared-data-sets"><i class="fa fa-check"></i><b>4.14</b> What About Shared Data Sets?</a></li>
+<li class="chapter" data-level="4.15" data-path="reporg.html"><a href="reporg.html#reproducibility-edict-7-use-git-for-version-control"><i class="fa fa-check"></i><b>4.15</b> Reproducibility Edict #7: Use git for Version Control</a></li>
+<li class="chapter" data-level="4.16" data-path="reporg.html"><a href="reporg.html#in-the-meantime-a-short-demo-of-gitgithub-on-rstudio"><i class="fa fa-check"></i><b>4.16</b> In the meantime, a short demo of git/GitHub on RStudio</a></li>
+<li class="chapter" data-level="4.17" data-path="reporg.html"><a href="reporg.html#what-to-keep-under-version-control-and-what-not-to"><i class="fa fa-check"></i><b>4.17</b> What to keep under version control and what not to</a></li>
+<li class="chapter" data-level="4.18" data-path="reporg.html"><a href="reporg.html#create-a-readme-to-describe-the-parts-of-your-analysis-project"><i class="fa fa-check"></i><b>4.18</b> Create a README to describe the parts of your analysis project</a></li>
+<li class="chapter" data-level="4.19" data-path="reporg.html"><a href="reporg.html#github-and-very-large-data-sets"><i class="fa fa-check"></i><b>4.19</b> GitHub and Very large data sets</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="envdata.html"><a href="envdata.html"><i class="fa fa-check"></i><b>5</b> Finding and Obtaining Environmental Data for Conservation</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="envdata.html"><a href="envdata.html#environmental-layers.-a-general-overview"><i class="fa fa-check"></i><b>5.1</b> Environmental Layers. A general overview</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="envdata.html"><a href="envdata.html#environmental-layers-in-conservation-genetics"><i class="fa fa-check"></i><b>5.1.1</b> Environmental layers in conservation genetics</a></li>
+<li class="chapter" data-level="5.1.2" data-path="envdata.html"><a href="envdata.html#examples-of-atmospheric-layers"><i class="fa fa-check"></i><b>5.1.2</b> Examples of atmospheric layers</a></li>
+<li class="chapter" data-level="5.1.3" data-path="envdata.html"><a href="envdata.html#examples-of-vegetation-layers"><i class="fa fa-check"></i><b>5.1.3</b> Examples of vegetation layers</a></li>
+<li class="chapter" data-level="5.1.4" data-path="envdata.html"><a href="envdata.html#examples-of-landscape-layers"><i class="fa fa-check"></i><b>5.1.4</b> Examples of landscape layers</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="spatdata.html"><a href="spatdata.html"><i class="fa fa-check"></i><b>6</b> Handling and Visualizing Spatial Data in R</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="spatdata.html"><a href="spatdata.html#handling-spatial-rasters-in-r"><i class="fa fa-check"></i><b>6.1</b> Handling Spatial Rasters in R</a>
+<ul>
+<li class="chapter" data-level="6.1.1" data-path="spatdata.html"><a href="spatdata.html#reading-and-printing-raster-data"><i class="fa fa-check"></i><b>6.1.1</b> Reading and Printing Raster Data</a></li>
+<li class="chapter" data-level="6.1.2" data-path="spatdata.html"><a href="spatdata.html#plotting-raster-data-with-plot"><i class="fa fa-check"></i><b>6.1.2</b> Plotting Raster Data with <code>plot()</code></a></li>
+<li class="chapter" data-level="6.1.3" data-path="spatdata.html"><a href="spatdata.html#plotting-raster-data-with-ggplot2"><i class="fa fa-check"></i><b>6.1.3</b> Plotting raster data with ggplot2</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="spatdata.html"><a href="spatdata.html#vector-spatial-data"><i class="fa fa-check"></i><b>6.2</b> Vector Spatial Data</a>
+<ul>
+<li class="chapter" data-level="6.2.1" data-path="spatdata.html"><a href="spatdata.html#vector-data-features"><i class="fa fa-check"></i><b>6.2.1</b> Vector data features</a></li>
+<li class="chapter" data-level="6.2.2" data-path="spatdata.html"><a href="spatdata.html#shapefiles"><i class="fa fa-check"></i><b>6.2.2</b> Shapefiles</a></li>
+<li class="chapter" data-level="6.2.3" data-path="spatdata.html"><a href="spatdata.html#spatial-vector-data-in-r"><i class="fa fa-check"></i><b>6.2.3</b> Spatial vector data in R</a></li>
+<li class="chapter" data-level="6.2.4" data-path="spatdata.html"><a href="spatdata.html#an-example-mexican-states"><i class="fa fa-check"></i><b>6.2.4</b> An example: Mexican states</a></li>
+<li class="chapter" data-level="6.2.5" data-path="spatdata.html"><a href="spatdata.html#plotting-simple-features-with-ggplot"><i class="fa fa-check"></i><b>6.2.5</b> Plotting simple features with <code>ggplot()</code></a></li>
+<li class="chapter" data-level="6.2.6" data-path="spatdata.html"><a href="spatdata.html#a-word-about-coord_sf"><i class="fa fa-check"></i><b>6.2.6</b> A word about <code>coord_sf()</code></a></li>
+<li class="chapter" data-level="6.2.7" data-path="spatdata.html"><a href="spatdata.html#a-word-about-resolution-of-spatial-vector-data"><i class="fa fa-check"></i><b>6.2.7</b> A word about <em>resolution</em> of spatial vector data</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="spatdata.html"><a href="spatdata.html#yucatan-jay-occurrences"><i class="fa fa-check"></i><b>6.3</b> Yucatan Jay Occurrences</a>
+<ul>
+<li class="chapter" data-level="6.3.1" data-path="spatdata.html"><a href="spatdata.html#example-data-set-with-latitude-and-longitude-points"><i class="fa fa-check"></i><b>6.3.1</b> Example data set with Latitude and Longitude points</a></li>
+<li class="chapter" data-level="6.3.2" data-path="spatdata.html"><a href="spatdata.html#plotting-lat-long-data"><i class="fa fa-check"></i><b>6.3.2</b> Plotting Lat-Long data</a></li>
+<li class="chapter" data-level="6.3.3" data-path="spatdata.html"><a href="spatdata.html#but-geom_point-wont-work-with-different-projections-coordinate-reference-sysytems"><i class="fa fa-check"></i><b>6.3.3</b> But, <code>geom_point()</code> won’t work with Different Projections / Coordinate Reference Sysytems</a></li>
+<li class="chapter" data-level="6.3.4" data-path="spatdata.html"><a href="spatdata.html#turning-something-into-a-simple-features-object"><i class="fa fa-check"></i><b>6.3.4</b> Turning something into a simple features object</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="spatdata.html"><a href="spatdata.html#geometric-operations"><i class="fa fa-check"></i><b>6.4</b> Geometric operations</a>
+<ul>
+<li class="chapter" data-level="6.4.1" data-path="spatdata.html"><a href="spatdata.html#spatial-intersection"><i class="fa fa-check"></i><b>6.4.1</b> Spatial Intersection</a></li>
+<li class="chapter" data-level="6.4.2" data-path="spatdata.html"><a href="spatdata.html#treat-the-result-as-a-tibble"><i class="fa fa-check"></i><b>6.4.2</b> Treat the result as a tibble</a></li>
+<li class="chapter" data-level="6.4.3" data-path="spatdata.html"><a href="spatdata.html#the-same-filtering-can-be-done-on-the-state-polygons"><i class="fa fa-check"></i><b>6.4.3</b> The same filtering can be done on the state polygons</a></li>
+</ul></li>
+<li class="chapter" data-level="6.5" data-path="spatdata.html"><a href="spatdata.html#joint-operations-with-raster-and-vector-data-i-masking-a-raster-with-a-polygon"><i class="fa fa-check"></i><b>6.5</b> Joint Operations with Raster and Vector data I: Masking a Raster with a Polygon</a></li>
+<li class="chapter" data-level="6.6" data-path="spatdata.html"><a href="spatdata.html#joint-operations-with-raster-and-vector-data-ii-extracting-raster-values-at-a-set-of-spatial-points"><i class="fa fa-check"></i><b>6.6</b> Joint Operations with Raster and Vector data II: Extracting raster values at a set of spatial points</a></li>
+<li class="chapter" data-level="6.7" data-path="spatdata.html"><a href="spatdata.html#spat_data_appendix"><i class="fa fa-check"></i><b>6.7</b> Appendix: Obtaining and Reducing The Example Spatial Datasets</a>
+<ul>
+<li class="chapter" data-level="6.7.1" data-path="spatdata.html"><a href="spatdata.html#raster-data"><i class="fa fa-check"></i><b>6.7.1</b> Raster Data</a></li>
+<li class="chapter" data-level="6.7.2" data-path="spatdata.html"><a href="spatdata.html#vector-data"><i class="fa fa-check"></i><b>6.7.2</b> Vector data</a></li>
+<li class="chapter" data-level="6.7.3" data-path="spatdata.html"><a href="spatdata.html#species-occurrence-data"><i class="fa fa-check"></i><b>6.7.3</b> Species Occurrence Data</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="geassoc.html"><a href="geassoc.html"><i class="fa fa-check"></i><b>7</b> Genetic and Environmental Associations</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="geassoc.html"><a href="geassoc.html#background"><i class="fa fa-check"></i><b>7.1</b> Background</a></li>
+<li class="chapter" data-level="7.2" data-path="geassoc.html"><a href="geassoc.html#motivation"><i class="fa fa-check"></i><b>7.2</b> Motivation</a></li>
+<li class="chapter" data-level="7.3" data-path="geassoc.html"><a href="geassoc.html#housekeeping"><i class="fa fa-check"></i><b>7.3</b> Housekeeping</a></li>
+<li class="chapter" data-level="7.4" data-path="geassoc.html"><a href="geassoc.html#running-gradient-forest"><i class="fa fa-check"></i><b>7.4</b> Running Gradient Forest</a></li>
+<li class="chapter" data-level="7.5" data-path="geassoc.html"><a href="geassoc.html#basic-gradient-forest-preparation"><i class="fa fa-check"></i><b>7.5</b> Basic Gradient Forest Preparation</a></li>
+<li class="chapter" data-level="7.6" data-path="geassoc.html"><a href="geassoc.html#defining-genomic-vulnerabilitygenomic-offset-given-future-climate-predictions"><i class="fa fa-check"></i><b>7.6</b> Defining “Genomic Vulnerability/Genomic offset” Given Future Climate Predictions</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="conclude.html"><a href="conclude.html"><i class="fa fa-check"></i><b>8</b> Concluding Remarks / Parting Words</a></li>
+<li class="divider"></li>
+<li><a href="https://bookdown.org" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Reproducible Research for Conservation — Mérida, Mexico</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="basic-introduction-to-r-and-ggplot2" class="section level1" number="2">
+<h1><span class="header-section-number">Session 2</span> Basic Introduction to R and <em>ggplot2</em></h1>
+<p>This is an introduction to R and <em>ggplot2</em> that was created specificially for the UCMexus Conservation Genomics Workshop 2022. The data used in this tutorial is a typical dataset used in ggplot.</p>
+<div id="rstudio-layout" class="section level2" number="2.1">
+<h2><span class="header-section-number">2.1</span> RStudio Layout</h2>
+<p>The RStudio layout is broken up into four panes: <strong>Source</strong>, <strong>Console</strong>, <strong>Environment (history/connections)</strong> and <strong>Files (plots/packages/etc)</strong>. Within these panes there are additional tabs and we will go over the most important ones.</p>
+<p><img src="images/2.0_R_ggplot/RStudio.png" width="100%" /></p>
+<p>The <strong>Source</strong> pane is where you can read, edit, and run your R code and the code can be saved as a <em>.R</em> file indicating it is an R script document, or <em>.Rmd</em> file indicating it is an R markdown file with the code split into code chunks that you’ll see throughout this tutorial.</p>
+<p><img src="images/2.0_R_ggplot/Source.png" width="75%" /></p>
+<p>An R document is written as a normal text document, however each line is a line of code in R. However if you highlight a line and click <strong>Run</strong> (or type command-return), then the line of code will be executed and this activity will be displayed in the <strong>Console</strong>.</p>
+<p>The <strong>Console</strong> pane is where the R code is executed and results are displayed, as well as other messages and warnings.</p>
+<p><img src="images/2.0_R_ggplot/Console.png" width="60%" /></p>
+<p>The <strong>Environment</strong> pane lists all available data and variables in the current session. For example, in the example <strong>Source</strong> pane above I have a line of code <code>another_variable &lt;- 5</code> which sets the string <code>another_variable</code> to represent the value 5. After executing this line of code, the variable is stored and can be called at any point. Once a variable has been created, it will be displayed in the <strong>Environment</strong>.</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="basic-introduction-to-r-and-ggplot2.html#cb10-1" aria-hidden="true" tabindex="-1"></a>another_variable<span class="ot">&lt;-</span><span class="dv">5</span></span>
+<span id="cb10-2"><a href="basic-introduction-to-r-and-ggplot2.html#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-3"><a href="basic-introduction-to-r-and-ggplot2.html#cb10-3" aria-hidden="true" tabindex="-1"></a>another_variable</span></code></pre></div>
+<pre><code>## [1] 5</code></pre>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="basic-introduction-to-r-and-ggplot2.html#cb12-1" aria-hidden="true" tabindex="-1"></a>another_variable<span class="sc">*</span><span class="dv">5</span></span></code></pre></div>
+<pre><code>## [1] 25</code></pre>
+<p><em>Note</em>: Whenever opening a script into a new session of R, you will need to re-run the lines of code you wish to use. Opening a .R script does not automatically run the code.</p>
+<p><img src="images/2.0_R_ggplot/Environment.png" width="75%" /></p>
+<p>The <strong>Files</strong> pane is used to navigate through directories and can be used to open files directly into RStudio. This will be useful when importing data into R.</p>
+<p><img src="images/2.0_R_ggplot/Files.png" width="60%" /></p>
+<p>Next to the <strong>Files</strong> tab, there is <strong>Plots</strong>. In the example <strong>Source</strong> pane above I created a plot with the following code (<em>note</em>: the function <code>ggplot()</code> and the <code>mpg</code> dataset are from the <code>ggplot2</code> package that comes in the <code>tidyverse</code> package. You need to have <code>tidyverse</code> installed and loaded for this code to work on your console.</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="basic-introduction-to-r-and-ggplot2.html#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div>
+<pre><code>## ── Attaching packages ────────────── tidyverse 1.3.1 ──</code></pre>
+<pre><code>## ✓ ggplot2 3.3.5     ✓ purrr   0.3.4
+## ✓ tibble  3.1.6     ✓ dplyr   1.0.7
+## ✓ tidyr   1.1.4     ✓ stringr 1.4.0
+## ✓ readr   2.1.1     ✓ forcats 0.5.1</code></pre>
+<pre><code>## ── Conflicts ───────────────── tidyverse_conflicts() ──
+## x dplyr::filter() masks stats::filter()
+## x dplyr::lag()    masks stats::lag()</code></pre>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="basic-introduction-to-r-and-ggplot2.html#cb18-1" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> mpg) <span class="sc">+</span></span>
+<span id="cb18-2"><a href="basic-introduction-to-r-and-ggplot2.html#cb18-2" aria-hidden="true" tabindex="-1"></a>        <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> displ, <span class="at">y =</span> hwy))</span>
+<span id="cb18-3"><a href="basic-introduction-to-r-and-ggplot2.html#cb18-3" aria-hidden="true" tabindex="-1"></a>p</span></code></pre></div>
+<p><img src="merida-workshop-2022_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
+<p>When the code is executed, the resulting scatterplot is displayed below. If this was run in a R script rather than an Rmarkdown, the plot would be displayed in the <em>Plots</em> window on the left.</p>
+<p>Also useful is the <strong>Help</strong> tab for understanding what a function does.</p>
+</div>
+<div id="data-visualization-with-ggplot2" class="section level2" number="2.2">
+<h2><span class="header-section-number">2.2</span> Data visualization with ggplot2</h2>
+<ol style="list-style-type: decimal">
+<li>We want to understand our data and our analysis.</li>
+<li>We want to produce graphics for publication and presentation.
+<ol style="list-style-type: lower-alpha">
+<li>We want to create plots quickly and get many things “for free.”</li>
+<li>We want many options to customize and make things look awesome.</li>
+</ol></li>
+</ol>
+<div id="understanding-the-ggplot-syntax" class="section level3" number="2.2.1">
+<h3><span class="header-section-number">2.2.1</span> Understanding the Ggplot Syntax</h3>
+<p><em>ggplot2</em> uses the basic units of the “grammar of graphics” (Leland Wilkinson) to construct data visualizations in a layered approach.</p>
+<p>The basic units in the “grammar of graphics” consist of:</p>
+<ul>
+<li>The data or the actual information that is to be visualized.</li>
+<li>The geometries, shortened to “geoms,” which describe the shapes that represent the data. These shapes can be dots on a scatter plot, bar charts on the graph, or a line to plot the data. Data are mapped to geoms.</li>
+<li>The aesthetics, or the visual attributes of the plot, including the scales on the axes, the color, the fill, and other attributes concerning appearance</li>
+</ul>
+<p>The syntax for constructing ggplots could be puzzling if you are a beginner or work primarily with base graphics. The main difference is that, unlike base graphics, ggplot works with dataframes and not individual vectors. All the data needed to make the plot is typically be contained within the dataframe supplied to the ggplot() itself or can be supplied to respective geoms. More on that later.</p>
+<div id="a-plot-consists-of-components" class="section level4" number="2.2.1.1">
+<h4><span class="header-section-number">2.2.1.1</span> A plot consists of components</h4>
+<p>The second noticeable feature is that you can keep enhancing the plot by adding more layers (and themes) to an existing plot created using the ggplot() function</p>
+<p>Here is a verbose definition of a simple plot. Note, this is not something you will see/use. But it’s a nice way to break down the components</p>
+<p>Ok, let’s dive into this very long code to create a simple plot. Note there are 5 components in this code chunk.</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="basic-introduction-to-r-and-ggplot2.html#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb19-2"><a href="basic-introduction-to-r-and-ggplot2.html#cb19-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">layer</span>(<span class="at">data =</span> mtcars, <span class="co">#1</span></span>
+<span id="cb19-3"><a href="basic-introduction-to-r-and-ggplot2.html#cb19-3" aria-hidden="true" tabindex="-1"></a>      <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> hp, <span class="at">y =</span> qsec), <span class="co">#2</span></span>
+<span id="cb19-4"><a href="basic-introduction-to-r-and-ggplot2.html#cb19-4" aria-hidden="true" tabindex="-1"></a>      <span class="at">geom =</span> <span class="st">&#39;point&#39;</span>, <span class="co">#3</span></span>
+<span id="cb19-5"><a href="basic-introduction-to-r-and-ggplot2.html#cb19-5" aria-hidden="true" tabindex="-1"></a>      <span class="at">stat =</span> <span class="st">&#39;identity&#39;</span>, <span class="co">#4</span></span>
+<span id="cb19-6"><a href="basic-introduction-to-r-and-ggplot2.html#cb19-6" aria-hidden="true" tabindex="-1"></a>      <span class="at">position =</span> <span class="st">&#39;identity&#39;</span>) <span class="sc">+</span> <span class="co">#5</span></span>
+<span id="cb19-7"><a href="basic-introduction-to-r-and-ggplot2.html#cb19-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()<span class="sc">+</span></span>
+<span id="cb19-8"><a href="basic-introduction-to-r-and-ggplot2.html#cb19-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">aspect.ratio =</span> <span class="dv">1</span>)</span></code></pre></div>
+<p><img src="merida-workshop-2022_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
+<p><strong>1: Data</strong></p>
+<blockquote>
+<p><strong>layer(data = mtcars, #1</strong></p>
+</blockquote>
+<ul>
+<li>A data layer needs data to display.</li>
+<li>Data is a data.frame or tibble if you are using tidyverse</li>
+</ul>
+<p>Let’s look at the top of a data set used by tidyverse</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="basic-introduction-to-r-and-ggplot2.html#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(mtcars)</span></code></pre></div>
+<pre><code>##                    mpg cyl disp  hp drat    wt  qsec
+## Mazda RX4         21.0   6  160 110 3.90 2.620 16.46
+## Mazda RX4 Wag     21.0   6  160 110 3.90 2.875 17.02
+## Datsun 710        22.8   4  108  93 3.85 2.320 18.61
+## Hornet 4 Drive    21.4   6  258 110 3.08 3.215 19.44
+## Hornet Sportabout 18.7   8  360 175 3.15 3.440 17.02
+## Valiant           18.1   6  225 105 2.76 3.460 20.22
+##                   vs am gear carb
+## Mazda RX4          0  1    4    4
+## Mazda RX4 Wag      0  1    4    4
+## Datsun 710         1  1    4    1
+## Hornet 4 Drive     1  0    3    1
+## Hornet Sportabout  0  0    3    2
+## Valiant            1  0    3    1</code></pre>
+<p><strong>2: What is a mapping?</strong></p>
+<blockquote>
+<p>layer(data = mtcars, #1</p>
+</blockquote>
+<blockquote>
+<p><strong>mapping = aes(x = hp, y = qsec), #2</strong></p>
+</blockquote>
+<ul>
+<li>An aesthetic mapping connects your data to your plot. (e.g. x, y, color, shape, alpha, size, linetype, etc.).</li>
+<li>Aesthetics are “things that we can perceive on the graphic.”</li>
+<li>We use the aes() function to create this mapping.</li>
+<li>aes(aesthetic = variable).</li>
+</ul>
+<p>For the code chunk below, we would be mapping hp on the x-axis and qsec on the y-axis.</p>
+<pre><code>aes(x = hp, y = qsec)</code></pre>
+<p><strong>3: What is a geom?</strong></p>
+<blockquote>
+<p>layer(data = mtcars, #1</p>
+</blockquote>
+<blockquote>
+<p>mapping = aes(x = hp, y = qsec), #2</p>
+</blockquote>
+<blockquote>
+<p><strong>geom = ‘point,’ #3</strong></p>
+</blockquote>
+<p>Simply the geometrical shape that you want to do draw.</p>
+<ul>
+<li>0d: point, text,</li>
+<li>1d: path, line (ordered path),</li>
+<li>2d: polygon, interval, boxplot etc.</li>
+<li>geoms translate the aesthetics into an actual plot.</li>
+</ul>
+<p>Geoms determine what aesthetics you need, and which you can use! (e.g. points cannot display the linetype aesthetic.)</p>
+<p>Which aesthetics you need/can use is usually obvious, but is also clearly documented.</p>
+<p><strong>Simplifying the code</strong>
+Instead of writing out the whole layer(), we can use geom_*() functions to create the layer for us. These functions use common defaults.</p>
+<p>We simply write:</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="basic-introduction-to-r-and-ggplot2.html#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb23-2"><a href="basic-introduction-to-r-and-ggplot2.html#cb23-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> hp, <span class="at">y =</span> qsec), <span class="at">data =</span> mtcars) <span class="sc">+</span></span>
+<span id="cb23-3"><a href="basic-introduction-to-r-and-ggplot2.html#cb23-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb23-4"><a href="basic-introduction-to-r-and-ggplot2.html#cb23-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">aspect.ratio =</span> <span class="dv">1</span>)</span></code></pre></div>
+<p><img src="merida-workshop-2022_files/figure-html/unnamed-chunk-16-1.png" width="672" /></p>
+<p>Or, using positional matching:</p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="basic-introduction-to-r-and-ggplot2.html#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span> </span>
+<span id="cb24-2"><a href="basic-introduction-to-r-and-ggplot2.html#cb24-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(hp, qsec), mtcars) <span class="sc">+</span></span>
+<span id="cb24-3"><a href="basic-introduction-to-r-and-ggplot2.html#cb24-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb24-4"><a href="basic-introduction-to-r-and-ggplot2.html#cb24-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">aspect.ratio =</span> <span class="dv">1</span>)</span></code></pre></div>
+<p><img src="merida-workshop-2022_files/figure-html/unnamed-chunk-17-1.png" width="672" /></p>
+<p>Like geom_point(), there are many such geom layers which we will see in a subsequent part in this tutorial series. Let’s add details to this plot in the form of additional ashthetics.</p>
+<p><strong>How would you change color of the points to the cyl variable?</strong></p>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="basic-introduction-to-r-and-ggplot2.html#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb25-2"><a href="basic-introduction-to-r-and-ggplot2.html#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="fu">geom_point</span>(<span class="fu">aes</span>(hp, qsec, <span class="at">color =</span> cyl), mtcars) <span class="sc">+</span></span>
+<span id="cb25-3"><a href="basic-introduction-to-r-and-ggplot2.html#cb25-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb25-4"><a href="basic-introduction-to-r-and-ggplot2.html#cb25-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">aspect.ratio =</span> <span class="dv">1</span>)</span></code></pre></div>
+<p><img src="merida-workshop-2022_files/figure-html/unnamed-chunk-18-1.png" width="672" /></p>
+<p><strong>Continious versus discrete variables</strong>
+R treats continuous and discrete information differently. ggplot directly uses the class of the variable to figure out how to best display data.</p>
+<p>In this case, it checks:</p>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="basic-introduction-to-r-and-ggplot2.html#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(mtcars<span class="sc">$</span>cyl)</span></code></pre></div>
+<pre><code>## [1] &quot;numeric&quot;</code></pre>
+<p>For it to recognized as a category (with fitting colors) we need a factor:</p>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="basic-introduction-to-r-and-ggplot2.html#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(<span class="fu">factor</span>(mtcars<span class="sc">$</span>cyl))</span></code></pre></div>
+<pre><code>## [1] &quot;factor&quot;</code></pre>
+<p>Character strings are silently converted to factors:</p>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="basic-introduction-to-r-and-ggplot2.html#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb30-2"><a href="basic-introduction-to-r-and-ggplot2.html#cb30-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(hp, qsec, <span class="at">color =</span> <span class="fu">as.character</span>(cyl)), mtcars) <span class="sc">+</span></span>
+<span id="cb30-3"><a href="basic-introduction-to-r-and-ggplot2.html#cb30-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">color =</span> <span class="st">&#39;cyl&#39;</span>) <span class="sc">+</span> </span>
+<span id="cb30-4"><a href="basic-introduction-to-r-and-ggplot2.html#cb30-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">aspect.ratio =</span> <span class="dv">1</span>)</span></code></pre></div>
+<p><img src="merida-workshop-2022_files/figure-html/unnamed-chunk-21-1.png" width="672" /></p>
+<ul>
+<li>Some more on stats.</li>
+<li>Scales.</li>
+<li>Coordinate systems (brief).</li>
+<li>Facets.</li>
+<li>Plotting model fits.</li>
+<li>Some more challenges.</li>
+</ul>
+</div>
+</div>
+<div id="a-special-stat-stat_smooth" class="section level3" number="2.2.2">
+<h3><span class="header-section-number">2.2.2</span> A special stat: stat_smooth</h3>
+<p>We can keep adding additional layers to this plot to make it more informative. One thing that is often useful when you’re looking at data on a scatter plot is a visual representation of how closely the variable on the x axis and the variable on the y axis are related to each other, and the strength of that relationship. We can summarize this using a fitted line.</p>
+<p>In ggplot, we can automatically add a fitted line using the layer <em>geom_smooth()</em>. By default, <em>geom_smooth()</em> will show the relationship between the x and y variables using locally weighted scatter plot smoothing (also known as LOESS) rather than by drawing a straight line. If we want a single straight line to summarize our data, we need to specify that we want <em>geom_smooth()</em> to fit a linear model (or “lm”).</p>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="basic-introduction-to-r-and-ggplot2.html#cb31-1" aria-hidden="true" tabindex="-1"></a>g<span class="ot">&lt;-</span><span class="fu">ggplot</span>(mtcars,<span class="fu">aes</span>(hp, qsec)) <span class="sc">+</span></span>
+<span id="cb31-2"><a href="basic-introduction-to-r-and-ggplot2.html#cb31-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
+<span id="cb31-3"><a href="basic-introduction-to-r-and-ggplot2.html#cb31-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="at">se =</span> <span class="cn">TRUE</span>) <span class="sc">+</span></span>
+<span id="cb31-4"><a href="basic-introduction-to-r-and-ggplot2.html#cb31-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span> </span>
+<span id="cb31-5"><a href="basic-introduction-to-r-and-ggplot2.html#cb31-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">aspect.ratio =</span> <span class="dv">1</span>)</span>
+<span id="cb31-6"><a href="basic-introduction-to-r-and-ggplot2.html#cb31-6" aria-hidden="true" tabindex="-1"></a>g</span></code></pre></div>
+<pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
+<p><img src="merida-workshop-2022_files/figure-html/unnamed-chunk-22-1.png" width="672" /></p>
+<p><strong>Exercise 1: Create the following plot</strong></p>
+<p>Now, how would you change the code above to change the color of the point layer, withuot affecting the smooth layer since the aes() aesthetic mapping is passed at the point layer.</p>
+<pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
+<p><img src="merida-workshop-2022_files/figure-html/unnamed-chunk-23-1.png" width="672" />
+Note, the code above would only change the color of the point layer, it would not affect the color of the smooth layer since the aes() aesthetic mapping is passed at the point layer.</p>
+<p><strong>Exercise 2: Create the following plot</strong></p>
+<p>Can you recreate this plot using other aesthetic options?</p>
+<p><img src="merida-workshop-2022_files/figure-html/unnamed-chunk-24-1.png" width="672" /></p>
+<p><strong>Exercise 3: Create the following plot</strong></p>
+<p>How about if we wanted to create a line plot with this data? How would you create the following plot create separate lines based on the “am” variable.</p>
+<p><img src="merida-workshop-2022_files/figure-html/unnamed-chunk-25-1.png" width="672" /></p>
+<div id="shared-data-and-mapping" class="section level4" number="2.2.2.1">
+<h4><span class="header-section-number">2.2.2.1</span> Shared data and mapping</h4>
+<p>Now what if we want to add labels. Let’s look at another dataset and think about this- now we have multiple layers. You might’ve noticed this with the geom_smooth function too.</p>
+<ul>
+<li>When multiple layers share the same data or mapping you can define it inside of ggplot.</li>
+<li>Everything in ggplot will be used by default for all layers.</li>
+<li>Use data inside a layer in order to not use the default.</li>
+<li>Set or map an aesthetic to not use the default. You can map to NULL.</li>
+<li>This goes for each aesthetic individually! Not for the entire mapping.</li>
+</ul>
+<p>In many cases I provide the data and mapping in ggplot.</p>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="basic-introduction-to-r-and-ggplot2.html#cb34-1" aria-hidden="true" tabindex="-1"></a>g <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(msleep,</span>
+<span id="cb34-2"><a href="basic-introduction-to-r-and-ggplot2.html#cb34-2" aria-hidden="true" tabindex="-1"></a>          <span class="fu">aes</span>(sleep_total, </span>
+<span id="cb34-3"><a href="basic-introduction-to-r-and-ggplot2.html#cb34-3" aria-hidden="true" tabindex="-1"></a>              <span class="fu">log</span>(brainwt), </span>
+<span id="cb34-4"><a href="basic-introduction-to-r-and-ggplot2.html#cb34-4" aria-hidden="true" tabindex="-1"></a>              <span class="at">label =</span> name, <span class="co">#make sure to add the label aes!</span></span>
+<span id="cb34-5"><a href="basic-introduction-to-r-and-ggplot2.html#cb34-5" aria-hidden="true" tabindex="-1"></a>              <span class="at">col=</span>vore)) </span>
+<span id="cb34-6"><a href="basic-introduction-to-r-and-ggplot2.html#cb34-6" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb34-7"><a href="basic-introduction-to-r-and-ggplot2.html#cb34-7" aria-hidden="true" tabindex="-1"></a>g <span class="sc">+</span> <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="co"># then add a layer of points </span></span>
+<span id="cb34-8"><a href="basic-introduction-to-r-and-ggplot2.html#cb34-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_text</span>(<span class="at">size=</span><span class="dv">3</span>) <span class="co"># and then add labels to the points</span></span></code></pre></div>
+<pre><code>## Warning: Removed 27 rows containing missing values
+## (geom_point).</code></pre>
+<pre><code>## Warning: Removed 27 rows containing missing values
+## (geom_text).</code></pre>
+<p><img src="merida-workshop-2022_files/figure-html/unnamed-chunk-26-1.png" width="672" /></p>
+<p>But this plot is a bit busy and messy. Let’s move around the names to make this more readable (less overlap)! Let’s also fix the axes names.</p>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="basic-introduction-to-r-and-ggplot2.html#cb37-1" aria-hidden="true" tabindex="-1"></a> g <span class="sc">+</span> <span class="co">#the ggplot object you created above that you can add layers to</span></span>
+<span id="cb37-2"><a href="basic-introduction-to-r-and-ggplot2.html#cb37-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="co"># then add a layer of points </span></span>
+<span id="cb37-3"><a href="basic-introduction-to-r-and-ggplot2.html#cb37-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_text</span>(<span class="at">check_overlap =</span> T,<span class="co"># automatically reduce overlap (deletes some labels)</span></span>
+<span id="cb37-4"><a href="basic-introduction-to-r-and-ggplot2.html#cb37-4" aria-hidden="true" tabindex="-1"></a>              <span class="at">vjust =</span> <span class="st">&quot;bottom&quot;</span>, <span class="co"># adjust the vertical orientation</span></span>
+<span id="cb37-5"><a href="basic-introduction-to-r-and-ggplot2.html#cb37-5" aria-hidden="true" tabindex="-1"></a>              <span class="at">nudge_y =</span> <span class="fl">0.1</span>, <span class="co"># move the text up a bit so it doesn&#39;t touch the points</span></span>
+<span id="cb37-6"><a href="basic-introduction-to-r-and-ggplot2.html#cb37-6" aria-hidden="true" tabindex="-1"></a>              <span class="at">angle =</span> <span class="dv">30</span>,<span class="co"># tilt the text 30 degrees</span></span>
+<span id="cb37-7"><a href="basic-introduction-to-r-and-ggplot2.html#cb37-7" aria-hidden="true" tabindex="-1"></a>              <span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span> <span class="co"># make the text smaller (to reduce overlap more)</span></span>
+<span id="cb37-8"><a href="basic-introduction-to-r-and-ggplot2.html#cb37-8" aria-hidden="true" tabindex="-1"></a>   <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Sleeping habits of mammals given their brain weight&quot;</span>, <span class="co"># plot title</span></span>
+<span id="cb37-9"><a href="basic-introduction-to-r-and-ggplot2.html#cb37-9" aria-hidden="true" tabindex="-1"></a>         <span class="at">x =</span> <span class="st">&quot;Sleep Total&quot;</span>, <span class="co"># x axis label</span></span>
+<span id="cb37-10"><a href="basic-introduction-to-r-and-ggplot2.html#cb37-10" aria-hidden="true" tabindex="-1"></a>         <span class="at">y =</span> <span class="st">&quot;log(brain weight)&quot;</span> <span class="co"># y axis label</span></span>
+<span id="cb37-11"><a href="basic-introduction-to-r-and-ggplot2.html#cb37-11" aria-hidden="true" tabindex="-1"></a>        )</span></code></pre></div>
+<pre><code>## Warning: Removed 27 rows containing missing values
+## (geom_point).</code></pre>
+<pre><code>## Warning: Removed 27 rows containing missing values
+## (geom_text).</code></pre>
+<p><img src="merida-workshop-2022_files/figure-html/unnamed-chunk-27-1.png" width="672" /></p>
+<p>Note above, there are some points without labels. Here’s another way to add labels to your plot with ggrepel.</p>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="basic-introduction-to-r-and-ggplot2.html#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggrepel)</span>
+<span id="cb40-2"><a href="basic-introduction-to-r-and-ggplot2.html#cb40-2" aria-hidden="true" tabindex="-1"></a>g <span class="sc">+</span></span>
+<span id="cb40-3"><a href="basic-introduction-to-r-and-ggplot2.html#cb40-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="co"># then add a layer of points </span></span>
+<span id="cb40-4"><a href="basic-introduction-to-r-and-ggplot2.html#cb40-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_text_repel</span>(<span class="at">vjust =</span> <span class="st">&quot;bottom&quot;</span>, <span class="co"># adjust the vertical orientation</span></span>
+<span id="cb40-5"><a href="basic-introduction-to-r-and-ggplot2.html#cb40-5" aria-hidden="true" tabindex="-1"></a>              <span class="at">nudge_y =</span> <span class="fl">0.1</span>, <span class="co"># move the text up a bit so it doesn&#39;t touch the points</span></span>
+<span id="cb40-6"><a href="basic-introduction-to-r-and-ggplot2.html#cb40-6" aria-hidden="true" tabindex="-1"></a>              <span class="at">angle =</span> <span class="dv">30</span>,<span class="co"># tilt the text 30 degrees</span></span>
+<span id="cb40-7"><a href="basic-introduction-to-r-and-ggplot2.html#cb40-7" aria-hidden="true" tabindex="-1"></a>              <span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span> <span class="co"># make the text smaller (to reduce overlap more)</span></span>
+<span id="cb40-8"><a href="basic-introduction-to-r-and-ggplot2.html#cb40-8" aria-hidden="true" tabindex="-1"></a>   <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Sleeping habits of mammals given their brain weight&quot;</span>, <span class="co"># plot title</span></span>
+<span id="cb40-9"><a href="basic-introduction-to-r-and-ggplot2.html#cb40-9" aria-hidden="true" tabindex="-1"></a>         <span class="at">x =</span> <span class="st">&quot;Sleep Total&quot;</span>, <span class="co"># x axis label</span></span>
+<span id="cb40-10"><a href="basic-introduction-to-r-and-ggplot2.html#cb40-10" aria-hidden="true" tabindex="-1"></a>         <span class="at">y =</span> <span class="st">&quot;log(brain weight)&quot;</span> <span class="co"># y axis label</span></span>
+<span id="cb40-11"><a href="basic-introduction-to-r-and-ggplot2.html#cb40-11" aria-hidden="true" tabindex="-1"></a>        )</span></code></pre></div>
+<pre><code>## Warning: Removed 27 rows containing missing values
+## (geom_point).</code></pre>
+<pre><code>## Warning: Removed 27 rows containing missing values
+## (geom_text_repel).</code></pre>
+<p><img src="merida-workshop-2022_files/figure-html/unnamed-chunk-28-1.png" width="672" /></p>
+<p>Let’s move onto the other components of the ggplot syntax.</p>
+<p><strong>4. What is a stat?</strong></p>
+<blockquote>
+<p>layer(data = mtcars, #1</p>
+</blockquote>
+<blockquote>
+<p>mapping = aes(x = hp, y = qsec), #2</p>
+</blockquote>
+<blockquote>
+<p>geom = ‘point,’ #3</p>
+</blockquote>
+<blockquote>
+<p><strong>stat = ‘identity,’ #4</strong></p>
+</blockquote>
+<p>Often, you don’t want to directly plot the actual data, but rather some transformation of the data.</p>
+<p><strong>stats</strong> perform all kinds of data transformations.</p>
+<p>The most common transformations:
+* binning (StatBin).
+* counting (StatCount).
+* summing (StatSum).
+* averaging (StatSummary).
+* smoothing (StatSmooth).
+* boxplots (StatBoxplot).
+* densities (StatDensity).
+* nothing (StatIdentity).</p>
+<p><em>Note</em> geom_* functions have default stats.
+E.g. ?geom_boxplot shows stat = “boxplot.”</p>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="basic-introduction-to-r-and-ggplot2.html#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb43-2"><a href="basic-introduction-to-r-and-ggplot2.html#cb43-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="fu">factor</span>(cyl), hp, <span class="at">fill=</span><span class="fu">factor</span>(cyl)), mtcars) <span class="sc">+</span></span>
+<span id="cb43-3"><a href="basic-introduction-to-r-and-ggplot2.html#cb43-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&#39;Cylinder&#39;</span>) <span class="sc">+</span></span>
+<span id="cb43-4"><a href="basic-introduction-to-r-and-ggplot2.html#cb43-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span> </span>
+<span id="cb43-5"><a href="basic-introduction-to-r-and-ggplot2.html#cb43-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">aspect.ratio =</span> <span class="dv">1</span>)</span></code></pre></div>
+<p><img src="merida-workshop-2022_files/figure-html/unnamed-chunk-29-1.png" width="672" /></p>
+<p><strong>Exercise 4a-c: One variable exercises</strong></p>
+<p>How would you create the following plots? I want you to use a new eBird dataset, however, the syntax still applies.</p>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="basic-introduction-to-r-and-ggplot2.html#cb44-1" aria-hidden="true" tabindex="-1"></a>myebird<span class="ot">&lt;-</span><span class="fu">read_csv</span>(<span class="st">&quot;data/2.0a/MyEBirdData_tidy.csv&quot;</span>)</span></code></pre></div>
+<pre><code>## Rows: 523 Columns: 8</code></pre>
+<pre><code>## ── Column specification ───────────────────────────────
+## Delimiter: &quot;,&quot;
+## chr  (6): eBirdID, CommonName, Region, Location, Co...
+## dbl  (1): Count
+## time (1): Time</code></pre>
+<pre><code>## 
+## ℹ Use `spec()` to retrieve the full column specification for this data.
+## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+<p>Let’s take a quick look at this new data set. It has counts of several bird species in Colorado, and the locations and dates of these observations.</p>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="basic-introduction-to-r-and-ggplot2.html#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(myebird)</span></code></pre></div>
+<pre><code>## # A tibble: 6 × 8
+##   eBirdID CommonName Count Region Location County Date 
+##   &lt;chr&gt;   &lt;chr&gt;      &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt;    &lt;chr&gt;  &lt;chr&gt;
+## 1 S63589… Cackling …     3 US-CO  South P… Adams  1/19…
+## 2 S66111… Cackling …    14 US-CO  Colorad… Larim… 3/22…
+## 3 S65370… Cackling …     5 US-CO  Grandvi… Larim… 3/2/…
+## 4 S66112… Cackling …    11 US-CO  Prospec… Larim… 3/22…
+## 5 S63589… Canada Go…    24 US-CO  South P… Adams  1/19…
+## 6 S66719… Canada Go…     7 US-CO  Arapaho… Larim… 4/6/…
+## # … with 1 more variable: Time &lt;time&gt;</code></pre>
+<p>In order to create the next plots, we may need to <em>tidy</em> some of the data. While, the module concurrently being run by Richard goes into how to use <em>tidyverse</em> in more depth, this section will provide a <em>small</em> hint of what <em>tidying</em> data can mean and how we can pipe (%&gt;%) this directly into the <em>ggplot()</em> command.</p>
+<p>With a smaller version of the dataset, we are going to create histograms and density plots with some eBird data specific from Colorado. Histograms are a way to show variation in data and are plotted on a single numeric value. In this case we will just look at the Count column of the data frame. This is plotted on the x-axis and to avoid confusion I change the name of the x-axis since the y-axis is the counts of each value.</p>
+<p>To make things more interpretable for you as new R users, I am now breaking up the data tidying you can do in Richard’s tidyverse section and assigning that to a variable, then using that tidied data frame variable in the <em>ggplot()</em> function for plotting (again we could pipe into ggplot but that might not be so clear at this point). Remember from our previous examples that <em>ggplot()</em> uses “+” not the pipe function to add more commands/functions.</p>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="basic-introduction-to-r-and-ggplot2.html#cb50-1" aria-hidden="true" tabindex="-1"></a>myebird2 <span class="ot">&lt;-</span> myebird <span class="sc">%&gt;%</span></span>
+<span id="cb50-2"><a href="basic-introduction-to-r-and-ggplot2.html#cb50-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(CommonName <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;Canada Goose&quot;</span>))</span>
+<span id="cb50-3"><a href="basic-introduction-to-r-and-ggplot2.html#cb50-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb50-4"><a href="basic-introduction-to-r-and-ggplot2.html#cb50-4" aria-hidden="true" tabindex="-1"></a>myebird3 <span class="ot">&lt;-</span> myebird <span class="sc">%&gt;%</span></span>
+<span id="cb50-5"><a href="basic-introduction-to-r-and-ggplot2.html#cb50-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(CommonName <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;Canada Goose&quot;</span>,<span class="st">&quot;American Robin&quot;</span>))</span></code></pre></div>
+<ol style="list-style-type: lower-alpha">
+<li>First plot. A simple histogram of counts for the Canada Goose, and we use the stats binning.</li>
+</ol>
+<pre><code>## Warning: Removed 1 rows containing non-finite values
+## (stat_bin).</code></pre>
+<p><img src="merida-workshop-2022_files/figure-html/unnamed-chunk-33-1.png" width="672" /></p>
+<ol start="2" style="list-style-type: lower-alpha">
+<li>Second plot. How would you change the color of the histogram?</li>
+</ol>
+<pre><code>## Warning: Removed 1 rows containing non-finite values
+## (stat_bin).</code></pre>
+<p><img src="merida-workshop-2022_files/figure-html/unnamed-chunk-34-1.png" width="672" /></p>
+<ol start="3" style="list-style-type: lower-alpha">
+<li>Third plot is a stat = density plot, for counts of two bird species.</li>
+</ol>
+<pre><code>## Warning: Removed 1 rows containing non-finite values
+## (stat_density).</code></pre>
+<p><img src="merida-workshop-2022_files/figure-html/unnamed-chunk-35-1.png" width="672" /></p>
+<p><strong>5. What is a position?</strong>
+&gt; layer(data = mtcars, #1</p>
+<blockquote>
+<p>mapping = aes(x = hp, y = qsec), #2</p>
+</blockquote>
+<blockquote>
+<p>geom = ‘point,’ #3</p>
+</blockquote>
+<blockquote>
+<p>stat = ‘identity,’ #4</p>
+</blockquote>
+<blockquote>
+<p><strong>position = ‘identity’) + #5</strong></p>
+</blockquote>
+<p>Things in a plot can overlap. This is very common with categorical axes and overlap can be resolved by using a position</p>
+<p>Most commonly you:
+* stack (put on top of each other).
+* fill (stack in proportion, up to 1).
+* dodge (put next to each other).
+* jitter (add random noise).
+* leave as is: identity.</p>
+<p>For exmaple, the default of geom_bar is stacked: geom_bar(position = “stack”)</p>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="basic-introduction-to-r-and-ggplot2.html#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mtcars, <span class="fu">aes</span>(<span class="fu">factor</span>(cyl), <span class="at">fill =</span> <span class="fu">factor</span>(am))) <span class="sc">+</span></span>
+<span id="cb54-2"><a href="basic-introduction-to-r-and-ggplot2.html#cb54-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">position =</span> <span class="st">&#39;fill&#39;</span>)</span></code></pre></div>
+<p><img src="merida-workshop-2022_files/figure-html/unnamed-chunk-36-1.png" width="672" /></p>
+<p>To dodge the barplots:</p>
+<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="basic-introduction-to-r-and-ggplot2.html#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mtcars, <span class="fu">aes</span>(<span class="fu">factor</span>(cyl), <span class="at">fill =</span> <span class="fu">factor</span>(am))) <span class="sc">+</span></span>
+<span id="cb55-2"><a href="basic-introduction-to-r-and-ggplot2.html#cb55-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">position =</span> <span class="st">&#39;dodge&#39;</span>)</span></code></pre></div>
+<p><img src="merida-workshop-2022_files/figure-html/unnamed-chunk-37-1.png" width="672" /></p>
+<p>Now, we are going to include facets.</p>
+<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="basic-introduction-to-r-and-ggplot2.html#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mtcars, <span class="fu">aes</span>(<span class="fu">factor</span>(cyl), <span class="at">fill =</span> <span class="fu">factor</span>(am))) <span class="sc">+</span></span>
+<span id="cb56-2"><a href="basic-introduction-to-r-and-ggplot2.html#cb56-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">position =</span> <span class="st">&#39;dodge&#39;</span>) <span class="sc">+</span> <span class="co"># add the barpot</span></span>
+<span id="cb56-3"><a href="basic-introduction-to-r-and-ggplot2.html#cb56-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="fu">c</span>(<span class="st">&quot;am&quot;</span>)) <span class="co"># put each level of &quot;am&quot; in a different facet</span></span></code></pre></div>
+<p><img src="merida-workshop-2022_files/figure-html/unnamed-chunk-38-1.png" width="672" /></p>
+<p>That seems much easier to read! One thing that I would like to change, however, is the colors. Let’s change the color theme of our plot. You can change the color of the fill using the layer scale_fill_manual()</p>
+<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="basic-introduction-to-r-and-ggplot2.html#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mtcars, <span class="fu">aes</span>(<span class="fu">factor</span>(cyl), <span class="at">fill =</span> <span class="fu">factor</span>(am))) <span class="sc">+</span></span>
+<span id="cb57-2"><a href="basic-introduction-to-r-and-ggplot2.html#cb57-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">position =</span> <span class="st">&#39;dodge&#39;</span>)<span class="sc">+</span> <span class="co"># add the barpot</span></span>
+<span id="cb57-3"><a href="basic-introduction-to-r-and-ggplot2.html#cb57-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="fu">c</span>(<span class="st">&quot;am&quot;</span>)) <span class="sc">+</span> <span class="co"># put each level of &quot;am&quot; in a different facet</span></span>
+<span id="cb57-4"><a href="basic-introduction-to-r-and-ggplot2.html#cb57-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values=</span><span class="fu">c</span>(<span class="st">&quot;#BBBBBB&quot;</span>, <span class="co"># a nice, neuteral grey </span></span>
+<span id="cb57-5"><a href="basic-introduction-to-r-and-ggplot2.html#cb57-5" aria-hidden="true" tabindex="-1"></a>                               <span class="st">&quot;#E69F00&quot;</span>)) <span class="co"># a gold caramel color</span></span></code></pre></div>
+<p><img src="merida-workshop-2022_files/figure-html/unnamed-chunk-39-1.png" width="672" /></p>
+<p>Let’s add some labels here, where we have to specify position again.</p>
+<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="basic-introduction-to-r-and-ggplot2.html#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mtcars, <span class="fu">aes</span>(<span class="fu">factor</span>(cyl),<span class="at">fill =</span> <span class="fu">factor</span>(am))) <span class="sc">+</span></span>
+<span id="cb58-2"><a href="basic-introduction-to-r-and-ggplot2.html#cb58-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>() <span class="sc">+</span></span>
+<span id="cb58-3"><a href="basic-introduction-to-r-and-ggplot2.html#cb58-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_label</span>(<span class="fu">aes</span>(<span class="at">label =</span> ..count..), </span>
+<span id="cb58-4"><a href="basic-introduction-to-r-and-ggplot2.html#cb58-4" aria-hidden="true" tabindex="-1"></a>             <span class="at">stat =</span> <span class="st">&#39;count&#39;</span>, </span>
+<span id="cb58-5"><a href="basic-introduction-to-r-and-ggplot2.html#cb58-5" aria-hidden="true" tabindex="-1"></a>             <span class="at">position =</span> <span class="st">&#39;stack&#39;</span>) <span class="sc">+</span></span>
+<span id="cb58-6"><a href="basic-introduction-to-r-and-ggplot2.html#cb58-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values=</span><span class="fu">c</span>(<span class="st">&quot;#BBBBBB&quot;</span>, <span class="st">&quot;#E69F00&quot;</span>))</span></code></pre></div>
+<p><img src="merida-workshop-2022_files/figure-html/unnamed-chunk-40-1.png" width="672" /></p>
+<p>Instead of defining the position as a string (e.g. position = “dodge”), you can write it as a full function with arguments (e.g. position = position_dodge(width = 0.5)) or tell ggplot where within the boxplot you’d like to posiiton the counts specifically (e.g position = position_stack(vjust=0.5)).</p>
+<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="basic-introduction-to-r-and-ggplot2.html#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mtcars, <span class="fu">aes</span>(<span class="fu">factor</span>(cyl), <span class="at">fill =</span> <span class="fu">factor</span>(am))) <span class="sc">+</span></span>
+<span id="cb59-2"><a href="basic-introduction-to-r-and-ggplot2.html#cb59-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>() <span class="sc">+</span></span>
+<span id="cb59-3"><a href="basic-introduction-to-r-and-ggplot2.html#cb59-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> ..count..),</span>
+<span id="cb59-4"><a href="basic-introduction-to-r-and-ggplot2.html#cb59-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">stat =</span> <span class="st">&#39;count&#39;</span>,</span>
+<span id="cb59-5"><a href="basic-introduction-to-r-and-ggplot2.html#cb59-5" aria-hidden="true" tabindex="-1"></a>            <span class="at">position =</span> <span class="fu">position_stack</span>(<span class="at">vjust =</span> <span class="fl">0.5</span>)) <span class="sc">+</span></span>
+<span id="cb59-6"><a href="basic-introduction-to-r-and-ggplot2.html#cb59-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values=</span><span class="fu">c</span>(<span class="st">&quot;#BBBBBB&quot;</span>, <span class="st">&quot;#E69F00&quot;</span>))</span></code></pre></div>
+<p><img src="merida-workshop-2022_files/figure-html/unnamed-chunk-41-1.png" width="672" /></p>
+<p>As you can see, the general idea of behind ggplot (starting with just a blank plot and slowly adding more and more layers) also lends itself to a general workflow where we start with a very simple plot and add layers until it looks exactly the way we want.</p>
+</div>
+</div>
+</div>
+<div id="conclusion" class="section level2" number="2.3">
+<h2><span class="header-section-number">2.3</span> Conclusion</h2>
+<p>And that wraps it up for this beginner ggplot2 tutorial. At this point, particularly if you’ve been completing the exercises in the workbook, you should:</p>
+<ul>
+<li>Understand the underlying philosophy behind ggplot.</li>
+<li>Be able to make a scatter plot and.</li>
+<li>Add a fitted line.</li>
+<li>Add text labels to data points.</li>
+<li>Title and label your plot axes.</li>
+<li>Be able to make a bar plot and.</li>
+<li>Choose whether your bar plot is stacked or grouped.</li>
+<li>Split a plot across multiple subplots.</li>
+<li>Create a custom color palette for your plot.</li>
+<li>Be able to make a line plot.</li>
+</ul>
+</div>
+<div id="appendix-1-exercise-answers" class="section level2" number="2.4">
+<h2><span class="header-section-number">2.4</span> Appendix 1: Exercise Answers</h2>
+<p><strong>Exercise 1</strong></p>
+<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="basic-introduction-to-r-and-ggplot2.html#cb60-1" aria-hidden="true" tabindex="-1"></a>g<span class="ot">&lt;-</span><span class="fu">ggplot</span>(mtcars,<span class="fu">aes</span>(hp, qsec,<span class="at">color =</span> <span class="fu">as.character</span>(cyl)) ) <span class="sc">+</span></span>
+<span id="cb60-2"><a href="basic-introduction-to-r-and-ggplot2.html#cb60-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
+<span id="cb60-3"><a href="basic-introduction-to-r-and-ggplot2.html#cb60-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> lm, <span class="at">se =</span> <span class="cn">TRUE</span>, <span class="at">color=</span><span class="st">&quot;black&quot;</span>,<span class="at">lty=</span><span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb60-4"><a href="basic-introduction-to-r-and-ggplot2.html#cb60-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span> </span>
+<span id="cb60-5"><a href="basic-introduction-to-r-and-ggplot2.html#cb60-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">aspect.ratio =</span> <span class="dv">1</span>)</span>
+<span id="cb60-6"><a href="basic-introduction-to-r-and-ggplot2.html#cb60-6" aria-hidden="true" tabindex="-1"></a>g</span></code></pre></div>
+<pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
+<p><img src="merida-workshop-2022_files/figure-html/unnamed-chunk-42-1.png" width="672" /></p>
+<p><strong>Exercise 2</strong></p>
+<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb62-1"><a href="basic-introduction-to-r-and-ggplot2.html#cb62-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb62-2"><a href="basic-introduction-to-r-and-ggplot2.html#cb62-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(hp, </span>
+<span id="cb62-3"><a href="basic-introduction-to-r-and-ggplot2.html#cb62-3" aria-hidden="true" tabindex="-1"></a>                 qsec, </span>
+<span id="cb62-4"><a href="basic-introduction-to-r-and-ggplot2.html#cb62-4" aria-hidden="true" tabindex="-1"></a>                 <span class="at">shape =</span> <span class="fu">factor</span>(vs), </span>
+<span id="cb62-5"><a href="basic-introduction-to-r-and-ggplot2.html#cb62-5" aria-hidden="true" tabindex="-1"></a>                 <span class="at">size =</span> mpg), </span>
+<span id="cb62-6"><a href="basic-introduction-to-r-and-ggplot2.html#cb62-6" aria-hidden="true" tabindex="-1"></a>             mtcars, </span>
+<span id="cb62-7"><a href="basic-introduction-to-r-and-ggplot2.html#cb62-7" aria-hidden="true" tabindex="-1"></a>             <span class="at">alpha =</span> <span class="fl">0.5</span>, </span>
+<span id="cb62-8"><a href="basic-introduction-to-r-and-ggplot2.html#cb62-8" aria-hidden="true" tabindex="-1"></a>             <span class="at">col =</span> <span class="st">&#39;red&#39;</span>) <span class="sc">+</span></span>
+<span id="cb62-9"><a href="basic-introduction-to-r-and-ggplot2.html#cb62-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">shape =</span> <span class="st">&#39;vs&#39;</span>, <span class="at">size =</span> <span class="st">&#39;qsec&#39;</span>) <span class="sc">+</span></span>
+<span id="cb62-10"><a href="basic-introduction-to-r-and-ggplot2.html#cb62-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span> </span>
+<span id="cb62-11"><a href="basic-introduction-to-r-and-ggplot2.html#cb62-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">aspect.ratio =</span> <span class="dv">1</span>)</span></code></pre></div>
+<p><img src="merida-workshop-2022_files/figure-html/unnamed-chunk-43-1.png" width="672" /></p>
+<p><strong>Exercise 3</strong></p>
+<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb63-1"><a href="basic-introduction-to-r-and-ggplot2.html#cb63-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb63-2"><a href="basic-introduction-to-r-and-ggplot2.html#cb63-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(hp, qsec,<span class="at">lty =</span> <span class="fu">factor</span>(am)), mtcars) <span class="sc">+</span> </span>
+<span id="cb63-3"><a href="basic-introduction-to-r-and-ggplot2.html#cb63-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span> </span>
+<span id="cb63-4"><a href="basic-introduction-to-r-and-ggplot2.html#cb63-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">aspect.ratio =</span> <span class="dv">1</span>)</span></code></pre></div>
+<p><img src="merida-workshop-2022_files/figure-html/unnamed-chunk-44-1.png" width="672" /></p>
+<p><strong>Exercise 4a-c</strong></p>
+<ol style="list-style-type: lower-alpha">
+<li></li>
+</ol>
+<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb64-1"><a href="basic-introduction-to-r-and-ggplot2.html#cb64-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(myebird2) <span class="sc">+</span></span>
+<span id="cb64-2"><a href="basic-introduction-to-r-and-ggplot2.html#cb64-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="fu">aes</span>(<span class="at">x =</span> Count), <span class="at">bins =</span> <span class="dv">100</span>) <span class="sc">+</span></span>
+<span id="cb64-3"><a href="basic-introduction-to-r-and-ggplot2.html#cb64-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Number of individuals seen per observation&quot;</span>) <span class="sc">+</span></span>
+<span id="cb64-4"><a href="basic-introduction-to-r-and-ggplot2.html#cb64-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;Histogram of Canadian Goose observations&quot;</span>)</span></code></pre></div>
+<pre><code>## Warning: Removed 1 rows containing non-finite values
+## (stat_bin).</code></pre>
+<p><img src="merida-workshop-2022_files/figure-html/unnamed-chunk-45-1.png" width="672" /></p>
+<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb66-1"><a href="basic-introduction-to-r-and-ggplot2.html#cb66-1" aria-hidden="true" tabindex="-1"></a><span class="co">#or </span></span>
+<span id="cb66-2"><a href="basic-introduction-to-r-and-ggplot2.html#cb66-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb66-3"><a href="basic-introduction-to-r-and-ggplot2.html#cb66-3" aria-hidden="true" tabindex="-1"></a>myebird2 <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb66-4"><a href="basic-introduction-to-r-and-ggplot2.html#cb66-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="fu">aes</span>(<span class="at">x =</span> Count), <span class="at">bins =</span> <span class="dv">100</span>) <span class="sc">+</span></span>
+<span id="cb66-5"><a href="basic-introduction-to-r-and-ggplot2.html#cb66-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Number of individuals seen per observation&quot;</span>) <span class="sc">+</span></span>
+<span id="cb66-6"><a href="basic-introduction-to-r-and-ggplot2.html#cb66-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;Histogram of Canadian Goose observations&quot;</span>)</span></code></pre></div>
+<pre><code>## Warning: Removed 1 rows containing non-finite values
+## (stat_bin).</code></pre>
+<p><img src="merida-workshop-2022_files/figure-html/unnamed-chunk-45-2.png" width="672" /></p>
+<ol start="2" style="list-style-type: lower-alpha">
+<li></li>
+</ol>
+<pre><code>## Warning: Removed 1 rows containing non-finite values
+## (stat_bin).</code></pre>
+<p><img src="merida-workshop-2022_files/figure-html/unnamed-chunk-46-1.png" width="672" /></p>
+<ol start="3" style="list-style-type: lower-alpha">
+<li>Third plot is a stat = density plot, for counts of two bird species.</li>
+</ol>
+<pre><code>## Warning: Removed 1 rows containing non-finite values
+## (stat_density).</code></pre>
+<p><img src="merida-workshop-2022_files/figure-html/unnamed-chunk-47-1.png" width="672" /></p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="congen-intro.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="introduction-to-the-tidyverse.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook/js/app.min.js"></script>
+<script src="libs/gitbook/js/clipboard.min.js"></script>
+<script src="libs/gitbook/js/plugin-search.js"></script>
+<script src="libs/gitbook/js/plugin-sharing.js"></script>
+<script src="libs/gitbook/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook/js/jquery.highlight.js"></script>
+<script src="libs/gitbook/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": true,
+"facebook": false,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/eriqande/merida-workshop-2022/edit/master/2.0-a-introduction-to-R-ggplot2.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": "https://github.com/eriqande/merida-workshop-2022/commits/master/2.0-a-introduction-to-R-ggplot2.Rmd",
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["merida-workshop-2022.pdf", "merida-workshop-2022.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "section"
+}
+});
+});
+</script>
+
+</body>
+
+</html>
