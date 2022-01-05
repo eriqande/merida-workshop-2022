@@ -772,89 +772,43 @@ raster data and vector data.
 Suppose that we want to make a plot of the BioClim variables that
 only includes the state of Yucatán. 
 
-The way this is typically done is to create a raster that has the
-shape of the state of Yucatán polygon, and then using that state of
-Yucatán raster as a _mask_ for the BioClim rasters.
+The way this is typically done is to _mask_ a raster using the
+shape of the polygon for the state of Yucatán.
+
+The 'terra' package offers the `mask()` function for this operation.
+You can think of it as a sort or intersection between the raster and the
+polygon: all the raster cells inside the polygon stay the same avlue, and all the
+rest get the value `NA`.
+
+The function `terra::mask()` uses R's S4 system for deciding how to behave.
+Its first argument, `x` is a raster that you want to mask, and when its
+second argument, `mask`, is of type `SpatVector`, it uses that `SpatVector` to
+to mask the raster.
+
+A `SpatVector` is a data type used by the package 'terra'.  It can be thought of
+as an alternative way of storing spatial vector data, and 'sf' objects (like
+`yuc_boundary`) can be converted into a `SpatVector` using 'terra's `vect()` function,
+like `vect(yuc_boundary)`.  
 
 
-In the variable
-`yuc_bioc`, we have that BioClim raster data.  Let's remind ourselves of that:
+Making a new raster by masking is as easy as:
 ```{r}
-yuc_bioc
-```
-Note that the coordinate reference system is WGS 84.  
-
-We also have the polygon data for the state of Yucatán:
-```{r}
-yuc_boundary
-```
-
-Note that the Coordinate Reference system (CRS) with the above
-object is listed as unknown, though the datum used for it is WGS 84:
-```{r}
-st_crs(yuc_boundary)
-```
-### Explicitly setting the CRS on `yuc_boundary`
-
-So, let's go ahead and set the CRS to WGS 84, just so that the raster and the
-polygon are explicitly on the same CRS.  
-
-The WGS84 CRS is known in the EPSG data base as 4326. So we will set that:
-```{r}
-st_crs(yuc_boundary) <- 4326
-```
-
-Now, note that the CRS is listed as WGS 84:
-```{r}
-yuc_boundary
-```
-
-
-### Creating a raster of the Yucatán polygon
-
-For this we use the `rasterize()` function from the 'terra' package.
-This function takes as its first argument a `SpatVector` object that gives the
-shape to rasterize.  Its second argument is a `SpatRaster` object that tells
-the function what extent and resolution the resulting raster should have.
-
-### What is a `SpatVector`?
-
-A `SpatVector` is a `terra` data type for holding vector spatial data.
-
-Fortunately, it is easy to convert as `sf` object (like `yuc_boundary`) to
-a `SpatVector` using the `vect()` function from the 'terra' package, like this:
-```{r}
-yuc_bound_spat_vect <- vect(yuc_boundary)
-
-# see what that looks like when we print it:
-yuc_bound_spat_vect
-```
-### Using the `rasterize()` function
-
-Now, creating a raster from the Yucatán state polygon happens like this:
-```{r}
-yuc_bound_raster <- rasterize(
-  x = yuc_bound_spat_vect,
-  y = yuc_bioc
+yuc_masked_bioc <- mask(
+  x = yuc_bioc,
+  mask = vect(yuc_boundary)
 )
 ```
 
-Plotting this, we see that everywhere within the shape of the state of Yucatán,
-that cells have the value of 1, and everywhere outside the cells have the
-value of NA:
+And we can plot that to see what it looks like:
 ```{r}
-plot(yuc_bound_raster)
+plot(yuc_masked_bioc)
 ```
 
-### Masking the BioClim rasters with the Yucatán state raster
 
-Now that we have `yuc_bound_raster` we can use it to mask
-the `yuc_bioc` data to only inlude cells within the state
-boundaries.  This used the 'terra' function `mask()`, which is
-quite simple.  
-```{r}
-yuc_state_bioc <- mask(yuc_bioc, yuc_spat_vect)
-```
+## Joint Operations with Raster and Vector data II: Extracting raster values at a set of spatial points
+
+
+
 
 ## Appendix: Obtaining and Reducing The Example Spatial Datasets {#spat_data_appendix}
 
