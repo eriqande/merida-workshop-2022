@@ -218,13 +218,13 @@ sudo installer -pkg /Library/Developer/CommandLineTools/Packages/macOS_SDK_heade
 ```
 
 
-** If you have a Windows computer **
+**If you have a Windows computer**
 
 We haven't tested it, but you should be just fine so long as you
 installed the `Rtools` as described above.
 
 
-** Finally, if you have set up your system on Mac or Windows, install the packages **
+**Finally, if you have set up your system on Mac or Windows, install the package**
 
 The package we need is not on CRAN.  Rather, it is on the R-forge repository.
 
@@ -241,4 +241,30 @@ install.packages("gradientForest", repos="https://R-Forge.R-project.org")
 ```
 
 If all goes well, this should compile for you.
+
+
+### Step 3.  Make sure you have git and an account on GitHub
+
+In a two-day workshop, we don't have time to go deeply, if much at all, into
+the many uses of the version control software, `git`, and the cloud-based code management
+system GitHub, that is built upon git.  But, if you are interested in version control for
+your analyses, and you are interested in using GitHub to share and present the results
+of your research, then you really will want to become proficient with both `git` and
+GitHub.
+
+Fortunately, there is an outstanding, free book on the web that goes into
+great detail about how to use git and GitHub with R and RStudio.  It is available
+at [https://happygitwithr.com/](https://happygitwithr.com/), and it is well worth
+a read, and particularly following the steps in:
+
+- **Chapter 4. Register a GitHub account**.
+- **Chapter 6. Install Git**  (Note: Mac users , if `xcode-select --install`
+    ran successfully, then git will have been installed).
+- **Chapter 7. Introduce yourself to git**
+
+If you want to use GitHub, you will also have to establish an SSH public/private
+key pair to authenticate your computer to GitHub. That is described in:
+
+- **Chapter 10: Set up keys for SSH**
+
 
