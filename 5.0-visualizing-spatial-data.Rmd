@@ -807,8 +807,43 @@ plot(yuc_masked_bioc)
 
 ## Joint Operations with Raster and Vector data II: Extracting raster values at a set of spatial points
 
+If you have sampled a boatload of birds across a large space, you might be interested in
+extracting environmental data from the locations where they were sampled.  Understanding
+the environmental and climatic conditions where a species has been observed (versus where it
+is not found) forms the basis for niche modeling and other types of inference.
+
+Thus, _extracting_ values of a raster cell that contains an individual spatial
+point is an important task. 
+
+We will take a small example problem here:  suppose that we wish to extract the
+BioClim values at the point where every Yucatán Jay in `yuc_state_jays` was observed.
+For this operation, we use the function `extract()` from the 'terra' package.
+
+This also uses R's S4 system of object orientiation.  When you pass the `extract()` function
+a SpatRaster as the first argument, and a `SpatVector` as the second argument, it returns the
+values of the cells overlapped by the `SpatVector`.  In the case of spatial points, this
+returns a single value for each point.
+
+Note that the 'tidyr' package also has a function called `extract()`, so it is wise to
+always be explicit and use namespace addressing when you want 'terra's `extract()` function,
+i.e., call it `terra::extract()`.
 
 
+When deployed like this, `extract()` returns a data frame with one row for
+each bird observation. We turn it into a tibble so it prints nicely:
+```{r}
+terra::extract(yuc_bioc, vect(yuc_state_jays)) %>%
+  as_tibble()
+```
+
+If you wanted to insert those results seamlessly into the original
+simple features collection, with some nice tidyverse idioms, you could do like this:
+```{r}
+jays_and_bioc <- yuc_state_jays %>%
+  bind_cols(terra::extract(yuc_bioc, vect(.)))
+
+jays_and_bioc
+```
 
 ## Appendix: Obtaining and Reducing The Example Spatial Datasets {#spat_data_appendix}
 

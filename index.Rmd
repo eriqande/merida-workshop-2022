@@ -37,7 +37,7 @@ This is the website/book associated with the _UCMexus Conservation Genomics Work
 options(knitr.graphics.auto_pdf = TRUE)
 ```
 
-## Setting up your computer
+## Setting up your computer {#setting-computer}
 
 This course covers topics in landscape genetics/genomics, and relies
 heavily on the R programming language.  In order to follow
@@ -173,7 +173,7 @@ install.packages(
 )
 ```
 
-#### The 'gradientForest' package
+#### The 'gradientForest' package {#grad-forest}
 
 Now, we come to a somewhat harder package to install, because it requires
 some compilation.  We use these packages for the gradient random forest
