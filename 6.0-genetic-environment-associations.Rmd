@@ -10,16 +10,21 @@ knitr::include_graphics("images/env_layers/three-layers-intro.png")
 ```
   
   
-And we might have a raster of a spatially explicit map of population structure, called the genoscape of the Willow Flycatcher.  
+And many of us now have genomic data. Here, we used genome-wide reduced representation sequencing to create a spatially explicit map of population structure, called the genoscape, of the Willow Flycatcher.  
 
 ```{r, echo=FALSE, out.width='90%'}
 knitr::include_graphics("images/6.0/Ruegg et al2021.Fig1.jpg")
 ```
   
   
-What we ultimately want to investigate is how environmental variables are correlated with genetic variation. Note, this is *not* to investigate or identify candidate genes, but rather what combination of environmental variables shapes overall population genetic structure of a species.
-  
-  
+What we ultimately want to investigate is how environmental variables are correlated with genetic variation. 
+
+```{r, echo=FALSE, out.width='90%'}
+knitr::include_graphics("images/6.0/GEA.Fig1.jpeg")
+```
+
+Standing genetic variation associated with current climate gradients theoretically indicates adaptive capacity. However, modeling future adaptation from individual loci is difficult because we don’t understand all GxE interactions.
+
 A recent example illustrated that not only is geography ("isolation by distance") strongly correlated genetic structure, but environment plays a role in differentiation too. Specifically, precipitation is a strong predictor of Yellow Warbler genetic structure. 
 
 ```{r, echo=FALSE, out.width='100%'}
@@ -28,10 +33,52 @@ knitr::include_graphics("images/6.0/Bay et al.Fig1.jpg")
 
 ## Motivation
 
-The R package gradientForest traditionally quantifies multi-species compositional turnover along environmental gradients. In the era of next-generation sequencing, where genome-wide data is common, we can extend this framework to determine which variants are associated with specific environmental variables. So rather than thinking of the large-scale species turnover in space, we can map fine-scale allele frequency changes along environemntal gradients. 
+The R package gradientForest traditionally quantifies multi-species compositional turnover along environmental gradients. In the era of next-generation sequencing, where genome-wide data is common, we can extend this community ecology framework to determine which variants are associated with specific environmental variables. So rather than thinking of the large-scale species turnover in space, we can map fine-scale allele frequency changes along environemntal gradients. 
+
+Gradient forest is a machine learning approach for classification and regression based on decision trees. We've all seen and used decision trees, for mundane tasks like waking up to an alarm each morning to more intricate decisions like optimal pairing of individuals in a captive breeding program to increase/maintain genetic diversity of a population. Regardless of which decision tree you are implementing, the assumption remains, the higher the split, the more important the predictor.
+
+Because decision trees are prone to overiftting, gradient forest uses random forests to test associations. Random forests use a random subset of predictors for each decision tree. 
 
 ```{r, echo=FALSE, out.width='100%'}
-knitr::include_graphics("images/6.0/Fitzpatrick.Fig5.jpg")
+knitr::include_graphics("images/6.0/RandomForest.ConceptMap.jpg")
+```
+
+1) Choose a subset of data and predictors.
+2) Find predictor (and value) that optimizes split.
+3) Create many trees and aggregate.
+
+**Random forests and genomic data**
+
+Brieuc et al. 2018 used this approach to rank the importance of SNPs for predicting a specific binary phenotype, *e.g.* disease resistance in fish. This is an example of one random tree, which can ultimately create a predictive polygenic model.
+
+```{r, echo=FALSE, out.width='100%'}
+knitr::include_graphics("images/6.0/RandomForest.Genomics.jpg")
+```
+
+Another interesting study used random forests to find the predictive variants for cold hardiness, which was subsequently used to predict cold injury in the Sitka Spruce (Holliday et al. 2012).
+
+```{r, echo=FALSE, out.width='100%'}
+knitr::include_graphics("images/6.0/RandomForest.Genomics2.jpg")
+```
+
+**What if we have multiple SNPs AND multiple phenotypes or environments?**
+Gradient forest extends random forest to incorporate multiple response variables.
+
+Gradient uses turnover functions to look at total allele turnover across environmental gradients. For instance, GI5, a candidate gene in Balsam Poplar, clearly shows great allele frequency transitions across the mean summer temperature (Fitzpatrick and Keller 2015)
+
+```{r, echo=FALSE, out.width='100%'}
+knitr::include_graphics("images/6.0/AlleleTurnover.jpg")
+```
+
+If we look at different subsets of genetic variation in Balsam Poplar space
+
+a) reference SNPs,  
+b) GI5, a candidate gene for genetic control of bud set and bud flush (Olson et al. 2013)
+
+you can see that different environmental variables predict genetic variation of the reference and candidate genes. *Note* different colors = locally adapted genotypes. 
+
+```{r, echo=FALSE, out.width='100%'}
+knitr::include_graphics("images/6.0/Fitzpatrick.Fig5.jpeg")
 ```
 
 Below is code for quantifying and visualizing intraspecific gene-environment variation across space. As part of The Bird Genoscape Project, we compare present-day gene-environment associations to predicted future changes to identify regions of genomic vulnerability. For now, this tutorial focuses on analyzing and plotting the allelic variation as estimated from gradient forest for a single species, the Willow Flycatcher, but is easily adpated to include other species and methods for esimating variation.
@@ -63,7 +110,7 @@ And we will need to load a realistic, polygon shapefile (an outline of the Willo
 
 That will produce this map:
 ```{r}
-wifl_shape=st_read("data/6.0/WIFLrev.shp")
+wifl_shape <-st_read("data/6.0/WIFLrev.shp")
 ```
 
 ```{r, fig.cap = "A basic outline of Willow Flycatcher breeding range we will use for this exercise"}
@@ -75,7 +122,6 @@ ggplot(wifl_shape) +
 ## Running Gradient Forest
 We will use gradient forest to test whether a subset of genomic variation can be explained by environmental variables and to visualize climate-associated genetic variation across the breeding range of the Willow Flycatcher. To run gradient forest we need two main files. First we need the environmental data/climate variables associated with each population. Populations are defined by their latitude and longitude. 
 
-Note to those interested in collecting environmental variables for their own species. 
 For each sampling location, we obtained environmental data from publically available databases. Specifically, we chose variables with known impacts on bird physiology and ecology and that were publically available at high resolution. These variables included 19 climate variables downloaded from WorldClim (Hijmans et al. 2005) as well as vegetation indices (Carroll et al. 2004) (NDVI and NDVIstd), Tree Cover (Sexton et al. 2013) and elevation data from the Global Land Cover Facility (http://www.landcover.org). We also downloaded and used a measure of surface moisture characteristics from the NASA Scatterometer Climate Record Pathfinder project (QuickSCAT, downloaded from scp.byu.edu).
 
 Read in the environmental variables, and take a look at the dimensions and the actual data.
