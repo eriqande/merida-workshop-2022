@@ -205,13 +205,6 @@ ggplot() +
   theme_bw() + theme(aspect.ratio = 1)
 ```
 
-*  Some more on stats.
-*  Scales.
-*  Coordinate systems (brief).
-*  Facets.
-*  Plotting model fits.
-*  Some more challenges.
-
 #### A special stat: stat_smooth
 We can keep adding additional layers to this plot to make it more informative. One thing that is often useful when you're looking at data on a scatter plot is a visual representation of how closely the variable on the x axis and the variable on the y axis are related to each other, and the strength of that relationship. We can summarize this using a fitted line.
 
@@ -260,7 +253,7 @@ ggplot() +
 
 **Exercise 3: Create the following plot**
 
-How about if we wanted to create a line plot with this data? How would you create the following plot create separate lines based on the "am" variable.
+How about if we wanted to create a line plot with this data? How would you generate the following plot with separate lines representing the "am" variable.
  
 ```{r,echo = F}
 ggplot() +
