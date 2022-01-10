@@ -49,7 +49,10 @@ The **Files** pane is used to navigate through directories and can be used to op
 knitr::include_graphics("images/2.0_R_ggplot/Files.png")
 ```
 
-Next to the **Files** tab, there is **Plots**.  In the example **Source** pane above I created a plot with the following code (*note*: the function `ggplot()` and the `mpg` dataset are from the `ggplot2` package that comes in the `tidyverse` package. You need to have `tidyverse` installed and loaded for this code to work on your console. 
+Next to the **Files** tab, there is **Plots**.  In the example **Code Chunk** pane below, I created a plot with the following code (*note*: the function `ggplot()` and the `mpg` dataset are from the `ggplot2` package that comes in the `tidyverse` package. You need to have `tidyverse` installed and loaded for this code to work on your console. 
+
+When the code is executed, the resulting scatterplot is displayed below. If this was run in a R script rather than an Rmarkdown, the plot would be displayed in the **Plots** window on the left.
+
 
 ```{r}
 library(tidyverse)
@@ -59,7 +62,6 @@ p <- ggplot(data = mpg) +
 p
 ```
   
-When the code is executed, the resulting scatterplot is displayed below. If this was run in a R script rather than an Rmarkdown, the plot would be displayed in the *Plots* window on the left.
 
 Also useful is the **Help** tab for understanding what a function does.
     
@@ -82,7 +84,7 @@ The basic units in the “grammar of graphics” consist of:
 
 The syntax for constructing ggplots could be puzzling if you are a beginner or work primarily with base graphics. The main difference is that, unlike base graphics, ggplot works with dataframes and not individual vectors. All the data needed to make the plot is typically be contained within the dataframe supplied to the ggplot() itself or can be supplied to respective geoms. More on that later.
 
-#### A plot consists of components
+### A plot consists of components
 The second noticeable feature is that you can keep enhancing the plot by adding more layers (and themes) to an existing plot created using the ggplot() function
   
 Here is a verbose definition of a simple plot. Note, this is not something you will see/use. But it's a nice way to break down the components
@@ -100,7 +102,7 @@ ggplot() +
   theme(aspect.ratio = 1)
 ```
 
-**1: Data**
+#### 1: Data
 
 > __layer(data = mtcars, #1__ 
   
@@ -113,7 +115,7 @@ Let's look at the top of a data set used by tidyverse
 head(mtcars)
 ```
 
-**2: What is a mapping?**
+#### 2: What is a mapping?
 
 >  layer(data = mtcars, #1 
 
@@ -130,7 +132,7 @@ For the code chunk below, we would be mapping hp on the x-axis and qsec on the y
 aes(x = hp, y = qsec)
 ```
  
-**3: What is a geom?**
+#### 3: What is a geom?
 
 > layer(data = mtcars, #1 
  
@@ -170,9 +172,11 @@ ggplot() +
   theme(aspect.ratio = 1)
 ```
  
-Like geom_point(), there are many such geom layers which we will see in a subsequent part in this tutorial series. Let's add details to this plot in the form of additional ashthetics.
+Like geom_point(), there are many such geom layers which we will see in a subsequent part in this tutorial series. Let's add details to this plot in the form of additional aesthetics.
 
 __How would you change color of the points to the cyl variable?__
+
+
 ```{r}
 ggplot() +
 geom_point(aes(hp, qsec, color = cyl), mtcars) +
@@ -208,7 +212,7 @@ ggplot() +
 *  Plotting model fits.
 *  Some more challenges.
 
-### A special stat: stat_smooth
+#### A special stat: stat_smooth
 We can keep adding additional layers to this plot to make it more informative. One thing that is often useful when you're looking at data on a scatter plot is a visual representation of how closely the variable on the x axis and the variable on the y axis are related to each other, and the strength of that relationship. We can summarize this using a fitted line.
 
 In ggplot, we can automatically add a fitted line using the layer *geom_smooth()*. By default, *geom_smooth()* will show the relationship between the x and y variables using locally weighted scatter plot smoothing (also known as LOESS) rather than by drawing a straight line. If we want a single straight line to summarize our data, we need to specify that we want *geom_smooth()* to fit a linear model (or "lm").
@@ -320,7 +324,7 @@ g +
 
 Let's move onto the other components of the ggplot syntax. 
 
-**4. What is a stat?**
+#### 4. What is a stat?
 
 > layer(data = mtcars, #1  
 
@@ -406,7 +410,8 @@ ggplot(myebird3, aes(Count, col = factor(CommonName))) +
   stat_density(fill = NA)
 ```
 
-**5. What is a position?**
+#### 5. What is a position?
+
 > layer(data = mtcars, #1 
 
 > mapping = aes(x = hp, y = qsec), #2
