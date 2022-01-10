@@ -507,6 +507,8 @@ g<-ggplot(mtcars,aes(hp, qsec,color = as.character(cyl)) ) +
 g
 ```
 
+Notice how I changed the line type in the code chunk above. 
+
 **Exercise 2**
 
 ```{r}
