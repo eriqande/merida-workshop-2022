@@ -180,7 +180,7 @@ div.csl-indent {
 <li class="chapter" data-level="2.2" data-path="basic-introduction-to-r-and-ggplot2.html"><a href="basic-introduction-to-r-and-ggplot2.html#data-visualization-with-ggplot2"><i class="fa fa-check"></i><b>2.2</b> Data visualization with ggplot2</a>
 <ul>
 <li class="chapter" data-level="2.2.1" data-path="basic-introduction-to-r-and-ggplot2.html"><a href="basic-introduction-to-r-and-ggplot2.html#understanding-the-ggplot-syntax"><i class="fa fa-check"></i><b>2.2.1</b> Understanding the Ggplot Syntax</a></li>
-<li class="chapter" data-level="2.2.2" data-path="basic-introduction-to-r-and-ggplot2.html"><a href="basic-introduction-to-r-and-ggplot2.html#a-special-stat-stat_smooth"><i class="fa fa-check"></i><b>2.2.2</b> A special stat: stat_smooth</a></li>
+<li class="chapter" data-level="2.2.2" data-path="basic-introduction-to-r-and-ggplot2.html"><a href="basic-introduction-to-r-and-ggplot2.html#a-plot-consists-of-components"><i class="fa fa-check"></i><b>2.2.2</b> A plot consists of components</a></li>
 </ul></li>
 <li class="chapter" data-level="2.3" data-path="basic-introduction-to-r-and-ggplot2.html"><a href="basic-introduction-to-r-and-ggplot2.html#conclusion"><i class="fa fa-check"></i><b>2.3</b> Conclusion</a></li>
 <li class="chapter" data-level="2.4" data-path="basic-introduction-to-r-and-ggplot2.html"><a href="basic-introduction-to-r-and-ggplot2.html#appendix-1-exercise-answers"><i class="fa fa-check"></i><b>2.4</b> Appendix 1: Exercise Answers</a></li>
@@ -812,19 +812,19 @@ FIGURE 7.3: Individual and cumulative importance of SNPs associated with top 2 e
 <span id="cb315-5"><a href="geassoc.html#cb315-5" aria-hidden="true" tabindex="-1"></a><span class="do">##Let&#39;s look at currentgrid, transformed environmental variables- see how they were transformed</span></span>
 <span id="cb315-6"><a href="geassoc.html#cb315-6" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(currentgrid)</span></code></pre></div>
 <pre><code>##         X     Y      BIO11      BIO5     BIO4
-## 1  -76.17 44.09  0.0006420  0.001033 0.022779
-## 2 -103.38 42.94  0.0014702  0.002816 0.022919
-## 3  -69.11 44.32  0.0006720  0.001081 0.021364
-## 4 -109.13 33.49  0.0054320  0.002183 0.004706
-## 5 -106.01 33.40  0.0071002  0.002808 0.005706
-## 6 -119.89 48.97 -0.0001576 -0.002070 0.005594
+## 1  -76.17 44.09  5.931e-04  0.001081 0.022946
+## 2 -103.38 42.94  1.369e-03  0.002992 0.023141
+## 3  -69.11 44.32  6.284e-04  0.001131 0.021734
+## 4 -109.13 33.49  5.169e-03  0.002342 0.004616
+## 5 -106.01 33.40  6.746e-03  0.002981 0.005642
+## 6 -119.89 48.97 -9.825e-05 -0.002318 0.005455
 ##       BIO17
-## 1 0.0048581
-## 2 0.0007402
-## 3 0.0055936
-## 4 0.0012733
-## 5 0.0011714
-## 6 0.0023041</code></pre>
+## 1 0.0052192
+## 2 0.0008192
+## 3 0.0060598
+## 4 0.0014119
+## 5 0.0012840
+## 6 0.0027360</code></pre>
 <div class="sourceCode" id="cb317"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb317-1"><a href="geassoc.html#cb317-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(currentgrid)</span></code></pre></div>
 <pre><code>## [1] 99541     6</code></pre>
 <p>We can summarize the variation using principal components. We then convert those PC axes to RGB values for plotting.</p>

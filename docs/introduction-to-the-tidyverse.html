@@ -180,7 +180,7 @@ div.csl-indent {
 <li class="chapter" data-level="2.2" data-path="basic-introduction-to-r-and-ggplot2.html"><a href="basic-introduction-to-r-and-ggplot2.html#data-visualization-with-ggplot2"><i class="fa fa-check"></i><b>2.2</b> Data visualization with ggplot2</a>
 <ul>
 <li class="chapter" data-level="2.2.1" data-path="basic-introduction-to-r-and-ggplot2.html"><a href="basic-introduction-to-r-and-ggplot2.html#understanding-the-ggplot-syntax"><i class="fa fa-check"></i><b>2.2.1</b> Understanding the Ggplot Syntax</a></li>
-<li class="chapter" data-level="2.2.2" data-path="basic-introduction-to-r-and-ggplot2.html"><a href="basic-introduction-to-r-and-ggplot2.html#a-special-stat-stat_smooth"><i class="fa fa-check"></i><b>2.2.2</b> A special stat: stat_smooth</a></li>
+<li class="chapter" data-level="2.2.2" data-path="basic-introduction-to-r-and-ggplot2.html"><a href="basic-introduction-to-r-and-ggplot2.html#a-plot-consists-of-components"><i class="fa fa-check"></i><b>2.2.2</b> A plot consists of components</a></li>
 </ul></li>
 <li class="chapter" data-level="2.3" data-path="basic-introduction-to-r-and-ggplot2.html"><a href="basic-introduction-to-r-and-ggplot2.html#conclusion"><i class="fa fa-check"></i><b>2.3</b> Conclusion</a></li>
 <li class="chapter" data-level="2.4" data-path="basic-introduction-to-r-and-ggplot2.html"><a href="basic-introduction-to-r-and-ggplot2.html#appendix-1-exercise-answers"><i class="fa fa-check"></i><b>2.4</b> Appendix 1: Exercise Answers</a></li>
@@ -1486,15 +1486,15 @@ One of the best ways to assess model performance is via cross-validation. A good
 ##    train   test    .id   model   ...1 Site   NDVI Taxa 
 ##    &lt;named&gt; &lt;named&gt; &lt;chr&gt; &lt;name&gt; &lt;dbl&gt; &lt;chr&gt; &lt;dbl&gt; &lt;chr&gt;
 ##  1 &lt;resam… &lt;resam… 1     &lt;lm&gt;       4 Site…  0.82 Birds
-##  2 &lt;resam… &lt;resam… 1     &lt;lm&gt;       6 Site…  0.29 Birds
-##  3 &lt;resam… &lt;resam… 1     &lt;lm&gt;      14 Site…  0.61 Birds
-##  4 &lt;resam… &lt;resam… 1     &lt;lm&gt;      21 Site…  0.6  Birds
-##  5 &lt;resam… &lt;resam… 1     &lt;lm&gt;      27 Site…  1    Birds
-##  6 &lt;resam… &lt;resam… 1     &lt;lm&gt;      28 Site…  0.72 Birds
-##  7 &lt;resam… &lt;resam… 2     &lt;lm&gt;       2 Site…  0.4  Birds
-##  8 &lt;resam… &lt;resam… 2     &lt;lm&gt;       3 Site…  0.36 Birds
-##  9 &lt;resam… &lt;resam… 2     &lt;lm&gt;      10 Site…  0.76 Birds
-## 10 &lt;resam… &lt;resam… 2     &lt;lm&gt;      11 Site…  0.5  Birds
+##  2 &lt;resam… &lt;resam… 1     &lt;lm&gt;       5 Site…  0.55 Birds
+##  3 &lt;resam… &lt;resam… 1     &lt;lm&gt;      15 Site…  0.53 Birds
+##  4 &lt;resam… &lt;resam… 1     &lt;lm&gt;      18 Site…  0.81 Birds
+##  5 &lt;resam… &lt;resam… 1     &lt;lm&gt;      21 Site…  0.6  Birds
+##  6 &lt;resam… &lt;resam… 1     &lt;lm&gt;      30 Site…  0.79 Birds
+##  7 &lt;resam… &lt;resam… 2     &lt;lm&gt;       6 Site…  0.29 Birds
+##  8 &lt;resam… &lt;resam… 2     &lt;lm&gt;       7 Site…  0.51 Birds
+##  9 &lt;resam… &lt;resam… 2     &lt;lm&gt;      11 Site…  0.5  Birds
+## 10 &lt;resam… &lt;resam… 2     &lt;lm&gt;      12 Site…  0.67 Birds
 ## # … with 20 more rows, and 3 more variables:
 ## #   Richness &lt;dbl&gt;, .fitted &lt;dbl&gt;, .resid &lt;dbl&gt;</code></pre>
 <p>We can inspect if there are certain NDVI values for which our model is over or underpredicting species richness. Augment gives the residuals (.resid), which is the difference between the predicted and observed value.</p>
@@ -1536,11 +1536,11 @@ One of the best ways to assess model performance is via cross-validation. A good
 <pre><code>## # A tibble: 5 × 6
 ##   train      test      .id   model   predictions   rmse
 ##   &lt;named li&gt; &lt;named l&gt; &lt;chr&gt; &lt;named&gt; &lt;named list&gt; &lt;dbl&gt;
-## 1 &lt;resample… &lt;resampl… 1     &lt;lm&gt;    &lt;tibble [6 … 1.12 
-## 2 &lt;resample… &lt;resampl… 2     &lt;lm&gt;    &lt;tibble [6 … 0.557
-## 3 &lt;resample… &lt;resampl… 3     &lt;lm&gt;    &lt;tibble [6 … 3.16 
-## 4 &lt;resample… &lt;resampl… 4     &lt;lm&gt;    &lt;tibble [6 … 2.11 
-## 5 &lt;resample… &lt;resampl… 5     &lt;lm&gt;    &lt;tibble [6 … 0.804</code></pre>
+## 1 &lt;resample… &lt;resampl… 1     &lt;lm&gt;    &lt;tibble [6 … 0.815
+## 2 &lt;resample… &lt;resampl… 2     &lt;lm&gt;    &lt;tibble [6 … 0.467
+## 3 &lt;resample… &lt;resampl… 3     &lt;lm&gt;    &lt;tibble [6 … 0.752
+## 4 &lt;resample… &lt;resampl… 4     &lt;lm&gt;    &lt;tibble [6 … 3.35 
+## 5 &lt;resample… &lt;resampl… 5     &lt;lm&gt;    &lt;tibble [6 … 1.26</code></pre>
 
 </div>
 </div>
