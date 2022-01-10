@@ -88,9 +88,15 @@ We will need the following R packages. gradientForest requires the dependancy ex
 
 Install and load the following packages in Rstudio. You can use the Packages function to the right to install most packages except for gradient forest, which we will install from R-Forge.
 
-1) You will need XCode if you have a MAC, at minimum Command Line tools
+1) As discussed in [Setting Up Your Computer](#setting-computer), if you have a Mac, you 
+will need the XCode command line tools.
 2) If you have a PC, you'll need Rtools
-3) You will also need gfortran on your computer, which  you can download from here: https://gcc.gnu.org/wiki/GFortran
+3) You will also need gfortran on your computer. See the instructions in
+[Setting Up Your Computer](#setting-computer) if you don't have that set up
+already.
+
+Also, you need to have the package 'gradientForest' installed as
+described in the Preface section [The 'gradientForest' package](#grad-forest).
 
 ```{r}
 #install.packages("gradientForest", repos="http://R-Forge.R-project.org")
