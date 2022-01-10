@@ -151,7 +151,7 @@ Geoms determine what aesthetics you need, and which you can use! (e.g. points ca
   
 Which aesthetics you need/can use is usually obvious, but is also clearly documented.
   
-**Simplifying the code**
+#### Simplifying the code
 Instead of writing out the whole layer(), we can use geom_*() functions to create the layer for us. These functions use common defaults.
 
 We simply write:
