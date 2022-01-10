@@ -223,7 +223,7 @@ g<-ggplot(mtcars,aes(hp, qsec)) +
 g
 ```
  
- For the following exercises, you can use the ggplot cheat sheet. These are amazing resources to have on hand for creating new plots and adding new layers.
+ For the following exercises, you can use the ggplot cheatsheet. These are amazing resources to have on hand for creating new plots and adding new layers.
  
  Page 1: 
  
@@ -236,7 +236,6 @@ knitr::include_graphics("images/2.0_R_ggplot/ggplot_cheatsheet.Page1.jpg")
 ```{r, echo=FALSE, out.width='80%'}
 knitr::include_graphics("images/2.0_R_ggplot/ggplot_cheatsheet.Page2.jpg")
 ```
- 
  
 **Exercise 1: Create the following plot**
  
