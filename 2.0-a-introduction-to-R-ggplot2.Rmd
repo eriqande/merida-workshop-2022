@@ -249,7 +249,8 @@ g <- ggplot(mtcars,aes(hp, qsec, color = as.character(cyl)) ) +
   theme(aspect.ratio = 1)
 g
 ```
-*Hint:* the code would only change the color of the point layer, it would not affect the color of the smooth layer since the aes() aesthetic mapping is passed at the point layer.
+
+ *Hint:* the code would only change the color of the point layer, it would not affect the color of the smooth layer since the aes() aesthetic mapping is passed at the point layer.
 
 **Exercise 2: Create the following plot**
 
@@ -288,8 +289,9 @@ Now what if we want to add labels. Let's look at another dataset and think about
 *  Use data inside a layer in order to not use the default.
 *  Set or map an aesthetic to not use the default. You can map to NULL.
 *  This goes for each aesthetic individually! Not for the entire mapping.
-
+ 
 In many cases I provide the data and mapping in ggplot.
+ 
 ```{r}
 g <- ggplot(msleep,
           aes(sleep_total, 
@@ -302,7 +304,7 @@ g + geom_point() + # then add a layer of points
 ```
  
 But this plot is a bit busy and messy. Let's move around the names to make this more readable (less overlap)! Let's also fix the axes names.
- 
+
 ```{r}
  g + #the ggplot object you created above that you can add layers to
     geom_point() + # then add a layer of points 
@@ -350,6 +352,7 @@ Often, you don’t want to directly plot the actual data, but rather some transf
 __stats__ perform all kinds of data transformations.
 
 The most common transformations: 
+
 *  binning (StatBin). 
 *  counting (StatCount). 
 *  summing (StatSum).
@@ -434,14 +437,15 @@ ggplot(myebird3, aes(Count, col = factor(CommonName))) +
 > __position = 'identity') + #5__
  
 Things in a plot can overlap. This is very common with categorical axes and overlap can be resolved by using a position
-
+ 
 Most commonly you:
+ 
 *  stack (put on top of each other).
 *  fill (stack in proportion, up to 1).
 *  dodge (put next to each other).
 *  jitter (add random noise).
 *  leave as is: identity.
-
+ 
 For exmaple, the default of geom_bar is stacked: geom_bar(position = "stack")
 
 ```{r}
