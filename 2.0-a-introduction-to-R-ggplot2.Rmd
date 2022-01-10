@@ -152,6 +152,7 @@ Geoms determine what aesthetics you need, and which you can use! (e.g. points ca
 Which aesthetics you need/can use is usually obvious, but is also clearly documented.
   
 #### Simplifying the code
+ 
 Instead of writing out the whole layer(), we can use geom_*() functions to create the layer for us. These functions use common defaults.
 
 We simply write:
@@ -184,20 +185,23 @@ geom_point(aes(hp, qsec, color = cyl), mtcars) +
   theme(aspect.ratio = 1)
 ```
 
-**Continious versus discrete variables**
+**Continuous versus discrete variables**
 R treats continuous and discrete information differently. ggplot directly uses the class of the variable to figure out how to best display data.
-
+ 
 In this case, it checks:
+ 
 ```{r}
 class(mtcars$cyl)
 ```
 
 For it to recognized as a category (with fitting colors) we need a factor:
+ 
 ```{r}
 class(factor(mtcars$cyl))
 ```
 
 Character strings are silently converted to factors:
+ 
 ```{r}
 ggplot() +
   geom_point(aes(hp, qsec, color = as.character(cyl)), mtcars) +
