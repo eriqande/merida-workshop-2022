@@ -140,7 +140,7 @@ aes(x = hp, y = qsec)
  
 > __geom = 'point', #3__
 
-Simply the geometrical shape that you want to do draw.
+Simply the geometrical shape that you want to draw.
  
 *  0d: point, text,
 *  1d: path, line (ordered path),
