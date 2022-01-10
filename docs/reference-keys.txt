@@ -1,11 +1,11 @@
-fig:unnamed-chunk-176
-fig:unnamed-chunk-180
-fig:unnamed-chunk-181
-fig:unnamed-chunk-187
-fig:unnamed-chunk-190
+fig:unnamed-chunk-178
+fig:unnamed-chunk-182
+fig:unnamed-chunk-183
+fig:unnamed-chunk-189
 fig:unnamed-chunk-192
-fig:unnamed-chunk-197
+fig:unnamed-chunk-194
 fig:unnamed-chunk-199
+fig:unnamed-chunk-201
 setting-computer
 step-1.-get-the-latest-versions-of-r-and-rstudio
 step-2.-install-a-number-of-r-packages-that-are-relatively-easy-to-install
@@ -15,6 +15,7 @@ geospatial-related-packages
 grad-forest
 step-3.-make-sure-you-have-git-and-an-account-on-github
 congen-intro
+breakout-room-activity-material
 after-kristens-talk-and-the-activity-please-download-the-course-repository
 basic-introduction-to-r-and-ggplot2
 rstudio-layout

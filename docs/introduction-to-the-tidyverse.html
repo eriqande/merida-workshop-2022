@@ -24,7 +24,7 @@
 <meta name="author" content="Eric C. Anderson, Christen Bossu, Richard Evan Feldman, Kristen C. Ruegg, Marius Somveille" />
 
 
-<meta name="date" content="2022-01-09" />
+<meta name="date" content="2022-01-10" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -172,7 +172,8 @@ div.csl-indent {
 </ul></li>
 <li class="chapter" data-level="1" data-path="congen-intro.html"><a href="congen-intro.html"><i class="fa fa-check"></i><b>1</b> Introduction to Conservation Genomics Approaches</a>
 <ul>
-<li class="chapter" data-level="1.1" data-path="congen-intro.html"><a href="congen-intro.html#after-kristens-talk-and-the-activity-please-download-the-course-repository"><i class="fa fa-check"></i><b>1.1</b> After Kristen’s Talk and the activity please download the course repository</a></li>
+<li class="chapter" data-level="1.1" data-path="congen-intro.html"><a href="congen-intro.html#breakout-room-activity-material"><i class="fa fa-check"></i><b>1.1</b> Breakout room activity material</a></li>
+<li class="chapter" data-level="1.2" data-path="congen-intro.html"><a href="congen-intro.html#after-kristens-talk-and-the-activity-please-download-the-course-repository"><i class="fa fa-check"></i><b>1.2</b> After Kristen’s Talk and the activity please download the course repository</a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="basic-introduction-to-r-and-ggplot2.html"><a href="basic-introduction-to-r-and-ggplot2.html"><i class="fa fa-check"></i><b>2</b> Basic Introduction to R and <em>ggplot2</em></a>
 <ul>
@@ -1426,7 +1427,7 @@ The model is mutated as a list column. We can mutate all model results by mappin
 <span id="cb158-37"><a href="introduction-to-the-tidyverse.html#cb158-37" aria-hidden="true" tabindex="-1"></a>        <span class="at">text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">12</span>))</span>
 <span id="cb158-38"><a href="introduction-to-the-tidyverse.html#cb158-38" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb158-39"><a href="introduction-to-the-tidyverse.html#cb158-39" aria-hidden="true" tabindex="-1"></a>p</span></code></pre></div>
-<p><img src="merida-workshop-2022_files/figure-html/unnamed-chunk-92-1.png" width="672" /></p>
+<p><img src="merida-workshop-2022_files/figure-html/unnamed-chunk-94-1.png" width="672" /></p>
 <div class="sourceCode" id="cb159"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb159-1"><a href="introduction-to-the-tidyverse.html#cb159-1" aria-hidden="true" tabindex="-1"></a><span class="co">#ggsave(&quot;Richness_vs_NDVI.pdf&quot;, device = &quot;pdf&quot;, width = 6, height = 3, units = &quot;in&quot;, dpi = 600)</span></span></code></pre></div>
 <p>An exercise to try out: to data_all, add a new column providing the temperature of each site.
 Then use an analysis and figure to describe how the relationship between NDVI and bird and butterfly species richness is different at low and high temperatures.</p>
@@ -1485,16 +1486,16 @@ One of the best ways to assess model performance is via cross-validation. A good
 <pre><code>## # A tibble: 30 × 11
 ##    train   test    .id   model   ...1 Site   NDVI Taxa 
 ##    &lt;named&gt; &lt;named&gt; &lt;chr&gt; &lt;name&gt; &lt;dbl&gt; &lt;chr&gt; &lt;dbl&gt; &lt;chr&gt;
-##  1 &lt;resam… &lt;resam… 1     &lt;lm&gt;       4 Site…  0.82 Birds
-##  2 &lt;resam… &lt;resam… 1     &lt;lm&gt;       5 Site…  0.55 Birds
-##  3 &lt;resam… &lt;resam… 1     &lt;lm&gt;      15 Site…  0.53 Birds
-##  4 &lt;resam… &lt;resam… 1     &lt;lm&gt;      18 Site…  0.81 Birds
-##  5 &lt;resam… &lt;resam… 1     &lt;lm&gt;      21 Site…  0.6  Birds
+##  1 &lt;resam… &lt;resam… 1     &lt;lm&gt;       5 Site…  0.55 Birds
+##  2 &lt;resam… &lt;resam… 1     &lt;lm&gt;       9 Site…  1    Birds
+##  3 &lt;resam… &lt;resam… 1     &lt;lm&gt;      14 Site…  0.61 Birds
+##  4 &lt;resam… &lt;resam… 1     &lt;lm&gt;      20 Site…  0.6  Birds
+##  5 &lt;resam… &lt;resam… 1     &lt;lm&gt;      26 Site…  0.59 Birds
 ##  6 &lt;resam… &lt;resam… 1     &lt;lm&gt;      30 Site…  0.79 Birds
-##  7 &lt;resam… &lt;resam… 2     &lt;lm&gt;       6 Site…  0.29 Birds
-##  8 &lt;resam… &lt;resam… 2     &lt;lm&gt;       7 Site…  0.51 Birds
-##  9 &lt;resam… &lt;resam… 2     &lt;lm&gt;      11 Site…  0.5  Birds
-## 10 &lt;resam… &lt;resam… 2     &lt;lm&gt;      12 Site…  0.67 Birds
+##  7 &lt;resam… &lt;resam… 2     &lt;lm&gt;       4 Site…  0.82 Birds
+##  8 &lt;resam… &lt;resam… 2     &lt;lm&gt;       8 Site…  0.74 Birds
+##  9 &lt;resam… &lt;resam… 2     &lt;lm&gt;      10 Site…  0.76 Birds
+## 10 &lt;resam… &lt;resam… 2     &lt;lm&gt;      11 Site…  0.5  Birds
 ## # … with 20 more rows, and 3 more variables:
 ## #   Richness &lt;dbl&gt;, .fitted &lt;dbl&gt;, .resid &lt;dbl&gt;</code></pre>
 <p>We can inspect if there are certain NDVI values for which our model is over or underpredicting species richness. Augment gives the residuals (.resid), which is the difference between the predicted and observed value.</p>
@@ -1519,7 +1520,7 @@ One of the best ways to assess model performance is via cross-validation. A good
 <span id="cb169-19"><a href="introduction-to-the-tidyverse.html#cb169-19" aria-hidden="true" tabindex="-1"></a>        <span class="at">text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">12</span>))</span>
 <span id="cb169-20"><a href="introduction-to-the-tidyverse.html#cb169-20" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb169-21"><a href="introduction-to-the-tidyverse.html#cb169-21" aria-hidden="true" tabindex="-1"></a>birds_cv</span></code></pre></div>
-<p><img src="merida-workshop-2022_files/figure-html/unnamed-chunk-97-1.png" width="672" /></p>
+<p><img src="merida-workshop-2022_files/figure-html/unnamed-chunk-99-1.png" width="672" /></p>
 <p>Finally, we can manually calculate RMSE</p>
 <p>RMSE = square.root(sum(fitted - observed)^2)/N)</p>
 <div class="sourceCode" id="cb170"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb170-1"><a href="introduction-to-the-tidyverse.html#cb170-1" aria-hidden="true" tabindex="-1"></a>birds_cv <span class="ot">&lt;-</span> data_all <span class="sc">%&gt;%</span> </span>
@@ -1536,11 +1537,11 @@ One of the best ways to assess model performance is via cross-validation. A good
 <pre><code>## # A tibble: 5 × 6
 ##   train      test      .id   model   predictions   rmse
 ##   &lt;named li&gt; &lt;named l&gt; &lt;chr&gt; &lt;named&gt; &lt;named list&gt; &lt;dbl&gt;
-## 1 &lt;resample… &lt;resampl… 1     &lt;lm&gt;    &lt;tibble [6 … 0.815
-## 2 &lt;resample… &lt;resampl… 2     &lt;lm&gt;    &lt;tibble [6 … 0.467
-## 3 &lt;resample… &lt;resampl… 3     &lt;lm&gt;    &lt;tibble [6 … 0.752
-## 4 &lt;resample… &lt;resampl… 4     &lt;lm&gt;    &lt;tibble [6 … 3.35 
-## 5 &lt;resample… &lt;resampl… 5     &lt;lm&gt;    &lt;tibble [6 … 1.26</code></pre>
+## 1 &lt;resample… &lt;resampl… 1     &lt;lm&gt;    &lt;tibble [6 … 0.669
+## 2 &lt;resample… &lt;resampl… 2     &lt;lm&gt;    &lt;tibble [6 … 2.36 
+## 3 &lt;resample… &lt;resampl… 3     &lt;lm&gt;    &lt;tibble [6 … 0.965
+## 4 &lt;resample… &lt;resampl… 4     &lt;lm&gt;    &lt;tibble [6 … 3.28 
+## 5 &lt;resample… &lt;resampl… 5     &lt;lm&gt;    &lt;tibble [6 … 0.861</code></pre>
 
 </div>
 </div>

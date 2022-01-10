@@ -6,15 +6,18 @@ There is not an accompanying narrative at this webpage, but you
 can download a complete (24 Mb) PDF of her slides at:
 [https://drive.google.com/uc?export=download&id=1VoE26VT9_judMT0rH2V3jy7MDX3ZgYk7](https://drive.google.com/uc?export=download&id=1VoE26VT9_judMT0rH2V3jy7MDX3ZgYk7).
 
+## Breakout room activity material
 
-For the group activity, you can download the necessary portion
-of her slides at:
+The breakout room activity slides (_for the separate groups to fill out_) are at:
+[https://docs.google.com/presentation/d/1-upYVY70-IxaG7GH246lKe1-GFrgs8emK2IBkO6Qm2Q/edit?usp=sharing](https://docs.google.com/presentation/d/1-upYVY70-IxaG7GH246lKe1-GFrgs8emK2IBkO6Qm2Q/edit?usp=sharing)
+
+
+The _informational slides_ from Kristen's talk can be downloaded from here:
 [https://drive.google.com/uc?export=download&id=1cgFgBxHXaz8p0RaBtTX1oUMhBA61nRfW](https://drive.google.com/uc?export=download&id=1cgFgBxHXaz8p0RaBtTX1oUMhBA61nRfW)
 
-The relevant paper by Allendorf et al. is at  [https://drive.google.com/uc?export=download&id=1iQiW6Wm-9FIdz0LLPPyJkETSBiYkhUZx](https://drive.google.com/uc?export=download&id=1iQiW6Wm-9FIdz0LLPPyJkETSBiYkhUZx)
+The _relevant paper_ by Allendorf et al. is at: [https://drive.google.com/uc?export=download&id=1iQiW6Wm-9FIdz0LLPPyJkETSBiYkhUZx](https://drive.google.com/uc?export=download&id=1iQiW6Wm-9FIdz0LLPPyJkETSBiYkhUZx)
 
-The breakout room activity sides are at:
-[https://docs.google.com/presentation/d/1-upYVY70-IxaG7GH246lKe1-GFrgs8emK2IBkO6Qm2Q/edit?usp=sharing](https://docs.google.com/presentation/d/1-upYVY70-IxaG7GH246lKe1-GFrgs8emK2IBkO6Qm2Q/edit?usp=sharing)
+
 
 
 ## After Kristen's Talk and the activity please download the course repository

@@ -24,7 +24,7 @@
 <meta name="author" content="Eric C. Anderson, Christen Bossu, Richard Evan Feldman, Kristen C. Ruegg, Marius Somveille" />
 
 
-<meta name="date" content="2022-01-09" />
+<meta name="date" content="2022-01-10" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -172,7 +172,8 @@ div.csl-indent {
 </ul></li>
 <li class="chapter" data-level="1" data-path="congen-intro.html"><a href="congen-intro.html"><i class="fa fa-check"></i><b>1</b> Introduction to Conservation Genomics Approaches</a>
 <ul>
-<li class="chapter" data-level="1.1" data-path="congen-intro.html"><a href="congen-intro.html#after-kristens-talk-and-the-activity-please-download-the-course-repository"><i class="fa fa-check"></i><b>1.1</b> After Kristen’s Talk and the activity please download the course repository</a></li>
+<li class="chapter" data-level="1.1" data-path="congen-intro.html"><a href="congen-intro.html#breakout-room-activity-material"><i class="fa fa-check"></i><b>1.1</b> Breakout room activity material</a></li>
+<li class="chapter" data-level="1.2" data-path="congen-intro.html"><a href="congen-intro.html#after-kristens-talk-and-the-activity-please-download-the-course-repository"><i class="fa fa-check"></i><b>1.2</b> After Kristen’s Talk and the activity please download the course repository</a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="basic-introduction-to-r-and-ggplot2.html"><a href="basic-introduction-to-r-and-ggplot2.html"><i class="fa fa-check"></i><b>2</b> Basic Introduction to R and <em>ggplot2</em></a>
 <ul>
@@ -438,8 +439,8 @@ described in the Preface section <a href="index.html#grad-forest">The ‘gradien
 <div class="sourceCode" id="cb277"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb277-1"><a href="geassoc.html#cb277-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(wifl_shape) <span class="sc">+</span></span>
 <span id="cb277-2"><a href="geassoc.html#cb277-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">fill=</span><span class="cn">NA</span>) <span class="sc">+</span></span>
 <span id="cb277-3"><a href="geassoc.html#cb277-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code></pre></div>
-<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-176"></span>
-<img src="merida-workshop-2022_files/figure-html/unnamed-chunk-176-1.png" alt="A basic outline of Willow Flycatcher breeding range we will use for this exercise" width="672" />
+<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-178"></span>
+<img src="merida-workshop-2022_files/figure-html/unnamed-chunk-178-1.png" alt="A basic outline of Willow Flycatcher breeding range we will use for this exercise" width="672" />
 <p class="caption">
 FIGURE 7.1: A basic outline of Willow Flycatcher breeding range we will use for this exercise
 </p>
@@ -708,8 +709,8 @@ FIGURE 7.1: A basic outline of Willow Flycatcher breeding range we will use for 
 <p>Now we can ask which environmental variables are significantly associated with the allelic structure of Willow Flycatchers (or at least the subset we are looking at).</p>
 <p>This first plot and most useful from gradientForest is the predictor overall importance plot, which shows a simple barplot of the ranked importances of the physical variables. This shows the mean accuracy importance and the mean importance weighted by SNP R^2. The most reliable importances are the R^2 weighted importances.</p>
 <div class="sourceCode" id="cb305"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb305-1"><a href="geassoc.html#cb305-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(wiflforest,<span class="at">plot.type=</span><span class="st">&quot;Overall.Importance&quot;</span>)</span></code></pre></div>
-<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-180"></span>
-<img src="merida-workshop-2022_files/figure-html/unnamed-chunk-180-1.png" alt="Overall importance of predictor variables" width="672" />
+<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-182"></span>
+<img src="merida-workshop-2022_files/figure-html/unnamed-chunk-182-1.png" alt="Overall importance of predictor variables" width="672" />
 <p class="caption">
 FIGURE 7.2: Overall importance of predictor variables
 </p>
@@ -717,8 +718,8 @@ FIGURE 7.2: Overall importance of predictor variables
 <p><strong>For the Willow Flycatcher subsetted data in this tutorial, what are the top 5 variables?</strong></p>
 <p>Use the code below to look at Cuumulative importance, aka which variants are strongly associated with the top two variables. The cumulative importance is plotted separately for all species and averaged over all species. The cumulative importance can be interpreted as a mapping from an environmental gradient on to biological gradient.</p>
 <div class="sourceCode" id="cb306"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb306-1"><a href="geassoc.html#cb306-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(wiflforest,<span class="at">plot.type=</span><span class="st">&quot;Cumulative.Importance&quot;</span>)</span></code></pre></div>
-<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-181"></span>
-<img src="merida-workshop-2022_files/figure-html/unnamed-chunk-181-1.png" alt="Individual and cumulative importance of SNPs associated with top 2 environmental variables" width="672" />
+<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-183"></span>
+<img src="merida-workshop-2022_files/figure-html/unnamed-chunk-183-1.png" alt="Individual and cumulative importance of SNPs associated with top 2 environmental variables" width="672" />
 <p class="caption">
 FIGURE 7.3: Individual and cumulative importance of SNPs associated with top 2 environmental variables
 </p>
@@ -812,19 +813,19 @@ FIGURE 7.3: Individual and cumulative importance of SNPs associated with top 2 e
 <span id="cb315-5"><a href="geassoc.html#cb315-5" aria-hidden="true" tabindex="-1"></a><span class="do">##Let&#39;s look at currentgrid, transformed environmental variables- see how they were transformed</span></span>
 <span id="cb315-6"><a href="geassoc.html#cb315-6" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(currentgrid)</span></code></pre></div>
 <pre><code>##         X     Y      BIO11      BIO5     BIO4
-## 1  -76.17 44.09  5.931e-04  0.001081 0.022946
-## 2 -103.38 42.94  1.369e-03  0.002992 0.023141
-## 3  -69.11 44.32  6.284e-04  0.001131 0.021734
-## 4 -109.13 33.49  5.169e-03  0.002342 0.004616
-## 5 -106.01 33.40  6.746e-03  0.002981 0.005642
-## 6 -119.89 48.97 -9.825e-05 -0.002318 0.005455
+## 1  -76.17 44.09  5.777e-04  0.001007 0.021252
+## 2 -103.38 42.94  1.301e-03  0.002864 0.021435
+## 3  -69.11 44.32  6.410e-04  0.001063 0.019887
+## 4 -109.13 33.49  4.530e-03  0.002205 0.004130
+## 5 -106.01 33.40  6.086e-03  0.002857 0.005055
+## 6 -119.89 48.97 -8.135e-05 -0.002183 0.004902
 ##       BIO17
-## 1 0.0052192
-## 2 0.0008192
-## 3 0.0060598
-## 4 0.0014119
-## 5 0.0012840
-## 6 0.0027360</code></pre>
+## 1 0.0049658
+## 2 0.0007693
+## 3 0.0057680
+## 4 0.0014472
+## 5 0.0013369
+## 6 0.0025497</code></pre>
 <div class="sourceCode" id="cb317"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb317-1"><a href="geassoc.html#cb317-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(currentgrid)</span></code></pre></div>
 <pre><code>## [1] 99541     6</code></pre>
 <p>We can summarize the variation using principal components. We then convert those PC axes to RGB values for plotting.</p>
@@ -858,8 +859,8 @@ FIGURE 7.3: Individual and cumulative importance of SNPs associated with top 2 e
 <span id="cb320-11"><a href="geassoc.html#cb320-11" aria-hidden="true" tabindex="-1"></a><span class="fu">arrows</span>(<span class="fu">rep</span>(<span class="dv">0</span>, lv), <span class="fu">rep</span>(<span class="dv">0</span>, lv), PCs<span class="sc">$</span>rotation[vec,<span class="dv">1</span>]<span class="sc">/</span>scal, PCs<span class="sc">$</span>rotation[vec, <span class="dv">2</span>]<span class="sc">/</span>scal, <span class="at">length =</span> <span class="fl">0.0625</span>)</span>
 <span id="cb320-12"><a href="geassoc.html#cb320-12" aria-hidden="true" tabindex="-1"></a>jit <span class="ot">&lt;-</span> <span class="fl">0.0015</span></span>
 <span id="cb320-13"><a href="geassoc.html#cb320-13" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(PCs<span class="sc">$</span>rotation[vec, <span class="dv">1</span>]<span class="sc">/</span>scal <span class="sc">+</span> jit <span class="sc">*</span> <span class="fu">sign</span>(PCs<span class="sc">$</span>rotation[vec,<span class="dv">1</span>]), PCs<span class="sc">$</span>rotation[vec, <span class="dv">2</span>]<span class="sc">/</span>scal <span class="sc">+</span> jit <span class="sc">*</span> <span class="fu">sign</span>(PCs<span class="sc">$</span>rotation[vec,<span class="dv">2</span>]), <span class="at">labels =</span> vec)</span></code></pre></div>
-<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-187"></span>
-<img src="merida-workshop-2022_files/figure-html/unnamed-chunk-187-1.png" alt="A principle component plot of the top 4 uncorrelated variables" width="672" />
+<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-189"></span>
+<img src="merida-workshop-2022_files/figure-html/unnamed-chunk-189-1.png" alt="A principle component plot of the top 4 uncorrelated variables" width="672" />
 <p class="caption">
 FIGURE 7.4: A principle component plot of the top 4 uncorrelated variables
 </p>
@@ -891,8 +892,8 @@ FIGURE 7.4: A principle component plot of the top 4 uncorrelated variables
 <span id="cb323-7"><a href="geassoc.html#cb323-7" aria-hidden="true" tabindex="-1"></a><span class="fu">proj4string</span>(wiflmap) <span class="ot">&lt;-</span> <span class="fu">CRS</span>(<span class="st">&quot;+proj=longlat +datum=WGS84&quot;</span>)</span></code></pre></div>
 <div class="sourceCode" id="cb324"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb324-1"><a href="geassoc.html#cb324-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mar=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>))</span>
 <span id="cb324-2"><a href="geassoc.html#cb324-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(wiflmap,<span class="at">col=</span><span class="fu">rgb</span>(r,g,b,<span class="at">max=</span><span class="dv">255</span>),<span class="at">pch=</span><span class="dv">15</span>)</span></code></pre></div>
-<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-190"></span>
-<img src="merida-workshop-2022_files/figure-html/unnamed-chunk-190-1.png" alt="Our gradient forest model of SNP variation in the Willow Flycatcher breeding range" width="672" />
+<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-192"></span>
+<img src="merida-workshop-2022_files/figure-html/unnamed-chunk-192-1.png" alt="Our gradient forest model of SNP variation in the Willow Flycatcher breeding range" width="672" />
 <p class="caption">
 FIGURE 7.5: Our gradient forest model of SNP variation in the Willow Flycatcher breeding range
 </p>
@@ -968,8 +969,8 @@ FIGURE 7.5: Our gradient forest model of SNP variation in the Willow Flycatcher 
 <span id="cb335-21"><a href="geassoc.html#cb335-21" aria-hidden="true" tabindex="-1"></a>    <span class="at">ylim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">1899797</span>, <span class="fl">1809910.8</span>),</span>
 <span id="cb335-22"><a href="geassoc.html#cb335-22" aria-hidden="true" tabindex="-1"></a>    <span class="at">expand =</span> <span class="cn">FALSE</span>) </span>
 <span id="cb335-23"><a href="geassoc.html#cb335-23" aria-hidden="true" tabindex="-1"></a>rectangled</span></code></pre></div>
-<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-192"></span>
-<img src="merida-workshop-2022_files/figure-html/unnamed-chunk-192-1.png" alt="Our gradient forest model of SNP variation in the Willow Flycatcher breeding range on a map" width="672" />
+<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-194"></span>
+<img src="merida-workshop-2022_files/figure-html/unnamed-chunk-194-1.png" alt="Our gradient forest model of SNP variation in the Willow Flycatcher breeding range on a map" width="672" />
 <p class="caption">
 FIGURE 7.6: Our gradient forest model of SNP variation in the Willow Flycatcher breeding range on a map
 </p>
@@ -1043,8 +1044,8 @@ FIGURE 7.6: Our gradient forest model of SNP variation in the Willow Flycatcher 
 <span id="cb344-14"><a href="geassoc.html#cb344-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() </span>
 <span id="cb344-15"><a href="geassoc.html#cb344-15" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb344-16"><a href="geassoc.html#cb344-16" aria-hidden="true" tabindex="-1"></a>mapg</span></code></pre></div>
-<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-197"></span>
-<img src="merida-workshop-2022_files/figure-html/unnamed-chunk-197-1.png" alt="Heat map of genomic vulnerability under the 2050 2.6 emission future prediction" width="672" />
+<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-199"></span>
+<img src="merida-workshop-2022_files/figure-html/unnamed-chunk-199-1.png" alt="Heat map of genomic vulnerability under the 2050 2.6 emission future prediction" width="672" />
 <p class="caption">
 FIGURE 7.7: Heat map of genomic vulnerability under the 2050 2.6 emission future prediction
 </p>
@@ -1072,8 +1073,8 @@ FIGURE 7.7: Heat map of genomic vulnerability under the 2050 2.6 emission future
 <span id="cb346-11"><a href="geassoc.html#cb346-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() </span>
 <span id="cb346-12"><a href="geassoc.html#cb346-12" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb346-13"><a href="geassoc.html#cb346-13" aria-hidden="true" tabindex="-1"></a>mapg2</span></code></pre></div>
-<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-199"></span>
-<img src="merida-workshop-2022_files/figure-html/unnamed-chunk-199-1.png" alt="Heat map of genomic vulnerability under the 2050 8.5 emission future prediction" width="672" />
+<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-201"></span>
+<img src="merida-workshop-2022_files/figure-html/unnamed-chunk-201-1.png" alt="Heat map of genomic vulnerability under the 2050 8.5 emission future prediction" width="672" />
 <p class="caption">
 FIGURE 7.8: Heat map of genomic vulnerability under the 2050 8.5 emission future prediction
 </p>
