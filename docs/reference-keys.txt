@@ -21,8 +21,14 @@ rstudio-layout
 data-visualization-with-ggplot2
 understanding-the-ggplot-syntax
 a-plot-consists-of-components
+data
+what-is-a-mapping
+what-is-a-geom
+simplifying-the-code
 a-special-stat-stat_smooth
 shared-data-and-mapping
+what-is-a-stat
+what-is-a-position
 conclusion
 appendix-1-exercise-answers
 introduction-to-the-tidyverse

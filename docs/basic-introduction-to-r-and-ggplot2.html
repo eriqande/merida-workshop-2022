@@ -180,7 +180,7 @@ div.csl-indent {
 <li class="chapter" data-level="2.2" data-path="basic-introduction-to-r-and-ggplot2.html"><a href="basic-introduction-to-r-and-ggplot2.html#data-visualization-with-ggplot2"><i class="fa fa-check"></i><b>2.2</b> Data visualization with ggplot2</a>
 <ul>
 <li class="chapter" data-level="2.2.1" data-path="basic-introduction-to-r-and-ggplot2.html"><a href="basic-introduction-to-r-and-ggplot2.html#understanding-the-ggplot-syntax"><i class="fa fa-check"></i><b>2.2.1</b> Understanding the Ggplot Syntax</a></li>
-<li class="chapter" data-level="2.2.2" data-path="basic-introduction-to-r-and-ggplot2.html"><a href="basic-introduction-to-r-and-ggplot2.html#a-special-stat-stat_smooth"><i class="fa fa-check"></i><b>2.2.2</b> A special stat: stat_smooth</a></li>
+<li class="chapter" data-level="2.2.2" data-path="basic-introduction-to-r-and-ggplot2.html"><a href="basic-introduction-to-r-and-ggplot2.html#a-plot-consists-of-components"><i class="fa fa-check"></i><b>2.2.2</b> A plot consists of components</a></li>
 </ul></li>
 <li class="chapter" data-level="2.3" data-path="basic-introduction-to-r-and-ggplot2.html"><a href="basic-introduction-to-r-and-ggplot2.html#conclusion"><i class="fa fa-check"></i><b>2.3</b> Conclusion</a></li>
 <li class="chapter" data-level="2.4" data-path="basic-introduction-to-r-and-ggplot2.html"><a href="basic-introduction-to-r-and-ggplot2.html#appendix-1-exercise-answers"><i class="fa fa-check"></i><b>2.4</b> Appendix 1: Exercise Answers</a></li>
@@ -322,12 +322,12 @@ div.csl-indent {
 <div id="rstudio-layout" class="section level2" number="2.1">
 <h2><span class="header-section-number">2.1</span> RStudio Layout</h2>
 <p>The RStudio layout is broken up into four panes: <strong>Source</strong>, <strong>Console</strong>, <strong>Environment (history/connections)</strong> and <strong>Files (plots/packages/etc)</strong>. Within these panes there are additional tabs and we will go over the most important ones.</p>
-<p><img src="images/2.0_R_ggplot/RStudio.png" width="100%" /></p>
+<p><img src="images/2.0_R_ggplot/RStudio2.jpg" width="100%" /></p>
 <p>The <strong>Source</strong> pane is where you can read, edit, and run your R code and the code can be saved as a <em>.R</em> file indicating it is an R script document, or <em>.Rmd</em> file indicating it is an R markdown file with the code split into code chunks that you’ll see throughout this tutorial.</p>
-<p><img src="images/2.0_R_ggplot/Source.png" width="75%" /></p>
+<p><img src="images/2.0_R_ggplot/Source2.jpg" width="75%" /></p>
 <p>An R document is written as a normal text document, however each line is a line of code in R. However if you highlight a line and click <strong>Run</strong> (or type command-return), then the line of code will be executed and this activity will be displayed in the <strong>Console</strong>.</p>
 <p>The <strong>Console</strong> pane is where the R code is executed and results are displayed, as well as other messages and warnings.</p>
-<p><img src="images/2.0_R_ggplot/Console.png" width="60%" /></p>
+<p><img src="images/2.0_R_ggplot/Console2.jpg" width="60%" /></p>
 <p>The <strong>Environment</strong> pane lists all available data and variables in the current session. For example, in the example <strong>Source</strong> pane above I have a line of code <code>another_variable &lt;- 5</code> which sets the string <code>another_variable</code> to represent the value 5. After executing this line of code, the variable is stored and can be called at any point. Once a variable has been created, it will be displayed in the <strong>Environment</strong>.</p>
 <div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="basic-introduction-to-r-and-ggplot2.html#cb10-1" aria-hidden="true" tabindex="-1"></a>another_variable<span class="ot">&lt;-</span><span class="dv">5</span></span>
 <span id="cb10-2"><a href="basic-introduction-to-r-and-ggplot2.html#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -336,10 +336,11 @@ div.csl-indent {
 <div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="basic-introduction-to-r-and-ggplot2.html#cb12-1" aria-hidden="true" tabindex="-1"></a>another_variable<span class="sc">*</span><span class="dv">5</span></span></code></pre></div>
 <pre><code>## [1] 25</code></pre>
 <p><em>Note</em>: Whenever opening a script into a new session of R, you will need to re-run the lines of code you wish to use. Opening a .R script does not automatically run the code.</p>
-<p><img src="images/2.0_R_ggplot/Environment.png" width="75%" /></p>
+<p><img src="images/2.0_R_ggplot/Environment2.jpg" width="75%" /></p>
 <p>The <strong>Files</strong> pane is used to navigate through directories and can be used to open files directly into RStudio. This will be useful when importing data into R.</p>
-<p><img src="images/2.0_R_ggplot/Files.png" width="60%" /></p>
-<p>Next to the <strong>Files</strong> tab, there is <strong>Plots</strong>. In the example <strong>Source</strong> pane above I created a plot with the following code (<em>note</em>: the function <code>ggplot()</code> and the <code>mpg</code> dataset are from the <code>ggplot2</code> package that comes in the <code>tidyverse</code> package. You need to have <code>tidyverse</code> installed and loaded for this code to work on your console.</p>
+<p><img src="images/2.0_R_ggplot/Files2.jpg" width="60%" /></p>
+<p>Next to the <strong>Files</strong> tab, there is <strong>Plots</strong>. In the example <strong>Code Chunk</strong> pane below, I created a plot with the following code (<em>note</em>: the function <code>ggplot()</code> and the <code>mpg</code> dataset are from the <code>ggplot2</code> package that comes in the <code>tidyverse</code> package. You need to have <code>tidyverse</code> installed and loaded for this code to work on your console.</p>
+<p>When the code is executed, the resulting scatterplot is displayed below. If this was run in a R script rather than an Rmarkdown, the plot would be displayed in the <strong>Plots</strong> window on the left.</p>
 <div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="basic-introduction-to-r-and-ggplot2.html#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div>
 <pre><code>## ── Attaching packages ────────────── tidyverse 1.3.1 ──</code></pre>
 <pre><code>## ✓ ggplot2 3.3.5     ✓ purrr   0.3.4
@@ -353,7 +354,6 @@ div.csl-indent {
 <span id="cb18-2"><a href="basic-introduction-to-r-and-ggplot2.html#cb18-2" aria-hidden="true" tabindex="-1"></a>        <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> displ, <span class="at">y =</span> hwy))</span>
 <span id="cb18-3"><a href="basic-introduction-to-r-and-ggplot2.html#cb18-3" aria-hidden="true" tabindex="-1"></a>p</span></code></pre></div>
 <p><img src="merida-workshop-2022_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
-<p>When the code is executed, the resulting scatterplot is displayed below. If this was run in a R script rather than an Rmarkdown, the plot would be displayed in the <em>Plots</em> window on the left.</p>
 <p>Also useful is the <strong>Help</strong> tab for understanding what a function does.</p>
 </div>
 <div id="data-visualization-with-ggplot2" class="section level2" number="2.2">
@@ -376,8 +376,9 @@ div.csl-indent {
 <li>The aesthetics, or the visual attributes of the plot, including the scales on the axes, the color, the fill, and other attributes concerning appearance</li>
 </ul>
 <p>The syntax for constructing ggplots could be puzzling if you are a beginner or work primarily with base graphics. The main difference is that, unlike base graphics, ggplot works with dataframes and not individual vectors. All the data needed to make the plot is typically be contained within the dataframe supplied to the ggplot() itself or can be supplied to respective geoms. More on that later.</p>
-<div id="a-plot-consists-of-components" class="section level4" number="2.2.1.1">
-<h4><span class="header-section-number">2.2.1.1</span> A plot consists of components</h4>
+</div>
+<div id="a-plot-consists-of-components" class="section level3" number="2.2.2">
+<h3><span class="header-section-number">2.2.2</span> A plot consists of components</h3>
 <p>The second noticeable feature is that you can keep enhancing the plot by adding more layers (and themes) to an existing plot created using the ggplot() function</p>
 <p>Here is a verbose definition of a simple plot. Note, this is not something you will see/use. But it’s a nice way to break down the components</p>
 <p>Ok, let’s dive into this very long code to create a simple plot. Note there are 5 components in this code chunk.</p>
@@ -390,7 +391,8 @@ div.csl-indent {
 <span id="cb19-7"><a href="basic-introduction-to-r-and-ggplot2.html#cb19-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()<span class="sc">+</span></span>
 <span id="cb19-8"><a href="basic-introduction-to-r-and-ggplot2.html#cb19-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">aspect.ratio =</span> <span class="dv">1</span>)</span></code></pre></div>
 <p><img src="merida-workshop-2022_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
-<p><strong>1: Data</strong></p>
+<div id="data" class="section level4" number="2.2.2.1">
+<h4><span class="header-section-number">2.2.2.1</span> 1: Data</h4>
 <blockquote>
 <p><strong>layer(data = mtcars, #1</strong></p>
 </blockquote>
@@ -414,7 +416,9 @@ div.csl-indent {
 ## Hornet 4 Drive     1  0    3    1
 ## Hornet Sportabout  0  0    3    2
 ## Valiant            1  0    3    1</code></pre>
-<p><strong>2: What is a mapping?</strong></p>
+</div>
+<div id="what-is-a-mapping" class="section level4" number="2.2.2.2">
+<h4><span class="header-section-number">2.2.2.2</span> 2: What is a mapping?</h4>
 <blockquote>
 <p>layer(data = mtcars, #1</p>
 </blockquote>
@@ -429,7 +433,9 @@ div.csl-indent {
 </ul>
 <p>For the code chunk below, we would be mapping hp on the x-axis and qsec on the y-axis.</p>
 <pre><code>aes(x = hp, y = qsec)</code></pre>
-<p><strong>3: What is a geom?</strong></p>
+</div>
+<div id="what-is-a-geom" class="section level4" number="2.2.2.3">
+<h4><span class="header-section-number">2.2.2.3</span> 3: What is a geom?</h4>
 <blockquote>
 <p>layer(data = mtcars, #1</p>
 </blockquote>
@@ -448,8 +454,10 @@ div.csl-indent {
 </ul>
 <p>Geoms determine what aesthetics you need, and which you can use! (e.g. points cannot display the linetype aesthetic.)</p>
 <p>Which aesthetics you need/can use is usually obvious, but is also clearly documented.</p>
-<p><strong>Simplifying the code</strong>
-Instead of writing out the whole layer(), we can use geom_*() functions to create the layer for us. These functions use common defaults.</p>
+</div>
+<div id="simplifying-the-code" class="section level4" number="2.2.2.4">
+<h4><span class="header-section-number">2.2.2.4</span> Simplifying the code</h4>
+<p>Instead of writing out the whole layer(), we can use geom_*() functions to create the layer for us. These functions use common defaults.</p>
 <p>We simply write:</p>
 <div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="basic-introduction-to-r-and-ggplot2.html#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
 <span id="cb23-2"><a href="basic-introduction-to-r-and-ggplot2.html#cb23-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> hp, <span class="at">y =</span> qsec), <span class="at">data =</span> mtcars) <span class="sc">+</span></span>
@@ -462,7 +470,7 @@ Instead of writing out the whole layer(), we can use geom_*() functions to creat
 <span id="cb24-3"><a href="basic-introduction-to-r-and-ggplot2.html#cb24-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
 <span id="cb24-4"><a href="basic-introduction-to-r-and-ggplot2.html#cb24-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">aspect.ratio =</span> <span class="dv">1</span>)</span></code></pre></div>
 <p><img src="merida-workshop-2022_files/figure-html/unnamed-chunk-17-1.png" width="672" /></p>
-<p>Like geom_point(), there are many such geom layers which we will see in a subsequent part in this tutorial series. Let’s add details to this plot in the form of additional ashthetics.</p>
+<p>Like geom_point(), there are many such geom layers which we will see in a subsequent part in this tutorial series. Let’s add details to this plot in the form of additional aesthetics.</p>
 <p><strong>How would you change color of the points to the cyl variable?</strong></p>
 <div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="basic-introduction-to-r-and-ggplot2.html#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
 <span id="cb25-2"><a href="basic-introduction-to-r-and-ggplot2.html#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="fu">geom_point</span>(<span class="fu">aes</span>(hp, qsec, <span class="at">color =</span> cyl), mtcars) <span class="sc">+</span></span>
@@ -483,18 +491,9 @@ R treats continuous and discrete information differently. ggplot directly uses t
 <span id="cb30-3"><a href="basic-introduction-to-r-and-ggplot2.html#cb30-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">color =</span> <span class="st">&#39;cyl&#39;</span>) <span class="sc">+</span> </span>
 <span id="cb30-4"><a href="basic-introduction-to-r-and-ggplot2.html#cb30-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">aspect.ratio =</span> <span class="dv">1</span>)</span></code></pre></div>
 <p><img src="merida-workshop-2022_files/figure-html/unnamed-chunk-21-1.png" width="672" /></p>
-<ul>
-<li>Some more on stats.</li>
-<li>Scales.</li>
-<li>Coordinate systems (brief).</li>
-<li>Facets.</li>
-<li>Plotting model fits.</li>
-<li>Some more challenges.</li>
-</ul>
 </div>
-</div>
-<div id="a-special-stat-stat_smooth" class="section level3" number="2.2.2">
-<h3><span class="header-section-number">2.2.2</span> A special stat: stat_smooth</h3>
+<div id="a-special-stat-stat_smooth" class="section level4" number="2.2.2.5">
+<h4><span class="header-section-number">2.2.2.5</span> A special stat: stat_smooth</h4>
 <p>We can keep adding additional layers to this plot to make it more informative. One thing that is often useful when you’re looking at data on a scatter plot is a visual representation of how closely the variable on the x axis and the variable on the y axis are related to each other, and the strength of that relationship. We can summarize this using a fitted line.</p>
 <p>In ggplot, we can automatically add a fitted line using the layer <em>geom_smooth()</em>. By default, <em>geom_smooth()</em> will show the relationship between the x and y variables using locally weighted scatter plot smoothing (also known as LOESS) rather than by drawing a straight line. If we want a single straight line to summarize our data, we need to specify that we want <em>geom_smooth()</em> to fit a linear model (or “lm”).</p>
 <div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="basic-introduction-to-r-and-ggplot2.html#cb31-1" aria-hidden="true" tabindex="-1"></a>g<span class="ot">&lt;-</span><span class="fu">ggplot</span>(mtcars,<span class="fu">aes</span>(hp, qsec)) <span class="sc">+</span></span>
@@ -514,10 +513,11 @@ Note, the code above would only change the color of the point layer, it would no
 <p>Can you recreate this plot using other aesthetic options?</p>
 <p><img src="merida-workshop-2022_files/figure-html/unnamed-chunk-24-1.png" width="672" /></p>
 <p><strong>Exercise 3: Create the following plot</strong></p>
-<p>How about if we wanted to create a line plot with this data? How would you create the following plot create separate lines based on the “am” variable.</p>
+<p>How about if we wanted to create a line plot with this data? How would you generate the following plot with separate lines representing the “am” variable.</p>
 <p><img src="merida-workshop-2022_files/figure-html/unnamed-chunk-25-1.png" width="672" /></p>
-<div id="shared-data-and-mapping" class="section level4" number="2.2.2.1">
-<h4><span class="header-section-number">2.2.2.1</span> Shared data and mapping</h4>
+</div>
+<div id="shared-data-and-mapping" class="section level4" number="2.2.2.6">
+<h4><span class="header-section-number">2.2.2.6</span> Shared data and mapping</h4>
 <p>Now what if we want to add labels. Let’s look at another dataset and think about this- now we have multiple layers. You might’ve noticed this with the geom_smooth function too.</p>
 <ul>
 <li>When multiple layers share the same data or mapping you can define it inside of ggplot.</li>
@@ -575,7 +575,9 @@ Note, the code above would only change the color of the point layer, it would no
 ## (geom_text_repel).</code></pre>
 <p><img src="merida-workshop-2022_files/figure-html/unnamed-chunk-28-1.png" width="672" /></p>
 <p>Let’s move onto the other components of the ggplot syntax.</p>
-<p><strong>4. What is a stat?</strong></p>
+</div>
+<div id="what-is-a-stat" class="section level4" number="2.2.2.7">
+<h4><span class="header-section-number">2.2.2.7</span> 4. What is a stat?</h4>
 <blockquote>
 <p>layer(data = mtcars, #1</p>
 </blockquote>
@@ -657,8 +659,12 @@ E.g. ?geom_boxplot shows stat = “boxplot.”</p>
 <pre><code>## Warning: Removed 1 rows containing non-finite values
 ## (stat_density).</code></pre>
 <p><img src="merida-workshop-2022_files/figure-html/unnamed-chunk-35-1.png" width="672" /></p>
-<p><strong>5. What is a position?</strong>
-&gt; layer(data = mtcars, #1</p>
+</div>
+<div id="what-is-a-position" class="section level4" number="2.2.2.8">
+<h4><span class="header-section-number">2.2.2.8</span> 5. What is a position?</h4>
+<blockquote>
+<p>layer(data = mtcars, #1</p>
+</blockquote>
 <blockquote>
 <p>mapping = aes(x = hp, y = qsec), #2</p>
 </blockquote>
@@ -745,6 +751,7 @@ E.g. ?geom_boxplot shows stat = “boxplot.”</p>
 <span id="cb60-6"><a href="basic-introduction-to-r-and-ggplot2.html#cb60-6" aria-hidden="true" tabindex="-1"></a>g</span></code></pre></div>
 <pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
 <p><img src="merida-workshop-2022_files/figure-html/unnamed-chunk-42-1.png" width="672" /></p>
+<p>Notice how I changed the line type in the code chunk above.</p>
 <p><strong>Exercise 2</strong></p>
 <div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb62-1"><a href="basic-introduction-to-r-and-ggplot2.html#cb62-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
 <span id="cb62-2"><a href="basic-introduction-to-r-and-ggplot2.html#cb62-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(hp, </span>
