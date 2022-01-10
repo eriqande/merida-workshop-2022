@@ -7,13 +7,13 @@ This is an introduction to R and *ggplot2* that was created specificially for th
 The RStudio layout is broken up into four panes: **Source**, **Console**, **Environment (history/connections)** and **Files (plots/packages/etc)**.  Within these panes there are additional tabs and we will go over the most important ones.  
 
 ```{r, echo=FALSE, out.width='100%'}
-knitr::include_graphics("images/2.0_R_ggplot/RStudio.png")
+knitr::include_graphics("images/2.0_R_ggplot/RStudio2.jpg")
 ```
 
 The **Source** pane is where you can read, edit, and run your R code and the code can be saved as a *.R* file indicating it is an R script document, or *.Rmd* file indicating it is an R markdown file with the code split into code chunks that you'll see throughout this tutorial. 
 
 ```{r, echo=FALSE, out.width='75%'}
-knitr::include_graphics("images/2.0_R_ggplot/Source.png")
+knitr::include_graphics("images/2.0_R_ggplot/Source2.jpg")
 ```
 
 
@@ -22,7 +22,7 @@ An R document is written as a normal text document, however each line is a line 
 The **Console** pane is where the R code is executed and results are displayed, as well as other messages and warnings.
 
 ```{r, echo=FALSE, out.width='60%'}
-knitr::include_graphics("images/2.0_R_ggplot/Console.png")
+knitr::include_graphics("images/2.0_R_ggplot/Console2.jpg")
 ```
   
   
@@ -40,13 +40,13 @@ another_variable*5
 *Note*: Whenever opening a script into a new session of R, you will need to re-run the lines of code you wish to use.  Opening a .R script does not automatically run the code.
 
 ```{r, echo=FALSE, out.width='75%'}
-knitr::include_graphics("images/2.0_R_ggplot/Environment.png")
+knitr::include_graphics("images/2.0_R_ggplot/Environment2.jpg")
 ```
 
 The **Files** pane is used to navigate through directories and can be used to open files directly into RStudio.  This will be useful when importing data into R.
 
 ```{r, echo=FALSE, out.width='60%'}
-knitr::include_graphics("images/2.0_R_ggplot/Files.png")
+knitr::include_graphics("images/2.0_R_ggplot/Files2.jpg")
 ```
 
 Next to the **Files** tab, there is **Plots**.  In the example **Code Chunk** pane below, I created a plot with the following code (*note*: the function `ggplot()` and the `mpg` dataset are from the `ggplot2` package that comes in the `tidyverse` package. You need to have `tidyverse` installed and loaded for this code to work on your console. 
