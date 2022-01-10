@@ -223,6 +223,21 @@ g<-ggplot(mtcars,aes(hp, qsec)) +
 g
 ```
  
+ For the following exercises, you can use the ggplot cheat sheet. These are amazing resources to have on hand for creating new plots and adding new layers.
+ 
+ Page 1: 
+ 
+```{r, echo=FALSE, out.width='80%'}
+knitr::include_graphics("images/2.0_R_ggplot/ggplot_cheatsheet.Page1.jpg")
+```
+
+ Page 2:
+
+```{r, echo=FALSE, out.width='80%'}
+knitr::include_graphics("images/2.0_R_ggplot/ggplot_cheatsheet.Page2.jpg")
+```
+ 
+ 
 **Exercise 1: Create the following plot**
  
 Now, how would you change the code above to change the color of the point layer, withuot affecting the smooth layer since the aes() aesthetic mapping is passed at the point layer.
@@ -235,7 +250,7 @@ g <- ggplot(mtcars,aes(hp, qsec, color = as.character(cyl)) ) +
   theme(aspect.ratio = 1)
 g
 ```
-Note, the code above would only change the color of the point layer, it would not affect the color of the smooth layer since the aes() aesthetic mapping is passed at the point layer.
+*Hint:* the code would only change the color of the point layer, it would not affect the color of the smooth layer since the aes() aesthetic mapping is passed at the point layer.
 
 **Exercise 2: Create the following plot**
 
