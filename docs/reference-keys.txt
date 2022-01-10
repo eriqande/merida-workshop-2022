@@ -15,6 +15,7 @@ geospatial-related-packages
 grad-forest
 step-3.-make-sure-you-have-git-and-an-account-on-github
 congen-intro
+after-kristens-talk-and-the-activity-please-download-the-course-repository
 basic-introduction-to-r-and-ggplot2
 rstudio-layout
 data-visualization-with-ggplot2

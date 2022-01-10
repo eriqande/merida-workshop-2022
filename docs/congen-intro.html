@@ -24,7 +24,7 @@
 <meta name="author" content="Eric C. Anderson, Christen Bossu, Richard Evan Feldman, Kristen C. Ruegg, Marius Somveille" />
 
 
-<meta name="date" content="2022-01-04" />
+<meta name="date" content="2022-01-09" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -170,7 +170,10 @@ div.csl-indent {
 <li class="chapter" data-level="0.1.3" data-path="index.html"><a href="index.html#step-3.-make-sure-you-have-git-and-an-account-on-github"><i class="fa fa-check"></i><b>0.1.3</b> Step 3. Make sure you have git and an account on GitHub</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="1" data-path="congen-intro.html"><a href="congen-intro.html"><i class="fa fa-check"></i><b>1</b> Introduction to Conservation Genomics Approaches</a></li>
+<li class="chapter" data-level="1" data-path="congen-intro.html"><a href="congen-intro.html"><i class="fa fa-check"></i><b>1</b> Introduction to Conservation Genomics Approaches</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="congen-intro.html"><a href="congen-intro.html#after-kristens-talk-and-the-activity-please-download-the-course-repository"><i class="fa fa-check"></i><b>1.1</b> After Kristen’s Talk and the activity please download the course repository</a></li>
+</ul></li>
 <li class="chapter" data-level="2" data-path="basic-introduction-to-r-and-ggplot2.html"><a href="basic-introduction-to-r-and-ggplot2.html"><i class="fa fa-check"></i><b>2</b> Basic Introduction to R and <em>ggplot2</em></a>
 <ul>
 <li class="chapter" data-level="2.1" data-path="basic-introduction-to-r-and-ggplot2.html"><a href="basic-introduction-to-r-and-ggplot2.html#rstudio-layout"><i class="fa fa-check"></i><b>2.1</b> RStudio Layout</a></li>
@@ -315,8 +318,56 @@ div.csl-indent {
             <section class="normal" id="section-">
 <div id="congen-intro" class="section level1" number="1">
 <h1><span class="header-section-number">Session 1</span> Introduction to Conservation Genomics Approaches</h1>
-<p>Something here.</p>
+<p>This first presentation in the course is given by Dr. Kristen Ruegg.</p>
+<p>There is not an accompanying narrative at this webpage, but you
+can download a complete (24 Mb) PDF of her slides at:
+<a href="https://drive.google.com/uc?export=download&amp;id=1VoE26VT9_judMT0rH2V3jy7MDX3ZgYk7">https://drive.google.com/uc?export=download&amp;id=1VoE26VT9_judMT0rH2V3jy7MDX3ZgYk7</a>.</p>
+<p>For the group activity, you can download the necessary portion
+of her slides at:
+<a href="https://drive.google.com/uc?export=download&amp;id=1cgFgBxHXaz8p0RaBtTX1oUMhBA61nRfW">https://drive.google.com/uc?export=download&amp;id=1cgFgBxHXaz8p0RaBtTX1oUMhBA61nRfW</a></p>
+<p>The relevant paper by Allendorf et al. is at <a href="https://drive.google.com/uc?export=download&amp;id=1iQiW6Wm-9FIdz0LLPPyJkETSBiYkhUZx">https://drive.google.com/uc?export=download&amp;id=1iQiW6Wm-9FIdz0LLPPyJkETSBiYkhUZx</a></p>
+<p>The breakout room activity sides are at:
+<a href="https://docs.google.com/presentation/d/1-upYVY70-IxaG7GH246lKe1-GFrgs8emK2IBkO6Qm2Q/edit?usp=sharing">https://docs.google.com/presentation/d/1-upYVY70-IxaG7GH246lKe1-GFrgs8emK2IBkO6Qm2Q/edit?usp=sharing</a></p>
+<div id="after-kristens-talk-and-the-activity-please-download-the-course-repository" class="section level2" number="1.1">
+<h2><span class="header-section-number">1.1</span> After Kristen’s Talk and the activity please download the course repository</h2>
+<p>To prepare for the interactive code sessions, it will be important
+to download the raw material for this course website as an RStudio
+Project. This will provide you with all of the data sets and other
+inputs needed for running all the examples.</p>
+<p>The easiest way to get this RStudio project is to download it as a .zip
+file from GitHub,<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a>, using the following
+steps:</p>
+<ol style="list-style-type: decimal">
+<li><p><strong>In your web browser go to</strong>: <a href="https://github.com/eriqande/merida-workshop-2022">https://github.com/eriqande/merida-workshop-2022</a>.</p></li>
+<li><p><strong>Click the green “Code” button.</strong></p></li>
+</ol>
+<p><img src="images/1.0_intro/green-code-button-1.png" /></p>
+<ol start="3" style="list-style-type: decimal">
+<li>From the context menu that pops up when you click that green button, <strong>choose
+<em>Download Zip</em></strong></li>
+</ol>
+<p><img src="images/1.0_intro/green-code-button-2.png" /></p>
+<ol start="4" style="list-style-type: decimal">
+<li><p>That will download a compressed folder that is an RStudio project.
+You must uncompress it. On a Mac, this is done simply by double clicking it.
+On windows, make sure that all the files stay inside the directory that they
+come in, which is called <code>merida-workshop-2022-main</code>.</p></li>
+<li><p>Using Finder (on a mac) or File Explorer (on Windows) <strong>navigate inside that
+<code>merida-workshop-2022</code> directory</strong> and <strong>double click the file <code>merida-workshop-2022.Proj</code></strong>. The <code>.Rproj</code> extension might not show up on your
+computer, depending on your settings. At any rate, it is an RStudio Project,
+“proj” file. Double clicking it will launch RStudio and open the project.</p></li>
+</ol>
+<p><img src="images/1.0_intro/finder-window.png" /></p>
 
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol start="1">
+<li id="fn1"><p>If you are comfortable with git, feel free to clone
+the repo, but for others not comfortable with using git, it will be
+easiest to simply download it using the directions given.<a href="congen-intro.html#fnref1" class="footnote-back">↩︎</a></p></li>
+</ol>
 </div>
             </section>
 
