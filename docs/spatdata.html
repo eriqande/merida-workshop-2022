@@ -24,7 +24,7 @@
 <meta name="author" content="Eric C. Anderson, Christen Bossu, Richard Evan Feldman, Kristen C. Ruegg, Marius Somveille" />
 
 
-<meta name="date" content="2022-01-09" />
+<meta name="date" content="2022-01-10" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -172,7 +172,8 @@ div.csl-indent {
 </ul></li>
 <li class="chapter" data-level="1" data-path="congen-intro.html"><a href="congen-intro.html"><i class="fa fa-check"></i><b>1</b> Introduction to Conservation Genomics Approaches</a>
 <ul>
-<li class="chapter" data-level="1.1" data-path="congen-intro.html"><a href="congen-intro.html#after-kristens-talk-and-the-activity-please-download-the-course-repository"><i class="fa fa-check"></i><b>1.1</b> After Kristen’s Talk and the activity please download the course repository</a></li>
+<li class="chapter" data-level="1.1" data-path="congen-intro.html"><a href="congen-intro.html#breakout-room-activity-material"><i class="fa fa-check"></i><b>1.1</b> Breakout room activity material</a></li>
+<li class="chapter" data-level="1.2" data-path="congen-intro.html"><a href="congen-intro.html#after-kristens-talk-and-the-activity-please-download-the-course-repository"><i class="fa fa-check"></i><b>1.2</b> After Kristen’s Talk and the activity please download the course repository</a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="basic-introduction-to-r-and-ggplot2.html"><a href="basic-introduction-to-r-and-ggplot2.html"><i class="fa fa-check"></i><b>2</b> Basic Introduction to R and <em>ggplot2</em></a>
 <ul>
@@ -418,7 +419,7 @@ in each cell of the raster, and it plots each layer as a separate panel.</p>
 <p>For example, let’s look at the maximum temperature
 data:</p>
 <div class="sourceCode" id="cb208"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb208-1"><a href="spatdata.html#cb208-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(yuc_tmax)</span></code></pre></div>
-<p><img src="merida-workshop-2022_files/figure-html/unnamed-chunk-126-1.png" width="672" /></p>
+<p><img src="merida-workshop-2022_files/figure-html/unnamed-chunk-128-1.png" width="672" /></p>
 <p>The 12 different panels here correspond to the twelve different layers in the
 <code>SpatRaster</code>, each of these corresponding to one of the twelve months of
 the year.</p>
@@ -432,7 +433,7 @@ the Peninsula?</li>
 bioclimatic variables differ across the Peninsula:</p>
 <div class="sourceCode" id="cb209"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb209-1"><a href="spatdata.html#cb209-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Use maxnl == 20 to make sure all 19 layers are plotted</span></span>
 <span id="cb209-2"><a href="spatdata.html#cb209-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(yuc_bioc, <span class="at">maxnl =</span> <span class="dv">20</span>)</span></code></pre></div>
-<p><img src="merida-workshop-2022_files/figure-html/unnamed-chunk-127-1.png" width="672" /></p>
+<p><img src="merida-workshop-2022_files/figure-html/unnamed-chunk-129-1.png" width="672" /></p>
 <p>This is really cool to see! Especially for someone that is not super familiar
 with the Yucatán—there is a lot of biologically relevant climatic variation
 across the peninsula.</p>
@@ -521,7 +522,7 @@ it quite easily. First, let’s just plot one of the variables, BIO_1:</p>
 <span id="cb212-5"><a href="spatdata.html#cb212-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_raster</span>() <span class="sc">+</span></span>
 <span id="cb212-6"><a href="spatdata.html#cb212-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
 <span id="cb212-7"><a href="spatdata.html#cb212-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_sf</span>()  <span class="co"># here, this maintains the aspect ratio</span></span></code></pre></div>
-<p><img src="merida-workshop-2022_files/figure-html/unnamed-chunk-129-1.png" width="672" /></p>
+<p><img src="merida-workshop-2022_files/figure-html/unnamed-chunk-131-1.png" width="672" /></p>
 <p>One important thing to note: if you want to plot all the different bioclim
 variables in ggplot using faceting, there is a problem — the colors
 will apply to the whole range of possible values, so that most won’t show
@@ -533,7 +534,7 @@ are on totally different scales:</p>
 <span id="cb213-4"><a href="spatdata.html#cb213-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
 <span id="cb213-5"><a href="spatdata.html#cb213-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_sf</span>() <span class="sc">+</span></span>
 <span id="cb213-6"><a href="spatdata.html#cb213-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>layer, <span class="at">ncol =</span> <span class="dv">5</span>)</span></code></pre></div>
-<p><img src="merida-workshop-2022_files/figure-html/unnamed-chunk-130-1.png" width="672" /></p>
+<p><img src="merida-workshop-2022_files/figure-html/unnamed-chunk-132-1.png" width="672" /></p>
 <p>Ha! That looks terrible.</p>
 <p><em>On the other hand</em>, if every layer is plotting the same variable, then it can be
 quite advantageous to have the same color bar for all layers. For example, when
@@ -563,14 +564,14 @@ the same colour scale for all plots:</p>
 <span id="cb214-22"><a href="spatdata.html#cb214-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
 <span id="cb214-23"><a href="spatdata.html#cb214-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_sf</span>() <span class="sc">+</span></span>
 <span id="cb214-24"><a href="spatdata.html#cb214-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>layer_f, <span class="at">ncol =</span> <span class="dv">3</span>)</span></code></pre></div>
-<p><img src="merida-workshop-2022_files/figure-html/unnamed-chunk-131-1.png" width="672" /></p>
+<p><img src="merida-workshop-2022_files/figure-html/unnamed-chunk-133-1.png" width="672" /></p>
 <p>That makes it a lot easier to see the annual variation in maximum temperature.</p>
 <div id="quickly-back-to-terras-plot-function" class="section level4" number="6.1.3.1">
 <h4><span class="header-section-number">6.1.3.1</span> Quickly back to ’terra’s <code>plot()</code> function</h4>
 <p>It is worth noting that a similar effect can be achieved by setting the
 range in terra’s <code>plot()</code> function:</p>
 <div class="sourceCode" id="cb215"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb215-1"><a href="spatdata.html#cb215-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(yuc_tmax, <span class="at">range =</span> <span class="fu">c</span>(<span class="dv">27</span>,<span class="dv">38</span>))</span></code></pre></div>
-<p><img src="merida-workshop-2022_files/figure-html/unnamed-chunk-132-1.png" width="672" /></p>
+<p><img src="merida-workshop-2022_files/figure-html/unnamed-chunk-134-1.png" width="672" /></p>
 <p>In summary, the <code>plot()</code> function from the terra package is fast and efficient
 for plotting rasters. However, if you are more comfortable making plots with
 ‘ggplot2,’ you can use that for plotting rasters, but you need to
@@ -717,14 +718,14 @@ uses the geometry information directly.</p>
 <span id="cb221-2"><a href="spatdata.html#cb221-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">fill =</span> <span class="cn">NA</span>) <span class="sc">+</span></span>
 <span id="cb221-3"><a href="spatdata.html#cb221-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
 <span id="cb221-4"><a href="spatdata.html#cb221-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_sf</span>()</span></code></pre></div>
-<p><img src="merida-workshop-2022_files/figure-html/unnamed-chunk-135-1.png" width="672" /></p>
+<p><img src="merida-workshop-2022_files/figure-html/unnamed-chunk-137-1.png" width="672" /></p>
 <p>Note that we can also map aesthetics like fill or color to different
 values in the simple features data frame:</p>
 <div class="sourceCode" id="cb222"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb222-1"><a href="spatdata.html#cb222-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> ms_thin) <span class="sc">+</span></span>
 <span id="cb222-2"><a href="spatdata.html#cb222-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="fu">aes</span>(<span class="at">fill =</span> name)) <span class="sc">+</span></span>
 <span id="cb222-3"><a href="spatdata.html#cb222-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
 <span id="cb222-4"><a href="spatdata.html#cb222-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_sf</span>()</span></code></pre></div>
-<p><img src="merida-workshop-2022_files/figure-html/unnamed-chunk-136-1.png" width="672" /></p>
+<p><img src="merida-workshop-2022_files/figure-html/unnamed-chunk-138-1.png" width="672" /></p>
 </div>
 <div id="a-word-about-coord_sf" class="section level3" number="6.2.6">
 <h3><span class="header-section-number">6.2.6</span> A word about <code>coord_sf()</code></h3>
@@ -745,7 +746,7 @@ projection, like this:</p>
 <span id="cb223-7"><a href="spatdata.html#cb223-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="fu">aes</span>(<span class="at">fill =</span> name)) <span class="sc">+</span></span>
 <span id="cb223-8"><a href="spatdata.html#cb223-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
 <span id="cb223-9"><a href="spatdata.html#cb223-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_sf</span>(<span class="at">crs =</span> mex_lcc)</span></code></pre></div>
-<p><img src="merida-workshop-2022_files/figure-html/unnamed-chunk-137-1.png" width="672" /></p>
+<p><img src="merida-workshop-2022_files/figure-html/unnamed-chunk-139-1.png" width="672" /></p>
 <p>Note how the latitude lines are curved after projection.</p>
 </div>
 <div id="a-word-about-resolution-of-spatial-vector-data" class="section level3" number="6.2.7">
@@ -876,7 +877,7 @@ which is the same as the coordinate reference system of <code>ms_thin</code>, as
 <span id="cb230-12"><a href="spatdata.html#cb230-12" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span> </span>
 <span id="cb230-13"><a href="spatdata.html#cb230-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
 <span id="cb230-14"><a href="spatdata.html#cb230-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_sf</span>()</span></code></pre></div>
-<p><img src="merida-workshop-2022_files/figure-html/unnamed-chunk-144-1.png" width="672" /></p>
+<p><img src="merida-workshop-2022_files/figure-html/unnamed-chunk-146-1.png" width="672" /></p>
 </div>
 <div id="but-geom_point-wont-work-with-different-projections-coordinate-reference-sysytems" class="section level3" number="6.3.3">
 <h3><span class="header-section-number">6.3.3</span> But, <code>geom_point()</code> won’t work with Different Projections / Coordinate Reference Sysytems</h3>
@@ -895,7 +896,7 @@ which is the same as the coordinate reference system of <code>ms_thin</code>, as
 <span id="cb231-12"><a href="spatdata.html#cb231-12" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span> </span>
 <span id="cb231-13"><a href="spatdata.html#cb231-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
 <span id="cb231-14"><a href="spatdata.html#cb231-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_sf</span>(<span class="at">crs =</span> mex_lcc)  <span class="co"># using projected coordinates!</span></span></code></pre></div>
-<p><img src="merida-workshop-2022_files/figure-html/unnamed-chunk-145-1.png" width="672" /></p>
+<p><img src="merida-workshop-2022_files/figure-html/unnamed-chunk-147-1.png" width="672" /></p>
 <p>The points are nowhere to be found (Actually, I think that they are all piled
 up on top of one another where the single blue dot is visible!), because the x and y coordinates
 in an LCC projection are totally different than they are in WGS84!</p>
@@ -956,7 +957,7 @@ with <code>geom_sf()</code> like this:</p>
 <span id="cb234-11"><a href="spatdata.html#cb234-11" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span> </span>
 <span id="cb234-12"><a href="spatdata.html#cb234-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
 <span id="cb234-13"><a href="spatdata.html#cb234-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_sf</span>(<span class="at">crs =</span> mex_lcc)  <span class="co"># using projected coordinates!</span></span></code></pre></div>
-<p><img src="merida-workshop-2022_files/figure-html/unnamed-chunk-147-1.png" width="672" /></p>
+<p><img src="merida-workshop-2022_files/figure-html/unnamed-chunk-149-1.png" width="672" /></p>
 <p>That’s Nice!</p>
 <p>Not only does treating these points as spatial objects let us plot it in different
 coordinate reference systems, but, it also allows us to to spatial
@@ -1053,7 +1054,7 @@ we could do this:</p>
 <span id="cb241-11"><a href="spatdata.html#cb241-11" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span> </span>
 <span id="cb241-12"><a href="spatdata.html#cb241-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
 <span id="cb241-13"><a href="spatdata.html#cb241-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_sf</span>(<span class="at">xlim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">95</span>, <span class="sc">-</span><span class="dv">85</span>), <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">16</span>, <span class="dv">23</span>)) </span></code></pre></div>
-<p><img src="merida-workshop-2022_files/figure-html/unnamed-chunk-150-1.png" width="672" /></p>
+<p><img src="merida-workshop-2022_files/figure-html/unnamed-chunk-152-1.png" width="672" /></p>
 <p>Cool!</p>
 </div>
 <div id="treat-the-result-as-a-tibble" class="section level3" number="6.4.2">
@@ -1106,7 +1107,7 @@ state boundaries to have just the state of Yucatán:</p>
 <span id="cb245-9"><a href="spatdata.html#cb245-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
 <span id="cb245-10"><a href="spatdata.html#cb245-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_sf</span>() <span class="sc">+</span></span>
 <span id="cb245-11"><a href="spatdata.html#cb245-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;Year 2017 EBIRD observations of YUJA in Yucatán state&quot;</span>)</span></code></pre></div>
-<p><img src="merida-workshop-2022_files/figure-html/unnamed-chunk-153-1.png" width="672" /></p>
+<p><img src="merida-workshop-2022_files/figure-html/unnamed-chunk-155-1.png" width="672" /></p>
 </div>
 </div>
 <div id="joint-operations-with-raster-and-vector-data-i-masking-a-raster-with-a-polygon" class="section level2" number="6.5">
@@ -1139,7 +1140,7 @@ like <code>vect(yuc_boundary)</code>.</p>
 <span id="cb246-4"><a href="spatdata.html#cb246-4" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
 <p>And we can plot that to see what it looks like:</p>
 <div class="sourceCode" id="cb247"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb247-1"><a href="spatdata.html#cb247-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(yuc_masked_bioc)</span></code></pre></div>
-<p><img src="merida-workshop-2022_files/figure-html/unnamed-chunk-155-1.png" width="672" /></p>
+<p><img src="merida-workshop-2022_files/figure-html/unnamed-chunk-157-1.png" width="672" /></p>
 </div>
 <div id="joint-operations-with-raster-and-vector-data-ii-extracting-raster-values-at-a-set-of-spatial-points" class="section level2" number="6.6">
 <h2><span class="header-section-number">6.6</span> Joint Operations with Raster and Vector data II: Extracting raster values at a set of spatial points</h2>
