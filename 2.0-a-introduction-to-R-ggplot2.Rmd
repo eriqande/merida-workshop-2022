@@ -212,15 +212,37 @@ ggplot() +
 #### A special stat: stat_smooth
 We can keep adding additional layers to this plot to make it more informative. One thing that is often useful when you're looking at data on a scatter plot is a visual representation of how closely the variable on the x axis and the variable on the y axis are related to each other, and the strength of that relationship. We can summarize this using a fitted line.
 
-In ggplot, we can automatically add a fitted line using the layer *geom_smooth()*. By default, *geom_smooth()* will show the relationship between the x and y variables using locally weighted scatter plot smoothing (also known as LOESS) rather than by drawing a straight line. If we want a single straight line to summarize our data, we need to specify that we want *geom_smooth()* to fit a linear model (or "lm").
+In ggplot, we can automatically add a fitted line using the layer *geom_smooth()*. By default, *geom_smooth()* will show the relationship between the x and y variables using locally weighted scatter plot smoothing (also known as LOESS) rather than by drawing a straight line. 
 
 ```{r}
-g<-ggplot(mtcars,aes(hp, qsec)) +
+library(tidyverse)
+library(ggpubr)
+
+ggplot(mtcars,aes(hp, qsec)) +
+  geom_point() +
+  geom_smooth()
+
+```
+
+If we want a single straight line to summarize our data, we need to specify that we want *geom_smooth()* to fit a linear model (or "lm").
+
+
+```{r}
+ggplot(mtcars,aes(hp, qsec)) +
+  geom_point() + 
+  geom_smooth(method="lm",se=F, formula = y~x) 
+```
+
+Now we want to add the actual model equation and r2.
+
+```{r}
+ggplot(mtcars,aes(hp, qsec)) +
   geom_point() + 
   geom_smooth(method = "lm", se = TRUE) +
+  stat_regline_equation(label.y = 27, aes(label = ..eq.label..)) +
+  stat_regline_equation(label.y = 26, aes(label = ..rr.label..)) +
   theme_bw() + 
   theme(aspect.ratio = 1)
-g
 ```
  
  For the following exercises, you can use the ggplot cheatsheet. These are amazing resources to have on hand for creating new plots and adding new layers.
@@ -375,16 +397,33 @@ ggplot() +
 
 **Exercise 4a-c: One variable exercises**
 
-How would you create the following plots? I want you to use a new eBird dataset, however, the syntax still applies. 
+How would you create the following plots? I want you to use a new eBird dataset, however, the syntax still applies. Additionaly, there are multiple ways to read in data.
 
 ```{r}
 myebird<-read_csv("data/2.0a/MyEBirdData_tidy.csv")
+
+myebird<-read_delim("data/2.0a/MyEBirdData_tidy.csv",delim=",")
 ```
-Let's take a quick look at this new data set. It has counts of several bird species in Colorado, and the locations and dates of these observations. 
+
+If you have an excel sheet, you can load a new library and load it using this generic code 
+
+```
+library(gdata)
+file <- read.xls("Excel.file.xlsx",sheet=2)
+```
+ 
+Let's take a quick look at this new data set. It has counts of several bird species in Colorado, and the locations and dates of these observations. The head function will allow you to look at the first 6 lines of the data.
 
 ```{r}
-head(myebird)
+head(myebird) #
 ```
+
+If you want to know the full dataset dimensions, you can use the *dim* function.
+
+```{r}
+dim(myebird)
+```
+
 In order to create the next plots, we may need to *tidy* some of the data. While, the module concurrently being run by Richard goes into how to use *tidyverse* in more depth, this section will provide a *small* hint of what *tidying* data can mean and how we can pipe (%>%) this directly into the  *ggplot()* command.
 
 With a smaller version of the dataset, we are going to create histograms and density plots with some eBird data specific from Colorado. Histograms are a way to show variation in data and are plotted on a single numeric value. In this case we will just look at the Count column of the data frame. This is plotted on the x-axis and to avoid confusion I change the name of the x-axis since the y-axis is the counts of each value.
@@ -471,13 +510,48 @@ ggplot(mtcars, aes(factor(cyl), fill = factor(am))) +
  That seems much easier to read! One thing that I would like to change, however, is the colors. Let's change the color theme of our plot. You can change the color of the fill using the layer scale_fill_manual()
 
 ```{r}
-ggplot(mtcars, aes(factor(cyl), fill = factor(am))) +
-  geom_bar(position = 'dodge')+ # add the barpot
-  facet_wrap(c("am")) + # put each level of "am" in a different facet
-  scale_fill_manual(values=c("#BBBBBB", # a nice, neuteral grey 
-                               "#E69F00")) # a gold caramel color
+??geom_bar
+ggplot() +
+  geom_bar(aes(factor(cyl),fill = factor(am)),data=mtcars, position = 'dodge') + # add the barpot
+   scale_fill_manual(values=c("#BBBBBB", "#E69F00")) +
+  facet_wrap(c("am")) +  
+  theme_bw()
 ```
+
+We can redefine colors based on the hexidecimal color system again. A useful link is here:
+
+http://www.sthda.com/english/wiki/colors-in-r
+
+But we can create a reusable palette by adding the colors to a variable.
+
+```{r}
+cbpalette<-c("#00CC66", "#3333CC")
+library(RColorBrewer)
+mtcars %>% ggplot() +
+  geom_bar(aes(factor(cyl),fill = factor(am)),position = 'dodge')  +# add the barpot
+  facet_wrap(c("am")) +
+  scale_fill_manual(values=cbpalette)
+```
+
+Or you can use the Rcolorbrewer palettes:
  
+https://www.r-graph-gallery.com/38-rcolorbrewers-palettes.html
+  
+```{r}
+library(RColorBrewer)
+library(scales)
+
+GH.cols <- brewer.pal(n = 9, name = "Purples")[c(4,8)]
+show_col(GH.cols)
+```
+
+```{r}
+mtcars %>% ggplot() +
+  geom_bar(aes(factor(cyl),fill = factor(am)),position = 'dodge')  +
+  facet_wrap(c("am")) +
+  scale_fill_manual(values=GH.cols)
+```
+
 Let's add some labels here, where we have to specify position again.
  
 ```{r}
@@ -486,7 +560,7 @@ ggplot(mtcars, aes(factor(cyl),fill = factor(am))) +
   geom_label(aes(label = ..count..), 
              stat = 'count', 
              position = 'stack') +
-  scale_fill_manual(values=c("#BBBBBB", "#E69F00"))
+  scale_fill_manual(values=GH.cols)
 ```
  
 Instead of defining the position as a string (e.g. position = "dodge"), you can write it as a full function with arguments (e.g. position = position_dodge(width = 0.5)) or tell ggplot where within the boxplot you'd like to posiiton the counts specifically (e.g position = position_stack(vjust=0.5)).
@@ -497,7 +571,9 @@ ggplot(mtcars, aes(factor(cyl), fill = factor(am))) +
   geom_text(aes(label = ..count..),
             stat = 'count',
             position = position_stack(vjust = 0.5)) +
-  scale_fill_manual(values=c("#BBBBBB", "#E69F00"))
+  xlab("Cylinder") +
+  ylab("Count") +
+  scale_fill_manual(values=GH.cols)
 ```
  
 As you can see, the general idea of behind ggplot (starting with just a blank plot and slowly adding more and more layers) also lends itself to a general workflow where we start with a very simple plot and add layers until it looks exactly the way we want.
