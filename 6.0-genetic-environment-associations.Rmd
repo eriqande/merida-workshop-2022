@@ -145,6 +145,9 @@ dim(Ewifl)
 
 __How many sites do we have environmental data for? How many environmental variables?__
 
+```{r}
+head(Ewifl)
+```
 Second, we have genomic data formatted as allele frequencies for each population in the same order. The published Willow Flycatcher data includes 37855 variants, and is too large to run a gradient forest analyses within the time frame of a tutorial, so we are supplying a subsetted dataset limited to 10,000 SNPs. 
 
 ```{r}
@@ -345,8 +348,7 @@ mapg <- ggplot() +
   geom_sf(data = countries_cropped, fill = NA) +
   geom_sf(data = states_cropped, fill = NA) +
   ggspatial::layer_spatial(wiflmap,col=rgb(r,g,b,max=255),pch=15) +
-  #geom_spatial_point(data=Epabu, aes(Long,Lat),col="black") +
-   geom_sf(data=wifl_shape,fill=NA) +
+  geom_sf(data=wifl_shape,fill=NA) +
   theme_bw() 
 
 #Now, let's see how our developing map looks under such a projection.  We just define `lamproj` as a coordinate reference system and pass it in to `coord_sf()`
