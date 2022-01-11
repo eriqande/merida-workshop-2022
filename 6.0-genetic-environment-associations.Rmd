@@ -81,7 +81,13 @@ you can see that different environmental variables predict genetic variation of 
 knitr::include_graphics("images/6.0/Fitzpatrick.Fig5.jpeg")
 ```
 
-Below is code for quantifying and visualizing intraspecific gene-environment variation across space. As part of The Bird Genoscape Project, we compare present-day gene-environment associations to predicted future changes to identify regions of genomic vulnerability. For now, this tutorial focuses on analyzing and plotting the allelic variation as estimated from gradient forest for a single species, the Willow Flycatcher, but is easily adpated to include other species and methods for esimating variation.
+Below is code for quantifying and visualizing intraspecific gene-environment variation across space. As part of The Bird Genoscape Project, we compare present-day gene-environment associations to predicted future changes to identify regions of genomic vulnerability. 
+
+```{r, echo=FALSE, out.width='60%'}
+knitr::include_graphics("images/6.0/genomic_vulnerability.jpg")
+```
+
+For now, this tutorial focuses on analyzing and plotting the allelic variation as estimated from gradient forest for a single species, the Willow Flycatcher, but is easily adpated to include other species and methods for esimating variation.
 
 ## Housekeeping
 We will need the following R packages. gradientForest requires the dependancy extendedForest, an R package classification and regression based on forest trees using random inputs. With the newest version of R, extended forest is installed automatically as a dependency.
