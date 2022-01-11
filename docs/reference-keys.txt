@@ -1,11 +1,12 @@
-fig:unnamed-chunk-178
-fig:unnamed-chunk-182
-fig:unnamed-chunk-183
-fig:unnamed-chunk-189
+fig:unnamed-chunk-186
+fig:unnamed-chunk-191
 fig:unnamed-chunk-192
-fig:unnamed-chunk-194
-fig:unnamed-chunk-199
+fig:unnamed-chunk-198
 fig:unnamed-chunk-201
+fig:unnamed-chunk-203
+fig:unnamed-chunk-209
+fig:unnamed-chunk-210
+fig:unnamed-chunk-212
 setting-computer
 step-1.-get-the-latest-versions-of-r-and-rstudio
 step-2.-install-a-number-of-r-packages-that-are-relatively-easy-to-install
@@ -87,6 +88,8 @@ examples-of-climate-layers
 examples-of-atmospheric-layers
 examples-of-vegetation-layers
 examples-of-landscape-layers
+mariuss-links
+example-code
 spatdata
 handling-spatial-rasters-in-r
 reading-and-printing-raster-data

@@ -196,3 +196,86 @@ tbl12 <- tibble::tribble(
 kableExtra::kable_styling(knitr::kable(tbl12), font_size = 14)
 ```
 
+
+### Marius's links
+
+Here are the links that Marius showed us for some high quality environmental data sets:
+
+
+**CHELSA**: [https://chelsa-climate.org/](https://chelsa-climate.org/)  
+  
+  
+**USGS Source for NASA data, etc.**: [https://lpdaac.usgs.gov/](https://lpdaac.usgs.gov/). _search VIP30 for NDVI and SRTM for elevation_.
+
+**Copernicus Land Cover Data**: [https://land.copernicus.eu/global/products/lc](https://land.copernicus.eu/global/products/lc).
+
+
+**The R package for wind** that downloads the NOAA wind data is 'rWind'.
+
+### Example Code
+
+Here is the example code that Marius used.  The data sets
+are quite large, so they were not included in this repository.
+(He also keeps them in a centralized location on his
+laptop---hence the absolute paths!---since they are so large).
+
+```{r, eval=FALSE}
+
+# Load packages
+library(terra)
+library(rnaturalearth)
+
+# Load environmental raster
+Prec_01_2015 <- terra::rast("/Users/mariussomveille/Desktop/CHELSA_pr_01_2015_V.2.1.tif")
+
+# Mexico
+Mexico <- ne_countries(type = "countries", country = "mexico", scale=50)
+
+plot(Prec_01_2015)
+plot(Mexico, add=T)
+
+# Projection
+crs(Prec_01_2015)
+terra::crs(Prec_01_2015) <- crs(Mexico) <- "+proj=longlat +datum=WGS84 +no_defs +ellps=WGS84 +towgs84=0,0,0"
+
+# Change extent
+ext(Prec_01_2015)
+Prec_01_2015 <- terra::crop(Prec_01_2015, ext(Mexico)) # c(-170, -30, 0, 60)
+
+# Change spatial resolution
+res(Prec_01_2015)
+Prec_01_2015_2 <- terra::aggregate(Prec_01_2015, fact=100, fun=mean, na.rm=T)
+res(Prec_01_2015_2)
+
+# Modify values (rescale between 0 and 1)
+Prec_01_2015_2 <- Prec_01_2015_2 * 1/Prec_01_2015_2@ptr$range_max
+
+
+## WIND
+
+library(rWind)
+library(lubridate)
+
+birdwsep <- ymd_hms(paste(2014, 1, 11, 12,00,00, sep="-"))
+bw = wind.dl_2(birdwsep,-120, -85, 10, 35)
+birdwindavg = wind2raster(bw)[[1]]
+crs(birdwindavg) <- "+proj=longlat +datum=WGS84 +no_defs +ellps=WGS84 +towgs84=0,0,0"
+
+
+## NDVI
+
+NDVI_01_2014 <- terra::rast("/Users/mariussomveille/Desktop/VIP30.A2014001.004.2016246195842.hdf")
+terra::crs(NDVI_01_2014) <- proj4string(birdwindavg)
+NDVI_01_2014 <- terra::crop(NDVI_01_2014[[1]], terra::ext(terra::rast(birdwindavg)))
+NDVI_01_2014 <- NDVI_01_2014 * 1/NDVI_01_2014@ptr$range_max
+NDVI_01_2014 <- terra::aggregate(NDVI_01_2014, fact=10, fun=mean, na.rm=T)
+
+
+## SRTM
+
+elevation <- terra::rast("/Volumes/Marius_SSD/SRTM_1km_ASC/srtm_1km.asc")
+terra::crs(elevation) <- proj4string(birdwindavg)
+elevation <- terra::crop(elevation, terra::ext(terra::rast(birdwindavg)))
+
+
+```

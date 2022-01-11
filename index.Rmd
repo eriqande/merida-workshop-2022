@@ -131,6 +131,7 @@ install.packages(
     "googledrive",
     "googlesheets4",
     "ggrepel",      # for fitting labels in space into ggplots
+    "ggpubr",       # ggplot based publication ready plots
     "cowplot",      # for arranging ggplots together
     "RColorBrewer", # a color palette for graphing
     "viridis",      # a color palette for graphing
