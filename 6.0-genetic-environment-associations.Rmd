@@ -184,7 +184,6 @@ Now we can ask which environmental variables are significantly associated with t
 This first plot and most useful from gradientForest is the predictor overall importance plot, which shows a simple barplot of the ranked importances of the physical variables. This shows the mean accuracy importance and the mean importance weighted by SNP R^2. The most reliable importances are the R^2 weighted importances.
 
 ```{r, fig.cap = "Overall importance of predictor variables"}
-
 plot(wiflforest,plot.type="Overall.Importance")
 ```
 
@@ -201,7 +200,7 @@ __Which SNP has the greatest importance?__ For plotting purposes, only the first
 You can confirm this by looking at the range of your top environemntal variables and comparing it to the x-axis in the plots above using this code below:
 
 ```{r}
-Ewifl %>% dplyr::select(BIO4,BIO3)
+Ewifl %>% dplyr::select(BIO4,BIO3) %>% summarise(rangeBio4=range(BIO4),rangeBio3=range(BIO3))
 ```
 
 Note, while gradient forest can look at variants associated with environmental variables like this, we tend to choose the top uncorrelated environmental variables and run latent factor mixed models to identify candidate genes associated with each environmental variable. Why? In gradient forest, we "bin" the variation, so we are looking for large patterns, not individual variants.
@@ -214,7 +213,9 @@ Gradientforest here was based off of 21 locations in the WIFL range. I've random
 
 ```{r}
 #WIFL current random points, filter out 'bad' points
-birdgrid=read.table("data/6.0/wiflcurrentRH.csv",header=T,sep=",") %>% filter(BIO4!="-9999") #load your  random points with assocaited env predictors 
+birdgrid<- read_csv("data/6.0/wiflcurrentRH.csv") %>% #load your  random points with assocaited env predictors
+  filter(BIO4!="-9999") %>%  #remove the "bad data"
+  as.data.frame() #create the data frame
 ##Let's look at bird grid, untransformed environmental variable
 head(birdgrid)
 dim(birdgrid)
@@ -234,7 +235,7 @@ Predict across your random sites using your Forest model:
 ```{r}
 predictors_uncor<-c("BIO11","BIO5","BIO4" ,"BIO17")
 
-currentgrid=cbind(birdgrid[,c("X","Y")], predict(wiflforest,birdgrid[,predictors_uncor])) #predict across your random sites using your forest
+currentgrid <-cbind(birdgrid[,c("X","Y")], predict(wiflforest,birdgrid[,predictors_uncor])) #predict across your random sites using your forest
 
 ##Let's look at currentgrid, transformed environmental variables- see how they were transformed
 head(currentgrid)
@@ -301,12 +302,12 @@ dev.off()
 With this, we can draw our first gradient forest map:
 
 ```{r}
-wiflcols=rgb(r,g,b,max=255)
-wiflcols2=col2rgb(wiflcols)
-wiflcols3=t(wiflcols2)
-gradients=cbind(currentgrid[c("X","Y")],wiflcols3)
-wiflmap=gradients
-coordinates(wiflmap)=~X+Y #setting the coordinates
+wiflcols <- rgb(r,g,b,max=255)
+wiflcols2 <- col2rgb(wiflcols)
+wiflcols3<- t(wiflcols2)
+gradients<-cbind(currentgrid[c("X","Y")],wiflcols3)
+wiflmap<-gradients
+coordinates(wiflmap)<- ~X+Y #setting the coordinates
 proj4string(wiflmap) <- CRS("+proj=longlat +datum=WGS84")
 ```
 
@@ -351,12 +352,15 @@ mapg <- ggplot() +
   geom_sf(data=wifl_shape,fill=NA) +
   theme_bw() 
 
-#Now, let's see how our developing map looks under such a projection.  We just define `lamproj` as a coordinate reference system and pass it in to `coord_sf()`
+mapg
+```
 
+Now, let's see how our developing map looks under such a projection.  We just define `lamproj` as a coordinate reference system and pass it in to `coord_sf()`
+
+```{r}
 lamproj <- "+proj=lcc +lat_1=20 +lat_2=60 +lat_0=40 +lon_0=-100 +x_0=0 +y_0=0 +ellps=GRS80 +datum=NAD83 +units=m +no_defs"
 
-
-#Plotting, but cutting out rectangle (Don't need a lot of extra space)
+#Plotting with projection, and cutting out rectangle (Don't need a lot of extra space)
 rectangled <-mapg +
   xlab("Longitude") + ylab("Latitude")+
   coord_sf(
@@ -372,6 +376,7 @@ Rename this file. I put the plot I plotted in here, but let's make sure this wor
 ```{r}
 ggsave("stored_results/6.0/WIFL.GF_map.pdf")
 ```
+ 
 ## Defining "Genomic Vulnerability/Genomic offset" Given Future Climate Predictions 
 
 The plots above are the genotype-environment relationship given present-day climate rasters. However, we know rapid fluctuations in temperature and precipitation associated with climate change can alter the suitability of particular regions making it necessary for individuals to either adapt, disperse or die if the changes are extreme enough. Those species that possess standing genetic variation for climate-related traits (i.e. have adaptive capacity) are most likely to have the ability to adapt to rapidly changing environments. Those species that unable to adapt are deemed most vulneraable.
@@ -383,10 +388,14 @@ Here, we read in the future climate predictions for each random point. Since dif
 The lowest recent emissions pathway (RCP), 2.6, assumes immediate and rapid reductions in emissions and would result in about 2.5°F of warming in this century. The highest emissions pathway, RCP 8.5, roughly similar to a continuation of the current path of global emissions increases, is projected to lead to more than 8°F warming by 2100, with a high-end possibility of more than 11°F. Each of these is a composite of multiple prediction models and have rather different predictions.
 
 ```{r}
-future1<-read.table("data/6.0/wiflfuture2-6-2050.csv",header=T,sep=",") %>% filter(BIO4!="-9999")
+future1<-read_csv("data/6.0/wiflfuture2-6-2050.csv") %>% 
+  filter(BIO4!="-9999") %>% 
+  as.data.frame()
 head(future1)
 
-future2<-read.table("data/6.0/wiflfuture8-5-2050.csv",header=T,sep=",") %>% filter(BIO4!="-9999")
+future2<-read_csv("data/6.0/wiflfuture8-5-2050.csv") %>% 
+  filter(BIO4!="-9999") %>% 
+  as.data.frame()
 head(future2)
 ```
 
@@ -411,10 +420,15 @@ names(euc) <- c("Long","Lat","Vulnerability")
 
 This again takes a moment. Once we have this metric, we can easily map genomic vulnerability across the range. First by choosing a color palette, then by converting a dataframe of distances to a spatial polygon and giving it the same extent as the map it's going to be plotted on and finally, mapping in ggplot.
 
-```{r,fig.cap = "Heat map of genomic vulnerability under the 2050 2.6 emission future prediction"}
+```{r,fig.cap = "Color Ramp for plotting"}
+library(scales)
 colramp2=brewer.pal(n = 9, name = "RdYlBu")[c(1:9)]
 Futcolors<-colorRampPalette(colramp2)
+show_col(Futcolors(100))
+```
 
+
+```{r,fig.cap = "Heat map of genomic vulnerability under the 2050 2.6 emission future prediction"}
 euc_sp<-st_as_sf(euc,coords=c("Long", "Lat"))
 st_crs(euc_sp) <- st_crs(coast_cropped) 
 
@@ -422,7 +436,7 @@ mapg <- ggplot() +
   geom_sf(data = coast_cropped) +
   geom_sf(data = countries_cropped, fill = NA) +
   geom_sf(data = states_cropped, fill = NA) +
-  geom_point(data=euc,aes(x=Long,y=Lat,color=Vulnerability),pch=15) +
+  geom_point(data=euc,aes(x=Long,y=Lat,color=Vulnerability),pch=15,size=1) +
   scale_colour_gradientn(colours = Futcolors(100))+
    geom_sf(data=wifl_shape,fill=NA) +
   theme_bw() 
