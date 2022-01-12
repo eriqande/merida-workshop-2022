@@ -925,6 +925,8 @@ Then use an analysis and figure to describe how the relationship between NDVI an
 
 Hint: to create temperature values, you can sample from a normal distribution. (It's not entirely realistic as temperature and NDVI should be weakly correlated but for the purposes of the exercise, it is okay).
 
+You can see my solution to the exercise at the end of the chapter.
+
 ---
 
 Cross-validation. 
@@ -1019,5 +1021,74 @@ birds_cv <- data_all %>%
   unnest(rmse)
 
 birds_cv
+```
+
+SOLUTION TO EXERCISE: Graphing the relationship between NDVI and richness for different temperatures
+
+```{r}
+data_temp <- data_all %>% 
+  mutate(Temp = rep(rnorm(nrow(data_all)/2, 30, 2.5), 2))
+
+# The idea here is to generate random values for temperature just so we have a new variable to work with
+# One way to generate random values is to sample from a normal distribution
+# I sampled from a normal distribution with a mean of 30 C and a standard deviation of 2.5 C, which seems reasonable for the Yucatan Peninsula
+
+# However, the data_all tibble has 60 rows equal to 2 times 30 sites, one set of sites for birds and the same set of sites for butterflies
+# We assume that the same site will have the same temperature. That is why I generated 30 temperature values and then repeated that vector two times. If the sites are in order, 1:30 for birds and 1:30 for butterflies, then the site will receive the same values 2 times
+
+richness_temp <- data_temp %>% 
+  group_by(Taxa) %>% 
+  nest() %>% 
+  mutate(Models = map(data, ~lm(Richness ~ NDVI*Temp, data = .))) %>% 
+  
+  # The exercise asks to demonstrate the difference in the richness-NDVI relationship for different temperatures
+  # Hence, we need to model an interaction between NDVI and temperature. If not, the richness-NDVI relationship would be the same at every temperature value
+  
+  mutate(Tidied = map(Models, tidy), 
+         Glanced = map(Models, glance),  
+         Predictions = map(Models, augment, newdata = expand_grid(NDVI = seq(0, 1, 0.01), 
+                                                                  Temp = quantile(data_temp$Temp, 
+                                                                                  probs = c (0.05, 0.95))), 
+                           se_fit = TRUE, interval = "confidence")) 
+
+# The idea is to use the model to predict the expected species richness at a given NDVI and temperature value
+# To show the relationship with NDVI, we want to predict across a range of NDVI values. However, for temperature, we only need to show low and high values. You can pick a "low" and  "high" temperature arbitrarily or you can take the 5 % and 95 % quantiles of the range of original temperature values.
+# expand_grid makes sure that each NDVI value is paired with a low and high temperature values. A prediction will be made for a given NDVI value in combination with a low temperatue and the same NDVI value in combination with a high temperature. 
+
+temp_predictions <- richness_temp %>% 
+  unnest(Predictions) %>% 
+  select(Taxa, NDVI, Temp, .fitted, .lower, .upper) %>% 
+  rename(Richness = .fitted, low.95 = .lower, high.95 = .upper)
+
+p <- temp_predictions %>% 
+  ggplot(aes(x = NDVI, y = Richness, col = factor(round(Temp, 0)))) + 
+  
+  # The 5 % and 95 % temperature quantiles have a lot of decimal places. When we visualize the results, we do not need to be so precise. Hence, it is simpler to just show a rounded, whole number, just to give an idea of the relationship at low and high temperatures.
+  
+  geom_line(size = 2) +
+  geom_ribbon(aes(ymin = low.95, ymax = high.95, fill = factor(Temp)), show.legend = FALSE, 
+              color = NA, alpha = 0.3) +
+  
+  # We will already have a legend associated with the color indicated in the ggplot() code. We do not need to repeat the legend based on fill, as long as the colors associated with the line and the ribbon are the same. You can see the difference by trying out show.legend = TRUE (or not writing show.legend at all since TRUE is the default).
+  
+  geom_point(data = data_temp, aes(x = NDVI, y = Richness), size = 3, inherit.aes = FALSE) + 
+  
+  # Here we added back in the original, observed richness values. If we don't write "inherit.aes" the geom_point will automatically assign a color to each original temperature value. Because we didn't specify color in the geom_point(aes()), it "inherits" the col = factor(round(Temp, 0)) from the ggplot() code. We can suppress inheriting those aesthetics by indicating inherit.aes = FALSE. You can see what happens when you write inherit.aes = TRUE (or write nothing at all since TRUE is the default).
+  
+  facet_wrap(vars(Taxa), nrow=2) + 
+  scale_y_continuous(name = "Species richness\n") + 
+  scale_x_continuous(name = "\nNDVI") + 
+  scale_color_viridis_d(name = "Temperature\n") + 
+  scale_fill_viridis_d() + 
+  
+  # This makes sure that the high and low temperature line color and the high and low ribbon (fill) color are the same
+  
+  theme_classic() + 
+  theme(axis.line.x = element_line(colour = "black"), 
+        axis.line.y = element_line(colour = "black"), 
+        text = element_text(size = 12))
+
+p
+
 ```
 
