@@ -566,9 +566,9 @@ If you find that gradient forest is significant, your next step might be wanting
 
 * Latent Factor mixed models to identify candidate genes associated with top ranking environmental variables
 
-https://bcm-uga.github.io/lfmm/
+https://bcm-uga.github.io/lfmm/ 
 
 * Redundancy analyses is a method to extract and summarise the variation in a set of response variables that can be explained by a set of explanatory variables. More accurately, RDA is a direct gradient analysis technique which summarises linear relationships between components of response variables that are "redundant" with (i.e. "explained" by) a set of explanatory variables. Very similar to gradient forest, but also can identify candidate genes associated with environmental variables.
 
-https://popgen.nescent.org/2018-03-27_RDA_GEA.html
+https://popgen.nescent.org/2018-03-27_RDA_GEA.html 
 
