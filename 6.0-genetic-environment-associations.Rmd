@@ -194,10 +194,9 @@ conditional permutation **Ellis2010**, following the strategy outlined
 by **Strobl2008**. In conditional permutation, the predictor to be
 assessed is permuted only within blocks of the dataset defined by splits in the
 given tree on any other predictors correlated above a certain threshold (e.g. 
-r= 0.5) and up to a maximum number of splits set by the *maxLevel* option (if
-required). A maxLevel > 0 will compute importance from conditional permutation distribution of each variable, permuted within 2^maxLevel partitions of correlated variables.
+r= 0.5) and up to a maximum number of splits set by the *maxLevel* option. A **maxLevel > 0** will compute importance from conditional permutation distribution of each variable, permuted within *2^maxLevel* partitions of correlated variables.
 
-*Note:* the ntree=default is 10, however, more is better and reduces variance. Gradient forest recommends 500 for a tue run. Also, gradient forest bins variants, thus large scale patterns will be seen, however, if there is one variant of large effect, it may not be found in this analysis.
+*Note:* the *ntree* default is 10, however, more is better and reduces variance. Gradient forest recommends 500 for a true run. Also, gradient forest bins variants, thus large scale patterns will be seen, however, if there is one variant of large effect, it may not be found in this analysis.
 
 If you are asking about ecological drivers of a small number of variants underlying a trait of interest (candidate variants identified using GWAS), then you wouldn't bin the data, as you don't want to split up the data even more.
  
@@ -231,7 +230,7 @@ You can confirm this by looking at the range of your top environemntal variables
 ```{r}
 Ewifl %>% dplyr::select(BIO4,BIO3) %>% summarise(rangeBio4=range(BIO4),rangeBio3=range(BIO3))
 
-or 
+#or 
 
 Ewifl %>% pull(BIO4) %>% range()
 
@@ -355,7 +354,7 @@ plot(wiflmap,col=rgb(r,g,b,max=255),pch=15)
 
 __How would you interpret the different colors on thie WIFL map? Is the endangered southwest Willow Flycatcher locally adapted? __
 
-Let's plot this another way, on a map. To do this, we need some additional shapefiles of North America.
+Let's plot this another way, on an actual map of North America. To do this, we need some additional shapefiles.
 
 The domain here allows you to crop the shapefiles to just your species range.
 ```{r}
@@ -519,8 +518,11 @@ mapg2
 
 ## Next steps
 
-### Randomization to test the significance of the top ranking variables and ask whether your species is locally adapted to current climate conditions
-So as we've seen in this tutorial, grandient forest is a great way to understand which variables are important to the population genomic structure of your populations. To understand how important, you need to run a randomization step. In this step, you are breaking up the actual associations of allele frequencies and enviornmnetal variables, randomizing the environmental predictors and running gradient forest again. 
+### Randomization 
+
+So as we've seen in this tutorial, grandient forest is a great way to understand which variables are important drivers of the population genomic structure of your species and with plotting the assoiciations in space, a great way to look at local adpation of different populations to different environmental variables. To understand how important, whether local adaptation is significant in your species, you need to run a randomization step. In this step, you are breaking up the actual associations of allele frequencies and enviornmnetal variables, randomizing the environmental predictors and running gradient forest again *multiple times*. 
+
+This code below is not evaluated because it takes a very long time to run one thousand randomizations.
 
 ```
 realtotal=wiflforest$species.pos.rsq
@@ -562,13 +564,13 @@ If your real results fall right in the middle of the randomized results, then ev
 
 ### Candidate variants
 
-If you find that gradient forest is significant, your next step might be wanting to identify variants associated with these top variables. Grandient forest is not really the way to do this. Rather, there are two programs that you can use: *Latent Factor Mixed Models* and *Redundancy Analyses*.
+If you find that gradient forest is significant, your next step might be wanting to identify variants associated with these top variables. Grandient forest is not really the way to do this. Rather, there are two programs that you can use: *Latent Factor Mixed Models (LFMM)* and *Redundancy Analyses (RDA)*.
 
-* Latent Factor mixed models to identify candidate genes associated with top ranking environmental variables
+* LFMM can identify candidate loci associated with top ranking environmental variables
 
 https://bcm-uga.github.io/lfmm/ 
 
-* Redundancy analyses is a method to extract and summarise the variation in a set of response variables that can be explained by a set of explanatory variables. More accurately, RDA is a direct gradient analysis technique which summarises linear relationships between components of response variables that are "redundant" with (i.e. "explained" by) a set of explanatory variables. Very similar to gradient forest, but also can identify candidate genes associated with environmental variables.
+* RDA is a method to extract and summarise the variation in a set of response variables that can be explained by a set of explanatory variables. More accurately, RDA is a direct gradient analysis technique which summarises linear relationships between components of response variables that are "redundant" with (i.e. "explained" by) a set of explanatory variables. Very similar to gradient forest, but also can identify candidate genes associated with environmental variables.
 
 https://popgen.nescent.org/2018-03-27_RDA_GEA.html 
 
