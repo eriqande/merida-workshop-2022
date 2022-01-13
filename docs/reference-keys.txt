@@ -1,11 +1,12 @@
-fig:unnamed-chunk-178
-fig:unnamed-chunk-182
-fig:unnamed-chunk-183
-fig:unnamed-chunk-189
+fig:unnamed-chunk-185
 fig:unnamed-chunk-192
-fig:unnamed-chunk-194
+fig:unnamed-chunk-193
 fig:unnamed-chunk-199
-fig:unnamed-chunk-201
+fig:unnamed-chunk-202
+fig:unnamed-chunk-204
+fig:unnamed-chunk-210
+fig:unnamed-chunk-211
+fig:unnamed-chunk-213
 setting-computer
 step-1.-get-the-latest-versions-of-r-and-rstudio
 step-2.-install-a-number-of-r-packages-that-are-relatively-easy-to-install
@@ -128,4 +129,7 @@ housekeeping
 running-gradient-forest
 basic-gradient-forest-preparation
 defining-genomic-vulnerabilitygenomic-offset-given-future-climate-predictions
+next-steps
+randomization
+candidate-variants
 conclude

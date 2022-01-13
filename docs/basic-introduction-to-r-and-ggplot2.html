@@ -24,7 +24,7 @@
 <meta name="author" content="Eric C. Anderson, Christen Bossu, Richard Evan Feldman, Kristen C. Ruegg, Marius Somveille" />
 
 
-<meta name="date" content="2022-01-10" />
+<meta name="date" content="2022-01-12" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -295,6 +295,11 @@ div.csl-indent {
 <li class="chapter" data-level="7.4" data-path="geassoc.html"><a href="geassoc.html#running-gradient-forest"><i class="fa fa-check"></i><b>7.4</b> Running Gradient Forest</a></li>
 <li class="chapter" data-level="7.5" data-path="geassoc.html"><a href="geassoc.html#basic-gradient-forest-preparation"><i class="fa fa-check"></i><b>7.5</b> Basic Gradient Forest Preparation</a></li>
 <li class="chapter" data-level="7.6" data-path="geassoc.html"><a href="geassoc.html#defining-genomic-vulnerabilitygenomic-offset-given-future-climate-predictions"><i class="fa fa-check"></i><b>7.6</b> Defining “Genomic Vulnerability/Genomic offset” Given Future Climate Predictions</a></li>
+<li class="chapter" data-level="7.7" data-path="geassoc.html"><a href="geassoc.html#next-steps"><i class="fa fa-check"></i><b>7.7</b> Next steps</a>
+<ul>
+<li class="chapter" data-level="7.7.1" data-path="geassoc.html"><a href="geassoc.html#randomization"><i class="fa fa-check"></i><b>7.7.1</b> Randomization</a></li>
+<li class="chapter" data-level="7.7.2" data-path="geassoc.html"><a href="geassoc.html#candidate-variants"><i class="fa fa-check"></i><b>7.7.2</b> Candidate variants</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="8" data-path="conclude.html"><a href="conclude.html"><i class="fa fa-check"></i><b>8</b> Concluding Remarks / Parting Words</a></li>
 <li class="divider"></li>
@@ -496,15 +501,30 @@ R treats continuous and discrete information differently. ggplot directly uses t
 <div id="a-special-stat-stat_smooth" class="section level4" number="2.2.2.5">
 <h4><span class="header-section-number">2.2.2.5</span> A special stat: stat_smooth</h4>
 <p>We can keep adding additional layers to this plot to make it more informative. One thing that is often useful when you’re looking at data on a scatter plot is a visual representation of how closely the variable on the x axis and the variable on the y axis are related to each other, and the strength of that relationship. We can summarize this using a fitted line.</p>
-<p>In ggplot, we can automatically add a fitted line using the layer <em>geom_smooth()</em>. By default, <em>geom_smooth()</em> will show the relationship between the x and y variables using locally weighted scatter plot smoothing (also known as LOESS) rather than by drawing a straight line. If we want a single straight line to summarize our data, we need to specify that we want <em>geom_smooth()</em> to fit a linear model (or “lm”).</p>
-<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="basic-introduction-to-r-and-ggplot2.html#cb31-1" aria-hidden="true" tabindex="-1"></a>g<span class="ot">&lt;-</span><span class="fu">ggplot</span>(mtcars,<span class="fu">aes</span>(hp, qsec)) <span class="sc">+</span></span>
-<span id="cb31-2"><a href="basic-introduction-to-r-and-ggplot2.html#cb31-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
-<span id="cb31-3"><a href="basic-introduction-to-r-and-ggplot2.html#cb31-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="at">se =</span> <span class="cn">TRUE</span>) <span class="sc">+</span></span>
-<span id="cb31-4"><a href="basic-introduction-to-r-and-ggplot2.html#cb31-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span> </span>
-<span id="cb31-5"><a href="basic-introduction-to-r-and-ggplot2.html#cb31-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">aspect.ratio =</span> <span class="dv">1</span>)</span>
-<span id="cb31-6"><a href="basic-introduction-to-r-and-ggplot2.html#cb31-6" aria-hidden="true" tabindex="-1"></a>g</span></code></pre></div>
-<pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
+<p>In ggplot, we can automatically add a fitted line using the layer <em>geom_smooth()</em>. By default, <em>geom_smooth()</em> will show the relationship between the x and y variables using locally weighted scatter plot smoothing (also known as LOESS) rather than by drawing a straight line.</p>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="basic-introduction-to-r-and-ggplot2.html#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb31-2"><a href="basic-introduction-to-r-and-ggplot2.html#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggpubr)</span>
+<span id="cb31-3"><a href="basic-introduction-to-r-and-ggplot2.html#cb31-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-4"><a href="basic-introduction-to-r-and-ggplot2.html#cb31-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mtcars,<span class="fu">aes</span>(hp, qsec)) <span class="sc">+</span></span>
+<span id="cb31-5"><a href="basic-introduction-to-r-and-ggplot2.html#cb31-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb31-6"><a href="basic-introduction-to-r-and-ggplot2.html#cb31-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>()</span></code></pre></div>
+<pre><code>## `geom_smooth()` using method = &#39;loess&#39; and formula &#39;y ~ x&#39;</code></pre>
 <p><img src="merida-workshop-2022_files/figure-html/unnamed-chunk-22-1.png" width="672" /></p>
+<p>If we want a single straight line to summarize our data, we need to specify that we want <em>geom_smooth()</em> to fit a linear model (or “lm”).</p>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="basic-introduction-to-r-and-ggplot2.html#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mtcars,<span class="fu">aes</span>(hp, qsec)) <span class="sc">+</span></span>
+<span id="cb33-2"><a href="basic-introduction-to-r-and-ggplot2.html#cb33-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
+<span id="cb33-3"><a href="basic-introduction-to-r-and-ggplot2.html#cb33-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method=</span><span class="st">&quot;lm&quot;</span>,<span class="at">se=</span>F, <span class="at">formula =</span> y<span class="sc">~</span>x) </span></code></pre></div>
+<p><img src="merida-workshop-2022_files/figure-html/unnamed-chunk-23-1.png" width="672" /></p>
+<p>Now we want to add the actual model equation and r2.</p>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="basic-introduction-to-r-and-ggplot2.html#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mtcars,<span class="fu">aes</span>(hp, qsec)) <span class="sc">+</span></span>
+<span id="cb34-2"><a href="basic-introduction-to-r-and-ggplot2.html#cb34-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
+<span id="cb34-3"><a href="basic-introduction-to-r-and-ggplot2.html#cb34-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="at">se =</span> <span class="cn">TRUE</span>) <span class="sc">+</span></span>
+<span id="cb34-4"><a href="basic-introduction-to-r-and-ggplot2.html#cb34-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_regline_equation</span>(<span class="at">label.y =</span> <span class="dv">27</span>, <span class="fu">aes</span>(<span class="at">label =</span> ..eq.label..)) <span class="sc">+</span></span>
+<span id="cb34-5"><a href="basic-introduction-to-r-and-ggplot2.html#cb34-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_regline_equation</span>(<span class="at">label.y =</span> <span class="dv">26</span>, <span class="fu">aes</span>(<span class="at">label =</span> ..rr.label..)) <span class="sc">+</span></span>
+<span id="cb34-6"><a href="basic-introduction-to-r-and-ggplot2.html#cb34-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span> </span>
+<span id="cb34-7"><a href="basic-introduction-to-r-and-ggplot2.html#cb34-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">aspect.ratio =</span> <span class="dv">1</span>)</span></code></pre></div>
+<pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
+<p><img src="merida-workshop-2022_files/figure-html/unnamed-chunk-24-1.png" width="672" /></p>
 <p>For the following exercises, you can use the ggplot cheatsheet. These are amazing resources to have on hand for creating new plots and adding new layers.</p>
 <p>Page 1:</p>
 <p><img src="images/2.0_R_ggplot/ggplot_cheatsheet.Page1.jpg" width="80%" /></p>
@@ -513,14 +533,14 @@ R treats continuous and discrete information differently. ggplot directly uses t
 <p><strong>Exercise 1: Create the following plot</strong></p>
 <p>Now, how would you change the code above to change the color of the point layer, withuot affecting the smooth layer since the aes() aesthetic mapping is passed at the point layer.</p>
 <pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
-<p><img src="merida-workshop-2022_files/figure-html/unnamed-chunk-25-1.png" width="672" /></p>
+<p><img src="merida-workshop-2022_files/figure-html/unnamed-chunk-27-1.png" width="672" /></p>
 <p><em>Hint:</em> the code would only change the color of the point layer, it would not affect the color of the smooth layer since the aes() aesthetic mapping is passed at the point layer.</p>
 <p><strong>Exercise 2: Create the following plot</strong></p>
 <p>Can you recreate this plot using other aesthetic options?</p>
-<p><img src="merida-workshop-2022_files/figure-html/unnamed-chunk-26-1.png" width="672" /></p>
+<p><img src="merida-workshop-2022_files/figure-html/unnamed-chunk-28-1.png" width="672" /></p>
 <p><strong>Exercise 3: Create the following plot</strong></p>
 <p>How about if we wanted to create a line plot with this data? How would you generate the following plot with separate lines representing the “am” variable.</p>
-<p><img src="merida-workshop-2022_files/figure-html/unnamed-chunk-27-1.png" width="672" /></p>
+<p><img src="merida-workshop-2022_files/figure-html/unnamed-chunk-29-1.png" width="672" /></p>
 </div>
 <div id="shared-data-and-mapping" class="section level4" number="2.2.2.6">
 <h4><span class="header-section-number">2.2.2.6</span> Shared data and mapping</h4>
@@ -533,41 +553,24 @@ R treats continuous and discrete information differently. ggplot directly uses t
 <li>This goes for each aesthetic individually! Not for the entire mapping.</li>
 </ul>
 <p>In many cases I provide the data and mapping in ggplot.</p>
-<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="basic-introduction-to-r-and-ggplot2.html#cb34-1" aria-hidden="true" tabindex="-1"></a>g <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(msleep,</span>
-<span id="cb34-2"><a href="basic-introduction-to-r-and-ggplot2.html#cb34-2" aria-hidden="true" tabindex="-1"></a>          <span class="fu">aes</span>(sleep_total, </span>
-<span id="cb34-3"><a href="basic-introduction-to-r-and-ggplot2.html#cb34-3" aria-hidden="true" tabindex="-1"></a>              <span class="fu">log</span>(brainwt), </span>
-<span id="cb34-4"><a href="basic-introduction-to-r-and-ggplot2.html#cb34-4" aria-hidden="true" tabindex="-1"></a>              <span class="at">label =</span> name, <span class="co">#make sure to add the label aes!</span></span>
-<span id="cb34-5"><a href="basic-introduction-to-r-and-ggplot2.html#cb34-5" aria-hidden="true" tabindex="-1"></a>              <span class="at">col=</span>vore)) </span>
-<span id="cb34-6"><a href="basic-introduction-to-r-and-ggplot2.html#cb34-6" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb34-7"><a href="basic-introduction-to-r-and-ggplot2.html#cb34-7" aria-hidden="true" tabindex="-1"></a>g <span class="sc">+</span> <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="co"># then add a layer of points </span></span>
-<span id="cb34-8"><a href="basic-introduction-to-r-and-ggplot2.html#cb34-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_text</span>(<span class="at">size=</span><span class="dv">3</span>) <span class="co"># and then add labels to the points</span></span></code></pre></div>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="basic-introduction-to-r-and-ggplot2.html#cb37-1" aria-hidden="true" tabindex="-1"></a>g <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(msleep,</span>
+<span id="cb37-2"><a href="basic-introduction-to-r-and-ggplot2.html#cb37-2" aria-hidden="true" tabindex="-1"></a>          <span class="fu">aes</span>(sleep_total, </span>
+<span id="cb37-3"><a href="basic-introduction-to-r-and-ggplot2.html#cb37-3" aria-hidden="true" tabindex="-1"></a>              <span class="fu">log</span>(brainwt), </span>
+<span id="cb37-4"><a href="basic-introduction-to-r-and-ggplot2.html#cb37-4" aria-hidden="true" tabindex="-1"></a>              <span class="at">label =</span> name, <span class="co">#make sure to add the label aes!</span></span>
+<span id="cb37-5"><a href="basic-introduction-to-r-and-ggplot2.html#cb37-5" aria-hidden="true" tabindex="-1"></a>              <span class="at">col=</span>vore)) </span>
+<span id="cb37-6"><a href="basic-introduction-to-r-and-ggplot2.html#cb37-6" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb37-7"><a href="basic-introduction-to-r-and-ggplot2.html#cb37-7" aria-hidden="true" tabindex="-1"></a>g <span class="sc">+</span> <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="co"># then add a layer of points </span></span>
+<span id="cb37-8"><a href="basic-introduction-to-r-and-ggplot2.html#cb37-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_text</span>(<span class="at">size=</span><span class="dv">3</span>) <span class="co"># and then add labels to the points</span></span></code></pre></div>
 <pre><code>## Warning: Removed 27 rows containing missing values
 ## (geom_point).</code></pre>
 <pre><code>## Warning: Removed 27 rows containing missing values
 ## (geom_text).</code></pre>
-<p><img src="merida-workshop-2022_files/figure-html/unnamed-chunk-28-1.png" width="672" /></p>
+<p><img src="merida-workshop-2022_files/figure-html/unnamed-chunk-30-1.png" width="672" /></p>
 <p>But this plot is a bit busy and messy. Let’s move around the names to make this more readable (less overlap)! Let’s also fix the axes names.</p>
-<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="basic-introduction-to-r-and-ggplot2.html#cb37-1" aria-hidden="true" tabindex="-1"></a> g <span class="sc">+</span> <span class="co">#the ggplot object you created above that you can add layers to</span></span>
-<span id="cb37-2"><a href="basic-introduction-to-r-and-ggplot2.html#cb37-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="co"># then add a layer of points </span></span>
-<span id="cb37-3"><a href="basic-introduction-to-r-and-ggplot2.html#cb37-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_text</span>(<span class="at">check_overlap =</span> T,<span class="co"># automatically reduce overlap (deletes some labels)</span></span>
-<span id="cb37-4"><a href="basic-introduction-to-r-and-ggplot2.html#cb37-4" aria-hidden="true" tabindex="-1"></a>              <span class="at">vjust =</span> <span class="st">&quot;bottom&quot;</span>, <span class="co"># adjust the vertical orientation</span></span>
-<span id="cb37-5"><a href="basic-introduction-to-r-and-ggplot2.html#cb37-5" aria-hidden="true" tabindex="-1"></a>              <span class="at">nudge_y =</span> <span class="fl">0.1</span>, <span class="co"># move the text up a bit so it doesn&#39;t touch the points</span></span>
-<span id="cb37-6"><a href="basic-introduction-to-r-and-ggplot2.html#cb37-6" aria-hidden="true" tabindex="-1"></a>              <span class="at">angle =</span> <span class="dv">30</span>,<span class="co"># tilt the text 30 degrees</span></span>
-<span id="cb37-7"><a href="basic-introduction-to-r-and-ggplot2.html#cb37-7" aria-hidden="true" tabindex="-1"></a>              <span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span> <span class="co"># make the text smaller (to reduce overlap more)</span></span>
-<span id="cb37-8"><a href="basic-introduction-to-r-and-ggplot2.html#cb37-8" aria-hidden="true" tabindex="-1"></a>   <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Sleeping habits of mammals given their brain weight&quot;</span>, <span class="co"># plot title</span></span>
-<span id="cb37-9"><a href="basic-introduction-to-r-and-ggplot2.html#cb37-9" aria-hidden="true" tabindex="-1"></a>         <span class="at">x =</span> <span class="st">&quot;Sleep Total&quot;</span>, <span class="co"># x axis label</span></span>
-<span id="cb37-10"><a href="basic-introduction-to-r-and-ggplot2.html#cb37-10" aria-hidden="true" tabindex="-1"></a>         <span class="at">y =</span> <span class="st">&quot;log(brain weight)&quot;</span> <span class="co"># y axis label</span></span>
-<span id="cb37-11"><a href="basic-introduction-to-r-and-ggplot2.html#cb37-11" aria-hidden="true" tabindex="-1"></a>        )</span></code></pre></div>
-<pre><code>## Warning: Removed 27 rows containing missing values
-## (geom_point).</code></pre>
-<pre><code>## Warning: Removed 27 rows containing missing values
-## (geom_text).</code></pre>
-<p><img src="merida-workshop-2022_files/figure-html/unnamed-chunk-29-1.png" width="672" /></p>
-<p>Note above, there are some points without labels. Here’s another way to add labels to your plot with ggrepel.</p>
-<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="basic-introduction-to-r-and-ggplot2.html#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggrepel)</span>
-<span id="cb40-2"><a href="basic-introduction-to-r-and-ggplot2.html#cb40-2" aria-hidden="true" tabindex="-1"></a>g <span class="sc">+</span></span>
-<span id="cb40-3"><a href="basic-introduction-to-r-and-ggplot2.html#cb40-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="co"># then add a layer of points </span></span>
-<span id="cb40-4"><a href="basic-introduction-to-r-and-ggplot2.html#cb40-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_text_repel</span>(<span class="at">vjust =</span> <span class="st">&quot;bottom&quot;</span>, <span class="co"># adjust the vertical orientation</span></span>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="basic-introduction-to-r-and-ggplot2.html#cb40-1" aria-hidden="true" tabindex="-1"></a> g <span class="sc">+</span> <span class="co">#the ggplot object you created above that you can add layers to</span></span>
+<span id="cb40-2"><a href="basic-introduction-to-r-and-ggplot2.html#cb40-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="co"># then add a layer of points </span></span>
+<span id="cb40-3"><a href="basic-introduction-to-r-and-ggplot2.html#cb40-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_text</span>(<span class="at">check_overlap =</span> T,<span class="co"># automatically reduce overlap (deletes some labels)</span></span>
+<span id="cb40-4"><a href="basic-introduction-to-r-and-ggplot2.html#cb40-4" aria-hidden="true" tabindex="-1"></a>              <span class="at">vjust =</span> <span class="st">&quot;bottom&quot;</span>, <span class="co"># adjust the vertical orientation</span></span>
 <span id="cb40-5"><a href="basic-introduction-to-r-and-ggplot2.html#cb40-5" aria-hidden="true" tabindex="-1"></a>              <span class="at">nudge_y =</span> <span class="fl">0.1</span>, <span class="co"># move the text up a bit so it doesn&#39;t touch the points</span></span>
 <span id="cb40-6"><a href="basic-introduction-to-r-and-ggplot2.html#cb40-6" aria-hidden="true" tabindex="-1"></a>              <span class="at">angle =</span> <span class="dv">30</span>,<span class="co"># tilt the text 30 degrees</span></span>
 <span id="cb40-7"><a href="basic-introduction-to-r-and-ggplot2.html#cb40-7" aria-hidden="true" tabindex="-1"></a>              <span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span> <span class="co"># make the text smaller (to reduce overlap more)</span></span>
@@ -578,8 +581,25 @@ R treats continuous and discrete information differently. ggplot directly uses t
 <pre><code>## Warning: Removed 27 rows containing missing values
 ## (geom_point).</code></pre>
 <pre><code>## Warning: Removed 27 rows containing missing values
+## (geom_text).</code></pre>
+<p><img src="merida-workshop-2022_files/figure-html/unnamed-chunk-31-1.png" width="672" /></p>
+<p>Note above, there are some points without labels. Here’s another way to add labels to your plot with ggrepel.</p>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="basic-introduction-to-r-and-ggplot2.html#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggrepel)</span>
+<span id="cb43-2"><a href="basic-introduction-to-r-and-ggplot2.html#cb43-2" aria-hidden="true" tabindex="-1"></a>g <span class="sc">+</span></span>
+<span id="cb43-3"><a href="basic-introduction-to-r-and-ggplot2.html#cb43-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="co"># then add a layer of points </span></span>
+<span id="cb43-4"><a href="basic-introduction-to-r-and-ggplot2.html#cb43-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_text_repel</span>(<span class="at">vjust =</span> <span class="st">&quot;bottom&quot;</span>, <span class="co"># adjust the vertical orientation</span></span>
+<span id="cb43-5"><a href="basic-introduction-to-r-and-ggplot2.html#cb43-5" aria-hidden="true" tabindex="-1"></a>              <span class="at">nudge_y =</span> <span class="fl">0.1</span>, <span class="co"># move the text up a bit so it doesn&#39;t touch the points</span></span>
+<span id="cb43-6"><a href="basic-introduction-to-r-and-ggplot2.html#cb43-6" aria-hidden="true" tabindex="-1"></a>              <span class="at">angle =</span> <span class="dv">30</span>,<span class="co"># tilt the text 30 degrees</span></span>
+<span id="cb43-7"><a href="basic-introduction-to-r-and-ggplot2.html#cb43-7" aria-hidden="true" tabindex="-1"></a>              <span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span> <span class="co"># make the text smaller (to reduce overlap more)</span></span>
+<span id="cb43-8"><a href="basic-introduction-to-r-and-ggplot2.html#cb43-8" aria-hidden="true" tabindex="-1"></a>   <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Sleeping habits of mammals given their brain weight&quot;</span>, <span class="co"># plot title</span></span>
+<span id="cb43-9"><a href="basic-introduction-to-r-and-ggplot2.html#cb43-9" aria-hidden="true" tabindex="-1"></a>         <span class="at">x =</span> <span class="st">&quot;Sleep Total&quot;</span>, <span class="co"># x axis label</span></span>
+<span id="cb43-10"><a href="basic-introduction-to-r-and-ggplot2.html#cb43-10" aria-hidden="true" tabindex="-1"></a>         <span class="at">y =</span> <span class="st">&quot;log(brain weight)&quot;</span> <span class="co"># y axis label</span></span>
+<span id="cb43-11"><a href="basic-introduction-to-r-and-ggplot2.html#cb43-11" aria-hidden="true" tabindex="-1"></a>        )</span></code></pre></div>
+<pre><code>## Warning: Removed 27 rows containing missing values
+## (geom_point).</code></pre>
+<pre><code>## Warning: Removed 27 rows containing missing values
 ## (geom_text_repel).</code></pre>
-<p><img src="merida-workshop-2022_files/figure-html/unnamed-chunk-30-1.png" width="672" /></p>
+<p><img src="merida-workshop-2022_files/figure-html/unnamed-chunk-32-1.png" width="672" /></p>
 <p>Let’s move onto the other components of the ggplot syntax.</p>
 </div>
 <div id="what-is-a-stat" class="section level4" number="2.2.2.7">
@@ -611,15 +631,15 @@ R treats continuous and discrete information differently. ggplot directly uses t
 </ul>
 <p><em>Note</em> geom_* functions have default stats.
 E.g. ?geom_boxplot shows stat = “boxplot.”</p>
-<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="basic-introduction-to-r-and-ggplot2.html#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
-<span id="cb43-2"><a href="basic-introduction-to-r-and-ggplot2.html#cb43-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="fu">factor</span>(cyl), hp, <span class="at">fill=</span><span class="fu">factor</span>(cyl)), mtcars) <span class="sc">+</span></span>
-<span id="cb43-3"><a href="basic-introduction-to-r-and-ggplot2.html#cb43-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&#39;Cylinder&#39;</span>) <span class="sc">+</span></span>
-<span id="cb43-4"><a href="basic-introduction-to-r-and-ggplot2.html#cb43-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span> </span>
-<span id="cb43-5"><a href="basic-introduction-to-r-and-ggplot2.html#cb43-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">aspect.ratio =</span> <span class="dv">1</span>)</span></code></pre></div>
-<p><img src="merida-workshop-2022_files/figure-html/unnamed-chunk-31-1.png" width="672" /></p>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="basic-introduction-to-r-and-ggplot2.html#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb46-2"><a href="basic-introduction-to-r-and-ggplot2.html#cb46-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="fu">factor</span>(cyl), hp, <span class="at">fill=</span><span class="fu">factor</span>(cyl)), mtcars) <span class="sc">+</span></span>
+<span id="cb46-3"><a href="basic-introduction-to-r-and-ggplot2.html#cb46-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&#39;Cylinder&#39;</span>) <span class="sc">+</span></span>
+<span id="cb46-4"><a href="basic-introduction-to-r-and-ggplot2.html#cb46-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span> </span>
+<span id="cb46-5"><a href="basic-introduction-to-r-and-ggplot2.html#cb46-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">aspect.ratio =</span> <span class="dv">1</span>)</span></code></pre></div>
+<p><img src="merida-workshop-2022_files/figure-html/unnamed-chunk-33-1.png" width="672" /></p>
 <p><strong>Exercise 4a-c: One variable exercises</strong></p>
-<p>How would you create the following plots? I want you to use a new eBird dataset, however, the syntax still applies.</p>
-<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="basic-introduction-to-r-and-ggplot2.html#cb44-1" aria-hidden="true" tabindex="-1"></a>myebird<span class="ot">&lt;-</span><span class="fu">read_csv</span>(<span class="st">&quot;data/2.0a/MyEBirdData_tidy.csv&quot;</span>)</span></code></pre></div>
+<p>How would you create the following plots? I want you to use a new eBird dataset, however, the syntax still applies. Additionaly, there are multiple ways to read in data.</p>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="basic-introduction-to-r-and-ggplot2.html#cb47-1" aria-hidden="true" tabindex="-1"></a>myebird<span class="ot">&lt;-</span><span class="fu">read_csv</span>(<span class="st">&quot;data/2.0a/MyEBirdData_tidy.csv&quot;</span>)</span></code></pre></div>
 <pre><code>## Rows: 523 Columns: 8</code></pre>
 <pre><code>## ── Column specification ───────────────────────────────
 ## Delimiter: &quot;,&quot;
@@ -629,8 +649,21 @@ E.g. ?geom_boxplot shows stat = “boxplot.”</p>
 <pre><code>## 
 ## ℹ Use `spec()` to retrieve the full column specification for this data.
 ## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
-<p>Let’s take a quick look at this new data set. It has counts of several bird species in Colorado, and the locations and dates of these observations.</p>
-<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="basic-introduction-to-r-and-ggplot2.html#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(myebird)</span></code></pre></div>
+<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="basic-introduction-to-r-and-ggplot2.html#cb51-1" aria-hidden="true" tabindex="-1"></a>myebird<span class="ot">&lt;-</span><span class="fu">read_delim</span>(<span class="st">&quot;data/2.0a/MyEBirdData_tidy.csv&quot;</span>,<span class="at">delim=</span><span class="st">&quot;,&quot;</span>)</span></code></pre></div>
+<pre><code>## Rows: 523 Columns: 8</code></pre>
+<pre><code>## ── Column specification ───────────────────────────────
+## Delimiter: &quot;,&quot;
+## chr  (6): eBirdID, CommonName, Region, Location, Co...
+## dbl  (1): Count
+## time (1): Time</code></pre>
+<pre><code>## 
+## ℹ Use `spec()` to retrieve the full column specification for this data.
+## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+<p>If you have an excel sheet, you can load a new library and load it using this generic code</p>
+<pre><code>library(gdata)
+file &lt;- read.xls(&quot;Excel.file.xlsx&quot;,sheet=2)</code></pre>
+<p>Let’s take a quick look at this new data set. It has counts of several bird species in Colorado, and the locations and dates of these observations. The head function will allow you to look at the first 6 lines of the data.</p>
+<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="basic-introduction-to-r-and-ggplot2.html#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(myebird) <span class="co">#</span></span></code></pre></div>
 <pre><code>## # A tibble: 6 × 8
 ##   eBirdID CommonName Count Region Location County Date 
 ##   &lt;chr&gt;   &lt;chr&gt;      &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt;    &lt;chr&gt;  &lt;chr&gt;
@@ -641,32 +674,35 @@ E.g. ?geom_boxplot shows stat = “boxplot.”</p>
 ## 5 S63589… Canada Go…    24 US-CO  South P… Adams  1/19…
 ## 6 S66719… Canada Go…     7 US-CO  Arapaho… Larim… 4/6/…
 ## # … with 1 more variable: Time &lt;time&gt;</code></pre>
+<p>If you want to know the full dataset dimensions, you can use the <em>dim</em> function.</p>
+<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="basic-introduction-to-r-and-ggplot2.html#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(myebird)</span></code></pre></div>
+<pre><code>## [1] 523   8</code></pre>
 <p>In order to create the next plots, we may need to <em>tidy</em> some of the data. While, the module concurrently being run by Richard goes into how to use <em>tidyverse</em> in more depth, this section will provide a <em>small</em> hint of what <em>tidying</em> data can mean and how we can pipe (%&gt;%) this directly into the <em>ggplot()</em> command.</p>
 <p>With a smaller version of the dataset, we are going to create histograms and density plots with some eBird data specific from Colorado. Histograms are a way to show variation in data and are plotted on a single numeric value. In this case we will just look at the Count column of the data frame. This is plotted on the x-axis and to avoid confusion I change the name of the x-axis since the y-axis is the counts of each value.</p>
 <p>To make things more interpretable for you as new R users, I am now breaking up the data tidying you can do in Richard’s tidyverse section and assigning that to a variable, then using that tidied data frame variable in the <em>ggplot()</em> function for plotting (again we could pipe into ggplot but that might not be so clear at this point). Remember from our previous examples that <em>ggplot()</em> uses “+” not the pipe function to add more commands/functions.</p>
-<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="basic-introduction-to-r-and-ggplot2.html#cb50-1" aria-hidden="true" tabindex="-1"></a>myebird2 <span class="ot">&lt;-</span> myebird <span class="sc">%&gt;%</span></span>
-<span id="cb50-2"><a href="basic-introduction-to-r-and-ggplot2.html#cb50-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(CommonName <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;Canada Goose&quot;</span>))</span>
-<span id="cb50-3"><a href="basic-introduction-to-r-and-ggplot2.html#cb50-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb50-4"><a href="basic-introduction-to-r-and-ggplot2.html#cb50-4" aria-hidden="true" tabindex="-1"></a>myebird3 <span class="ot">&lt;-</span> myebird <span class="sc">%&gt;%</span></span>
-<span id="cb50-5"><a href="basic-introduction-to-r-and-ggplot2.html#cb50-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(CommonName <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;Canada Goose&quot;</span>,<span class="st">&quot;American Robin&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="basic-introduction-to-r-and-ggplot2.html#cb60-1" aria-hidden="true" tabindex="-1"></a>myebird2 <span class="ot">&lt;-</span> myebird <span class="sc">%&gt;%</span></span>
+<span id="cb60-2"><a href="basic-introduction-to-r-and-ggplot2.html#cb60-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(CommonName <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;Canada Goose&quot;</span>))</span>
+<span id="cb60-3"><a href="basic-introduction-to-r-and-ggplot2.html#cb60-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-4"><a href="basic-introduction-to-r-and-ggplot2.html#cb60-4" aria-hidden="true" tabindex="-1"></a>myebird3 <span class="ot">&lt;-</span> myebird <span class="sc">%&gt;%</span></span>
+<span id="cb60-5"><a href="basic-introduction-to-r-and-ggplot2.html#cb60-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(CommonName <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;Canada Goose&quot;</span>,<span class="st">&quot;American Robin&quot;</span>))</span></code></pre></div>
 <ol style="list-style-type: lower-alpha">
 <li>First plot. A simple histogram of counts for the Canada Goose, and we use the stats binning.</li>
 </ol>
 <pre><code>## Warning: Removed 1 rows containing non-finite values
 ## (stat_bin).</code></pre>
-<p><img src="merida-workshop-2022_files/figure-html/unnamed-chunk-35-1.png" width="672" /></p>
+<p><img src="merida-workshop-2022_files/figure-html/unnamed-chunk-38-1.png" width="672" /></p>
 <ol start="2" style="list-style-type: lower-alpha">
 <li>Second plot. How would you change the color of the histogram?</li>
 </ol>
 <pre><code>## Warning: Removed 1 rows containing non-finite values
 ## (stat_bin).</code></pre>
-<p><img src="merida-workshop-2022_files/figure-html/unnamed-chunk-36-1.png" width="672" /></p>
+<p><img src="merida-workshop-2022_files/figure-html/unnamed-chunk-39-1.png" width="672" /></p>
 <ol start="3" style="list-style-type: lower-alpha">
 <li>Third plot is a stat = density plot, for counts of two bird species.</li>
 </ol>
 <pre><code>## Warning: Removed 1 rows containing non-finite values
 ## (stat_density).</code></pre>
-<p><img src="merida-workshop-2022_files/figure-html/unnamed-chunk-37-1.png" width="672" /></p>
+<p><img src="merida-workshop-2022_files/figure-html/unnamed-chunk-40-1.png" width="672" /></p>
 </div>
 <div id="what-is-a-position" class="section level4" number="2.2.2.8">
 <h4><span class="header-section-number">2.2.2.8</span> 5. What is a position?</h4>
@@ -695,41 +731,74 @@ E.g. ?geom_boxplot shows stat = “boxplot.”</p>
 <li>leave as is: identity.</li>
 </ul>
 <p>For exmaple, the default of geom_bar is stacked: geom_bar(position = “stack”)</p>
-<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="basic-introduction-to-r-and-ggplot2.html#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mtcars, <span class="fu">aes</span>(<span class="fu">factor</span>(cyl), <span class="at">fill =</span> <span class="fu">factor</span>(am))) <span class="sc">+</span></span>
-<span id="cb54-2"><a href="basic-introduction-to-r-and-ggplot2.html#cb54-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">position =</span> <span class="st">&#39;fill&#39;</span>)</span></code></pre></div>
-<p><img src="merida-workshop-2022_files/figure-html/unnamed-chunk-38-1.png" width="672" /></p>
-<p>To dodge the barplots:</p>
-<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="basic-introduction-to-r-and-ggplot2.html#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mtcars, <span class="fu">aes</span>(<span class="fu">factor</span>(cyl), <span class="at">fill =</span> <span class="fu">factor</span>(am))) <span class="sc">+</span></span>
-<span id="cb55-2"><a href="basic-introduction-to-r-and-ggplot2.html#cb55-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">position =</span> <span class="st">&#39;dodge&#39;</span>)</span></code></pre></div>
-<p><img src="merida-workshop-2022_files/figure-html/unnamed-chunk-39-1.png" width="672" /></p>
-<p>Now, we are going to include facets.</p>
-<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="basic-introduction-to-r-and-ggplot2.html#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mtcars, <span class="fu">aes</span>(<span class="fu">factor</span>(cyl), <span class="at">fill =</span> <span class="fu">factor</span>(am))) <span class="sc">+</span></span>
-<span id="cb56-2"><a href="basic-introduction-to-r-and-ggplot2.html#cb56-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">position =</span> <span class="st">&#39;dodge&#39;</span>) <span class="sc">+</span> <span class="co"># add the barpot</span></span>
-<span id="cb56-3"><a href="basic-introduction-to-r-and-ggplot2.html#cb56-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="fu">c</span>(<span class="st">&quot;am&quot;</span>)) <span class="co"># put each level of &quot;am&quot; in a different facet</span></span></code></pre></div>
-<p><img src="merida-workshop-2022_files/figure-html/unnamed-chunk-40-1.png" width="672" /></p>
-<p>That seems much easier to read! One thing that I would like to change, however, is the colors. Let’s change the color theme of our plot. You can change the color of the fill using the layer scale_fill_manual()</p>
-<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="basic-introduction-to-r-and-ggplot2.html#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mtcars, <span class="fu">aes</span>(<span class="fu">factor</span>(cyl), <span class="at">fill =</span> <span class="fu">factor</span>(am))) <span class="sc">+</span></span>
-<span id="cb57-2"><a href="basic-introduction-to-r-and-ggplot2.html#cb57-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">position =</span> <span class="st">&#39;dodge&#39;</span>)<span class="sc">+</span> <span class="co"># add the barpot</span></span>
-<span id="cb57-3"><a href="basic-introduction-to-r-and-ggplot2.html#cb57-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="fu">c</span>(<span class="st">&quot;am&quot;</span>)) <span class="sc">+</span> <span class="co"># put each level of &quot;am&quot; in a different facet</span></span>
-<span id="cb57-4"><a href="basic-introduction-to-r-and-ggplot2.html#cb57-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values=</span><span class="fu">c</span>(<span class="st">&quot;#BBBBBB&quot;</span>, <span class="co"># a nice, neuteral grey </span></span>
-<span id="cb57-5"><a href="basic-introduction-to-r-and-ggplot2.html#cb57-5" aria-hidden="true" tabindex="-1"></a>                               <span class="st">&quot;#E69F00&quot;</span>)) <span class="co"># a gold caramel color</span></span></code></pre></div>
+<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb64-1"><a href="basic-introduction-to-r-and-ggplot2.html#cb64-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mtcars, <span class="fu">aes</span>(<span class="fu">factor</span>(cyl), <span class="at">fill =</span> <span class="fu">factor</span>(am))) <span class="sc">+</span></span>
+<span id="cb64-2"><a href="basic-introduction-to-r-and-ggplot2.html#cb64-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">position =</span> <span class="st">&#39;fill&#39;</span>)</span></code></pre></div>
 <p><img src="merida-workshop-2022_files/figure-html/unnamed-chunk-41-1.png" width="672" /></p>
-<p>Let’s add some labels here, where we have to specify position again.</p>
-<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="basic-introduction-to-r-and-ggplot2.html#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mtcars, <span class="fu">aes</span>(<span class="fu">factor</span>(cyl),<span class="at">fill =</span> <span class="fu">factor</span>(am))) <span class="sc">+</span></span>
-<span id="cb58-2"><a href="basic-introduction-to-r-and-ggplot2.html#cb58-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>() <span class="sc">+</span></span>
-<span id="cb58-3"><a href="basic-introduction-to-r-and-ggplot2.html#cb58-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_label</span>(<span class="fu">aes</span>(<span class="at">label =</span> ..count..), </span>
-<span id="cb58-4"><a href="basic-introduction-to-r-and-ggplot2.html#cb58-4" aria-hidden="true" tabindex="-1"></a>             <span class="at">stat =</span> <span class="st">&#39;count&#39;</span>, </span>
-<span id="cb58-5"><a href="basic-introduction-to-r-and-ggplot2.html#cb58-5" aria-hidden="true" tabindex="-1"></a>             <span class="at">position =</span> <span class="st">&#39;stack&#39;</span>) <span class="sc">+</span></span>
-<span id="cb58-6"><a href="basic-introduction-to-r-and-ggplot2.html#cb58-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values=</span><span class="fu">c</span>(<span class="st">&quot;#BBBBBB&quot;</span>, <span class="st">&quot;#E69F00&quot;</span>))</span></code></pre></div>
+<p>To dodge the barplots:</p>
+<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb65-1"><a href="basic-introduction-to-r-and-ggplot2.html#cb65-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mtcars, <span class="fu">aes</span>(<span class="fu">factor</span>(cyl), <span class="at">fill =</span> <span class="fu">factor</span>(am))) <span class="sc">+</span></span>
+<span id="cb65-2"><a href="basic-introduction-to-r-and-ggplot2.html#cb65-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">position =</span> <span class="st">&#39;dodge&#39;</span>)</span></code></pre></div>
 <p><img src="merida-workshop-2022_files/figure-html/unnamed-chunk-42-1.png" width="672" /></p>
-<p>Instead of defining the position as a string (e.g. position = “dodge”), you can write it as a full function with arguments (e.g. position = position_dodge(width = 0.5)) or tell ggplot where within the boxplot you’d like to posiiton the counts specifically (e.g position = position_stack(vjust=0.5)).</p>
-<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="basic-introduction-to-r-and-ggplot2.html#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mtcars, <span class="fu">aes</span>(<span class="fu">factor</span>(cyl), <span class="at">fill =</span> <span class="fu">factor</span>(am))) <span class="sc">+</span></span>
-<span id="cb59-2"><a href="basic-introduction-to-r-and-ggplot2.html#cb59-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>() <span class="sc">+</span></span>
-<span id="cb59-3"><a href="basic-introduction-to-r-and-ggplot2.html#cb59-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> ..count..),</span>
-<span id="cb59-4"><a href="basic-introduction-to-r-and-ggplot2.html#cb59-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">stat =</span> <span class="st">&#39;count&#39;</span>,</span>
-<span id="cb59-5"><a href="basic-introduction-to-r-and-ggplot2.html#cb59-5" aria-hidden="true" tabindex="-1"></a>            <span class="at">position =</span> <span class="fu">position_stack</span>(<span class="at">vjust =</span> <span class="fl">0.5</span>)) <span class="sc">+</span></span>
-<span id="cb59-6"><a href="basic-introduction-to-r-and-ggplot2.html#cb59-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values=</span><span class="fu">c</span>(<span class="st">&quot;#BBBBBB&quot;</span>, <span class="st">&quot;#E69F00&quot;</span>))</span></code></pre></div>
+<p>Now, we are going to include facets.</p>
+<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb66-1"><a href="basic-introduction-to-r-and-ggplot2.html#cb66-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mtcars, <span class="fu">aes</span>(<span class="fu">factor</span>(cyl), <span class="at">fill =</span> <span class="fu">factor</span>(am))) <span class="sc">+</span></span>
+<span id="cb66-2"><a href="basic-introduction-to-r-and-ggplot2.html#cb66-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">position =</span> <span class="st">&#39;dodge&#39;</span>) <span class="sc">+</span> <span class="co"># add the barpot</span></span>
+<span id="cb66-3"><a href="basic-introduction-to-r-and-ggplot2.html#cb66-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="fu">c</span>(<span class="st">&quot;am&quot;</span>)) <span class="co"># put each level of &quot;am&quot; in a different facet</span></span></code></pre></div>
 <p><img src="merida-workshop-2022_files/figure-html/unnamed-chunk-43-1.png" width="672" /></p>
+<p>That seems much easier to read! One thing that I would like to change, however, is the colors. Let’s change the color theme of our plot. You can change the color of the fill using the layer scale_fill_manual()</p>
+<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb67-1"><a href="basic-introduction-to-r-and-ggplot2.html#cb67-1" aria-hidden="true" tabindex="-1"></a>??geom_bar</span>
+<span id="cb67-2"><a href="basic-introduction-to-r-and-ggplot2.html#cb67-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb67-3"><a href="basic-introduction-to-r-and-ggplot2.html#cb67-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="fu">factor</span>(cyl),<span class="at">fill =</span> <span class="fu">factor</span>(am)),<span class="at">data=</span>mtcars, <span class="at">position =</span> <span class="st">&#39;dodge&#39;</span>) <span class="sc">+</span> <span class="co"># add the barpot</span></span>
+<span id="cb67-4"><a href="basic-introduction-to-r-and-ggplot2.html#cb67-4" aria-hidden="true" tabindex="-1"></a>   <span class="fu">scale_fill_manual</span>(<span class="at">values=</span><span class="fu">c</span>(<span class="st">&quot;#BBBBBB&quot;</span>, <span class="st">&quot;#E69F00&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb67-5"><a href="basic-introduction-to-r-and-ggplot2.html#cb67-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="fu">c</span>(<span class="st">&quot;am&quot;</span>)) <span class="sc">+</span>  </span>
+<span id="cb67-6"><a href="basic-introduction-to-r-and-ggplot2.html#cb67-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code></pre></div>
+<p><img src="merida-workshop-2022_files/figure-html/unnamed-chunk-44-1.png" width="672" /></p>
+<p>We can redefine colors based on the hexidecimal color system again. A useful link is here:</p>
+<p><a href="http://www.sthda.com/english/wiki/colors-in-r" class="uri">http://www.sthda.com/english/wiki/colors-in-r</a></p>
+<p>But we can create a reusable palette by adding the colors to a variable.</p>
+<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb68-1"><a href="basic-introduction-to-r-and-ggplot2.html#cb68-1" aria-hidden="true" tabindex="-1"></a>cbpalette<span class="ot">&lt;-</span><span class="fu">c</span>(<span class="st">&quot;#00CC66&quot;</span>, <span class="st">&quot;#3333CC&quot;</span>)</span>
+<span id="cb68-2"><a href="basic-introduction-to-r-and-ggplot2.html#cb68-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(RColorBrewer)</span>
+<span id="cb68-3"><a href="basic-introduction-to-r-and-ggplot2.html#cb68-3" aria-hidden="true" tabindex="-1"></a>mtcars <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb68-4"><a href="basic-introduction-to-r-and-ggplot2.html#cb68-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="fu">factor</span>(cyl),<span class="at">fill =</span> <span class="fu">factor</span>(am)),<span class="at">position =</span> <span class="st">&#39;dodge&#39;</span>)  <span class="sc">+</span><span class="co"># add the barpot</span></span>
+<span id="cb68-5"><a href="basic-introduction-to-r-and-ggplot2.html#cb68-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="fu">c</span>(<span class="st">&quot;am&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb68-6"><a href="basic-introduction-to-r-and-ggplot2.html#cb68-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values=</span>cbpalette)</span></code></pre></div>
+<p><img src="merida-workshop-2022_files/figure-html/unnamed-chunk-45-1.png" width="672" /></p>
+<p>Or you can use the Rcolorbrewer palettes:</p>
+<p><a href="https://www.r-graph-gallery.com/38-rcolorbrewers-palettes.html" class="uri">https://www.r-graph-gallery.com/38-rcolorbrewers-palettes.html</a></p>
+<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb69-1"><a href="basic-introduction-to-r-and-ggplot2.html#cb69-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(RColorBrewer)</span>
+<span id="cb69-2"><a href="basic-introduction-to-r-and-ggplot2.html#cb69-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(scales)</span></code></pre></div>
+<pre><code>## 
+## Attaching package: &#39;scales&#39;</code></pre>
+<pre><code>## The following object is masked from &#39;package:purrr&#39;:
+## 
+##     discard</code></pre>
+<pre><code>## The following object is masked from &#39;package:readr&#39;:
+## 
+##     col_factor</code></pre>
+<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb73-1"><a href="basic-introduction-to-r-and-ggplot2.html#cb73-1" aria-hidden="true" tabindex="-1"></a>GH.cols <span class="ot">&lt;-</span> <span class="fu">brewer.pal</span>(<span class="at">n =</span> <span class="dv">9</span>, <span class="at">name =</span> <span class="st">&quot;Purples&quot;</span>)[<span class="fu">c</span>(<span class="dv">4</span>,<span class="dv">8</span>)]</span>
+<span id="cb73-2"><a href="basic-introduction-to-r-and-ggplot2.html#cb73-2" aria-hidden="true" tabindex="-1"></a><span class="fu">show_col</span>(GH.cols)</span></code></pre></div>
+<p><img src="merida-workshop-2022_files/figure-html/unnamed-chunk-46-1.png" width="672" /></p>
+<div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb74-1"><a href="basic-introduction-to-r-and-ggplot2.html#cb74-1" aria-hidden="true" tabindex="-1"></a>mtcars <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb74-2"><a href="basic-introduction-to-r-and-ggplot2.html#cb74-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="fu">factor</span>(cyl),<span class="at">fill =</span> <span class="fu">factor</span>(am)),<span class="at">position =</span> <span class="st">&#39;dodge&#39;</span>)  <span class="sc">+</span></span>
+<span id="cb74-3"><a href="basic-introduction-to-r-and-ggplot2.html#cb74-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="fu">c</span>(<span class="st">&quot;am&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb74-4"><a href="basic-introduction-to-r-and-ggplot2.html#cb74-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values=</span>GH.cols)</span></code></pre></div>
+<p><img src="merida-workshop-2022_files/figure-html/unnamed-chunk-47-1.png" width="672" /></p>
+<p>Let’s add some labels here, where we have to specify position again.</p>
+<div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb75-1"><a href="basic-introduction-to-r-and-ggplot2.html#cb75-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mtcars, <span class="fu">aes</span>(<span class="fu">factor</span>(cyl),<span class="at">fill =</span> <span class="fu">factor</span>(am))) <span class="sc">+</span></span>
+<span id="cb75-2"><a href="basic-introduction-to-r-and-ggplot2.html#cb75-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>() <span class="sc">+</span></span>
+<span id="cb75-3"><a href="basic-introduction-to-r-and-ggplot2.html#cb75-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_label</span>(<span class="fu">aes</span>(<span class="at">label =</span> ..count..), </span>
+<span id="cb75-4"><a href="basic-introduction-to-r-and-ggplot2.html#cb75-4" aria-hidden="true" tabindex="-1"></a>             <span class="at">stat =</span> <span class="st">&#39;count&#39;</span>, </span>
+<span id="cb75-5"><a href="basic-introduction-to-r-and-ggplot2.html#cb75-5" aria-hidden="true" tabindex="-1"></a>             <span class="at">position =</span> <span class="st">&#39;stack&#39;</span>) <span class="sc">+</span></span>
+<span id="cb75-6"><a href="basic-introduction-to-r-and-ggplot2.html#cb75-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values=</span>GH.cols)</span></code></pre></div>
+<p><img src="merida-workshop-2022_files/figure-html/unnamed-chunk-48-1.png" width="672" /></p>
+<p>Instead of defining the position as a string (e.g. position = “dodge”), you can write it as a full function with arguments (e.g. position = position_dodge(width = 0.5)) or tell ggplot where within the boxplot you’d like to posiiton the counts specifically (e.g position = position_stack(vjust=0.5)).</p>
+<div class="sourceCode" id="cb76"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb76-1"><a href="basic-introduction-to-r-and-ggplot2.html#cb76-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mtcars, <span class="fu">aes</span>(<span class="fu">factor</span>(cyl), <span class="at">fill =</span> <span class="fu">factor</span>(am))) <span class="sc">+</span></span>
+<span id="cb76-2"><a href="basic-introduction-to-r-and-ggplot2.html#cb76-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>() <span class="sc">+</span></span>
+<span id="cb76-3"><a href="basic-introduction-to-r-and-ggplot2.html#cb76-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> ..count..),</span>
+<span id="cb76-4"><a href="basic-introduction-to-r-and-ggplot2.html#cb76-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">stat =</span> <span class="st">&#39;count&#39;</span>,</span>
+<span id="cb76-5"><a href="basic-introduction-to-r-and-ggplot2.html#cb76-5" aria-hidden="true" tabindex="-1"></a>            <span class="at">position =</span> <span class="fu">position_stack</span>(<span class="at">vjust =</span> <span class="fl">0.5</span>)) <span class="sc">+</span></span>
+<span id="cb76-6"><a href="basic-introduction-to-r-and-ggplot2.html#cb76-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Cylinder&quot;</span>) <span class="sc">+</span></span>
+<span id="cb76-7"><a href="basic-introduction-to-r-and-ggplot2.html#cb76-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Count&quot;</span>) <span class="sc">+</span></span>
+<span id="cb76-8"><a href="basic-introduction-to-r-and-ggplot2.html#cb76-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values=</span>GH.cols)</span></code></pre></div>
+<p><img src="merida-workshop-2022_files/figure-html/unnamed-chunk-49-1.png" width="672" /></p>
 <p>As you can see, the general idea of behind ggplot (starting with just a blank plot and slowly adding more and more layers) also lends itself to a general workflow where we start with a very simple plot and add layers until it looks exactly the way we want.</p>
 </div>
 </div>
@@ -753,66 +822,66 @@ E.g. ?geom_boxplot shows stat = “boxplot.”</p>
 <div id="appendix-1-exercise-answers" class="section level2" number="2.4">
 <h2><span class="header-section-number">2.4</span> Appendix 1: Exercise Answers</h2>
 <p><strong>Exercise 1</strong></p>
-<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="basic-introduction-to-r-and-ggplot2.html#cb60-1" aria-hidden="true" tabindex="-1"></a>g<span class="ot">&lt;-</span><span class="fu">ggplot</span>(mtcars,<span class="fu">aes</span>(hp, qsec,<span class="at">color =</span> <span class="fu">as.character</span>(cyl)) ) <span class="sc">+</span></span>
-<span id="cb60-2"><a href="basic-introduction-to-r-and-ggplot2.html#cb60-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
-<span id="cb60-3"><a href="basic-introduction-to-r-and-ggplot2.html#cb60-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> lm, <span class="at">se =</span> <span class="cn">TRUE</span>, <span class="at">color=</span><span class="st">&quot;black&quot;</span>,<span class="at">lty=</span><span class="dv">3</span>) <span class="sc">+</span></span>
-<span id="cb60-4"><a href="basic-introduction-to-r-and-ggplot2.html#cb60-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span> </span>
-<span id="cb60-5"><a href="basic-introduction-to-r-and-ggplot2.html#cb60-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">aspect.ratio =</span> <span class="dv">1</span>)</span>
-<span id="cb60-6"><a href="basic-introduction-to-r-and-ggplot2.html#cb60-6" aria-hidden="true" tabindex="-1"></a>g</span></code></pre></div>
+<div class="sourceCode" id="cb77"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb77-1"><a href="basic-introduction-to-r-and-ggplot2.html#cb77-1" aria-hidden="true" tabindex="-1"></a>g<span class="ot">&lt;-</span><span class="fu">ggplot</span>(mtcars,<span class="fu">aes</span>(hp, qsec,<span class="at">color =</span> <span class="fu">as.character</span>(cyl)) ) <span class="sc">+</span></span>
+<span id="cb77-2"><a href="basic-introduction-to-r-and-ggplot2.html#cb77-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
+<span id="cb77-3"><a href="basic-introduction-to-r-and-ggplot2.html#cb77-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> lm, <span class="at">se =</span> <span class="cn">TRUE</span>, <span class="at">color=</span><span class="st">&quot;black&quot;</span>,<span class="at">lty=</span><span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb77-4"><a href="basic-introduction-to-r-and-ggplot2.html#cb77-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span> </span>
+<span id="cb77-5"><a href="basic-introduction-to-r-and-ggplot2.html#cb77-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">aspect.ratio =</span> <span class="dv">1</span>)</span>
+<span id="cb77-6"><a href="basic-introduction-to-r-and-ggplot2.html#cb77-6" aria-hidden="true" tabindex="-1"></a>g</span></code></pre></div>
 <pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
-<p><img src="merida-workshop-2022_files/figure-html/unnamed-chunk-44-1.png" width="672" /></p>
+<p><img src="merida-workshop-2022_files/figure-html/unnamed-chunk-50-1.png" width="672" /></p>
 <p>Notice how I changed the line type in the code chunk above.</p>
 <p><strong>Exercise 2</strong></p>
-<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb62-1"><a href="basic-introduction-to-r-and-ggplot2.html#cb62-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
-<span id="cb62-2"><a href="basic-introduction-to-r-and-ggplot2.html#cb62-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(hp, </span>
-<span id="cb62-3"><a href="basic-introduction-to-r-and-ggplot2.html#cb62-3" aria-hidden="true" tabindex="-1"></a>                 qsec, </span>
-<span id="cb62-4"><a href="basic-introduction-to-r-and-ggplot2.html#cb62-4" aria-hidden="true" tabindex="-1"></a>                 <span class="at">shape =</span> <span class="fu">factor</span>(vs), </span>
-<span id="cb62-5"><a href="basic-introduction-to-r-and-ggplot2.html#cb62-5" aria-hidden="true" tabindex="-1"></a>                 <span class="at">size =</span> mpg), </span>
-<span id="cb62-6"><a href="basic-introduction-to-r-and-ggplot2.html#cb62-6" aria-hidden="true" tabindex="-1"></a>             mtcars, </span>
-<span id="cb62-7"><a href="basic-introduction-to-r-and-ggplot2.html#cb62-7" aria-hidden="true" tabindex="-1"></a>             <span class="at">alpha =</span> <span class="fl">0.5</span>, </span>
-<span id="cb62-8"><a href="basic-introduction-to-r-and-ggplot2.html#cb62-8" aria-hidden="true" tabindex="-1"></a>             <span class="at">col =</span> <span class="st">&#39;red&#39;</span>) <span class="sc">+</span></span>
-<span id="cb62-9"><a href="basic-introduction-to-r-and-ggplot2.html#cb62-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">shape =</span> <span class="st">&#39;vs&#39;</span>, <span class="at">size =</span> <span class="st">&#39;qsec&#39;</span>) <span class="sc">+</span></span>
-<span id="cb62-10"><a href="basic-introduction-to-r-and-ggplot2.html#cb62-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span> </span>
-<span id="cb62-11"><a href="basic-introduction-to-r-and-ggplot2.html#cb62-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">aspect.ratio =</span> <span class="dv">1</span>)</span></code></pre></div>
-<p><img src="merida-workshop-2022_files/figure-html/unnamed-chunk-45-1.png" width="672" /></p>
+<div class="sourceCode" id="cb79"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb79-1"><a href="basic-introduction-to-r-and-ggplot2.html#cb79-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb79-2"><a href="basic-introduction-to-r-and-ggplot2.html#cb79-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(hp, </span>
+<span id="cb79-3"><a href="basic-introduction-to-r-and-ggplot2.html#cb79-3" aria-hidden="true" tabindex="-1"></a>                 qsec, </span>
+<span id="cb79-4"><a href="basic-introduction-to-r-and-ggplot2.html#cb79-4" aria-hidden="true" tabindex="-1"></a>                 <span class="at">shape =</span> <span class="fu">factor</span>(vs), </span>
+<span id="cb79-5"><a href="basic-introduction-to-r-and-ggplot2.html#cb79-5" aria-hidden="true" tabindex="-1"></a>                 <span class="at">size =</span> mpg), </span>
+<span id="cb79-6"><a href="basic-introduction-to-r-and-ggplot2.html#cb79-6" aria-hidden="true" tabindex="-1"></a>             mtcars, </span>
+<span id="cb79-7"><a href="basic-introduction-to-r-and-ggplot2.html#cb79-7" aria-hidden="true" tabindex="-1"></a>             <span class="at">alpha =</span> <span class="fl">0.5</span>, </span>
+<span id="cb79-8"><a href="basic-introduction-to-r-and-ggplot2.html#cb79-8" aria-hidden="true" tabindex="-1"></a>             <span class="at">col =</span> <span class="st">&#39;red&#39;</span>) <span class="sc">+</span></span>
+<span id="cb79-9"><a href="basic-introduction-to-r-and-ggplot2.html#cb79-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">shape =</span> <span class="st">&#39;vs&#39;</span>, <span class="at">size =</span> <span class="st">&#39;qsec&#39;</span>) <span class="sc">+</span></span>
+<span id="cb79-10"><a href="basic-introduction-to-r-and-ggplot2.html#cb79-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span> </span>
+<span id="cb79-11"><a href="basic-introduction-to-r-and-ggplot2.html#cb79-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">aspect.ratio =</span> <span class="dv">1</span>)</span></code></pre></div>
+<p><img src="merida-workshop-2022_files/figure-html/unnamed-chunk-51-1.png" width="672" /></p>
 <p><strong>Exercise 3</strong></p>
-<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb63-1"><a href="basic-introduction-to-r-and-ggplot2.html#cb63-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
-<span id="cb63-2"><a href="basic-introduction-to-r-and-ggplot2.html#cb63-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(hp, qsec,<span class="at">lty =</span> <span class="fu">factor</span>(am)), mtcars) <span class="sc">+</span> </span>
-<span id="cb63-3"><a href="basic-introduction-to-r-and-ggplot2.html#cb63-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span> </span>
-<span id="cb63-4"><a href="basic-introduction-to-r-and-ggplot2.html#cb63-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">aspect.ratio =</span> <span class="dv">1</span>)</span></code></pre></div>
-<p><img src="merida-workshop-2022_files/figure-html/unnamed-chunk-46-1.png" width="672" /></p>
+<div class="sourceCode" id="cb80"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb80-1"><a href="basic-introduction-to-r-and-ggplot2.html#cb80-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb80-2"><a href="basic-introduction-to-r-and-ggplot2.html#cb80-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(hp, qsec,<span class="at">lty =</span> <span class="fu">factor</span>(am)), mtcars) <span class="sc">+</span> </span>
+<span id="cb80-3"><a href="basic-introduction-to-r-and-ggplot2.html#cb80-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span> </span>
+<span id="cb80-4"><a href="basic-introduction-to-r-and-ggplot2.html#cb80-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">aspect.ratio =</span> <span class="dv">1</span>)</span></code></pre></div>
+<p><img src="merida-workshop-2022_files/figure-html/unnamed-chunk-52-1.png" width="672" /></p>
 <p><strong>Exercise 4a-c</strong></p>
 <ol style="list-style-type: lower-alpha">
 <li></li>
 </ol>
-<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb64-1"><a href="basic-introduction-to-r-and-ggplot2.html#cb64-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(myebird2) <span class="sc">+</span></span>
-<span id="cb64-2"><a href="basic-introduction-to-r-and-ggplot2.html#cb64-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="fu">aes</span>(<span class="at">x =</span> Count), <span class="at">bins =</span> <span class="dv">100</span>) <span class="sc">+</span></span>
-<span id="cb64-3"><a href="basic-introduction-to-r-and-ggplot2.html#cb64-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Number of individuals seen per observation&quot;</span>) <span class="sc">+</span></span>
-<span id="cb64-4"><a href="basic-introduction-to-r-and-ggplot2.html#cb64-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;Histogram of Canadian Goose observations&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb81"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb81-1"><a href="basic-introduction-to-r-and-ggplot2.html#cb81-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(myebird2) <span class="sc">+</span></span>
+<span id="cb81-2"><a href="basic-introduction-to-r-and-ggplot2.html#cb81-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="fu">aes</span>(<span class="at">x =</span> Count), <span class="at">bins =</span> <span class="dv">100</span>) <span class="sc">+</span></span>
+<span id="cb81-3"><a href="basic-introduction-to-r-and-ggplot2.html#cb81-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Number of individuals seen per observation&quot;</span>) <span class="sc">+</span></span>
+<span id="cb81-4"><a href="basic-introduction-to-r-and-ggplot2.html#cb81-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;Histogram of Canadian Goose observations&quot;</span>)</span></code></pre></div>
 <pre><code>## Warning: Removed 1 rows containing non-finite values
 ## (stat_bin).</code></pre>
-<p><img src="merida-workshop-2022_files/figure-html/unnamed-chunk-47-1.png" width="672" /></p>
-<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb66-1"><a href="basic-introduction-to-r-and-ggplot2.html#cb66-1" aria-hidden="true" tabindex="-1"></a><span class="co">#or </span></span>
-<span id="cb66-2"><a href="basic-introduction-to-r-and-ggplot2.html#cb66-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb66-3"><a href="basic-introduction-to-r-and-ggplot2.html#cb66-3" aria-hidden="true" tabindex="-1"></a>myebird2 <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>() <span class="sc">+</span></span>
-<span id="cb66-4"><a href="basic-introduction-to-r-and-ggplot2.html#cb66-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="fu">aes</span>(<span class="at">x =</span> Count), <span class="at">bins =</span> <span class="dv">100</span>) <span class="sc">+</span></span>
-<span id="cb66-5"><a href="basic-introduction-to-r-and-ggplot2.html#cb66-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Number of individuals seen per observation&quot;</span>) <span class="sc">+</span></span>
-<span id="cb66-6"><a href="basic-introduction-to-r-and-ggplot2.html#cb66-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;Histogram of Canadian Goose observations&quot;</span>)</span></code></pre></div>
+<p><img src="merida-workshop-2022_files/figure-html/unnamed-chunk-53-1.png" width="672" /></p>
+<div class="sourceCode" id="cb83"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb83-1"><a href="basic-introduction-to-r-and-ggplot2.html#cb83-1" aria-hidden="true" tabindex="-1"></a><span class="co">#or </span></span>
+<span id="cb83-2"><a href="basic-introduction-to-r-and-ggplot2.html#cb83-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb83-3"><a href="basic-introduction-to-r-and-ggplot2.html#cb83-3" aria-hidden="true" tabindex="-1"></a>myebird2 <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb83-4"><a href="basic-introduction-to-r-and-ggplot2.html#cb83-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="fu">aes</span>(<span class="at">x =</span> Count), <span class="at">bins =</span> <span class="dv">100</span>) <span class="sc">+</span></span>
+<span id="cb83-5"><a href="basic-introduction-to-r-and-ggplot2.html#cb83-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Number of individuals seen per observation&quot;</span>) <span class="sc">+</span></span>
+<span id="cb83-6"><a href="basic-introduction-to-r-and-ggplot2.html#cb83-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;Histogram of Canadian Goose observations&quot;</span>)</span></code></pre></div>
 <pre><code>## Warning: Removed 1 rows containing non-finite values
 ## (stat_bin).</code></pre>
-<p><img src="merida-workshop-2022_files/figure-html/unnamed-chunk-47-2.png" width="672" /></p>
+<p><img src="merida-workshop-2022_files/figure-html/unnamed-chunk-53-2.png" width="672" /></p>
 <ol start="2" style="list-style-type: lower-alpha">
 <li></li>
 </ol>
 <pre><code>## Warning: Removed 1 rows containing non-finite values
 ## (stat_bin).</code></pre>
-<p><img src="merida-workshop-2022_files/figure-html/unnamed-chunk-48-1.png" width="672" /></p>
+<p><img src="merida-workshop-2022_files/figure-html/unnamed-chunk-54-1.png" width="672" /></p>
 <ol start="3" style="list-style-type: lower-alpha">
 <li>Third plot is a stat = density plot, for counts of two bird species.</li>
 </ol>
 <pre><code>## Warning: Removed 1 rows containing non-finite values
 ## (stat_density).</code></pre>
-<p><img src="merida-workshop-2022_files/figure-html/unnamed-chunk-49-1.png" width="672" /></p>
+<p><img src="merida-workshop-2022_files/figure-html/unnamed-chunk-55-1.png" width="672" /></p>
 
 </div>
 </div>

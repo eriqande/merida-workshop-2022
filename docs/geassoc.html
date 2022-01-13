@@ -24,7 +24,7 @@
 <meta name="author" content="Eric C. Anderson, Christen Bossu, Richard Evan Feldman, Kristen C. Ruegg, Marius Somveille" />
 
 
-<meta name="date" content="2022-01-10" />
+<meta name="date" content="2022-01-12" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -295,6 +295,11 @@ div.csl-indent {
 <li class="chapter" data-level="7.4" data-path="geassoc.html"><a href="geassoc.html#running-gradient-forest"><i class="fa fa-check"></i><b>7.4</b> Running Gradient Forest</a></li>
 <li class="chapter" data-level="7.5" data-path="geassoc.html"><a href="geassoc.html#basic-gradient-forest-preparation"><i class="fa fa-check"></i><b>7.5</b> Basic Gradient Forest Preparation</a></li>
 <li class="chapter" data-level="7.6" data-path="geassoc.html"><a href="geassoc.html#defining-genomic-vulnerabilitygenomic-offset-given-future-climate-predictions"><i class="fa fa-check"></i><b>7.6</b> Defining “Genomic Vulnerability/Genomic offset” Given Future Climate Predictions</a></li>
+<li class="chapter" data-level="7.7" data-path="geassoc.html"><a href="geassoc.html#next-steps"><i class="fa fa-check"></i><b>7.7</b> Next steps</a>
+<ul>
+<li class="chapter" data-level="7.7.1" data-path="geassoc.html"><a href="geassoc.html#randomization"><i class="fa fa-check"></i><b>7.7.1</b> Randomization</a></li>
+<li class="chapter" data-level="7.7.2" data-path="geassoc.html"><a href="geassoc.html#candidate-variants"><i class="fa fa-check"></i><b>7.7.2</b> Candidate variants</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="8" data-path="conclude.html"><a href="conclude.html"><i class="fa fa-check"></i><b>8</b> Concluding Remarks / Parting Words</a></li>
 <li class="divider"></li>
@@ -360,7 +365,9 @@ Gradient forest extends random forest to incorporate multiple response variables
 </ol>
 <p>you can see that different environmental variables predict genetic variation of the reference and candidate genes. <em>Note</em> different colors = locally adapted genotypes.</p>
 <p><img src="images/6.0/Fitzpatrick.Fig5.jpeg" width="100%" /></p>
-<p>Below is code for quantifying and visualizing intraspecific gene-environment variation across space. As part of The Bird Genoscape Project, we compare present-day gene-environment associations to predicted future changes to identify regions of genomic vulnerability. For now, this tutorial focuses on analyzing and plotting the allelic variation as estimated from gradient forest for a single species, the Willow Flycatcher, but is easily adpated to include other species and methods for esimating variation.</p>
+<p>Below is code for quantifying and visualizing intraspecific gene-environment variation across space. As part of The Bird Genoscape Project, we compare present-day gene-environment associations to predicted future changes to identify regions of genomic vulnerability.</p>
+<p><img src="images/6.0/genomic_vulnerability.jpg" width="60%" /></p>
+<p>For now, this tutorial focuses on analyzing and plotting the allelic variation as estimated from gradient forest for a single species, the Willow Flycatcher, but is easily adpated to include other species and methods for esimating variation.</p>
 </div>
 <div id="housekeeping" class="section level2" number="7.3">
 <h2><span class="header-section-number">7.3</span> Housekeeping</h2>
@@ -376,9 +383,9 @@ already.</li>
 </ol>
 <p>Also, you need to have the package ‘gradientForest’ installed as
 described in the Preface section <a href="index.html#grad-forest">The ‘gradientForest’ package</a>.</p>
-<div class="sourceCode" id="cb259"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb259-1"><a href="geassoc.html#cb259-1" aria-hidden="true" tabindex="-1"></a><span class="co">#install.packages(&quot;gradientForest&quot;, repos=&quot;http://R-Forge.R-project.org&quot;)</span></span>
-<span id="cb259-2"><a href="geassoc.html#cb259-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gradientForest)</span>
-<span id="cb259-3"><a href="geassoc.html#cb259-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(data.table)</span></code></pre></div>
+<div class="sourceCode" id="cb278"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb278-1"><a href="geassoc.html#cb278-1" aria-hidden="true" tabindex="-1"></a><span class="co">#install.packages(&quot;gradientForest&quot;, repos=&quot;http://R-Forge.R-project.org&quot;)</span></span>
+<span id="cb278-2"><a href="geassoc.html#cb278-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gradientForest)</span>
+<span id="cb278-3"><a href="geassoc.html#cb278-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(data.table)</span></code></pre></div>
 <pre><code>## 
 ## Attaching package: &#39;data.table&#39;</code></pre>
 <pre><code>## The following objects are masked from &#39;package:terra&#39;:
@@ -390,15 +397,15 @@ described in the Preface section <a href="index.html#grad-forest">The ‘gradien
 <pre><code>## The following object is masked from &#39;package:purrr&#39;:
 ## 
 ##     transpose</code></pre>
-<div class="sourceCode" id="cb264"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb264-1"><a href="geassoc.html#cb264-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(raster)</span></code></pre></div>
+<div class="sourceCode" id="cb283"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb283-1"><a href="geassoc.html#cb283-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(raster)</span></code></pre></div>
 <pre><code>## Loading required package: sp</code></pre>
 <pre><code>## 
 ## Attaching package: &#39;raster&#39;</code></pre>
 <pre><code>## The following object is masked from &#39;package:dplyr&#39;:
 ## 
 ##     select</code></pre>
-<div class="sourceCode" id="cb268"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb268-1"><a href="geassoc.html#cb268-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gstat)</span>
-<span id="cb268-2"><a href="geassoc.html#cb268-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rgdal)</span></code></pre></div>
+<div class="sourceCode" id="cb287"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb287-1"><a href="geassoc.html#cb287-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gstat)</span>
+<span id="cb287-2"><a href="geassoc.html#cb287-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rgdal)</span></code></pre></div>
 <pre><code>## Please note that rgdal will be retired by the end of 2023,
 ## plan transition to sf/stars/terra functions using GDAL and PROJ
 ## at your earliest convenience.
@@ -420,14 +427,14 @@ described in the Preface section <a href="index.html#grad-forest">The ‘gradien
 <pre><code>## The following object is masked from &#39;package:terra&#39;:
 ## 
 ##     project</code></pre>
-<div class="sourceCode" id="cb272"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb272-1"><a href="geassoc.html#cb272-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sf)</span>
-<span id="cb272-2"><a href="geassoc.html#cb272-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(RColorBrewer)</span>
-<span id="cb272-3"><a href="geassoc.html#cb272-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rasterVis)</span></code></pre></div>
+<div class="sourceCode" id="cb291"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb291-1"><a href="geassoc.html#cb291-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sf)</span>
+<span id="cb291-2"><a href="geassoc.html#cb291-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(RColorBrewer)</span>
+<span id="cb291-3"><a href="geassoc.html#cb291-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rasterVis)</span></code></pre></div>
 <pre><code>## Loading required package: lattice</code></pre>
-<div class="sourceCode" id="cb274"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb274-1"><a href="geassoc.html#cb274-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div>
+<div class="sourceCode" id="cb293"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb293-1"><a href="geassoc.html#cb293-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div>
 <p>And we will need to load a realistic, polygon shapefile (an outline of the Willow Flycatcher’s breeding range in North America for this exercise) and set its projection. <strong>Note, you will need to adjust the path to the shapefile below. This is the path to my shape file on my computer.</strong></p>
 <p>That will produce this map:</p>
-<div class="sourceCode" id="cb275"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb275-1"><a href="geassoc.html#cb275-1" aria-hidden="true" tabindex="-1"></a>wifl_shape <span class="ot">&lt;-</span><span class="fu">st_read</span>(<span class="st">&quot;data/6.0/WIFLrev.shp&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb294"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb294-1"><a href="geassoc.html#cb294-1" aria-hidden="true" tabindex="-1"></a>wifl_shape <span class="ot">&lt;-</span><span class="fu">st_read</span>(<span class="st">&quot;data/6.0/WIFLrev.shp&quot;</span>)</span></code></pre></div>
 <pre><code>## Reading layer `WIFLrev&#39; from data source 
 ##   `/Users/eriq/Documents/git-repos/merida-workshop-2022/data/6.0/WIFLrev.shp&#39; 
 ##   using driver `ESRI Shapefile&#39;
@@ -436,11 +443,11 @@ described in the Preface section <a href="index.html#grad-forest">The ‘gradien
 ## Dimension:     XY
 ## Bounding box:  xmin: -128.4 ymin: 29.04 xmax: -67.01 ymax: 53.46
 ## Geodetic CRS:  WGS 84</code></pre>
-<div class="sourceCode" id="cb277"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb277-1"><a href="geassoc.html#cb277-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(wifl_shape) <span class="sc">+</span></span>
-<span id="cb277-2"><a href="geassoc.html#cb277-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">fill=</span><span class="cn">NA</span>) <span class="sc">+</span></span>
-<span id="cb277-3"><a href="geassoc.html#cb277-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code></pre></div>
-<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-178"></span>
-<img src="merida-workshop-2022_files/figure-html/unnamed-chunk-178-1.png" alt="A basic outline of Willow Flycatcher breeding range we will use for this exercise" width="672" />
+<div class="sourceCode" id="cb296"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb296-1"><a href="geassoc.html#cb296-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(wifl_shape) <span class="sc">+</span></span>
+<span id="cb296-2"><a href="geassoc.html#cb296-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">fill=</span><span class="cn">NA</span>) <span class="sc">+</span></span>
+<span id="cb296-3"><a href="geassoc.html#cb296-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code></pre></div>
+<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-185"></span>
+<img src="merida-workshop-2022_files/figure-html/unnamed-chunk-185-1.png" alt="A basic outline of Willow Flycatcher breeding range we will use for this exercise" width="672" />
 <p class="caption">
 FIGURE 7.1: A basic outline of Willow Flycatcher breeding range we will use for this exercise
 </p>
@@ -451,7 +458,7 @@ FIGURE 7.1: A basic outline of Willow Flycatcher breeding range we will use for 
 <p>We will use gradient forest to test whether a subset of genomic variation can be explained by environmental variables and to visualize climate-associated genetic variation across the breeding range of the Willow Flycatcher. To run gradient forest we need two main files. First we need the environmental data/climate variables associated with each population. Populations are defined by their latitude and longitude.</p>
 <p>For each sampling location, we obtained environmental data from publically available databases. Specifically, we chose variables with known impacts on bird physiology and ecology and that were publically available at high resolution. These variables included 19 climate variables downloaded from WorldClim (Hijmans et al. 2005) as well as vegetation indices (Carroll et al. 2004) (NDVI and NDVIstd), Tree Cover (Sexton et al. 2013) and elevation data from the Global Land Cover Facility (<a href="http://www.landcover.org" class="uri">http://www.landcover.org</a>). We also downloaded and used a measure of surface moisture characteristics from the NASA Scatterometer Climate Record Pathfinder project (QuickSCAT, downloaded from scp.byu.edu).</p>
 <p>Read in the environmental variables, and take a look at the dimensions and the actual data.</p>
-<div class="sourceCode" id="cb278"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb278-1"><a href="geassoc.html#cb278-1" aria-hidden="true" tabindex="-1"></a>Ewifl<span class="ot">&lt;-</span><span class="fu">read_csv</span>(<span class="st">&#39;data/6.0/wiflforest.env.csv&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb297"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb297-1"><a href="geassoc.html#cb297-1" aria-hidden="true" tabindex="-1"></a>Ewifl<span class="ot">&lt;-</span><span class="fu">read_csv</span>(<span class="st">&#39;data/6.0/wiflforest.env.csv&#39;</span>)</span></code></pre></div>
 <pre><code>## Rows: 21 Columns: 23</code></pre>
 <pre><code>## ── Column specification ───────────────────────────────
 ## Delimiter: &quot;,&quot;
@@ -459,11 +466,34 @@ FIGURE 7.1: A basic outline of Willow Flycatcher breeding range we will use for 
 <pre><code>## 
 ## ℹ Use `spec()` to retrieve the full column specification for this data.
 ## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
-<div class="sourceCode" id="cb282"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb282-1"><a href="geassoc.html#cb282-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(Ewifl)</span></code></pre></div>
+<div class="sourceCode" id="cb301"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb301-1"><a href="geassoc.html#cb301-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(Ewifl)</span></code></pre></div>
 <pre><code>## [1] 21 23</code></pre>
 <p><strong>How many sites do we have environmental data for? How many environmental variables?</strong></p>
+<p>Gradient forest does not directly account for spatial population structure. But there are some possible ways to deal with this:</p>
+<ul>
+<li><p>Include Lat/Long as predictors.</p></li>
+<li><p>Moran’s Eigenvector Map (MEM) variables – spatial eigenvectors (Fitzpatrick et al. 2015)</p></li>
+<li><p>”regress out” population cluster membership (Holliday et al. 2012 did this for phenotypes).</p></li>
+<li><p>Use genomic PCAs as predictors (Exposito-Alonso et al. 2018)</p></li>
+</ul>
+<p>Your choice depends on the biology of your organism and your question. You’ll notice in this tutorial, by examining the environmental data we are using in the code chunk below, we do not account for population structure.</p>
+<div class="sourceCode" id="cb303"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb303-1"><a href="geassoc.html#cb303-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(Ewifl)</span></code></pre></div>
+<pre><code>## # A tibble: 6 × 23
+##    BIO1  BIO2  BIO3  BIO4  BIO5  BIO6  BIO7  BIO8  BIO9
+##   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+## 1   193   165    43  7888   392    15   377    95   227
+## 2   205   165    44  7792   395    23   372   300   242
+## 3    52   180    50  6365   237  -116   353   131    78
+## 4    86   166    47  6468   290   -63   353    13   171
+## 5   168   107    54  3298   265    65   200   132   206
+## 6   166   158    44  7032   360     4   356    94   258
+## # … with 14 more variables: BIO10 &lt;dbl&gt;, BIO11 &lt;dbl&gt;,
+## #   BIO12 &lt;dbl&gt;, BIO13 &lt;dbl&gt;, BIO14 &lt;dbl&gt;,
+## #   BIO15 &lt;dbl&gt;, BIO16 &lt;dbl&gt;, BIO17 &lt;dbl&gt;,
+## #   BIO18 &lt;dbl&gt;, BIO19 &lt;dbl&gt;, NDVI_Mean &lt;dbl&gt;,
+## #   NDVI_StDev &lt;dbl&gt;, SRTM &lt;dbl&gt;, TreeCover &lt;dbl&gt;</code></pre>
 <p>Second, we have genomic data formatted as allele frequencies for each population in the same order. The published Willow Flycatcher data includes 37855 variants, and is too large to run a gradient forest analyses within the time frame of a tutorial, so we are supplying a subsetted dataset limited to 10,000 SNPs.</p>
-<div class="sourceCode" id="cb284"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb284-1"><a href="geassoc.html#cb284-1" aria-hidden="true" tabindex="-1"></a>Gwifl<span class="ot">&lt;-</span><span class="fu">read_csv</span>(<span class="st">&#39;data/6.0/wiflforest.allfreq.sample.csv&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb305"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb305-1"><a href="geassoc.html#cb305-1" aria-hidden="true" tabindex="-1"></a>Gwifl<span class="ot">&lt;-</span><span class="fu">read_csv</span>(<span class="st">&#39;data/6.0/wiflforest.allfreq.sample.csv&#39;</span>)</span></code></pre></div>
 <pre><code>## Rows: 21 Columns: 10000</code></pre>
 <pre><code>## ── Column specification ───────────────────────────────
 ## Delimiter: &quot;,&quot;
@@ -471,9 +501,9 @@ FIGURE 7.1: A basic outline of Willow Flycatcher breeding range we will use for 
 <pre><code>## 
 ## ℹ Use `spec()` to retrieve the full column specification for this data.
 ## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
-<div class="sourceCode" id="cb288"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb288-1"><a href="geassoc.html#cb288-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(Gwifl)</span></code></pre></div>
+<div class="sourceCode" id="cb309"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb309-1"><a href="geassoc.html#cb309-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(Gwifl)</span></code></pre></div>
 <pre><code>## [1]    21 10000</code></pre>
-<div class="sourceCode" id="cb290"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb290-1"><a href="geassoc.html#cb290-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(Gwifl)</span></code></pre></div>
+<div class="sourceCode" id="cb311"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb311-1"><a href="geassoc.html#cb311-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(Gwifl)</span></code></pre></div>
 <pre><code>## # A tibble: 6 × 10,000
 ##   V21252  V9139 V22510 V5860 V3386 V14932 V14581  V9277
 ##    &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;
@@ -492,18 +522,24 @@ FIGURE 7.1: A basic outline of Willow Flycatcher breeding range we will use for 
 ## #   V23539 &lt;dbl&gt;, V19510 &lt;dbl&gt;, V15571 &lt;dbl&gt;, …</code></pre>
 <p><strong>These are allele frequencies for each site. What is the range of allele frequencies for allele V3386? You might need to write extra code to answer this question.</strong></p>
 <p>Next we have some housekeeping to define the predictor variables in the regression, which are the environmental variables, and the response variables, which in this case are the frequencies of each variant, analyzed in gradient forest.</p>
-<p>Now we run gradientForest with 10 bootstrapped trees to be generated by randomForest. This will take about 5 minutes.</p>
-<div class="sourceCode" id="cb292"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb292-1"><a href="geassoc.html#cb292-1" aria-hidden="true" tabindex="-1"></a>preds <span class="ot">&lt;-</span> <span class="fu">colnames</span>(Ewifl)</span>
-<span id="cb292-2"><a href="geassoc.html#cb292-2" aria-hidden="true" tabindex="-1"></a>specs <span class="ot">&lt;-</span> <span class="fu">colnames</span>(Gwifl)</span>
-<span id="cb292-3"><a href="geassoc.html#cb292-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb292-4"><a href="geassoc.html#cb292-4" aria-hidden="true" tabindex="-1"></a>nSites <span class="ot">&lt;-</span> <span class="fu">dim</span>(Gwifl)[<span class="dv">1</span>]</span>
-<span id="cb292-5"><a href="geassoc.html#cb292-5" aria-hidden="true" tabindex="-1"></a>nSpecs <span class="ot">&lt;-</span> <span class="fu">dim</span>(Gwifl)[<span class="dv">2</span>]</span>
-<span id="cb292-6"><a href="geassoc.html#cb292-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb292-7"><a href="geassoc.html#cb292-7" aria-hidden="true" tabindex="-1"></a><span class="co"># set depth of conditional permutation</span></span>
-<span id="cb292-8"><a href="geassoc.html#cb292-8" aria-hidden="true" tabindex="-1"></a>lev <span class="ot">&lt;-</span> <span class="fu">floor</span>(<span class="fu">log2</span>(nSites<span class="sc">*</span><span class="fl">0.368</span><span class="sc">/</span><span class="dv">2</span>))</span>
-<span id="cb292-9"><a href="geassoc.html#cb292-9" aria-hidden="true" tabindex="-1"></a>lev</span></code></pre></div>
+<p>Another variable in the <em>gradientForest</em> model is <em>maxLevel</em>, which we define using an equation recommended by gradient forest.</p>
+<div class="sourceCode" id="cb313"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb313-1"><a href="geassoc.html#cb313-1" aria-hidden="true" tabindex="-1"></a><span class="co"># set depth of conditional permutation</span></span>
+<span id="cb313-2"><a href="geassoc.html#cb313-2" aria-hidden="true" tabindex="-1"></a>lev <span class="ot">&lt;-</span> <span class="fu">floor</span>(<span class="fu">log2</span>(nSites<span class="sc">*</span><span class="fl">0.368</span><span class="sc">/</span><span class="dv">2</span>))</span>
+<span id="cb313-3"><a href="geassoc.html#cb313-3" aria-hidden="true" tabindex="-1"></a>lev</span></code></pre></div>
 <pre><code>## [1] 1</code></pre>
-<div class="sourceCode" id="cb294"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb294-1"><a href="geassoc.html#cb294-1" aria-hidden="true" tabindex="-1"></a>wiflforest<span class="ot">=</span><span class="fu">gradientForest</span>(<span class="fu">cbind</span>(Ewifl,Gwifl), <span class="at">predictor.vars=</span>preds, <span class="at">response.vars=</span>specs, <span class="at">ntree=</span><span class="dv">10</span>, <span class="at">transform =</span> <span class="cn">NULL</span>, <span class="at">compact=</span>T,<span class="at">nbin=</span><span class="dv">101</span>, <span class="at">maxLevel=</span>lev,<span class="at">trace=</span>T)</span></code></pre></div>
+<p>First, and notably, predictor variables are often correlated. The standard approach in random forests assesses marginal importance of predictor
+by randomly permuting each predictor in turn, across all sites in the dataset,
+and calculating the degradation prediction performance of each tree. Package
+<em>extendedForest</em> can account for correlated predictors by implementing
+conditional permutation <strong>Ellis2010</strong>, following the strategy outlined
+by <strong>Strobl2008</strong>. In conditional permutation, the predictor to be
+assessed is permuted only within blocks of the dataset defined by splits in the
+given tree on any other predictors correlated above a certain threshold (e.g. 
+r= 0.5) and up to a maximum number of splits set by the <em>maxLevel</em> option. A <strong>maxLevel &gt; 0</strong> will compute importance from conditional permutation distribution of each variable, permuted within <em>2^maxLevel</em> partitions of correlated variables.</p>
+<p><em>Note:</em> the <em>ntree</em> default is 10, however, more is better and reduces variance. Gradient forest recommends 500 for a true run. Also, gradient forest bins variants, thus large scale patterns will be seen, however, if there is one variant of large effect, it may not be found in this analysis.</p>
+<p>If you are asking about ecological drivers of a small number of variants underlying a trait of interest (candidate variants identified using GWAS), then you wouldn’t bin the data, as you don’t want to split up the data even more.</p>
+<p>Now we run gradientForest with 10 bootstrapped trees to be generated by randomForest. This will take about 5 minutes.</p>
+<div class="sourceCode" id="cb315"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb315-1"><a href="geassoc.html#cb315-1" aria-hidden="true" tabindex="-1"></a>wiflforest<span class="ot">=</span><span class="fu">gradientForest</span>(<span class="fu">cbind</span>(Ewifl,Gwifl), <span class="at">predictor.vars=</span>preds, <span class="at">response.vars=</span>specs, <span class="at">ntree=</span><span class="dv">10</span>, <span class="at">transform =</span> <span class="cn">NULL</span>, <span class="at">compact=</span>T, <span class="at">nbin=</span><span class="dv">101</span>, <span class="at">maxLevel=</span>lev, <span class="at">trace=</span>T)</span></code></pre></div>
 <pre><code>## Calculating forests for 10000 species
 ## ......................................................
 ## .......................................................
@@ -703,54 +739,57 @@ FIGURE 7.1: A basic outline of Willow Flycatcher breeding range we will use for 
 ## .......................................................
 ## .......................................................
 ## ..............................................</code></pre>
-<div class="sourceCode" id="cb304"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb304-1"><a href="geassoc.html#cb304-1" aria-hidden="true" tabindex="-1"></a><span class="do">##ntree=default is 10, more is better and reduces variance</span></span>
-<span id="cb304-2"><a href="geassoc.html#cb304-2" aria-hidden="true" tabindex="-1"></a><span class="do">##gradient forest bins variants, large scale patterns will be seen</span></span>
-<span id="cb304-3"><a href="geassoc.html#cb304-3" aria-hidden="true" tabindex="-1"></a><span class="do">##if one variant of large effect, may not be found in this analysis</span></span></code></pre></div>
 <p>Now we can ask which environmental variables are significantly associated with the allelic structure of Willow Flycatchers (or at least the subset we are looking at).</p>
 <p>This first plot and most useful from gradientForest is the predictor overall importance plot, which shows a simple barplot of the ranked importances of the physical variables. This shows the mean accuracy importance and the mean importance weighted by SNP R^2. The most reliable importances are the R^2 weighted importances.</p>
-<div class="sourceCode" id="cb305"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb305-1"><a href="geassoc.html#cb305-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(wiflforest,<span class="at">plot.type=</span><span class="st">&quot;Overall.Importance&quot;</span>)</span></code></pre></div>
-<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-182"></span>
-<img src="merida-workshop-2022_files/figure-html/unnamed-chunk-182-1.png" alt="Overall importance of predictor variables" width="672" />
+<div class="sourceCode" id="cb325"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb325-1"><a href="geassoc.html#cb325-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(wiflforest,<span class="at">plot.type=</span><span class="st">&quot;Overall.Importance&quot;</span>)</span></code></pre></div>
+<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-192"></span>
+<img src="merida-workshop-2022_files/figure-html/unnamed-chunk-192-1.png" alt="Overall importance of predictor variables" width="672" />
 <p class="caption">
 FIGURE 7.2: Overall importance of predictor variables
 </p>
 </div>
 <p><strong>For the Willow Flycatcher subsetted data in this tutorial, what are the top 5 variables?</strong></p>
 <p>Use the code below to look at Cuumulative importance, aka which variants are strongly associated with the top two variables. The cumulative importance is plotted separately for all species and averaged over all species. The cumulative importance can be interpreted as a mapping from an environmental gradient on to biological gradient.</p>
-<div class="sourceCode" id="cb306"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb306-1"><a href="geassoc.html#cb306-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(wiflforest,<span class="at">plot.type=</span><span class="st">&quot;Cumulative.Importance&quot;</span>)</span></code></pre></div>
-<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-183"></span>
-<img src="merida-workshop-2022_files/figure-html/unnamed-chunk-183-1.png" alt="Individual and cumulative importance of SNPs associated with top 2 environmental variables" width="672" />
+<div class="sourceCode" id="cb326"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb326-1"><a href="geassoc.html#cb326-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(wiflforest,<span class="at">plot.type=</span><span class="st">&quot;Cumulative.Importance&quot;</span>)</span></code></pre></div>
+<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-193"></span>
+<img src="merida-workshop-2022_files/figure-html/unnamed-chunk-193-1.png" alt="Individual and cumulative importance of SNPs associated with top 2 environmental variables" width="672" />
 <p class="caption">
 FIGURE 7.3: Individual and cumulative importance of SNPs associated with top 2 environmental variables
 </p>
 </div>
 <p><strong>Which SNP has the greatest importance?</strong> For plotting purposes, only the first two top environmental variables are plotted. So the plots on the left are variants and turnover functions associated with Bio4, and the plots on the right are associated Bio3.</p>
 <p>You can confirm this by looking at the range of your top environemntal variables and comparing it to the x-axis in the plots above using this code below:</p>
-<div class="sourceCode" id="cb307"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb307-1"><a href="geassoc.html#cb307-1" aria-hidden="true" tabindex="-1"></a>Ewifl <span class="sc">%&gt;%</span> dplyr<span class="sc">::</span><span class="fu">select</span>(BIO4,BIO3)</span></code></pre></div>
-<pre><code>## # A tibble: 21 × 2
-##     BIO4  BIO3
-##    &lt;dbl&gt; &lt;dbl&gt;
-##  1  7888    43
-##  2  7792    44
-##  3  6365    50
-##  4  6468    47
-##  5  3298    54
-##  6  7032    44
-##  7  8676    36
-##  8  8762    36
-##  9  9542    30
-## 10  4173    50
-## # … with 11 more rows</code></pre>
+<div class="sourceCode" id="cb327"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb327-1"><a href="geassoc.html#cb327-1" aria-hidden="true" tabindex="-1"></a>Ewifl <span class="sc">%&gt;%</span> dplyr<span class="sc">::</span><span class="fu">select</span>(BIO4,BIO3) <span class="sc">%&gt;%</span> <span class="fu">summarise</span>(<span class="at">rangeBio4=</span><span class="fu">range</span>(BIO4),<span class="at">rangeBio3=</span><span class="fu">range</span>(BIO3))</span></code></pre></div>
+<pre><code>## # A tibble: 2 × 2
+##   rangeBio4 rangeBio3
+##       &lt;dbl&gt;     &lt;dbl&gt;
+## 1      3298        27
+## 2     11946        54</code></pre>
+<div class="sourceCode" id="cb329"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb329-1"><a href="geassoc.html#cb329-1" aria-hidden="true" tabindex="-1"></a><span class="co">#or </span></span>
+<span id="cb329-2"><a href="geassoc.html#cb329-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb329-3"><a href="geassoc.html#cb329-3" aria-hidden="true" tabindex="-1"></a>Ewifl <span class="sc">%&gt;%</span> <span class="fu">pull</span>(BIO4) <span class="sc">%&gt;%</span> <span class="fu">range</span>()</span></code></pre></div>
+<pre><code>## [1]  3298 11946</code></pre>
+<div class="sourceCode" id="cb331"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb331-1"><a href="geassoc.html#cb331-1" aria-hidden="true" tabindex="-1"></a>Ewifl <span class="sc">%&gt;%</span> <span class="fu">pull</span>(BIO3) <span class="sc">%&gt;%</span> <span class="fu">range</span>()</span></code></pre></div>
+<pre><code>## [1] 27 54</code></pre>
 <p>Note, while gradient forest can look at variants associated with environmental variables like this, we tend to choose the top uncorrelated environmental variables and run latent factor mixed models to identify candidate genes associated with each environmental variable. Why? In gradient forest, we “bin” the variation, so we are looking for large patterns, not individual variants.</p>
 </div>
 <div id="basic-gradient-forest-preparation" class="section level2" number="7.5">
 <h2><span class="header-section-number">7.5</span> Basic Gradient Forest Preparation</h2>
 <p>So now that you see how gradient forest is run, let’s plot the results in space.</p>
 <p>Gradientforest here was based off of 21 locations in the WIFL range. I’ve randomly chosen 100,000 points within the WIFL range and gotten the evironmental data for these 100,000 sites, which will allow us to have a more continuous view of important environmental associations in WIFL space. Load your 100,000 random points with associated environmental predictors. This can be created with another script that was included with the tutorial material (bioclim&amp;randoms.R), but we’ll use the ready-made grid created specifically for Willow Flycatchers.</p>
-<div class="sourceCode" id="cb309"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb309-1"><a href="geassoc.html#cb309-1" aria-hidden="true" tabindex="-1"></a><span class="co">#WIFL current random points, filter out &#39;bad&#39; points</span></span>
-<span id="cb309-2"><a href="geassoc.html#cb309-2" aria-hidden="true" tabindex="-1"></a>birdgrid<span class="ot">=</span><span class="fu">read.table</span>(<span class="st">&quot;data/6.0/wiflcurrentRH.csv&quot;</span>,<span class="at">header=</span>T,<span class="at">sep=</span><span class="st">&quot;,&quot;</span>) <span class="sc">%&gt;%</span> <span class="fu">filter</span>(BIO4<span class="sc">!=</span><span class="st">&quot;-9999&quot;</span>) <span class="co">#load your  random points with assocaited env predictors </span></span>
-<span id="cb309-3"><a href="geassoc.html#cb309-3" aria-hidden="true" tabindex="-1"></a><span class="do">##Let&#39;s look at bird grid, untransformed environmental variable</span></span>
-<span id="cb309-4"><a href="geassoc.html#cb309-4" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(birdgrid)</span></code></pre></div>
+<div class="sourceCode" id="cb333"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb333-1"><a href="geassoc.html#cb333-1" aria-hidden="true" tabindex="-1"></a><span class="co">#WIFL current random points, filter out &#39;bad&#39; points</span></span>
+<span id="cb333-2"><a href="geassoc.html#cb333-2" aria-hidden="true" tabindex="-1"></a>birdgrid<span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/6.0/wiflcurrentRH.csv&quot;</span>) <span class="sc">%&gt;%</span> <span class="co">#load your  random points with assocaited env predictors</span></span>
+<span id="cb333-3"><a href="geassoc.html#cb333-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(BIO4<span class="sc">!=</span><span class="st">&quot;-9999&quot;</span>) <span class="sc">%&gt;%</span>  <span class="co">#remove the &quot;bad data&quot;</span></span>
+<span id="cb333-4"><a href="geassoc.html#cb333-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as.data.frame</span>() <span class="co">#create the data frame</span></span></code></pre></div>
+<pre><code>## Rows: 100000 Columns: 12</code></pre>
+<pre><code>## ── Column specification ───────────────────────────────
+## Delimiter: &quot;,&quot;
+## dbl (12): X, Y, BIO2, BIO3, BIO4, BIO5, BIO8, BIO9,...</code></pre>
+<pre><code>## 
+## ℹ Use `spec()` to retrieve the full column specification for this data.
+## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+<div class="sourceCode" id="cb337"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb337-1"><a href="geassoc.html#cb337-1" aria-hidden="true" tabindex="-1"></a><span class="do">##Let&#39;s look at bird grid, untransformed environmental variable</span></span>
+<span id="cb337-2"><a href="geassoc.html#cb337-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(birdgrid)</span></code></pre></div>
 <pre><code>##         X     Y BIO2 BIO3 BIO4 BIO5 BIO8 BIO9 BIO11
 ## 1  -76.17 44.09  103   26 9755  260   93   -5   -60
 ## 2 -103.38 42.94  164   36 9842  320  183  -43   -43
@@ -765,10 +804,10 @@ FIGURE 7.3: Individual and cumulative importance of SNPs associated with top 2 e
 ## 4    60    47   200
 ## 5    65    42   156
 ## 6    25   105   117</code></pre>
-<div class="sourceCode" id="cb311"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb311-1"><a href="geassoc.html#cb311-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(birdgrid)</span></code></pre></div>
+<div class="sourceCode" id="cb339"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb339-1"><a href="geassoc.html#cb339-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(birdgrid)</span></code></pre></div>
 <pre><code>## [1] 99541    12</code></pre>
 <p>We don’t have to use all the predictors in the next steps, in this case, we’ll use the top 4 uncorrelated variables. These variables were selected by moving down the list of ranked importance for the full model and discarding variables highly correlated (|Pearson’s r| &gt; 0.7) with a variable of higher importance. You can see the correlations among environmental variables across your sample sites. While it is clearly hard to read here, if you export this and open in excel, you can color code and keep track of the correlations among the ranked variables.</p>
-<div class="sourceCode" id="cb313"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb313-1"><a href="geassoc.html#cb313-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(<span class="fu">cor</span>(Ewifl,<span class="at">method=</span><span class="st">&quot;pearson&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb341"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb341-1"><a href="geassoc.html#cb341-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(<span class="fu">cor</span>(Ewifl,<span class="at">method=</span><span class="st">&quot;pearson&quot;</span>))</span></code></pre></div>
 <pre><code>##          BIO1     BIO2     BIO3    BIO4     BIO5
 ## BIO1  1.00000  0.06378  0.41991 -0.3227  0.70423
 ## BIO2  0.06378  1.00000  0.20607  0.2063  0.51230
@@ -806,103 +845,105 @@ FIGURE 7.3: Individual and cumulative importance of SNPs associated with top 2 e
 ## BIO6 -0.54098   0.01015</code></pre>
 <p>For the remaining time in this tutorial we are focusing on the uncorrelated variables determined for the <strong>full</strong> Willow Flycatcher dataset (Ruegg et al. 2017), BIO11 (Mean temperature of coldest quarter), BIO5 (Max temperature of warmest month), BIO4 (Temperature seasonality (standard deviation *100)), and BIO17 (Precipitation of driest quarter).</p>
 <p>Predict across your random sites using your Forest model:</p>
-<div class="sourceCode" id="cb315"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb315-1"><a href="geassoc.html#cb315-1" aria-hidden="true" tabindex="-1"></a>predictors_uncor<span class="ot">&lt;-</span><span class="fu">c</span>(<span class="st">&quot;BIO11&quot;</span>,<span class="st">&quot;BIO5&quot;</span>,<span class="st">&quot;BIO4&quot;</span> ,<span class="st">&quot;BIO17&quot;</span>)</span>
-<span id="cb315-2"><a href="geassoc.html#cb315-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb315-3"><a href="geassoc.html#cb315-3" aria-hidden="true" tabindex="-1"></a>currentgrid<span class="ot">=</span><span class="fu">cbind</span>(birdgrid[,<span class="fu">c</span>(<span class="st">&quot;X&quot;</span>,<span class="st">&quot;Y&quot;</span>)], <span class="fu">predict</span>(wiflforest,birdgrid[,predictors_uncor])) <span class="co">#predict across your random sites using your forest</span></span>
-<span id="cb315-4"><a href="geassoc.html#cb315-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb315-5"><a href="geassoc.html#cb315-5" aria-hidden="true" tabindex="-1"></a><span class="do">##Let&#39;s look at currentgrid, transformed environmental variables- see how they were transformed</span></span>
-<span id="cb315-6"><a href="geassoc.html#cb315-6" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(currentgrid)</span></code></pre></div>
+<div class="sourceCode" id="cb343"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb343-1"><a href="geassoc.html#cb343-1" aria-hidden="true" tabindex="-1"></a>predictors_uncor<span class="ot">&lt;-</span><span class="fu">c</span>(<span class="st">&quot;BIO11&quot;</span>,<span class="st">&quot;BIO5&quot;</span>,<span class="st">&quot;BIO4&quot;</span> ,<span class="st">&quot;BIO17&quot;</span>)</span>
+<span id="cb343-2"><a href="geassoc.html#cb343-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb343-3"><a href="geassoc.html#cb343-3" aria-hidden="true" tabindex="-1"></a>currentgrid <span class="ot">&lt;-</span><span class="fu">cbind</span>(birdgrid[,<span class="fu">c</span>(<span class="st">&quot;X&quot;</span>,<span class="st">&quot;Y&quot;</span>)], <span class="fu">predict</span>(wiflforest,birdgrid[,predictors_uncor])) <span class="co">#predict across your random sites using your forest</span></span>
+<span id="cb343-4"><a href="geassoc.html#cb343-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb343-5"><a href="geassoc.html#cb343-5" aria-hidden="true" tabindex="-1"></a><span class="do">##Let&#39;s look at currentgrid, transformed environmental variables</span></span>
+<span id="cb343-6"><a href="geassoc.html#cb343-6" aria-hidden="true" tabindex="-1"></a><span class="do">##Notice how they were transformed</span></span>
+<span id="cb343-7"><a href="geassoc.html#cb343-7" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(currentgrid)</span></code></pre></div>
 <pre><code>##         X     Y      BIO11      BIO5     BIO4
-## 1  -76.17 44.09  5.777e-04  0.001007 0.021252
-## 2 -103.38 42.94  1.301e-03  0.002864 0.021435
-## 3  -69.11 44.32  6.410e-04  0.001063 0.019887
-## 4 -109.13 33.49  4.530e-03  0.002205 0.004130
-## 5 -106.01 33.40  6.086e-03  0.002857 0.005055
-## 6 -119.89 48.97 -8.135e-05 -0.002183 0.004902
+## 1  -76.17 44.09  0.0004528  0.001014 0.022466
+## 2 -103.38 42.94  0.0013002  0.002946 0.022643
+## 3  -69.11 44.32  0.0005108  0.001068 0.021303
+## 4 -109.13 33.49  0.0050652  0.002272 0.003932
+## 5 -106.01 33.40  0.0064085  0.002934 0.004638
+## 6 -119.89 48.97 -0.0001678 -0.002423 0.004499
 ##       BIO17
-## 1 0.0049658
-## 2 0.0007693
-## 3 0.0057680
-## 4 0.0014472
-## 5 0.0013369
-## 6 0.0025497</code></pre>
-<div class="sourceCode" id="cb317"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb317-1"><a href="geassoc.html#cb317-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(currentgrid)</span></code></pre></div>
+## 1 0.0049102
+## 2 0.0007953
+## 3 0.0057301
+## 4 0.0014202
+## 5 0.0013088
+## 6 0.0025174</code></pre>
+<div class="sourceCode" id="cb345"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb345-1"><a href="geassoc.html#cb345-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(currentgrid)</span></code></pre></div>
 <pre><code>## [1] 99541     6</code></pre>
 <p>We can summarize the variation using principal components. We then convert those PC axes to RGB values for plotting.</p>
-<div class="sourceCode" id="cb319"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb319-1"><a href="geassoc.html#cb319-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Getting the PCs and Converting Them to RGB Color Values</span></span>
-<span id="cb319-2"><a href="geassoc.html#cb319-2" aria-hidden="true" tabindex="-1"></a>PCs<span class="ot">=</span><span class="fu">prcomp</span>(currentgrid[,<span class="dv">3</span><span class="sc">:</span><span class="dv">6</span>]) <span class="co">#run your PCs on your top four variables</span></span>
-<span id="cb319-3"><a href="geassoc.html#cb319-3" aria-hidden="true" tabindex="-1"></a><span class="co"># set up a colour palette for the mapping</span></span>
-<span id="cb319-4"><a href="geassoc.html#cb319-4" aria-hidden="true" tabindex="-1"></a>a1 <span class="ot">&lt;-</span> PCs<span class="sc">$</span>x[,<span class="dv">1</span>]</span>
-<span id="cb319-5"><a href="geassoc.html#cb319-5" aria-hidden="true" tabindex="-1"></a>a2 <span class="ot">&lt;-</span> PCs<span class="sc">$</span>x[,<span class="dv">2</span>]</span>
-<span id="cb319-6"><a href="geassoc.html#cb319-6" aria-hidden="true" tabindex="-1"></a>a3 <span class="ot">&lt;-</span> PCs<span class="sc">$</span>x[,<span class="dv">3</span>]</span>
-<span id="cb319-7"><a href="geassoc.html#cb319-7" aria-hidden="true" tabindex="-1"></a>r <span class="ot">&lt;-</span> a1<span class="sc">+</span>a2</span>
-<span id="cb319-8"><a href="geassoc.html#cb319-8" aria-hidden="true" tabindex="-1"></a>g <span class="ot">&lt;-</span> <span class="sc">-</span>a2</span>
-<span id="cb319-9"><a href="geassoc.html#cb319-9" aria-hidden="true" tabindex="-1"></a>b <span class="ot">&lt;-</span> a3<span class="sc">+</span>a2<span class="sc">-</span>a1</span>
-<span id="cb319-10"><a href="geassoc.html#cb319-10" aria-hidden="true" tabindex="-1"></a>r <span class="ot">&lt;-</span> (r<span class="sc">-</span><span class="fu">min</span>(r)) <span class="sc">/</span> (<span class="fu">max</span>(r)<span class="sc">-</span><span class="fu">min</span>(r)) <span class="sc">*</span> <span class="dv">255</span></span>
-<span id="cb319-11"><a href="geassoc.html#cb319-11" aria-hidden="true" tabindex="-1"></a>g <span class="ot">&lt;-</span> (g<span class="sc">-</span><span class="fu">min</span>(g)) <span class="sc">/</span> (<span class="fu">max</span>(g)<span class="sc">-</span><span class="fu">min</span>(g)) <span class="sc">*</span> <span class="dv">255</span></span>
-<span id="cb319-12"><a href="geassoc.html#cb319-12" aria-hidden="true" tabindex="-1"></a>b <span class="ot">&lt;-</span> (b<span class="sc">-</span><span class="fu">min</span>(b)) <span class="sc">/</span> (<span class="fu">max</span>(b)<span class="sc">-</span><span class="fu">min</span>(b)) <span class="sc">*</span> <span class="dv">255</span></span>
-<span id="cb319-13"><a href="geassoc.html#cb319-13" aria-hidden="true" tabindex="-1"></a>wiflcols<span class="ot">=</span><span class="fu">rgb</span>(r,g,b,<span class="at">max=</span><span class="dv">255</span>)</span>
-<span id="cb319-14"><a href="geassoc.html#cb319-14" aria-hidden="true" tabindex="-1"></a>wiflcols2<span class="ot">=</span><span class="fu">col2rgb</span>(wiflcols)</span>
-<span id="cb319-15"><a href="geassoc.html#cb319-15" aria-hidden="true" tabindex="-1"></a>wiflcols3<span class="ot">=</span><span class="fu">t</span>(wiflcols2)</span>
-<span id="cb319-16"><a href="geassoc.html#cb319-16" aria-hidden="true" tabindex="-1"></a>gradients<span class="ot">=</span><span class="fu">cbind</span>(currentgrid[<span class="fu">c</span>(<span class="st">&quot;X&quot;</span>,<span class="st">&quot;Y&quot;</span>)],wiflcols3)</span></code></pre></div>
-<p>The multi-dimensional biological space can be plotted by taking the principle component of the transformted grid and presenting the first two dimensions in a biplot. You’ve already defined the PCs above and the RGB color palette. Different coordinate positions in the biplot represent differing allele frequency compositions as associated with the predictors.</p>
-<div class="sourceCode" id="cb320"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb320-1"><a href="geassoc.html#cb320-1" aria-hidden="true" tabindex="-1"></a><span class="do">##Biplot specifics</span></span>
-<span id="cb320-2"><a href="geassoc.html#cb320-2" aria-hidden="true" tabindex="-1"></a>nvs <span class="ot">&lt;-</span> <span class="fu">dim</span>(PCs<span class="sc">$</span>rotation)[<span class="dv">1</span>]</span>
-<span id="cb320-3"><a href="geassoc.html#cb320-3" aria-hidden="true" tabindex="-1"></a>vec <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;BIO11&quot;</span>,<span class="st">&quot;BIO5&quot;</span>,<span class="st">&quot;BIO4&quot;</span> ,<span class="st">&quot;BIO17&quot;</span>)</span>
-<span id="cb320-4"><a href="geassoc.html#cb320-4" aria-hidden="true" tabindex="-1"></a>lv <span class="ot">&lt;-</span> <span class="fu">length</span>(vec)</span>
-<span id="cb320-5"><a href="geassoc.html#cb320-5" aria-hidden="true" tabindex="-1"></a>vind <span class="ot">&lt;-</span> <span class="fu">rownames</span>(PCs<span class="sc">$</span>rotation) <span class="sc">%in%</span> vec</span>
-<span id="cb320-6"><a href="geassoc.html#cb320-6" aria-hidden="true" tabindex="-1"></a>scal <span class="ot">&lt;-</span><span class="dv">100</span></span>
-<span id="cb320-7"><a href="geassoc.html#cb320-7" aria-hidden="true" tabindex="-1"></a>xrng <span class="ot">&lt;-</span> <span class="fu">range</span>(PCs<span class="sc">$</span>x[, <span class="dv">1</span>], PCs<span class="sc">$</span>rotation[, <span class="dv">1</span>]<span class="sc">/</span>scal) <span class="sc">*</span><span class="fl">1.2</span></span>
-<span id="cb320-8"><a href="geassoc.html#cb320-8" aria-hidden="true" tabindex="-1"></a>yrng <span class="ot">&lt;-</span> <span class="fu">range</span>(PCs<span class="sc">$</span>x[, <span class="dv">2</span>], PCs<span class="sc">$</span>rotation[, <span class="dv">2</span>]<span class="sc">/</span>scal) <span class="sc">*</span><span class="fl">1.2</span></span>
-<span id="cb320-9"><a href="geassoc.html#cb320-9" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>((PCs<span class="sc">$</span>x[, <span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>]), <span class="at">xlim =</span> xrng, <span class="at">ylim =</span> yrng, <span class="at">pch =</span> <span class="st">&quot;.&quot;</span>, <span class="at">cex =</span> <span class="dv">4</span>, <span class="at">col =</span> <span class="fu">rgb</span>(r, g, b, <span class="at">max =</span> <span class="dv">255</span>), <span class="at">asp =</span> <span class="dv">1</span>)</span>
-<span id="cb320-10"><a href="geassoc.html#cb320-10" aria-hidden="true" tabindex="-1"></a><span class="fu">points</span>(PCs<span class="sc">$</span>rotation[<span class="sc">!</span>vind, <span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>]<span class="sc">/</span>scal, <span class="at">pch =</span> <span class="st">&quot;+&quot;</span>)</span>
-<span id="cb320-11"><a href="geassoc.html#cb320-11" aria-hidden="true" tabindex="-1"></a><span class="fu">arrows</span>(<span class="fu">rep</span>(<span class="dv">0</span>, lv), <span class="fu">rep</span>(<span class="dv">0</span>, lv), PCs<span class="sc">$</span>rotation[vec,<span class="dv">1</span>]<span class="sc">/</span>scal, PCs<span class="sc">$</span>rotation[vec, <span class="dv">2</span>]<span class="sc">/</span>scal, <span class="at">length =</span> <span class="fl">0.0625</span>)</span>
-<span id="cb320-12"><a href="geassoc.html#cb320-12" aria-hidden="true" tabindex="-1"></a>jit <span class="ot">&lt;-</span> <span class="fl">0.0015</span></span>
-<span id="cb320-13"><a href="geassoc.html#cb320-13" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(PCs<span class="sc">$</span>rotation[vec, <span class="dv">1</span>]<span class="sc">/</span>scal <span class="sc">+</span> jit <span class="sc">*</span> <span class="fu">sign</span>(PCs<span class="sc">$</span>rotation[vec,<span class="dv">1</span>]), PCs<span class="sc">$</span>rotation[vec, <span class="dv">2</span>]<span class="sc">/</span>scal <span class="sc">+</span> jit <span class="sc">*</span> <span class="fu">sign</span>(PCs<span class="sc">$</span>rotation[vec,<span class="dv">2</span>]), <span class="at">labels =</span> vec)</span></code></pre></div>
-<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-189"></span>
-<img src="merida-workshop-2022_files/figure-html/unnamed-chunk-189-1.png" alt="A principle component plot of the top 4 uncorrelated variables" width="672" />
+<div class="sourceCode" id="cb347"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb347-1"><a href="geassoc.html#cb347-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Getting the PCs and Converting Them to RGB Color Values</span></span>
+<span id="cb347-2"><a href="geassoc.html#cb347-2" aria-hidden="true" tabindex="-1"></a>PCs<span class="ot">=</span><span class="fu">prcomp</span>(currentgrid[,<span class="dv">3</span><span class="sc">:</span><span class="dv">6</span>]) <span class="co">#run your PCs on your top four variables</span></span>
+<span id="cb347-3"><a href="geassoc.html#cb347-3" aria-hidden="true" tabindex="-1"></a><span class="co"># set up a colour palette for the mapping</span></span>
+<span id="cb347-4"><a href="geassoc.html#cb347-4" aria-hidden="true" tabindex="-1"></a>a1 <span class="ot">&lt;-</span> PCs<span class="sc">$</span>x[,<span class="dv">1</span>]</span>
+<span id="cb347-5"><a href="geassoc.html#cb347-5" aria-hidden="true" tabindex="-1"></a>a2 <span class="ot">&lt;-</span> PCs<span class="sc">$</span>x[,<span class="dv">2</span>]</span>
+<span id="cb347-6"><a href="geassoc.html#cb347-6" aria-hidden="true" tabindex="-1"></a>a3 <span class="ot">&lt;-</span> PCs<span class="sc">$</span>x[,<span class="dv">3</span>]</span>
+<span id="cb347-7"><a href="geassoc.html#cb347-7" aria-hidden="true" tabindex="-1"></a>r <span class="ot">&lt;-</span> a1<span class="sc">+</span>a2</span>
+<span id="cb347-8"><a href="geassoc.html#cb347-8" aria-hidden="true" tabindex="-1"></a>g <span class="ot">&lt;-</span> <span class="sc">-</span>a2</span>
+<span id="cb347-9"><a href="geassoc.html#cb347-9" aria-hidden="true" tabindex="-1"></a>b <span class="ot">&lt;-</span> a3<span class="sc">+</span>a2<span class="sc">-</span>a1</span>
+<span id="cb347-10"><a href="geassoc.html#cb347-10" aria-hidden="true" tabindex="-1"></a>r <span class="ot">&lt;-</span> (r<span class="sc">-</span><span class="fu">min</span>(r)) <span class="sc">/</span> (<span class="fu">max</span>(r)<span class="sc">-</span><span class="fu">min</span>(r)) <span class="sc">*</span> <span class="dv">255</span></span>
+<span id="cb347-11"><a href="geassoc.html#cb347-11" aria-hidden="true" tabindex="-1"></a>g <span class="ot">&lt;-</span> (g<span class="sc">-</span><span class="fu">min</span>(g)) <span class="sc">/</span> (<span class="fu">max</span>(g)<span class="sc">-</span><span class="fu">min</span>(g)) <span class="sc">*</span> <span class="dv">255</span></span>
+<span id="cb347-12"><a href="geassoc.html#cb347-12" aria-hidden="true" tabindex="-1"></a>b <span class="ot">&lt;-</span> (b<span class="sc">-</span><span class="fu">min</span>(b)) <span class="sc">/</span> (<span class="fu">max</span>(b)<span class="sc">-</span><span class="fu">min</span>(b)) <span class="sc">*</span> <span class="dv">255</span></span>
+<span id="cb347-13"><a href="geassoc.html#cb347-13" aria-hidden="true" tabindex="-1"></a>wiflcols<span class="ot">=</span><span class="fu">rgb</span>(r,g,b,<span class="at">max=</span><span class="dv">255</span>)</span>
+<span id="cb347-14"><a href="geassoc.html#cb347-14" aria-hidden="true" tabindex="-1"></a>wiflcols2<span class="ot">=</span><span class="fu">col2rgb</span>(wiflcols)</span>
+<span id="cb347-15"><a href="geassoc.html#cb347-15" aria-hidden="true" tabindex="-1"></a>wiflcols3<span class="ot">=</span><span class="fu">t</span>(wiflcols2)</span>
+<span id="cb347-16"><a href="geassoc.html#cb347-16" aria-hidden="true" tabindex="-1"></a>gradients<span class="ot">=</span><span class="fu">cbind</span>(currentgrid[<span class="fu">c</span>(<span class="st">&quot;X&quot;</span>,<span class="st">&quot;Y&quot;</span>)],wiflcols3)</span></code></pre></div>
+<p>The multi-dimensional biological space can be plotted by taking the principle component of the transformed grid and presenting the first two dimensions in a biplot. You’ve already defined the PCs above and the RGB color palette. Different coordinate positions in the biplot represent differing allele frequency compositions as associated with the predictors.</p>
+<div class="sourceCode" id="cb348"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb348-1"><a href="geassoc.html#cb348-1" aria-hidden="true" tabindex="-1"></a><span class="do">##Biplot specifics</span></span>
+<span id="cb348-2"><a href="geassoc.html#cb348-2" aria-hidden="true" tabindex="-1"></a>nvs <span class="ot">&lt;-</span> <span class="fu">dim</span>(PCs<span class="sc">$</span>rotation)[<span class="dv">1</span>]</span>
+<span id="cb348-3"><a href="geassoc.html#cb348-3" aria-hidden="true" tabindex="-1"></a>vec <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;BIO11&quot;</span>,<span class="st">&quot;BIO5&quot;</span>,<span class="st">&quot;BIO4&quot;</span> ,<span class="st">&quot;BIO17&quot;</span>)</span>
+<span id="cb348-4"><a href="geassoc.html#cb348-4" aria-hidden="true" tabindex="-1"></a>lv <span class="ot">&lt;-</span> <span class="fu">length</span>(vec)</span>
+<span id="cb348-5"><a href="geassoc.html#cb348-5" aria-hidden="true" tabindex="-1"></a>vind <span class="ot">&lt;-</span> <span class="fu">rownames</span>(PCs<span class="sc">$</span>rotation) <span class="sc">%in%</span> vec</span>
+<span id="cb348-6"><a href="geassoc.html#cb348-6" aria-hidden="true" tabindex="-1"></a>scal <span class="ot">&lt;-</span><span class="dv">100</span></span>
+<span id="cb348-7"><a href="geassoc.html#cb348-7" aria-hidden="true" tabindex="-1"></a>xrng <span class="ot">&lt;-</span> <span class="fu">range</span>(PCs<span class="sc">$</span>x[, <span class="dv">1</span>], PCs<span class="sc">$</span>rotation[, <span class="dv">1</span>]<span class="sc">/</span>scal) <span class="sc">*</span><span class="fl">1.2</span></span>
+<span id="cb348-8"><a href="geassoc.html#cb348-8" aria-hidden="true" tabindex="-1"></a>yrng <span class="ot">&lt;-</span> <span class="fu">range</span>(PCs<span class="sc">$</span>x[, <span class="dv">2</span>], PCs<span class="sc">$</span>rotation[, <span class="dv">2</span>]<span class="sc">/</span>scal) <span class="sc">*</span><span class="fl">1.2</span></span>
+<span id="cb348-9"><a href="geassoc.html#cb348-9" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>((PCs<span class="sc">$</span>x[, <span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>]), <span class="at">xlim =</span> xrng, <span class="at">ylim =</span> yrng, <span class="at">pch =</span> <span class="st">&quot;.&quot;</span>, <span class="at">cex =</span> <span class="dv">4</span>, <span class="at">col =</span> <span class="fu">rgb</span>(r, g, b, <span class="at">max =</span> <span class="dv">255</span>), <span class="at">asp =</span> <span class="dv">1</span>)</span>
+<span id="cb348-10"><a href="geassoc.html#cb348-10" aria-hidden="true" tabindex="-1"></a><span class="fu">points</span>(PCs<span class="sc">$</span>rotation[<span class="sc">!</span>vind, <span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>]<span class="sc">/</span>scal, <span class="at">pch =</span> <span class="st">&quot;+&quot;</span>)</span>
+<span id="cb348-11"><a href="geassoc.html#cb348-11" aria-hidden="true" tabindex="-1"></a><span class="fu">arrows</span>(<span class="fu">rep</span>(<span class="dv">0</span>, lv), <span class="fu">rep</span>(<span class="dv">0</span>, lv), PCs<span class="sc">$</span>rotation[vec,<span class="dv">1</span>]<span class="sc">/</span>scal, PCs<span class="sc">$</span>rotation[vec, <span class="dv">2</span>]<span class="sc">/</span>scal, <span class="at">length =</span> <span class="fl">0.0625</span>)</span>
+<span id="cb348-12"><a href="geassoc.html#cb348-12" aria-hidden="true" tabindex="-1"></a>jit <span class="ot">&lt;-</span> <span class="fl">0.0015</span></span>
+<span id="cb348-13"><a href="geassoc.html#cb348-13" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(PCs<span class="sc">$</span>rotation[vec, <span class="dv">1</span>]<span class="sc">/</span>scal <span class="sc">+</span> jit <span class="sc">*</span> <span class="fu">sign</span>(PCs<span class="sc">$</span>rotation[vec,<span class="dv">1</span>]), PCs<span class="sc">$</span>rotation[vec, <span class="dv">2</span>]<span class="sc">/</span>scal <span class="sc">+</span> jit <span class="sc">*</span> <span class="fu">sign</span>(PCs<span class="sc">$</span>rotation[vec,<span class="dv">2</span>]), <span class="at">labels =</span> vec)</span></code></pre></div>
+<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-199"></span>
+<img src="merida-workshop-2022_files/figure-html/unnamed-chunk-199-1.png" alt="A principle component plot of the top 4 uncorrelated variables" width="672" />
 <p class="caption">
 FIGURE 7.4: A principle component plot of the top 4 uncorrelated variables
 </p>
 </div>
 <p><strong>Save this image using the code chunk below. What environmental variables are associated with the colors green, pink and blue? Knowing this will help with the interpretation of plotting this in space.</strong></p>
-<div class="sourceCode" id="cb321"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb321-1"><a href="geassoc.html#cb321-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pdf</span>(<span class="st">&quot;stored_results/6.0/WIFL.PCA_uncorrelated.pdf&quot;</span>)</span>
-<span id="cb321-2"><a href="geassoc.html#cb321-2" aria-hidden="true" tabindex="-1"></a>nvs <span class="ot">&lt;-</span> <span class="fu">dim</span>(PCs<span class="sc">$</span>rotation)[<span class="dv">1</span>]</span>
-<span id="cb321-3"><a href="geassoc.html#cb321-3" aria-hidden="true" tabindex="-1"></a>vec <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;BIO11&quot;</span>,<span class="st">&quot;BIO5&quot;</span>,<span class="st">&quot;BIO4&quot;</span> ,<span class="st">&quot;BIO17&quot;</span>)</span>
-<span id="cb321-4"><a href="geassoc.html#cb321-4" aria-hidden="true" tabindex="-1"></a>lv <span class="ot">&lt;-</span> <span class="fu">length</span>(vec)</span>
-<span id="cb321-5"><a href="geassoc.html#cb321-5" aria-hidden="true" tabindex="-1"></a>vind <span class="ot">&lt;-</span> <span class="fu">rownames</span>(PCs<span class="sc">$</span>rotation) <span class="sc">%in%</span> vec</span>
-<span id="cb321-6"><a href="geassoc.html#cb321-6" aria-hidden="true" tabindex="-1"></a>scal <span class="ot">&lt;-</span><span class="dv">100</span></span>
-<span id="cb321-7"><a href="geassoc.html#cb321-7" aria-hidden="true" tabindex="-1"></a>xrng <span class="ot">&lt;-</span> <span class="fu">range</span>(PCs<span class="sc">$</span>x[, <span class="dv">1</span>], PCs<span class="sc">$</span>rotation[, <span class="dv">1</span>]<span class="sc">/</span>scal) <span class="sc">*</span><span class="fl">1.2</span></span>
-<span id="cb321-8"><a href="geassoc.html#cb321-8" aria-hidden="true" tabindex="-1"></a>yrng <span class="ot">&lt;-</span> <span class="fu">range</span>(PCs<span class="sc">$</span>x[, <span class="dv">2</span>], PCs<span class="sc">$</span>rotation[, <span class="dv">2</span>]<span class="sc">/</span>scal) <span class="sc">*</span><span class="fl">1.2</span></span>
-<span id="cb321-9"><a href="geassoc.html#cb321-9" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>((PCs<span class="sc">$</span>x[, <span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>]), <span class="at">xlim =</span> xrng, <span class="at">ylim =</span> yrng, <span class="at">pch =</span> <span class="st">&quot;.&quot;</span>, <span class="at">cex =</span> <span class="dv">4</span>, <span class="at">col =</span> <span class="fu">rgb</span>(r, g, b, <span class="at">max =</span> <span class="dv">255</span>), <span class="at">asp =</span> <span class="dv">1</span>)</span>
-<span id="cb321-10"><a href="geassoc.html#cb321-10" aria-hidden="true" tabindex="-1"></a><span class="fu">points</span>(PCs<span class="sc">$</span>rotation[<span class="sc">!</span>vind, <span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>]<span class="sc">/</span>scal, <span class="at">pch =</span> <span class="st">&quot;+&quot;</span>)</span>
-<span id="cb321-11"><a href="geassoc.html#cb321-11" aria-hidden="true" tabindex="-1"></a><span class="fu">arrows</span>(<span class="fu">rep</span>(<span class="dv">0</span>, lv), <span class="fu">rep</span>(<span class="dv">0</span>, lv), PCs<span class="sc">$</span>rotation[vec,<span class="dv">1</span>]<span class="sc">/</span>scal, PCs<span class="sc">$</span>rotation[vec, <span class="dv">2</span>]<span class="sc">/</span>scal, <span class="at">length =</span> <span class="fl">0.0625</span>)</span>
-<span id="cb321-12"><a href="geassoc.html#cb321-12" aria-hidden="true" tabindex="-1"></a>jit <span class="ot">&lt;-</span> <span class="fl">0.0015</span></span>
-<span id="cb321-13"><a href="geassoc.html#cb321-13" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(PCs<span class="sc">$</span>rotation[vec, <span class="dv">1</span>]<span class="sc">/</span>scal <span class="sc">+</span> jit <span class="sc">*</span> <span class="fu">sign</span>(PCs<span class="sc">$</span>rotation[vec,<span class="dv">1</span>]), PCs<span class="sc">$</span>rotation[vec, <span class="dv">2</span>]<span class="sc">/</span>scal <span class="sc">+</span> jit <span class="sc">*</span> <span class="fu">sign</span>(PCs<span class="sc">$</span>rotation[vec,<span class="dv">2</span>]), <span class="at">labels =</span> vec)</span>
-<span id="cb321-14"><a href="geassoc.html#cb321-14" aria-hidden="true" tabindex="-1"></a><span class="fu">dev.off</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb349"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb349-1"><a href="geassoc.html#cb349-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dir.create</span>(<span class="st">&quot;stored_results/6.0&quot;</span>, <span class="at">showWarnings =</span> <span class="cn">FALSE</span>, <span class="at">recursive =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb349-2"><a href="geassoc.html#cb349-2" aria-hidden="true" tabindex="-1"></a><span class="fu">pdf</span>(<span class="st">&quot;stored_results/6.0/WIFL.PCA_uncorrelated.pdf&quot;</span>)</span>
+<span id="cb349-3"><a href="geassoc.html#cb349-3" aria-hidden="true" tabindex="-1"></a>nvs <span class="ot">&lt;-</span> <span class="fu">dim</span>(PCs<span class="sc">$</span>rotation)[<span class="dv">1</span>]</span>
+<span id="cb349-4"><a href="geassoc.html#cb349-4" aria-hidden="true" tabindex="-1"></a>vec <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;BIO11&quot;</span>,<span class="st">&quot;BIO5&quot;</span>,<span class="st">&quot;BIO4&quot;</span> ,<span class="st">&quot;BIO17&quot;</span>)</span>
+<span id="cb349-5"><a href="geassoc.html#cb349-5" aria-hidden="true" tabindex="-1"></a>lv <span class="ot">&lt;-</span> <span class="fu">length</span>(vec)</span>
+<span id="cb349-6"><a href="geassoc.html#cb349-6" aria-hidden="true" tabindex="-1"></a>vind <span class="ot">&lt;-</span> <span class="fu">rownames</span>(PCs<span class="sc">$</span>rotation) <span class="sc">%in%</span> vec</span>
+<span id="cb349-7"><a href="geassoc.html#cb349-7" aria-hidden="true" tabindex="-1"></a>scal <span class="ot">&lt;-</span><span class="dv">100</span></span>
+<span id="cb349-8"><a href="geassoc.html#cb349-8" aria-hidden="true" tabindex="-1"></a>xrng <span class="ot">&lt;-</span> <span class="fu">range</span>(PCs<span class="sc">$</span>x[, <span class="dv">1</span>], PCs<span class="sc">$</span>rotation[, <span class="dv">1</span>]<span class="sc">/</span>scal) <span class="sc">*</span><span class="fl">1.2</span></span>
+<span id="cb349-9"><a href="geassoc.html#cb349-9" aria-hidden="true" tabindex="-1"></a>yrng <span class="ot">&lt;-</span> <span class="fu">range</span>(PCs<span class="sc">$</span>x[, <span class="dv">2</span>], PCs<span class="sc">$</span>rotation[, <span class="dv">2</span>]<span class="sc">/</span>scal) <span class="sc">*</span><span class="fl">1.2</span></span>
+<span id="cb349-10"><a href="geassoc.html#cb349-10" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>((PCs<span class="sc">$</span>x[, <span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>]), <span class="at">xlim =</span> xrng, <span class="at">ylim =</span> yrng, <span class="at">pch =</span> <span class="st">&quot;.&quot;</span>, <span class="at">cex =</span> <span class="dv">4</span>, <span class="at">col =</span> <span class="fu">rgb</span>(r, g, b, <span class="at">max =</span> <span class="dv">255</span>), <span class="at">asp =</span> <span class="dv">1</span>)</span>
+<span id="cb349-11"><a href="geassoc.html#cb349-11" aria-hidden="true" tabindex="-1"></a><span class="fu">points</span>(PCs<span class="sc">$</span>rotation[<span class="sc">!</span>vind, <span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>]<span class="sc">/</span>scal, <span class="at">pch =</span> <span class="st">&quot;+&quot;</span>)</span>
+<span id="cb349-12"><a href="geassoc.html#cb349-12" aria-hidden="true" tabindex="-1"></a><span class="fu">arrows</span>(<span class="fu">rep</span>(<span class="dv">0</span>, lv), <span class="fu">rep</span>(<span class="dv">0</span>, lv), PCs<span class="sc">$</span>rotation[vec,<span class="dv">1</span>]<span class="sc">/</span>scal, PCs<span class="sc">$</span>rotation[vec, <span class="dv">2</span>]<span class="sc">/</span>scal, <span class="at">length =</span> <span class="fl">0.0625</span>)</span>
+<span id="cb349-13"><a href="geassoc.html#cb349-13" aria-hidden="true" tabindex="-1"></a>jit <span class="ot">&lt;-</span> <span class="fl">0.0015</span></span>
+<span id="cb349-14"><a href="geassoc.html#cb349-14" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(PCs<span class="sc">$</span>rotation[vec, <span class="dv">1</span>]<span class="sc">/</span>scal <span class="sc">+</span> jit <span class="sc">*</span> <span class="fu">sign</span>(PCs<span class="sc">$</span>rotation[vec,<span class="dv">1</span>]), PCs<span class="sc">$</span>rotation[vec, <span class="dv">2</span>]<span class="sc">/</span>scal <span class="sc">+</span> jit <span class="sc">*</span> <span class="fu">sign</span>(PCs<span class="sc">$</span>rotation[vec,<span class="dv">2</span>]), <span class="at">labels =</span> vec)</span>
+<span id="cb349-15"><a href="geassoc.html#cb349-15" aria-hidden="true" tabindex="-1"></a><span class="fu">dev.off</span>()</span></code></pre></div>
 <pre><code>## quartz_off_screen 
 ##                 2</code></pre>
 <p>With this, we can draw our first gradient forest map:</p>
-<div class="sourceCode" id="cb323"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb323-1"><a href="geassoc.html#cb323-1" aria-hidden="true" tabindex="-1"></a>wiflcols<span class="ot">=</span><span class="fu">rgb</span>(r,g,b,<span class="at">max=</span><span class="dv">255</span>)</span>
-<span id="cb323-2"><a href="geassoc.html#cb323-2" aria-hidden="true" tabindex="-1"></a>wiflcols2<span class="ot">=</span><span class="fu">col2rgb</span>(wiflcols)</span>
-<span id="cb323-3"><a href="geassoc.html#cb323-3" aria-hidden="true" tabindex="-1"></a>wiflcols3<span class="ot">=</span><span class="fu">t</span>(wiflcols2)</span>
-<span id="cb323-4"><a href="geassoc.html#cb323-4" aria-hidden="true" tabindex="-1"></a>gradients<span class="ot">=</span><span class="fu">cbind</span>(currentgrid[<span class="fu">c</span>(<span class="st">&quot;X&quot;</span>,<span class="st">&quot;Y&quot;</span>)],wiflcols3)</span>
-<span id="cb323-5"><a href="geassoc.html#cb323-5" aria-hidden="true" tabindex="-1"></a>wiflmap<span class="ot">=</span>gradients</span>
-<span id="cb323-6"><a href="geassoc.html#cb323-6" aria-hidden="true" tabindex="-1"></a><span class="fu">coordinates</span>(wiflmap)<span class="ot">=</span><span class="er">~</span>X<span class="sc">+</span>Y <span class="co">#setting the coordinates</span></span>
-<span id="cb323-7"><a href="geassoc.html#cb323-7" aria-hidden="true" tabindex="-1"></a><span class="fu">proj4string</span>(wiflmap) <span class="ot">&lt;-</span> <span class="fu">CRS</span>(<span class="st">&quot;+proj=longlat +datum=WGS84&quot;</span>)</span></code></pre></div>
-<div class="sourceCode" id="cb324"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb324-1"><a href="geassoc.html#cb324-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mar=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>))</span>
-<span id="cb324-2"><a href="geassoc.html#cb324-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(wiflmap,<span class="at">col=</span><span class="fu">rgb</span>(r,g,b,<span class="at">max=</span><span class="dv">255</span>),<span class="at">pch=</span><span class="dv">15</span>)</span></code></pre></div>
-<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-192"></span>
-<img src="merida-workshop-2022_files/figure-html/unnamed-chunk-192-1.png" alt="Our gradient forest model of SNP variation in the Willow Flycatcher breeding range" width="672" />
+<div class="sourceCode" id="cb351"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb351-1"><a href="geassoc.html#cb351-1" aria-hidden="true" tabindex="-1"></a>wiflcols <span class="ot">&lt;-</span> <span class="fu">rgb</span>(r,g,b,<span class="at">max=</span><span class="dv">255</span>)</span>
+<span id="cb351-2"><a href="geassoc.html#cb351-2" aria-hidden="true" tabindex="-1"></a>wiflcols2 <span class="ot">&lt;-</span> <span class="fu">col2rgb</span>(wiflcols)</span>
+<span id="cb351-3"><a href="geassoc.html#cb351-3" aria-hidden="true" tabindex="-1"></a>wiflcols3<span class="ot">&lt;-</span> <span class="fu">t</span>(wiflcols2)</span>
+<span id="cb351-4"><a href="geassoc.html#cb351-4" aria-hidden="true" tabindex="-1"></a>gradients<span class="ot">&lt;-</span><span class="fu">cbind</span>(currentgrid[<span class="fu">c</span>(<span class="st">&quot;X&quot;</span>,<span class="st">&quot;Y&quot;</span>)],wiflcols3)</span>
+<span id="cb351-5"><a href="geassoc.html#cb351-5" aria-hidden="true" tabindex="-1"></a>wiflmap<span class="ot">&lt;-</span>gradients</span>
+<span id="cb351-6"><a href="geassoc.html#cb351-6" aria-hidden="true" tabindex="-1"></a><span class="fu">coordinates</span>(wiflmap)<span class="ot">&lt;-</span> <span class="er">~</span>X<span class="sc">+</span>Y <span class="co">#setting the coordinates</span></span>
+<span id="cb351-7"><a href="geassoc.html#cb351-7" aria-hidden="true" tabindex="-1"></a><span class="fu">proj4string</span>(wiflmap) <span class="ot">&lt;-</span> <span class="fu">CRS</span>(<span class="st">&quot;+proj=longlat +datum=WGS84&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb352"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb352-1"><a href="geassoc.html#cb352-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mar=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>))</span>
+<span id="cb352-2"><a href="geassoc.html#cb352-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(wiflmap,<span class="at">col=</span><span class="fu">rgb</span>(r,g,b,<span class="at">max=</span><span class="dv">255</span>),<span class="at">pch=</span><span class="dv">15</span>)</span></code></pre></div>
+<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-202"></span>
+<img src="merida-workshop-2022_files/figure-html/unnamed-chunk-202-1.png" alt="Our gradient forest model of SNP variation in the Willow Flycatcher breeding range" width="672" />
 <p class="caption">
 FIGURE 7.5: Our gradient forest model of SNP variation in the Willow Flycatcher breeding range
 </p>
 </div>
 <p><strong>How would you interpret the different colors on thie WIFL map? Is the endangered southwest Willow Flycatcher locally adapted? </strong></p>
-<p>Let’s plot this another way, on a map. To do this, we need some additional shapefiles of North America.</p>
+<p>Let’s plot this another way, on an actual map of North America. To do this, we need some additional shapefiles.</p>
 <p>The domain here allows you to crop the shapefiles to just your species range.</p>
-<div class="sourceCode" id="cb325"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb325-1"><a href="geassoc.html#cb325-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sf)</span>
-<span id="cb325-2"><a href="geassoc.html#cb325-2" aria-hidden="true" tabindex="-1"></a>coastlines <span class="ot">&lt;-</span> <span class="fu">st_read</span>(<span class="st">&quot;data/6.0/ne_shapefiles/ne_10m_coastline.shp&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb353"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb353-1"><a href="geassoc.html#cb353-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sf)</span>
+<span id="cb353-2"><a href="geassoc.html#cb353-2" aria-hidden="true" tabindex="-1"></a>coastlines <span class="ot">&lt;-</span> <span class="fu">st_read</span>(<span class="st">&quot;data/6.0/ne_shapefiles/ne_10m_coastline.shp&quot;</span>)</span></code></pre></div>
 <pre><code>## Reading layer `ne_10m_coastline&#39; from data source 
 ##   `/Users/eriq/Documents/git-repos/merida-workshop-2022/data/6.0/ne_shapefiles/ne_10m_coastline.shp&#39; 
 ##   using driver `ESRI Shapefile&#39;
@@ -911,21 +952,21 @@ FIGURE 7.5: Our gradient forest model of SNP variation in the Willow Flycatcher 
 ## Dimension:     XY
 ## Bounding box:  xmin: -180 ymin: -85.22 xmax: 180 ymax: 83.63
 ## Geodetic CRS:  WGS 84</code></pre>
-<div class="sourceCode" id="cb327"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb327-1"><a href="geassoc.html#cb327-1" aria-hidden="true" tabindex="-1"></a>domain <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
-<span id="cb327-2"><a href="geassoc.html#cb327-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">xmin =</span> <span class="sc">-</span><span class="dv">140</span>, </span>
-<span id="cb327-3"><a href="geassoc.html#cb327-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">xmax =</span> <span class="sc">-</span><span class="dv">55</span>,</span>
-<span id="cb327-4"><a href="geassoc.html#cb327-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">ymin =</span> <span class="dv">15</span>,</span>
-<span id="cb327-5"><a href="geassoc.html#cb327-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">ymax =</span> <span class="dv">50</span></span>
-<span id="cb327-6"><a href="geassoc.html#cb327-6" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb327-7"><a href="geassoc.html#cb327-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb327-8"><a href="geassoc.html#cb327-8" aria-hidden="true" tabindex="-1"></a>coast_cropped <span class="ot">&lt;-</span> <span class="fu">st_crop</span>(coastlines, domain)</span></code></pre></div>
+<div class="sourceCode" id="cb355"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb355-1"><a href="geassoc.html#cb355-1" aria-hidden="true" tabindex="-1"></a>domain <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
+<span id="cb355-2"><a href="geassoc.html#cb355-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">xmin =</span> <span class="sc">-</span><span class="dv">140</span>, </span>
+<span id="cb355-3"><a href="geassoc.html#cb355-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">xmax =</span> <span class="sc">-</span><span class="dv">55</span>,</span>
+<span id="cb355-4"><a href="geassoc.html#cb355-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">ymin =</span> <span class="dv">15</span>,</span>
+<span id="cb355-5"><a href="geassoc.html#cb355-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">ymax =</span> <span class="dv">50</span></span>
+<span id="cb355-6"><a href="geassoc.html#cb355-6" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb355-7"><a href="geassoc.html#cb355-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb355-8"><a href="geassoc.html#cb355-8" aria-hidden="true" tabindex="-1"></a>coast_cropped <span class="ot">&lt;-</span> <span class="fu">st_crop</span>(coastlines, domain)</span></code></pre></div>
 <pre><code>## Warning: attribute variables are assumed to be
 ## spatially constant throughout all geometries</code></pre>
 <p>This code allows you to plot, but also change the domain to what will encompass your species shapefile. Suffice it to say I went through a fair number of iterations to ge it right.</p>
 <p>Once you have the shapefiles and cropped domain, you can create a map, project the map, and then crop it to what region you want. Using the above code, the domain can/should be larger than what you will be plotting. You can further crop later!</p>
-<div class="sourceCode" id="cb329"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb329-1"><a href="geassoc.html#cb329-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggspatial)</span>
-<span id="cb329-2"><a href="geassoc.html#cb329-2" aria-hidden="true" tabindex="-1"></a>countries_cropped <span class="ot">&lt;-</span>  <span class="fu">st_read</span>(<span class="st">&quot;data/6.0/ne_shapefiles/ne_10m_admin_0_boundary_lines_land.shp&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb329-3"><a href="geassoc.html#cb329-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">st_crop</span>(domain)</span></code></pre></div>
+<div class="sourceCode" id="cb357"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb357-1"><a href="geassoc.html#cb357-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggspatial)</span>
+<span id="cb357-2"><a href="geassoc.html#cb357-2" aria-hidden="true" tabindex="-1"></a>countries_cropped <span class="ot">&lt;-</span>  <span class="fu">st_read</span>(<span class="st">&quot;data/6.0/ne_shapefiles/ne_10m_admin_0_boundary_lines_land.shp&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb357-3"><a href="geassoc.html#cb357-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">st_crop</span>(domain)</span></code></pre></div>
 <pre><code>## Reading layer `ne_10m_admin_0_boundary_lines_land&#39; from data source `/Users/eriq/Documents/git-repos/merida-workshop-2022/data/6.0/ne_shapefiles/ne_10m_admin_0_boundary_lines_land.shp&#39; 
 ##   using driver `ESRI Shapefile&#39;
 ## Simple feature collection with 462 features and 18 fields
@@ -935,8 +976,8 @@ FIGURE 7.5: Our gradient forest model of SNP variation in the Willow Flycatcher 
 ## Geodetic CRS:  WGS 84</code></pre>
 <pre><code>## Warning: attribute variables are assumed to be
 ## spatially constant throughout all geometries</code></pre>
-<div class="sourceCode" id="cb332"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb332-1"><a href="geassoc.html#cb332-1" aria-hidden="true" tabindex="-1"></a>states_cropped <span class="ot">&lt;-</span> <span class="fu">st_read</span>(<span class="st">&quot;data/6.0/ne_shapefiles/ne_10m_admin_1_states_provinces_lines.shp&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb332-2"><a href="geassoc.html#cb332-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">st_crop</span>(domain)</span></code></pre></div>
+<div class="sourceCode" id="cb360"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb360-1"><a href="geassoc.html#cb360-1" aria-hidden="true" tabindex="-1"></a>states_cropped <span class="ot">&lt;-</span> <span class="fu">st_read</span>(<span class="st">&quot;data/6.0/ne_shapefiles/ne_10m_admin_1_states_provinces_lines.shp&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb360-2"><a href="geassoc.html#cb360-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">st_crop</span>(domain)</span></code></pre></div>
 <pre><code>## Reading layer `ne_10m_admin_1_states_provinces_lines&#39; from data source `/Users/eriq/Documents/git-repos/merida-workshop-2022/data/6.0/ne_shapefiles/ne_10m_admin_1_states_provinces_lines.shp&#39; 
 ##   using driver `ESRI Shapefile&#39;
 ## Simple feature collection with 10114 features and 21 fields
@@ -946,37 +987,36 @@ FIGURE 7.5: Our gradient forest model of SNP variation in the Willow Flycatcher 
 ## Geodetic CRS:  WGS 84</code></pre>
 <pre><code>## Warning: attribute variables are assumed to be
 ## spatially constant throughout all geometries</code></pre>
-<div class="sourceCode" id="cb335"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb335-1"><a href="geassoc.html#cb335-1" aria-hidden="true" tabindex="-1"></a>mapg <span class="ot">&lt;-</span> <span class="fu">ggplot</span>() <span class="sc">+</span></span>
-<span id="cb335-2"><a href="geassoc.html#cb335-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> coast_cropped) <span class="sc">+</span></span>
-<span id="cb335-3"><a href="geassoc.html#cb335-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> countries_cropped, <span class="at">fill =</span> <span class="cn">NA</span>) <span class="sc">+</span></span>
-<span id="cb335-4"><a href="geassoc.html#cb335-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> states_cropped, <span class="at">fill =</span> <span class="cn">NA</span>) <span class="sc">+</span></span>
-<span id="cb335-5"><a href="geassoc.html#cb335-5" aria-hidden="true" tabindex="-1"></a>  ggspatial<span class="sc">::</span><span class="fu">layer_spatial</span>(wiflmap,<span class="at">col=</span><span class="fu">rgb</span>(r,g,b,<span class="at">max=</span><span class="dv">255</span>),<span class="at">pch=</span><span class="dv">15</span>) <span class="sc">+</span></span>
-<span id="cb335-6"><a href="geassoc.html#cb335-6" aria-hidden="true" tabindex="-1"></a>  <span class="co">#geom_spatial_point(data=Epabu, aes(Long,Lat),col=&quot;black&quot;) +</span></span>
-<span id="cb335-7"><a href="geassoc.html#cb335-7" aria-hidden="true" tabindex="-1"></a>   <span class="fu">geom_sf</span>(<span class="at">data=</span>wifl_shape,<span class="at">fill=</span><span class="cn">NA</span>) <span class="sc">+</span></span>
-<span id="cb335-8"><a href="geassoc.html#cb335-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() </span>
-<span id="cb335-9"><a href="geassoc.html#cb335-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb335-10"><a href="geassoc.html#cb335-10" aria-hidden="true" tabindex="-1"></a><span class="co">#Now, let&#39;s see how our developing map looks under such a projection.  We just define `lamproj` as a coordinate reference system and pass it in to `coord_sf()`</span></span>
-<span id="cb335-11"><a href="geassoc.html#cb335-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb335-12"><a href="geassoc.html#cb335-12" aria-hidden="true" tabindex="-1"></a>lamproj <span class="ot">&lt;-</span> <span class="st">&quot;+proj=lcc +lat_1=20 +lat_2=60 +lat_0=40 +lon_0=-100 +x_0=0 +y_0=0 +ellps=GRS80 +datum=NAD83 +units=m +no_defs&quot;</span></span>
-<span id="cb335-13"><a href="geassoc.html#cb335-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb335-14"><a href="geassoc.html#cb335-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb335-15"><a href="geassoc.html#cb335-15" aria-hidden="true" tabindex="-1"></a><span class="co">#Plotting, but cutting out rectangle (Don&#39;t need a lot of extra space)</span></span>
-<span id="cb335-16"><a href="geassoc.html#cb335-16" aria-hidden="true" tabindex="-1"></a>rectangled <span class="ot">&lt;-</span>mapg <span class="sc">+</span></span>
-<span id="cb335-17"><a href="geassoc.html#cb335-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Longitude&quot;</span>) <span class="sc">+</span> <span class="fu">ylab</span>(<span class="st">&quot;Latitude&quot;</span>)<span class="sc">+</span></span>
-<span id="cb335-18"><a href="geassoc.html#cb335-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_sf</span>(</span>
-<span id="cb335-19"><a href="geassoc.html#cb335-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">crs =</span> <span class="fu">st_crs</span>(lamproj), </span>
-<span id="cb335-20"><a href="geassoc.html#cb335-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">xlim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="fl">2200476.8</span>, <span class="dv">2859510</span>), </span>
-<span id="cb335-21"><a href="geassoc.html#cb335-21" aria-hidden="true" tabindex="-1"></a>    <span class="at">ylim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">1899797</span>, <span class="fl">1809910.8</span>),</span>
-<span id="cb335-22"><a href="geassoc.html#cb335-22" aria-hidden="true" tabindex="-1"></a>    <span class="at">expand =</span> <span class="cn">FALSE</span>) </span>
-<span id="cb335-23"><a href="geassoc.html#cb335-23" aria-hidden="true" tabindex="-1"></a>rectangled</span></code></pre></div>
-<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-194"></span>
-<img src="merida-workshop-2022_files/figure-html/unnamed-chunk-194-1.png" alt="Our gradient forest model of SNP variation in the Willow Flycatcher breeding range on a map" width="672" />
+<div class="sourceCode" id="cb363"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb363-1"><a href="geassoc.html#cb363-1" aria-hidden="true" tabindex="-1"></a>mapg <span class="ot">&lt;-</span> <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb363-2"><a href="geassoc.html#cb363-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> coast_cropped) <span class="sc">+</span></span>
+<span id="cb363-3"><a href="geassoc.html#cb363-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> countries_cropped, <span class="at">fill =</span> <span class="cn">NA</span>) <span class="sc">+</span></span>
+<span id="cb363-4"><a href="geassoc.html#cb363-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> states_cropped, <span class="at">fill =</span> <span class="cn">NA</span>) <span class="sc">+</span></span>
+<span id="cb363-5"><a href="geassoc.html#cb363-5" aria-hidden="true" tabindex="-1"></a>  ggspatial<span class="sc">::</span><span class="fu">layer_spatial</span>(wiflmap,<span class="at">col=</span><span class="fu">rgb</span>(r,g,b,<span class="at">max=</span><span class="dv">255</span>),<span class="at">pch=</span><span class="dv">15</span>) <span class="sc">+</span></span>
+<span id="cb363-6"><a href="geassoc.html#cb363-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data=</span>wifl_shape,<span class="at">fill=</span><span class="cn">NA</span>) <span class="sc">+</span></span>
+<span id="cb363-7"><a href="geassoc.html#cb363-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() </span>
+<span id="cb363-8"><a href="geassoc.html#cb363-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb363-9"><a href="geassoc.html#cb363-9" aria-hidden="true" tabindex="-1"></a>mapg</span></code></pre></div>
+<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-204"></span>
+<img src="merida-workshop-2022_files/figure-html/unnamed-chunk-204-1.png" alt="Our gradient forest model of SNP variation in the Willow Flycatcher breeding range on a map" width="672" />
 <p class="caption">
 FIGURE 7.6: Our gradient forest model of SNP variation in the Willow Flycatcher breeding range on a map
 </p>
 </div>
+<p>Now, let’s see how our developing map looks under such a projection. We just define <code>lamproj</code> as a coordinate reference system and pass it in to <code>coord_sf()</code></p>
+<div class="sourceCode" id="cb364"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb364-1"><a href="geassoc.html#cb364-1" aria-hidden="true" tabindex="-1"></a>lamproj <span class="ot">&lt;-</span> <span class="st">&quot;+proj=lcc +lat_1=20 +lat_2=60 +lat_0=40 +lon_0=-100 +x_0=0 +y_0=0 +ellps=GRS80 +datum=NAD83 +units=m +no_defs&quot;</span></span>
+<span id="cb364-2"><a href="geassoc.html#cb364-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb364-3"><a href="geassoc.html#cb364-3" aria-hidden="true" tabindex="-1"></a><span class="co">#Plotting with projection, and cutting out rectangle (Don&#39;t need a lot of extra space)</span></span>
+<span id="cb364-4"><a href="geassoc.html#cb364-4" aria-hidden="true" tabindex="-1"></a>rectangled <span class="ot">&lt;-</span>mapg <span class="sc">+</span></span>
+<span id="cb364-5"><a href="geassoc.html#cb364-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Longitude&quot;</span>) <span class="sc">+</span> <span class="fu">ylab</span>(<span class="st">&quot;Latitude&quot;</span>)<span class="sc">+</span></span>
+<span id="cb364-6"><a href="geassoc.html#cb364-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_sf</span>(</span>
+<span id="cb364-7"><a href="geassoc.html#cb364-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">crs =</span> <span class="fu">st_crs</span>(lamproj), </span>
+<span id="cb364-8"><a href="geassoc.html#cb364-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">xlim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="fl">2200476.8</span>, <span class="dv">2859510</span>), </span>
+<span id="cb364-9"><a href="geassoc.html#cb364-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">ylim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">1899797</span>, <span class="fl">1809910.8</span>),</span>
+<span id="cb364-10"><a href="geassoc.html#cb364-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">expand =</span> <span class="cn">FALSE</span>) </span>
+<span id="cb364-11"><a href="geassoc.html#cb364-11" aria-hidden="true" tabindex="-1"></a>rectangled</span></code></pre></div>
+<p><img src="merida-workshop-2022_files/figure-html/unnamed-chunk-205-1.png" width="672" /></p>
 <p>Rename this file. I put the plot I plotted in here, but let’s make sure this works for you!!</p>
-<div class="sourceCode" id="cb336"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb336-1"><a href="geassoc.html#cb336-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="st">&quot;stored_results/6.0/WIFL.GF_map.pdf&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb365"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb365-1"><a href="geassoc.html#cb365-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="st">&quot;stored_results/6.0/WIFL.GF_map.pdf&quot;</span>)</span></code></pre></div>
 <pre><code>## Saving 7 x 5 in image</code></pre>
 </div>
 <div id="defining-genomic-vulnerabilitygenomic-offset-given-future-climate-predictions" class="section level2" number="7.6">
@@ -985,8 +1025,17 @@ FIGURE 7.6: Our gradient forest model of SNP variation in the Willow Flycatcher 
 <p>To investigate which populations might be most vulnerable to future climate change, we defined the metric “genomic vulnerability” as the mismatch between current and predicted future genomic variation based on genotype-environment relationships modeled across contemporary populations. We followed the method presented in Fitzpatrick and Keller (2015) to calculate genomic vulnerability using an extension of the gradient forest analysis. Populations with the greatest mismatch are least likely to adapt quickly enough to track future climate shifts, potentially resulting in population declines or extirpations.</p>
 <p>Here, we read in the future climate predictions for each random point. Since different amounts of heat-trapping gases released into the atmosphere by human activities produce different projected increases in Earth’s temperature, we provided two such predicted models: the 2.6 emission predictions and the 8.5 emission predictions for the year 2050.</p>
 <p>The lowest recent emissions pathway (RCP), 2.6, assumes immediate and rapid reductions in emissions and would result in about 2.5°F of warming in this century. The highest emissions pathway, RCP 8.5, roughly similar to a continuation of the current path of global emissions increases, is projected to lead to more than 8°F warming by 2100, with a high-end possibility of more than 11°F. Each of these is a composite of multiple prediction models and have rather different predictions.</p>
-<div class="sourceCode" id="cb338"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb338-1"><a href="geassoc.html#cb338-1" aria-hidden="true" tabindex="-1"></a>future1<span class="ot">&lt;-</span><span class="fu">read.table</span>(<span class="st">&quot;data/6.0/wiflfuture2-6-2050.csv&quot;</span>,<span class="at">header=</span>T,<span class="at">sep=</span><span class="st">&quot;,&quot;</span>) <span class="sc">%&gt;%</span> <span class="fu">filter</span>(BIO4<span class="sc">!=</span><span class="st">&quot;-9999&quot;</span>)</span>
-<span id="cb338-2"><a href="geassoc.html#cb338-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(future1)</span></code></pre></div>
+<div class="sourceCode" id="cb367"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb367-1"><a href="geassoc.html#cb367-1" aria-hidden="true" tabindex="-1"></a>future1<span class="ot">&lt;-</span><span class="fu">read_csv</span>(<span class="st">&quot;data/6.0/wiflfuture2-6-2050.csv&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb367-2"><a href="geassoc.html#cb367-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(BIO4<span class="sc">!=</span><span class="st">&quot;-9999&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb367-3"><a href="geassoc.html#cb367-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as.data.frame</span>()</span></code></pre></div>
+<pre><code>## Rows: 100000 Columns: 12</code></pre>
+<pre><code>## ── Column specification ───────────────────────────────
+## Delimiter: &quot;,&quot;
+## dbl (12): X, Y, BIO2, BIO3, BIO4, BIO5, BIO8, BIO9,...</code></pre>
+<pre><code>## 
+## ℹ Use `spec()` to retrieve the full column specification for this data.
+## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+<div class="sourceCode" id="cb371"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb371-1"><a href="geassoc.html#cb371-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(future1)</span></code></pre></div>
 <pre><code>##         X     Y BIO2 BIO3 BIO4 BIO5 BIO8 BIO9 BIO11
 ## 1  -76.17 44.09  102   26 9584  283   65  138   -34
 ## 2 -103.38 42.94  166   36 9942  342  171  -15   -24
@@ -1001,8 +1050,17 @@ FIGURE 7.6: Our gradient forest model of SNP variation in the Willow Flycatcher 
 ## 4    69    33   202
 ## 5    71    30   153
 ## 6    33    97   107</code></pre>
-<div class="sourceCode" id="cb340"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb340-1"><a href="geassoc.html#cb340-1" aria-hidden="true" tabindex="-1"></a>future2<span class="ot">&lt;-</span><span class="fu">read.table</span>(<span class="st">&quot;data/6.0/wiflfuture8-5-2050.csv&quot;</span>,<span class="at">header=</span>T,<span class="at">sep=</span><span class="st">&quot;,&quot;</span>) <span class="sc">%&gt;%</span> <span class="fu">filter</span>(BIO4<span class="sc">!=</span><span class="st">&quot;-9999&quot;</span>)</span>
-<span id="cb340-2"><a href="geassoc.html#cb340-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(future2)</span></code></pre></div>
+<div class="sourceCode" id="cb373"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb373-1"><a href="geassoc.html#cb373-1" aria-hidden="true" tabindex="-1"></a>future2<span class="ot">&lt;-</span><span class="fu">read_csv</span>(<span class="st">&quot;data/6.0/wiflfuture8-5-2050.csv&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb373-2"><a href="geassoc.html#cb373-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(BIO4<span class="sc">!=</span><span class="st">&quot;-9999&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb373-3"><a href="geassoc.html#cb373-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as.data.frame</span>()</span></code></pre></div>
+<pre><code>## Rows: 100000 Columns: 12</code></pre>
+<pre><code>## ── Column specification ───────────────────────────────
+## Delimiter: &quot;,&quot;
+## dbl (12): X, Y, BIO2, BIO3, BIO4, BIO5, BIO8, BIO9,...</code></pre>
+<pre><code>## 
+## ℹ Use `spec()` to retrieve the full column specification for this data.
+## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+<div class="sourceCode" id="cb377"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb377-1"><a href="geassoc.html#cb377-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(future2)</span></code></pre></div>
 <pre><code>##         X     Y BIO2 BIO3  BIO4 BIO5 BIO8 BIO9 BIO11
 ## 1  -76.17 44.09  101   26  9652  299   46  175   -19
 ## 2 -103.38 42.94  166   35 10238  359  183   -6   -15
@@ -1018,68 +1076,141 @@ FIGURE 7.6: Our gradient forest model of SNP variation in the Willow Flycatcher 
 ## 5    75    27   152
 ## 6    37    87    90</code></pre>
 <p>We then use our gradient forest model to transform these into “biological space” just as we did for random points across contemporary environments.</p>
-<div class="sourceCode" id="cb342"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb342-1"><a href="geassoc.html#cb342-1" aria-hidden="true" tabindex="-1"></a>futuregrid<span class="ot">=</span><span class="fu">cbind</span>(future1[,<span class="fu">c</span>(<span class="st">&quot;X&quot;</span>,<span class="st">&quot;Y&quot;</span>)],<span class="fu">predict</span>(wiflforest,future1[,predictors_uncor]))</span></code></pre></div>
+<div class="sourceCode" id="cb379"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb379-1"><a href="geassoc.html#cb379-1" aria-hidden="true" tabindex="-1"></a>futuregrid <span class="ot">&lt;-</span> <span class="fu">cbind</span>(future1[,<span class="fu">c</span>(<span class="st">&quot;X&quot;</span>,<span class="st">&quot;Y&quot;</span>)], <span class="fu">predict</span>(wiflforest,future1[,predictors_uncor]))</span></code></pre></div>
 <p>Finally, we calculate genomic vulnerability. Mathematically, for a given point this is the <strong>Euclidean distance</strong> between the current biological space (currentgrid) and the future biological space (futuregrid):</p>
-<div class="sourceCode" id="cb343"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb343-1"><a href="geassoc.html#cb343-1" aria-hidden="true" tabindex="-1"></a>coords<span class="ot">&lt;-</span>birdgrid[,<span class="fu">c</span>(<span class="st">&quot;X&quot;</span>,<span class="st">&quot;Y&quot;</span>)]</span>
-<span id="cb343-2"><a href="geassoc.html#cb343-2" aria-hidden="true" tabindex="-1"></a>euc <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="at">data=</span><span class="cn">NA</span>,<span class="at">nrow=</span><span class="fu">nrow</span>(futuregrid),<span class="at">ncol=</span><span class="dv">3</span>)</span>
-<span id="cb343-3"><a href="geassoc.html#cb343-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(j <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(currentgrid)) {</span>
-<span id="cb343-4"><a href="geassoc.html#cb343-4" aria-hidden="true" tabindex="-1"></a>  euc[j,] <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">as.numeric</span>(coords[j,]),<span class="fu">as.numeric</span>(<span class="fu">dist</span>(<span class="fu">rbind</span>(currentgrid[j,],futuregrid[j,]))))</span>
-<span id="cb343-5"><a href="geassoc.html#cb343-5" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb343-6"><a href="geassoc.html#cb343-6" aria-hidden="true" tabindex="-1"></a>euc <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(euc)</span>
-<span id="cb343-7"><a href="geassoc.html#cb343-7" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(euc) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Long&quot;</span>,<span class="st">&quot;Lat&quot;</span>,<span class="st">&quot;Vulnerability&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb380"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb380-1"><a href="geassoc.html#cb380-1" aria-hidden="true" tabindex="-1"></a>coords<span class="ot">&lt;-</span>birdgrid[,<span class="fu">c</span>(<span class="st">&quot;X&quot;</span>,<span class="st">&quot;Y&quot;</span>)]</span>
+<span id="cb380-2"><a href="geassoc.html#cb380-2" aria-hidden="true" tabindex="-1"></a>euc <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="at">data=</span><span class="cn">NA</span>,<span class="at">nrow=</span><span class="fu">nrow</span>(futuregrid),<span class="at">ncol=</span><span class="dv">3</span>)</span>
+<span id="cb380-3"><a href="geassoc.html#cb380-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(j <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(currentgrid)) {</span>
+<span id="cb380-4"><a href="geassoc.html#cb380-4" aria-hidden="true" tabindex="-1"></a>  euc[j,] <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">as.numeric</span>(coords[j,]), </span>
+<span id="cb380-5"><a href="geassoc.html#cb380-5" aria-hidden="true" tabindex="-1"></a>               <span class="fu">as.numeric</span>(<span class="fu">dist</span>(<span class="fu">rbind</span>(currentgrid[j,], futuregrid[j,]))))</span>
+<span id="cb380-6"><a href="geassoc.html#cb380-6" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb380-7"><a href="geassoc.html#cb380-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb380-8"><a href="geassoc.html#cb380-8" aria-hidden="true" tabindex="-1"></a>euc <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(euc)</span>
+<span id="cb380-9"><a href="geassoc.html#cb380-9" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(euc) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Long&quot;</span>,<span class="st">&quot;Lat&quot;</span>,<span class="st">&quot;Vulnerability&quot;</span>)</span>
+<span id="cb380-10"><a href="geassoc.html#cb380-10" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(euc)</span></code></pre></div>
+<pre><code>##      Long   Lat Vulnerability
+## 1  -76.17 44.09      0.001783
+## 2 -103.38 42.94      0.001586
+## 3  -69.11 44.32      0.001739
+## 4 -109.13 33.49      0.001362
+## 5 -106.01 33.40      0.002192
+## 6 -119.89 48.97      0.001132</code></pre>
 <p>This again takes a moment. Once we have this metric, we can easily map genomic vulnerability across the range. First by choosing a color palette, then by converting a dataframe of distances to a spatial polygon and giving it the same extent as the map it’s going to be plotted on and finally, mapping in ggplot.</p>
-<div class="sourceCode" id="cb344"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb344-1"><a href="geassoc.html#cb344-1" aria-hidden="true" tabindex="-1"></a>colramp2<span class="ot">=</span><span class="fu">brewer.pal</span>(<span class="at">n =</span> <span class="dv">9</span>, <span class="at">name =</span> <span class="st">&quot;RdYlBu&quot;</span>)[<span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">9</span>)]</span>
-<span id="cb344-2"><a href="geassoc.html#cb344-2" aria-hidden="true" tabindex="-1"></a>Futcolors<span class="ot">&lt;-</span><span class="fu">colorRampPalette</span>(colramp2)</span>
-<span id="cb344-3"><a href="geassoc.html#cb344-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb344-4"><a href="geassoc.html#cb344-4" aria-hidden="true" tabindex="-1"></a>euc_sp<span class="ot">&lt;-</span><span class="fu">st_as_sf</span>(euc,<span class="at">coords=</span><span class="fu">c</span>(<span class="st">&quot;Long&quot;</span>, <span class="st">&quot;Lat&quot;</span>))</span>
-<span id="cb344-5"><a href="geassoc.html#cb344-5" aria-hidden="true" tabindex="-1"></a><span class="fu">st_crs</span>(euc_sp) <span class="ot">&lt;-</span> <span class="fu">st_crs</span>(coast_cropped) </span>
-<span id="cb344-6"><a href="geassoc.html#cb344-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb344-7"><a href="geassoc.html#cb344-7" aria-hidden="true" tabindex="-1"></a>mapg <span class="ot">&lt;-</span> <span class="fu">ggplot</span>() <span class="sc">+</span></span>
-<span id="cb344-8"><a href="geassoc.html#cb344-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> coast_cropped) <span class="sc">+</span></span>
-<span id="cb344-9"><a href="geassoc.html#cb344-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> countries_cropped, <span class="at">fill =</span> <span class="cn">NA</span>) <span class="sc">+</span></span>
-<span id="cb344-10"><a href="geassoc.html#cb344-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> states_cropped, <span class="at">fill =</span> <span class="cn">NA</span>) <span class="sc">+</span></span>
-<span id="cb344-11"><a href="geassoc.html#cb344-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">data=</span>euc,<span class="fu">aes</span>(<span class="at">x=</span>Long,<span class="at">y=</span>Lat,<span class="at">color=</span>Vulnerability),<span class="at">pch=</span><span class="dv">15</span>) <span class="sc">+</span></span>
-<span id="cb344-12"><a href="geassoc.html#cb344-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_colour_gradientn</span>(<span class="at">colours =</span> <span class="fu">Futcolors</span>(<span class="dv">100</span>))<span class="sc">+</span></span>
-<span id="cb344-13"><a href="geassoc.html#cb344-13" aria-hidden="true" tabindex="-1"></a>   <span class="fu">geom_sf</span>(<span class="at">data=</span>wifl_shape,<span class="at">fill=</span><span class="cn">NA</span>) <span class="sc">+</span></span>
-<span id="cb344-14"><a href="geassoc.html#cb344-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() </span>
-<span id="cb344-15"><a href="geassoc.html#cb344-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb344-16"><a href="geassoc.html#cb344-16" aria-hidden="true" tabindex="-1"></a>mapg</span></code></pre></div>
-<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-199"></span>
-<img src="merida-workshop-2022_files/figure-html/unnamed-chunk-199-1.png" alt="Heat map of genomic vulnerability under the 2050 2.6 emission future prediction" width="672" />
+<div class="sourceCode" id="cb382"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb382-1"><a href="geassoc.html#cb382-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(scales)</span>
+<span id="cb382-2"><a href="geassoc.html#cb382-2" aria-hidden="true" tabindex="-1"></a>colramp2<span class="ot">=</span><span class="fu">rev</span>(<span class="fu">brewer.pal</span>(<span class="at">n =</span> <span class="dv">9</span>, <span class="at">name =</span> <span class="st">&quot;RdYlBu&quot;</span>)[<span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">9</span>)])</span>
+<span id="cb382-3"><a href="geassoc.html#cb382-3" aria-hidden="true" tabindex="-1"></a>Futcolors<span class="ot">&lt;-</span><span class="fu">colorRampPalette</span>(colramp2)</span>
+<span id="cb382-4"><a href="geassoc.html#cb382-4" aria-hidden="true" tabindex="-1"></a><span class="fu">show_col</span>(<span class="fu">Futcolors</span>(<span class="dv">100</span>))</span></code></pre></div>
+<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-210"></span>
+<img src="merida-workshop-2022_files/figure-html/unnamed-chunk-210-1.png" alt="Color Ramp for plotting" width="672" />
 <p class="caption">
-FIGURE 7.7: Heat map of genomic vulnerability under the 2050 2.6 emission future prediction
+FIGURE 7.7: Color Ramp for plotting
+</p>
+</div>
+<p>Notice that in the <em>rev</em> in the above code chunk will reverse the RColorBrewer color palette so the highest vulnerablity corresponds to the red color, rather than blue.</p>
+<div class="sourceCode" id="cb383"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb383-1"><a href="geassoc.html#cb383-1" aria-hidden="true" tabindex="-1"></a>euc_sp<span class="ot">&lt;-</span><span class="fu">st_as_sf</span>(euc,<span class="at">coords=</span><span class="fu">c</span>(<span class="st">&quot;Long&quot;</span>, <span class="st">&quot;Lat&quot;</span>))</span>
+<span id="cb383-2"><a href="geassoc.html#cb383-2" aria-hidden="true" tabindex="-1"></a><span class="fu">st_crs</span>(euc_sp) <span class="ot">&lt;-</span> <span class="fu">st_crs</span>(coast_cropped) </span>
+<span id="cb383-3"><a href="geassoc.html#cb383-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb383-4"><a href="geassoc.html#cb383-4" aria-hidden="true" tabindex="-1"></a>mapg <span class="ot">&lt;-</span> <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb383-5"><a href="geassoc.html#cb383-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> coast_cropped) <span class="sc">+</span></span>
+<span id="cb383-6"><a href="geassoc.html#cb383-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> countries_cropped, <span class="at">fill =</span> <span class="cn">NA</span>) <span class="sc">+</span></span>
+<span id="cb383-7"><a href="geassoc.html#cb383-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> states_cropped, <span class="at">fill =</span> <span class="cn">NA</span>) <span class="sc">+</span></span>
+<span id="cb383-8"><a href="geassoc.html#cb383-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">data=</span>euc,<span class="fu">aes</span>(<span class="at">x=</span>Long,<span class="at">y=</span>Lat,<span class="at">color=</span>Vulnerability),<span class="at">pch=</span><span class="dv">15</span>,<span class="at">size=</span>.<span class="dv">5</span>) <span class="sc">+</span></span>
+<span id="cb383-9"><a href="geassoc.html#cb383-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_colour_gradientn</span>(<span class="at">colours =</span> <span class="fu">Futcolors</span>(<span class="dv">100</span>)) <span class="sc">+</span></span>
+<span id="cb383-10"><a href="geassoc.html#cb383-10" aria-hidden="true" tabindex="-1"></a>   <span class="fu">geom_sf</span>(<span class="at">data=</span>wifl_shape,<span class="at">fill=</span><span class="cn">NA</span>) <span class="sc">+</span></span>
+<span id="cb383-11"><a href="geassoc.html#cb383-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() </span>
+<span id="cb383-12"><a href="geassoc.html#cb383-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb383-13"><a href="geassoc.html#cb383-13" aria-hidden="true" tabindex="-1"></a>mapg</span></code></pre></div>
+<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-211"></span>
+<img src="merida-workshop-2022_files/figure-html/unnamed-chunk-211-1.png" alt="Heat map of genomic vulnerability under the 2050 2.6 emission future prediction" width="672" />
+<p class="caption">
+FIGURE 7.8: Heat map of genomic vulnerability under the 2050 2.6 emission future prediction
 </p>
 </div>
 <p><strong>How does this look if we plot the second scenario of higher gas emissions? Compare and contrast the two scenarios, keeping in mind that the colors are scaled within each scenario.</strong></p>
-<div class="sourceCode" id="cb345"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb345-1"><a href="geassoc.html#cb345-1" aria-hidden="true" tabindex="-1"></a>futuregrid2<span class="ot">=</span><span class="fu">cbind</span>(future2[,<span class="fu">c</span>(<span class="st">&quot;X&quot;</span>,<span class="st">&quot;Y&quot;</span>)],<span class="fu">predict</span>(wiflforest,future2[,predictors_uncor]))</span>
-<span id="cb345-2"><a href="geassoc.html#cb345-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb345-3"><a href="geassoc.html#cb345-3" aria-hidden="true" tabindex="-1"></a>coords<span class="ot">&lt;-</span>birdgrid[,<span class="fu">c</span>(<span class="st">&quot;X&quot;</span>,<span class="st">&quot;Y&quot;</span>)]</span>
-<span id="cb345-4"><a href="geassoc.html#cb345-4" aria-hidden="true" tabindex="-1"></a>euc2 <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="at">data=</span><span class="cn">NA</span>,<span class="at">nrow=</span><span class="fu">nrow</span>(futuregrid2),<span class="at">ncol=</span><span class="dv">3</span>)</span>
-<span id="cb345-5"><a href="geassoc.html#cb345-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(j <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(currentgrid)) {</span>
-<span id="cb345-6"><a href="geassoc.html#cb345-6" aria-hidden="true" tabindex="-1"></a>  euc2[j,] <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">as.numeric</span>(coords[j,]),<span class="fu">as.numeric</span>(<span class="fu">dist</span>(<span class="fu">rbind</span>(currentgrid[j,],futuregrid2[j,]))))</span>
-<span id="cb345-7"><a href="geassoc.html#cb345-7" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb345-8"><a href="geassoc.html#cb345-8" aria-hidden="true" tabindex="-1"></a>euc2 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(euc2)</span>
-<span id="cb345-9"><a href="geassoc.html#cb345-9" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(euc2) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Long&quot;</span>,<span class="st">&quot;Lat&quot;</span>,<span class="st">&quot;Vulnerability&quot;</span>)</span></code></pre></div>
-<div class="sourceCode" id="cb346"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb346-1"><a href="geassoc.html#cb346-1" aria-hidden="true" tabindex="-1"></a>euc_sp2<span class="ot">&lt;-</span><span class="fu">st_as_sf</span>(euc2,<span class="at">coords=</span><span class="fu">c</span>(<span class="st">&quot;Long&quot;</span>, <span class="st">&quot;Lat&quot;</span>))</span>
-<span id="cb346-2"><a href="geassoc.html#cb346-2" aria-hidden="true" tabindex="-1"></a><span class="fu">st_crs</span>(euc_sp2) <span class="ot">&lt;-</span> <span class="fu">st_crs</span>(coast_cropped) </span>
-<span id="cb346-3"><a href="geassoc.html#cb346-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb346-4"><a href="geassoc.html#cb346-4" aria-hidden="true" tabindex="-1"></a>mapg2 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>() <span class="sc">+</span></span>
-<span id="cb346-5"><a href="geassoc.html#cb346-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> coast_cropped) <span class="sc">+</span></span>
-<span id="cb346-6"><a href="geassoc.html#cb346-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> countries_cropped, <span class="at">fill =</span> <span class="cn">NA</span>) <span class="sc">+</span></span>
-<span id="cb346-7"><a href="geassoc.html#cb346-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> states_cropped, <span class="at">fill =</span> <span class="cn">NA</span>) <span class="sc">+</span></span>
-<span id="cb346-8"><a href="geassoc.html#cb346-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">data=</span>euc2,<span class="fu">aes</span>(<span class="at">x=</span>Long,<span class="at">y=</span>Lat,<span class="at">color=</span>Vulnerability), <span class="at">pch=</span><span class="dv">15</span>) <span class="sc">+</span></span>
-<span id="cb346-9"><a href="geassoc.html#cb346-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_colour_gradientn</span>(<span class="at">colours =</span> <span class="fu">Futcolors</span>(<span class="dv">100</span>))<span class="sc">+</span></span>
-<span id="cb346-10"><a href="geassoc.html#cb346-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data=</span>wifl_shape,<span class="at">fill=</span><span class="cn">NA</span>) <span class="sc">+</span></span>
-<span id="cb346-11"><a href="geassoc.html#cb346-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() </span>
-<span id="cb346-12"><a href="geassoc.html#cb346-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb346-13"><a href="geassoc.html#cb346-13" aria-hidden="true" tabindex="-1"></a>mapg2</span></code></pre></div>
-<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-201"></span>
-<img src="merida-workshop-2022_files/figure-html/unnamed-chunk-201-1.png" alt="Heat map of genomic vulnerability under the 2050 8.5 emission future prediction" width="672" />
+<div class="sourceCode" id="cb384"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb384-1"><a href="geassoc.html#cb384-1" aria-hidden="true" tabindex="-1"></a>futuregrid2 <span class="ot">&lt;-</span> <span class="fu">cbind</span>(future2[,<span class="fu">c</span>(<span class="st">&quot;X&quot;</span>,<span class="st">&quot;Y&quot;</span>)], <span class="fu">predict</span>(wiflforest,future2[,predictors_uncor]))</span>
+<span id="cb384-2"><a href="geassoc.html#cb384-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb384-3"><a href="geassoc.html#cb384-3" aria-hidden="true" tabindex="-1"></a>coords<span class="ot">&lt;-</span>birdgrid[,<span class="fu">c</span>(<span class="st">&quot;X&quot;</span>,<span class="st">&quot;Y&quot;</span>)]</span>
+<span id="cb384-4"><a href="geassoc.html#cb384-4" aria-hidden="true" tabindex="-1"></a>euc2 <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="at">data=</span><span class="cn">NA</span>,<span class="at">nrow=</span><span class="fu">nrow</span>(futuregrid2),<span class="at">ncol=</span><span class="dv">3</span>)</span>
+<span id="cb384-5"><a href="geassoc.html#cb384-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(j <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(currentgrid)) {</span>
+<span id="cb384-6"><a href="geassoc.html#cb384-6" aria-hidden="true" tabindex="-1"></a>  euc2[j,] <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">as.numeric</span>(coords[j,]), </span>
+<span id="cb384-7"><a href="geassoc.html#cb384-7" aria-hidden="true" tabindex="-1"></a>                <span class="fu">as.numeric</span>(<span class="fu">dist</span>(<span class="fu">rbind</span>(currentgrid[j,], futuregrid2[j,]))))</span>
+<span id="cb384-8"><a href="geassoc.html#cb384-8" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb384-9"><a href="geassoc.html#cb384-9" aria-hidden="true" tabindex="-1"></a>euc2 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(euc2)</span>
+<span id="cb384-10"><a href="geassoc.html#cb384-10" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(euc2) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Long&quot;</span>,<span class="st">&quot;Lat&quot;</span>,<span class="st">&quot;Vulnerability&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb385"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb385-1"><a href="geassoc.html#cb385-1" aria-hidden="true" tabindex="-1"></a>euc_sp2<span class="ot">&lt;-</span><span class="fu">st_as_sf</span>(euc2,<span class="at">coords=</span><span class="fu">c</span>(<span class="st">&quot;Long&quot;</span>, <span class="st">&quot;Lat&quot;</span>))</span>
+<span id="cb385-2"><a href="geassoc.html#cb385-2" aria-hidden="true" tabindex="-1"></a><span class="fu">st_crs</span>(euc_sp2) <span class="ot">&lt;-</span> <span class="fu">st_crs</span>(coast_cropped) </span>
+<span id="cb385-3"><a href="geassoc.html#cb385-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb385-4"><a href="geassoc.html#cb385-4" aria-hidden="true" tabindex="-1"></a>mapg2 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb385-5"><a href="geassoc.html#cb385-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> coast_cropped) <span class="sc">+</span></span>
+<span id="cb385-6"><a href="geassoc.html#cb385-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> countries_cropped, <span class="at">fill =</span> <span class="cn">NA</span>) <span class="sc">+</span></span>
+<span id="cb385-7"><a href="geassoc.html#cb385-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> states_cropped, <span class="at">fill =</span> <span class="cn">NA</span>) <span class="sc">+</span></span>
+<span id="cb385-8"><a href="geassoc.html#cb385-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">data=</span>euc2,<span class="fu">aes</span>(<span class="at">x=</span>Long,<span class="at">y=</span>Lat,<span class="at">color=</span>Vulnerability), <span class="at">pch=</span><span class="dv">15</span>,<span class="at">size=</span><span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb385-9"><a href="geassoc.html#cb385-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_colour_gradientn</span>(<span class="at">colours =</span> <span class="fu">Futcolors</span>(<span class="dv">100</span>))<span class="sc">+</span></span>
+<span id="cb385-10"><a href="geassoc.html#cb385-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data=</span>wifl_shape,<span class="at">fill=</span><span class="cn">NA</span>) <span class="sc">+</span></span>
+<span id="cb385-11"><a href="geassoc.html#cb385-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() </span>
+<span id="cb385-12"><a href="geassoc.html#cb385-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb385-13"><a href="geassoc.html#cb385-13" aria-hidden="true" tabindex="-1"></a>mapg2</span></code></pre></div>
+<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-213"></span>
+<img src="merida-workshop-2022_files/figure-html/unnamed-chunk-213-1.png" alt="Heat map of genomic vulnerability under the 2050 8.5 emission future prediction" width="672" />
 <p class="caption">
-FIGURE 7.8: Heat map of genomic vulnerability under the 2050 8.5 emission future prediction
+FIGURE 7.9: Heat map of genomic vulnerability under the 2050 8.5 emission future prediction
 </p>
 </div>
+</div>
+<div id="next-steps" class="section level2" number="7.7">
+<h2><span class="header-section-number">7.7</span> Next steps</h2>
+<div id="randomization" class="section level3" number="7.7.1">
+<h3><span class="header-section-number">7.7.1</span> Randomization</h3>
+<p>So as we’ve seen in this tutorial, grandient forest is a great way to understand which variables are important drivers of the population genomic structure of your species and with plotting the assoiciations in space, a great way to look at local adpation of different populations to different environmental variables. To understand how important, whether local adaptation is significant in your species, you need to run a randomization step. In this step, you are breaking up the actual associations of allele frequencies and enviornmnetal variables, randomizing the environmental predictors and running gradient forest again <em>multiple times</em>.</p>
+<p>This code below is not evaluated because it takes a very long time to run one thousand randomizations.</p>
+<pre><code>realtotal=wiflforest$species.pos.rsq
+realaverage=sum(wiflforest$result)/realtotal
+realaverage
 
+for (i in 1:1000){
+
+predsR=Ewifl[sample(nrow(Ewifl)),]
+
+wiflforestR=gradientForest(cbind(predsR,Gwifl), predictor.vars=colnames(predsR), response.vars=colnames(Gwifl), ntree=10, transform = NULL, compact=F, maxLevel=1,trace=F,nbin=101)
+
+ randtotal=wiflforestR$species.pos.rsq
+ randaverage=sum(wiflforestR$result)/randtotal
+
+ #totaldiff=realtotal-randtotal
+ #avrdiff=realaverage-randaverage
+
+ write.table(randtotal,file=paste(&quot;stored_results/6.0/WIFL.randtotal&quot;,sep=&quot;&quot;),row.names=FALSE,col.names=FALSE,append=T)
+ write.table(randaverage,file=paste(&quot;stored_results/6.0/WIFL.randaverage&quot;,sep=&quot;&quot;),row.names=FALSE,col.names=FALSE,append=T)
+}
+
+randa &lt;- read_delim(&quot;stored_results/6.0/WIFL.randaverage&quot;,delim=&quot;\t&quot;,col_names = F)
+randt=read.table(&quot;stored_results/6.0/WIFL.randtotal&quot;,delim=&quot;\t&quot;, col.names = F)
+quantile(randa$V1,c(0.975))
+#randa=as.numeric(randa)
+#randt=as.numeric(randt)
+
+library(ggpubr)
+pdf(&quot;wiflforest.1000regtrees.hist.pdf&quot;)
+par(mfrow=c(2,1))
+hist(randa$V1,xlim=c(0.001,0.5), main=&quot;Average R-squared of Random Gradient Forests&quot;,xlab=&quot;Average R-squared of 10,000 WIFL SNPs&quot;)
+abline(v=0.2006884,col=&quot;red&quot;) #replace with the 95th percential of the average R squared from real data
+dev.off()
+</code></pre>
+<p>If your real results fall right in the middle of the randomized results, then even though you have ranked environmental variables underlying the population structure of your species, it’s no different than random, and therefore not significant.</p>
+</div>
+<div id="candidate-variants" class="section level3" number="7.7.2">
+<h3><span class="header-section-number">7.7.2</span> Candidate variants</h3>
+<p>If you find that gradient forest is significant, your next step might be wanting to identify variants associated with these top variables. Grandient forest is not really the way to do this. Rather, there are two programs that you can use: <em>Latent Factor Mixed Models (LFMM)</em> and <em>Redundancy Analyses (RDA)</em>.</p>
+<ul>
+<li>LFMM can identify candidate loci associated with top ranking environmental variables</li>
+</ul>
+<p><a href="https://bcm-uga.github.io/lfmm/" class="uri">https://bcm-uga.github.io/lfmm/</a></p>
+<ul>
+<li>RDA is a method to extract and summarise the variation in a set of response variables that can be explained by a set of explanatory variables. More accurately, RDA is a direct gradient analysis technique which summarises linear relationships between components of response variables that are “redundant” with (i.e. “explained” by) a set of explanatory variables. Very similar to gradient forest, but also can identify candidate genes associated with environmental variables.</li>
+</ul>
+<p><a href="https://popgen.nescent.org/2018-03-27_RDA_GEA.html" class="uri">https://popgen.nescent.org/2018-03-27_RDA_GEA.html</a></p>
+
+</div>
 </div>
 </div>
             </section>

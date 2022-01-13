@@ -320,6 +320,7 @@ text(PCs$rotation[vec, 1]/scal + jit * sign(PCs$rotation[vec,1]), PCs$rotation[v
 __Save this image using the code chunk below. What environmental variables are associated with the colors green, pink and blue? Knowing this will help with the interpretation of plotting this in space.__
 
 ```{r}
+dir.create("stored_results/6.0", showWarnings = FALSE, recursive = TRUE)
 pdf("stored_results/6.0/WIFL.PCA_uncorrelated.pdf")
 nvs <- dim(PCs$rotation)[1]
 vec <- c("BIO11","BIO5","BIO4" ,"BIO17")
